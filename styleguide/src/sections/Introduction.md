@@ -1,4 +1,4 @@
-The Reaction Style Guide and component library is documentation of the components we use to build [Reaction Commerce](http://reactioncommerce.com/) apps. The style guide includes design guidelines, patterns, examples, and theming information. You can play with the component examples and see what happens. All of these components can also be imported into your own browser apps from the [`@reactioncommerce/components`](https://www.npmjs.com/package/@reactioncommerce/components) NPM package.
+The Reaction Style Guide and component library is documentation of the components we use to build [Reaction Commerce](http://reactioncommerce.com/) apps. The style guide includes design guidelines, patterns, examples, and theming information. You can play with the component examples and see what happens. All of these components can also be imported into your own browser apps from the [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst) NPM package.
 
 Our goals for the style guide are threefold:
 
