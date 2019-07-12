@@ -1,4 +1,4 @@
-import Button from "../../package/src/components/Button/v1";
+import Button from "../../package/src/components/Button";
 
 export default {
   Button
