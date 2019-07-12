@@ -1,65 +1,16 @@
 const path = require("path");
 const fs = require("fs");
-// const snapguidist = require("snapguidist");
 
 const componentsDir = path.join(__dirname, "package/src/components");
 const componentTree = {};
-// const { defaultHandlers } = require("react-docgen");
-
-// function customDisplayName(componentPath) {
-//   return (documentation, definition) => {
-//     documentation.set("displayName", "v1");
-//     documentation.set("path", "Button/v1/Button");
-
-//     console.log(documentation, definition.value.id.name);
-//     // Calculate a display name for components based upon the declared class name.
-//     // if (
-//     //   definition.value.type === "ClassDeclaration" &&
-//     //   definition.value.id.type === "Identifier"
-//     // ) {
-//     //   documentation.set("displayName", "v1");
-
-//     //   // Calculate the key required to find the component in the module exports
-//     //   if ( //     //     definition.parentPath.value.type === "ExportNamedDeclaration"
-//     //   ) {
-//     //     console.log("name", definition.value.id.name);
-//     //     documentation.set("path", `v1.${definition.value.id.name}`);
-//     //   }
-//     // }
-
-//     // // The component is the default export
-//     // if (
-//     //   definition.parentPath.value.type === "ExportDefaultDeclaration"
-//     // ) {
-//     //   console.log("isDefault");
-//     //   documentation.set("path", "default");
-//     // }
-//   };
-// }
 
 // Build componentTree from project files
 if (fs.statSync(componentsDir).isDirectory()) {
   const componentItems = fs.readdirSync(componentsDir);
   componentItems.forEach((componentName) => {
-    const fullItemPath = path.join(componentsDir, componentName);
-    if (fs.statSync(fullItemPath).isDirectory()) {
-      const versionItems = fs.readdirSync(fullItemPath);
-      versionItems.forEach((versionName) => {
-        componentTree[componentName] = componentTree[componentName] || {};
-        componentTree[componentName][versionName] = path.join("./package/src/components", componentName, versionName, `${componentName}.js`);
-      });
-    }
+    componentTree[componentName] = path.join("./package/src/components", componentName, `${componentName}.js`);
   });
 }
-
-// function generateSection({ componentNames, name, content }) {
-//   const sections = componentNames.map((componentName) => {
-//     const components = Object.keys(componentTree[componentName]).map((version) => componentTree[componentName][version]);
-//     return { name: componentName, components: () => components };
-//   });
-
-//   return { content, name, sections };
-// }
 
 /**
  * @name generateSection
@@ -71,8 +22,7 @@ if (fs.statSync(componentsDir).isDirectory()) {
  * @returns {Object} with content, name, components keys
  */
 function generateSection({ componentNames, name, content }) {
-  const components = componentNames.map((componentName) =>
-    Object.keys(componentTree[componentName]).map((version) => componentTree[componentName][version])[0]);
+  const components = componentNames.map((componentName) => componentTree[componentName]);
 
   return { content, name, components };
 }
@@ -403,125 +353,10 @@ module.exports = {
       sections: [
         generateSection({
           componentNames: [
-            "Button",
-            "Link"
+            "Button"
           ],
           content: "styleguide/src/sections/Actions.md",
           name: "Actions"
-        }),
-        generateSection({
-          componentNames: [
-            "Accordion",
-            "Address",
-            "InlineAlert",
-            "ProgressiveImage"
-          ],
-          content: "styleguide/src/sections/Content.md",
-          name: "Content"
-        }),
-        generateSection({
-          componentNames: [
-            "AccordionFormList",
-            "Checkbox",
-            "ErrorsBlock",
-            "Field",
-            "MultiSelect",
-            "PhoneNumberInput",
-            "RegionInput",
-            "QuantityInput",
-            "Select",
-            "SelectableItem",
-            "SelectableList",
-            "TextInput"
-          ],
-          content: "styleguide/src/sections/Forms.md",
-          name: "Forms"
-        }),
-        generateSection({
-          componentNames: [
-            "InPageMenu",
-            "InPageMenuItem"
-          ],
-          content: "styleguide/src/sections/Menus.md",
-          name: "Menus"
-        })
-      ]
-    },
-    {
-      name: "Storefront Components",
-      sections: [
-        generateSection({
-          componentNames: [
-            "ShopLogo"
-          ],
-          content: "styleguide/src/sections/General.md",
-          name: "General"
-        }),
-        generateSection({
-          componentNames: [
-            "AccountProfileInfo",
-            "AddressBook",
-            "ProfileImage",
-            "ViewerInfo"
-          ],
-          content: "styleguide/src/sections/Account.md",
-          name: "Account"
-        }),
-        generateSection({
-          componentNames: [
-            "CartEmptyMessage",
-            "CartItem",
-            "CartItems",
-            "CartItemDetail",
-            "CartSummary",
-            "MiniCart",
-            "MiniCartSummary"
-          ],
-          content: "styleguide/src/sections/Cart.md",
-          name: "Cart"
-        }),
-        generateSection({
-          componentNames: [
-            "CheckoutAction",
-            "CheckoutActionComplete",
-            "CheckoutActionIncomplete",
-            "CheckoutActions",
-            "CheckoutEmailAddress",
-            "CheckoutTopHat",
-            "ExampleIOUPaymentForm",
-            "FinalReviewCheckoutAction",
-            "FulfillmentOptionsCheckoutAction",
-            "PaymentsCheckoutAction",
-            "ShippingAddressCheckoutAction",
-            "StripePaymentCheckoutAction",
-            "StripePaymentInput"
-          ],
-          content: "styleguide/src/sections/Checkout.md",
-          name: "Checkout"
-        }),
-        generateSection({
-          componentNames: [
-            "AddressCapture",
-            "AddressChoice",
-            "AddressForm",
-            "AddressReview",
-            "GuestForm",
-            "StripeForm"
-          ],
-          content: "styleguide/src/sections/StorefrontForms.md",
-          name: "Forms"
-        }),
-        generateSection({
-          componentNames: [
-            "BadgeOverlay",
-            "CatalogGridItem",
-            "CatalogGrid",
-            "InventoryStatus",
-            "Price",
-            "StockWarning"
-          ],
-          content: "styleguide/src/sections/Product.md",
-          name: "Product"
         })
       ]
     }
@@ -552,9 +387,7 @@ module.exports = {
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
-    const dir = path.dirname(componentPath);
-    const version = dir.slice(dir.lastIndexOf("/") + 1);
-    return `import ${name} from "@reactioncommerce/components/${name}/${version}"`;
+    return `import ${name} from "@reactioncommerce/components/${name}"`;
   },
   pagePerSection: true,
   showCode: true,
