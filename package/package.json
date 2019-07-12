@@ -91,8 +91,6 @@
     "@reactioncommerce/components-context": "~1.2.0",
     "prop-types": "~15.6.2",
     "react": "~16.8.6",
-    "react-dom": "~16.8.6",
-    "react-stripe-elements": "~2.0.1",
-    "reacto-form": "~0.0.2"
+    "react-dom": "~16.8.6"
   }
 }
