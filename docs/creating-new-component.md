@@ -58,7 +58,6 @@ Review and follow all guidelines in [Writing Jest Unit Tests](https://docs.react
 - How to document your component
 - How to run tests in watch mode
 - How to write tests. Snapshots for each md case. Required prop snapshots pattern
-- How to use theme in styled-components
 - How to make a util function
 - How to make a global util function
 - How to make a util function or component for styleguideist examples only
