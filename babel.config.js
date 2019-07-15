@@ -22,7 +22,6 @@ module.exports = function (api) {
         "@babel/preset-react"
       ],
       plugins: [
-        "babel-plugin-styled-components",
         ["@babel/plugin-proposal-decorators", { legacy: true }],
         ["@babel/plugin-proposal-class-properties", { loose: true }],
         "@babel/plugin-syntax-dynamic-import"
@@ -61,7 +60,6 @@ module.exports = function (api) {
   ];
 
   const plugins = [
-    "babel-plugin-styled-components",
     ["@babel/plugin-proposal-decorators", { legacy: true }],
     ["@babel/plugin-proposal-class-properties", { loose: true }],
     "@babel/plugin-syntax-dynamic-import",
