@@ -4,9 +4,9 @@ Date: 2019-07-12
 
 ## Status
 
-STATUS：accepted
+STATUS：proposal
 
-2019-07-12 accepted
+2019-07-16 proposal
 
 ## Context
 
@@ -44,16 +44,7 @@ There is a further complication here, which is "how does the style guide release
 
 ## Decision
 
-The complexity of setting up, maintaining, and understanding a one-package-per-component approach, even with the help of tools like Lerna, is a very strong con. So if we assume that a single package is our preference, let's look at how we might mitigate the cons of that apprach.
-
-The first con, pulling in unwanted component changes, is MAJOR. This causes a lot of headaches for a lot of people. There are a few things we can do to avoid it:
-
-- Every component change that changes the appearance of a component in any way should be exported as a new component. The whole component folder can be copied into a `v2` folder. That way, any app that pulls in an updated package will not see any changes until they change `import { Button } from "@reactioncommerce/components/v1` to `import { Button } from "@reactioncommerce/components/v2`
+- Use the single-package approach which includes all components into a single package.
 - No React component in this library will import any other React component in this library. All components that a component needs to render will be passed in as props or children.
 - Every component will have Jest snapshot testing, which will give a clue to developers and reviewers that a component's appearance may have changed. Part of the review process can be deciding whether the changes are visual and whether they require splitting off a new version of the component (i.e. are considered "breaking" changes). There is the possibility of automating this even more through automated screen shot comparison.
-
-This approach also answers the question of how the style guide will show all versions of the component. Since all versions will remain in the repo in versioned folder names, they'll just naturally appear.
-
-The second con of a single package can be avoided by the following suggestion:
-
-- Apps using the component package should set up a "tree shaking" solution to avoid bundling any components they do not import.
+- Apps using the Catalyst component package may set up a "tree shaking" solution to avoid bundling any components they do not import.
