@@ -8,13 +8,13 @@
 This is a single project with a package of React UI components for Reaction's Catalyst UI, the operator tool of Reaction:
 
 - [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst): See the [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package/package.json) in [`/package`](https://github.com/reactioncommerce/catalyst/tree/master/package) folder.
-- [Reaction Design System](https://designsystem.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package.json).
+- [Reaction Design System](https://catalyst.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package.json).
 
 We use the [React Styleguidist](https://react-styleguidist.js.org/) package to run and build the Reaction Design System website, and running the style guide locally doubles as an interactive playground for developing and testing the components.
 
 ## Use the React components in your project
 
-Refer to the [Reaction Design System docs](https://designsystem.reactioncommerce.com/#!/Using%20Components)
+Refer to the [Reaction Design System docs](https://catalyst.reactioncommerce.com/#!/Using%20Components)
 
 ## Contribute to this project
 
