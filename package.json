@@ -187,5 +187,8 @@
   },
   "release": {
     "pkgRoot": "package/dist"
+  },
+  "resolutions": {
+    "**/lodash": "4.17.14"
   }
 }
