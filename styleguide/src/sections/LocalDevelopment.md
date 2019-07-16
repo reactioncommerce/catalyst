@@ -9,7 +9,7 @@ yarn install
 yarn run build
 ```
 
-- Next, `cd` into the local version of the repository you'd like to use the local `Component Library` inside. Add the following line to the `volumes:` portion of the `docker-compose.yml` file:
+- Next, `cd` into the local version of the repository you'd like to use the local `Catalyst Library` inside. Add the following line to the `volumes:` portion of the `docker-compose.yml` file:
 
 Inside `Reaction Storefront`:
 
@@ -20,10 +20,10 @@ volumes:
   - .:/usr/local/src/reaction-app
   - empty_node_modules:/usr/local/src/reaction-app/node_modules # do not link node_modules in, and persist it between dc up runs
   - node_modules:/usr/local/src/node_modules
-+ - /{Path-to-your-local-repo}/reaction-component-library/package/dist:/usr/local/src/reaction-app/node_modules/@reactioncommerce/components
++ - /{Path-to-your-local-repo}/catalyst/package/dist:/usr/local/src/reaction-app/node_modules/@reactioncommerce/catalyst
 ```
 
-Inside `Reaction Operator UI`:
+Inside `Reaction Catalyst UI`:
 ```diff
 volumes:
   - $HOME/.cache/yarn-offline-mirror:/home/node/.cache/yarn-offline-mirror
@@ -31,7 +31,7 @@ volumes:
   - .:/usr/local/src/reaction-app
   - empty_node_modules:/usr/local/src/reaction-app/node_modules # do not link node_modules in, and persist it between dc up runs
   - node_modules:/usr/local/src/node_modules
-+ - /{Path-to-your-local-repo}/reaction-component-library/package/dist:/usr/local/src/node_modules/@reactioncommerce/components
++ - /{Path-to-your-local-repo}/catalyst/package/dist:/usr/local/src/node_modules/@reactioncommerce/catalyst
 ```
 
 - Next, run `docker-compose up -d` like normal to access the app in your browser and test it.
