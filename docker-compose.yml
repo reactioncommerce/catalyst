@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        BUILD_ENV: "development"
+    command: sh -c "yarn install && (cd package && yarn install) && yarn start"
+    env_file:
+      - ./.env
+    environment:
+      REACTION_APP_NAME: "styleguide.web"
+    ports:
+      - 4060:4060
+    volumes:
+      - $HOME/.cache/yarn-offline-mirror:/home/node/.cache/yarn-offline-mirror
+      - web-yarn:/home/node/.cache/yarn
+      - .:/usr/local/src/reaction-app # link everything from the root folder on the host machine into the container
+      - node_modules:/usr/local/src/reaction-app/node_modules # except do not link the host /node_modules in because it will override the container node_modules
+      - package_node_modules:/usr/local/src/reaction-app/package/node_modules # except do not link the host /package/node_modules in because it will override the container node_modules
+
+volumes:
+  web-yarn:
+  node_modules:
+  package_node_modules:
