@@ -1,6 +1,6 @@
 # Reaction Component Library & Design System
 
-[![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/components.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
+[![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
 
 ![Reaction Design System](https://blog.reactioncommerce.com/content/images/2018/09/style-guide-artwork.jpg)
