@@ -1,4 +1,4 @@
-# Reaction Design System and Component Library - Contributor Docs
+# Catalyst Design System and Component Library - Contributor Docs
 
 ## Getting Started
 

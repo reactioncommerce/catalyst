@@ -1,11 +1,11 @@
-# Reaction Component Library & Design System
+# Catalyst Design System
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/components.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
 
-![Reaction Design System](https://blog.reactioncommerce.com/content/images/2018/09/style-guide-artwork.jpg)
+> ⚠️ This project is a work-in-progress and not ready for usage.
 
-This is a single project with a package of commerce-focused React UI components and the code for the Reaction Design System website:
+This is a single project with a package of React UI components for Reaction's Catalyst UI, the operator tool of Reaction:
 
 - [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst): See the [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package/package.json) in [`/package`](https://github.com/reactioncommerce/catalyst/tree/master/package) folder.
 - [Reaction Design System](https://designsystem.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package.json).
@@ -22,7 +22,7 @@ Refer to the [contributor docs](./docs)
 
 ## License
 
-Copyright 2018 Reaction Commerce
+Copyright 2019 Reaction Commerce
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
