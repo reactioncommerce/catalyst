@@ -1220,9 +1220,9 @@
   dependencies:
     hoist-non-react-statics "^3.2.0"
 
-"@reactioncommerce/eslint-config@~1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@reactioncommerce/eslint-config/-/eslint-config-1.9.0.tgz#fa8075fa1ac361791567075d94ee6667adc87fd0"
+"@reactioncommerce/eslint-config@~2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@reactioncommerce/eslint-config/-/eslint-config-2.0.0.tgz#239fcdb8ff22b14d7f0629cda3ec7f2400b79b09"
 
 "@semantic-release/commit-analyzer@^6.1.0":
   version "6.2.0"
