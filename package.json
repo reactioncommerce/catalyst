@@ -34,6 +34,10 @@
       "react": {
         "version": "detect"
       }
+    },
+    "rules": {
+      "node/no-unsupported-features/es-syntax": "off",
+      "node/no-unpublished-require": "warn"
     }
   },
   "eslintIgnore": [
