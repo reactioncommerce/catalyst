@@ -8,4 +8,4 @@ Our goals for the style guide are threefold:
 
 This style guide is very much a living and evolving document—this is only the beginning. Transparency and constant iteration are core principles of [Reaction Commerce](http://reactioncommerce.com/), and in that spirit, we wanted to share our style guide as soon as possible. Check back often as we continue to iterate and evolve the Reaction Style Guide.
 
-Follow our progress on GitHub at [reactioncommerce/reaction-component-library](https://github.com/reactioncommerce/reaction-component-library/) and NPM at [@reactioncommerce/components] (https://www.npmjs.com/package/@reactioncommerce/components). Read our [project documentation](https://github.com/reactioncommerce/reaction-component-library/blob/master/docs/README.md) for more details.
+Follow our progress on GitHub at [reactioncommerce/catalyst](https://github.com/reactioncommerce/catalyst/) and NPM at [@reactioncommerce/catalyst] (https://www.npmjs.com/package/@reactioncommerce/catalyst). Read our [project documentation](https://github.com/reactioncommerce/catalyst/blob/master/docs/README.md) for more details.

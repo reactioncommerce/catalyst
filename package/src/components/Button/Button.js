@@ -7,7 +7,7 @@ import { withComponents } from "@reactioncommerce/components-context";
  */
 function Button() {
   // Not yet implemented
-  return null;
+  return <button>{"not yet implemented"}</button>;
 }
 
 export default withComponents(Button);

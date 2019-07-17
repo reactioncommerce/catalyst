@@ -387,7 +387,7 @@ module.exports = {
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
-    return `import ${name} from "@reactioncommerce/components/${name}"`;
+    return `import ${name} from "@reactioncommerce/catalyst/${name}"`;
   },
   pagePerSection: true,
   showCode: true,

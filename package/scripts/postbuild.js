@@ -26,6 +26,8 @@ async function recursivelyChangeExtension(fullDirPath, ext, newExt) {
 
     await fse.copy(childPath, childPath.replace(`.${ext}`, `.${newExt}`));
     await fse.remove(childPath);
+
+    return true;
   });
   await Promise.all(promises);
 }

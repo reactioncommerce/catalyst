@@ -99,9 +99,9 @@ For this project specifically:
 - You should almost never include "BREAKING CHANGES" because we’re duplicating components to avoid that. Consult with others before doing it.
 - All other prefixes (docs, chore, etc.) do NOT trigger a release.
 
-## Components Package Publication
+## Catalyst Package Publication
 
-The `@reactioncommerce/components` package is automatically published by CI when commits are merged or pushed to the `master` branch. This is done using [semantic-release](https://www.npmjs.com/package/semantic-release), which also determines version bumps based on conventional Git commit messages.
+The `@reactioncommerce/catalyst` package is automatically published by CI when commits are merged or pushed to the `master` branch. This is done using [semantic-release](https://www.npmjs.com/package/semantic-release), which also determines version bumps based on conventional Git commit messages.
 
 ## Style Guide Publication
 
@@ -115,4 +115,4 @@ Be sure to familiarize yourself with the [Repo Structure](./repo-structure.md).
 
 If you're going to create components, learn the [Component Development Guidelines](./component-development-guidelines.md) and read about [Creating a New Component](./creating-new-component.md).
 
-If you're going to work on the Reaction Design System website, check out the [Style Guide Development](./style-guide-development.md) docs.
+If you're going to work on the Reaction Catalyst website, check out the [Style Guide Development](./style-guide-development.md) docs.
