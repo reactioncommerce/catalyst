@@ -1,4 +1,4 @@
-# Reaction Component Library & Design System
+# Reaction Catalyst Component Library
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
@@ -16,7 +16,7 @@ We use the [React Styleguidist](https://react-styleguidist.js.org/) package to r
 
 ## Use the React components in your project
 
-Refer to the [Reaction Design System docs](https://designsystem.reactioncommerce.com/#!/Using%20Components)
+Refer to the [Reaction Catalyst Components doc](https://catalyst.reactioncommerce.com/#!/Using%20Components)
 
 ## Contribute to this project
 
