@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
+// import withStyles from "@material-ui/core/styles/withStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import MuiButton from "@material-ui/core/Button";
 
+/*
 const styles = (theme) => ({
   buttonProgress: {
     marginLeft: theme.spacing.unit
@@ -32,6 +33,7 @@ const styles = (theme) => ({
     }
   }
 });
+*/
 
 /**
  * @name Button
@@ -100,6 +102,6 @@ Button.propTypes = {
 };
 
 // withStyles() will work after 'theme' is defined in this context
-//export default withStyles(styles, { name: "RuiButton" })(Button);
+// export default withStyles(styles, { name: "RuiButton" })(Button);
 export default Button;
 
