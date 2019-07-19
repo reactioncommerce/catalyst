@@ -27,12 +27,12 @@ exports[`basic snapshot 1`] = `
   type="button"
 >
   <span
-    className="MuiButton-root"
+    className="MuiButton-label"
   >
     Submit
   </span>
   <span
     className="MuiTouchRipple-root"
-  >
+  />
 </button>
 `;
