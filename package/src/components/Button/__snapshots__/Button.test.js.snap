@@ -27,11 +27,11 @@ exports[`basic snapshot 1`] = `
   type="button"
 >
   <span
-    className="MuiTouchButton-root"
+    className="MuiButton-root"
   >
     Submit
   </span>
-  <span>
+  <span
     className="MuiTouchRipple-root"
   >
 </button>
