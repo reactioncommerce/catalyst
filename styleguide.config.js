@@ -308,6 +308,9 @@ module.exports = {
       }
     }
   },
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, "styleguide/src/components/Wrapper")
+  },
   sections: [
     {
       name: "Introduction",
@@ -351,7 +354,8 @@ module.exports = {
       sections: [
         generateSection({
           componentNames: [
-            "Button"
+            "Button",
+            "ConfirmDialog"
           ],
           content: "styleguide/src/sections/Actions.md",
           name: "Actions"
