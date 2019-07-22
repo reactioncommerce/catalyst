@@ -14,7 +14,7 @@ import { defaultTheme } from "../../../package/src";
 function Wrapper(props) {
   return (
     <ComponentsProvider value={appComponents}>
-      <MuiThemeProvider muiTheme={defaultTheme}>
+      <MuiThemeProvider theme={defaultTheme}>
         <DefaultWrapper {...props} />
       </MuiThemeProvider>
     </ComponentsProvider>
