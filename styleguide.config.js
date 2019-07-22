@@ -29,7 +29,6 @@ function generateSection({ componentNames, name, content }) {
 
 module.exports = {
   title: "Reaction Design System",
-  editorConfig: { theme: "base16-light" },
   theme: {
     sidebarWidth: 320,
     maxWidth: 1000,
@@ -309,9 +308,6 @@ module.exports = {
       }
     }
   },
-  styleguideComponents: {
-    Wrapper: path.join(__dirname, "styleguide/src/components/Wrapper")
-  },
   sections: [
     {
       name: "Introduction",
@@ -333,7 +329,8 @@ module.exports = {
           name: "Developing Locally Inside Another Project",
           content: "styleguide/src/sections/LocalDevelopment.md"
         }
-      ]
+      ],
+      sectionDepth: 2
     },
     {
       name: "Style",
@@ -346,7 +343,8 @@ module.exports = {
           name: "Typography",
           content: "styleguide/src/sections/Typography.md"
         }
-      ]
+      ],
+      sectionDepth: 2
     },
     {
       name: "Base Components",
@@ -358,7 +356,8 @@ module.exports = {
           content: "styleguide/src/sections/Actions.md",
           name: "Actions"
         })
-      ]
+      ],
+      sectionDepth: 2
     }
   ],
   require: ["@babel/polyfill", path.join(__dirname, "styleguide/src/styles.css")],
@@ -395,7 +394,79 @@ module.exports = {
   serverPort: Number(process.env.PORT || 6060),
   assetsDir: "styleguide/src/assets/",
   styleguideDir: "styleguide/dist",
-  template: "styleguide/src/index.html"
+  template: {
+    lang: "en",
+    head: {
+      meta: [
+        {
+          name: "theme-color",
+          content: "#000000"
+        }
+      ],
+      links: [
+        {
+          rel: "manifest",
+          href: "/manifest.json"
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon.png"
+        },
+        {
+          ref: "shortcut icon",
+          href: "/favicon.ico"
+        }
+      ],
+      raw: `
+<link href="https://fonts.googleapis.com/css?family=Overpass+Mono|Source+Sans+Pro:200,400,600,700" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "PostGrotesk-Light";
+      src: url("fonts/post-grotesk/PostGrotesk-Light.eot");
+      /* IE9 Compat Modes */
+      src: url("fonts/post-grotesk/PostGrotesk-Light.woff") format("woff"),
+        url("fonts/post-grotesk/PostGrotesk-Light.svg") format("svg");
+      font-weight: 300;
+    }
+
+    @font-face {
+      font-family: "PostGrotesk-Medium";
+      src: url("fonts/post-grotesk/PostGrotesk-Medium.eot");
+      /* IE9 Compat Modes */
+      src: url("fonts/post-grotesk/PostGrotesk-Medium.woff") format("woff"),
+        url("fonts/post-grotesk/PostGrotesk-Medium.svg") format("svg");
+      font-weight: normal;
+    }
+
+    @font-face {
+      font-family: "PostGrotesk-Bold";
+      src: url("fonts/post-grotesk/PostGrotesk-Bold.eot");
+      /* IE9 Compat Modes */
+      src: url("fonts/post-grotesk/PostGrotesk-Bold.woff") format("woff"),
+        url("fonts/post-grotesk/PostGrotesk-Bold.svg") format("svg");
+      font-weight: bold;
+    }
+
+    /* PostGrotesk-Regular is PostGrotesk-Book */
+    @font-face {
+      font-family: "PostGrotesk-Regular";
+      src: url("fonts/post-grotesk/PostGrotesk-Book.eot");
+      /* IE9 Compat Modes */
+      src: url("fonts/post-grotesk/PostGrotesk-Book.woff") format("woff"),
+        url("fonts/post-grotesk/PostGrotesk-Book.svg") format("svg");
+      font-weight: 800;
+    }
+  </style>`
+    },
+    body: {
+      scripts: [
+        {
+          src: "https://js.stripe.com/v3/"
+        }
+      ]
+    }
+  }
   // handlers(componentPath) {
   //   return defaultHandlers.concat(
   //     // require("react-docgen-displayname-handler").createDisplayNameHandler(componentPath),
