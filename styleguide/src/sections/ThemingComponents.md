@@ -6,7 +6,7 @@ To apply a custom theme to the components in your app, wrap your entire app with
 
 ```js static
 import React, { Component } from "react";
-import { ThemeProvider } from "@material-ui/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const theme = {};
 
