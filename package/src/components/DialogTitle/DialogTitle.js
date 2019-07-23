@@ -14,8 +14,8 @@ const DialogTitle = React.forwardRef(function DialogTitle(props, ref) {
   return (
     <MuiDialogTitle
       disableTypography
-      {...other}
       ref={ref}
+      {...other}
     >
       <Typography component="h2" variant="h4">{children}</Typography>
     </MuiDialogTitle>
