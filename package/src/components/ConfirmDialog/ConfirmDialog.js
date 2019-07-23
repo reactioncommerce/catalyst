@@ -12,7 +12,7 @@ import DialogTitle from "../DialogTitle";
  * @param {Object} props Component props
  * @returns {React.Component} A React component
  */
-function ConfirmDialog(props) {
+const ConfirmDialog = React.forwardRef(function ConfirmDialog(props, ref) {
   const { children, title, message, confirmActionText, cancelActionText, onConfirm } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,6 +33,7 @@ function ConfirmDialog(props) {
         fullWidth={true}
         onClose={handleClose}
         open={isOpen}
+        ref={ref}
       >
         <DialogTitle id="confirm-action-dialog-title">{title}</DialogTitle>
         {message && (
@@ -59,7 +60,7 @@ function ConfirmDialog(props) {
       </Dialog>
     </Fragment>
   );
-}
+});
 
 
 ConfirmDialog.propTypes = {
