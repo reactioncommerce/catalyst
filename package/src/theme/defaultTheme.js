@@ -258,17 +258,17 @@ export const rawMuiTheme = {
     },
     MuiDialogTitle: {
       root: {
-        padding: defaultTheme.spacing(3, 3, 1, 3)
+        padding: defaultTheme.spacing(4, 4, 1, 4)
       }
     },
     MuiDialogContent: {
       root: {
-        padding: defaultTheme.spacing(1, 3)
+        padding: defaultTheme.spacing(1, 4)
       }
     },
     MuiDialogActions: {
       root: {
-        padding: defaultTheme.spacing(1, 3, 3, 3)
+        padding: defaultTheme.spacing(1, 4, 4, 4)
       }
     },
     MuiDrawer: {
