@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@babel/runtime": "~7.3.1",
-    "@material-ui/core": "~4.2.0",
     "accounting-js": "~1.1.1",
     "lodash.debounce": "~4.0.8",
     "lodash.get": "~4.4.2",
@@ -88,6 +87,7 @@
   },
   "peerDependencies": {
     "@reactioncommerce/components-context": "~1.2.0",
+    "@material-ui/core": ">=4.2.0 < 5",
     "prop-types": "~15.6.2",
     "react-dom": "~16.8.6"
   }
