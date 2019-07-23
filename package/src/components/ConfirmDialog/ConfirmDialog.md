@@ -2,7 +2,7 @@
 
 ### Usage
 
-The `ConfirmDialog` component provides a standard confirmation alert base on some user action.
+The `ConfirmDialog` component provides a standard confirmation alert base on some user action. Pass a callback function to `onConfirm()` to allow the user to take an action after clicking the confirmation button.
 
 ```jsx
 import Button from "../Button";
