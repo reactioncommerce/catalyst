@@ -10,8 +10,8 @@ The `ConfirmDialog` component provides a standard confirmation alert base on som
 import Button from "../Button";
 
 <ConfirmDialog
-  title="Are you sure?"
-  message="Are you sure you want to do that?"
+  title="Archive 24 products?"
+  message="Archiving products removes them from both admin and customer views."
   onConfirm={() => { alert("Action confirmed!") }}
 >
   {({ openDialog }) => (
