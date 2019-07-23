@@ -23,15 +23,13 @@ volumes:
 + - /{Path-to-your-local-repo}/catalyst/package/dist:/usr/local/src/reaction-app/node_modules/@reactioncommerce/catalyst
 ```
 
-Inside `Reaction Catalyst UI`:
+Inside `Reaction Admin`:
 ```diff
 volumes:
-  - $HOME/.cache/yarn-offline-mirror:/home/node/.cache/yarn-offline-mirror
-  - web-yarn:/home/node/.cache/yarn
-  - .:/usr/local/src/reaction-app
-  - empty_node_modules:/usr/local/src/reaction-app/node_modules # do not link node_modules in, and persist it between dc up runs
-  - node_modules:/usr/local/src/node_modules
-+ - /{Path-to-your-local-repo}/catalyst/package/dist:/usr/local/src/node_modules/@reactioncommerce/catalyst
+  - .:/opt/reaction/src:cached
+  - ./.meteor/local:/opt/reaction/src/.meteor/local:delegated
+  - reaction_node_modules:/opt/reaction/src/node_modules # do not link node_modules in, and persist it between dc up runs
++ - /{Path-to-your-local-repo}/catalyst/package/dist:/opt/reaction/src/node_modules/@reactioncommerce/catalyst
 ```
 
 - Next, run `docker-compose up -d` like normal to access the app in your browser and test it.
