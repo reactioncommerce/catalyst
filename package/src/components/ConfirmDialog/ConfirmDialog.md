@@ -1,6 +1,6 @@
 ### Overview
 
-The `ConfirmDialog` component uses [Dialog](https://material-ui.com/api/dialog), [DialogActions](https://material-ui.com/api/dialog-actions/), [DialogContent](https://material-ui.com/api/dialog-content/), [DialogContentText](https://material-ui.com/api/dialog-content-text/) and [Button](https://material-ui.com/api/button/) from Material-UI and [DialogTitle](http://localhost:4060/#/Base%20Components/Feedback/DialogTitle) from Catalyst.
+The `ConfirmDialog` component uses [Dialog](https://material-ui.com/api/dialog), [DialogActions](https://material-ui.com/api/dialog-actions/), [DialogContent](https://material-ui.com/api/dialog-content/), [DialogContentText](https://material-ui.com/api/dialog-content-text/), [Button](https://material-ui.com/api/button/) from Material-UI and [DialogTitle](http://localhost:4060/#/Base%20Components/Feedback/DialogTitle) from Catalyst.
 
 ### Usage
 
