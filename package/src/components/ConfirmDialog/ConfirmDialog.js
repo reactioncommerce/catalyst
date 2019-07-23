@@ -30,6 +30,7 @@ function ConfirmDialog(props) {
       <Dialog
         aria-labelledby="confirm-action-dialog-title"
         maxWidth="sm"
+        fullWidth={true}
         onClose={handleClose}
         open={isOpen}
       >
