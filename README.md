@@ -16,7 +16,7 @@ We use the [React Styleguidist](https://react-styleguidist.js.org/) package to r
 
 ## Use the React components in your project
 
-Refer to the [Reaction Catalyst Components doc](https://catalyst.reactioncommerce.com/#!/Using%20Components)
+Refer to the [Reaction Catalyst Components doc](https://catalyst.reactioncommerce.com/#/Introduction/Using%20Components)
 
 ## Contribute to this project
 
