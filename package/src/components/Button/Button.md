@@ -1,11 +1,13 @@
 ### Overview
 
-Buttons are used to enable a user to take an action. Buttons should clearly and simply communicate the action that will happen when they are pressed.
+The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to tne Material-UI [Button API docs](https://material-ui.com/api/button/) for more information. 
 
 ### Usage
 
 
-#### Default button
+#### Default Catalyst button
+
+This is what a button with all the default prop options looks like:
 
 ```jsx
 <div style={{ display: "flex" }}>
@@ -15,7 +17,9 @@ Buttons are used to enable a user to take an action. Buttons should clearly and 
 </div>
 ```
 
-#### Variants
+It's a button with `variant` set to `text`, `size` set to `medium`, `color` set to `default`.
+
+#### Material UI options
 
 - **Solid button**: The solid button is used for a primary action in a modal, card, large view and generally throughout.
 - **Outline button**: The outline button is used for a secondary or dismissive action. The outline button should be paired with the solid button in cases such as dismissing a modal or canceling an action.
@@ -34,18 +38,7 @@ Buttons are used to enable a user to take an action. Buttons should clearly and 
 </div>
 ```
 
-- **Danger button**: The danger button is used for a destructive action that is difficult to recover from such as deleting information. The danger button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the danger button.
-
-```jsx
-<div style={{ display: "flex" }}>
-  <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" color="danger">Danger</Button>
-  </div>
-</div>
-```
-
-- **isWaiting**: Docs go here.
-- **Disabled**: Docs go here.
+- **Disabled**: Docs go here. When do you use this button in Catalyst?
 
 ```jsx
 <div style={{ display: "flex" }}>
@@ -58,10 +51,39 @@ Buttons are used to enable a user to take an action. Buttons should clearly and 
 </div>
 ```
 
-- **Full Width**: Docs go here.
+- **Full Width**: Docs go here. When do you use this button in Catalyst?
 
 ```jsx
-<div style={{ display: "flex" }}>
+<div style={{ display: "block" }}>
   <Button variant="contained" fullWidth>FullWidth</Button>
 </div>
 ```
+
+#### Catalyst-custom buttons
+
+- **Danger button**: The danger button is used for a destructive action that is difficult to recover from such as deleting information. The danger button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the danger button.
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="contained" color="danger">Danger - Contained</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="outlined" color="danger">Danger - Outlined</Button>
+  </div>
+</div>
+```
+
+- **isWaiting**: Docs go here.
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="contained" isWaiting>isWaiting - Contained</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="outlined" isWaiting>isWaiting - Outlined</Button>
+  </div>
+</div>
+```
+
