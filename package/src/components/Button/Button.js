@@ -89,9 +89,13 @@ Button.propTypes = {
   /**
    * Options: `default` | `inherit` | `primary` | `secondary` | `danger`
    */
-  color: PropTypes.enum,
+  color: PropTypes.string,
   /**
-   * If `true`, the CircularProgress will be displayed.
+   * If `true`, the button will be disabled.
+   */
+  disabled: PropTypes.bool, // eslint-disable-line
+  /**
+   * If `true`, the CircularProgress will be displayed and the button will be disabled.
    */
   isWaiting: PropTypes.bool,
   /**
