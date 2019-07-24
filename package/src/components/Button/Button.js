@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
+
 /**
  * @name Button
  * @param {Object} props Component props
@@ -79,11 +80,11 @@ function Button(props) {
 
 Button.propTypes = {
   /**
-   * What goes here?
+   * The content of the Button
    */
   children: PropTypes.node,
   /**
-   * CSS Classes
+   * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
   /**

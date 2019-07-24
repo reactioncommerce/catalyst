@@ -45,9 +45,6 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
   <div style={{ marginRight: "1rem" }}>
     <Button variant="contained" isWaiting>isWaiting</Button>
   </div>
-  <div style={{ marginRight: "1rem" }}>
-    <Button variant="outlined" disabled>Disabled</Button>
-  </div>
 </div>
 ```
 
