@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import withStyles from "@material-ui/core/styles/withStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import MuiButton from "@material-ui/core/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-/*
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   buttonProgress: {
     marginLeft: theme.spacing.unit
   },
@@ -32,9 +31,7 @@ const styles = (theme) => ({
       }
     }
   }
-});
-*/
-
+}));
 /**
  * @name Button
  * @param {Object} props Component props
@@ -43,12 +40,13 @@ const styles = (theme) => ({
 function Button(props) {
   const {
     children,
-    classes,
     color,
     disabled,
     isWaiting,
     ...otherProps
   } = props;
+
+  const classes = useStyles();
 
   if (color === "danger") {
     return (
@@ -79,6 +77,33 @@ function Button(props) {
   );
 }
 
+Button.propTypes = {
+  /**
+   * What goes here?
+   */
+  children: PropTypes.node,
+  /**
+   * Classes
+   */
+  classes: PropTypes.object,
+  /**
+   * Color: "danger", "primary", "secondary"
+   */
+  color: PropTypes.string,
+  /**
+   * Disables button click
+   */
+  disabled: PropTypes.bool, // eslint-disable-line
+  /**
+   * Adds spinner
+   */
+  isWaiting: PropTypes.bool,
+  /**
+   * onClick callback
+   */
+  onClick: PropTypes.func
+};
+
 Button.defaultProps = {
   color: "default",
   component: "button",
@@ -92,16 +117,4 @@ Button.defaultProps = {
   variant: "text"
 };
 
-Button.propTypes = {
-  children: PropTypes.node,
-  classes: PropTypes.object,
-  color: PropTypes.string,
-  disabled: PropTypes.bool, // eslint-disable-line
-  isWaiting: PropTypes.bool,
-  onClick: PropTypes.func
-};
-
-// withStyles() will work after 'theme' is defined in this context
-// export default withStyles(styles, { name: "RuiButton" })(Button);
 export default Button;
-
