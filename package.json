@@ -37,7 +37,8 @@
     },
     "rules": {
       "node/no-unsupported-features/es-syntax": "off",
-      "node/no-unpublished-require": "warn"
+      "node/no-unpublished-require": "off",
+      "prefer-arrow-callback": [ "error", { "allowNamedFunctions": true } ]
     }
   },
   "eslintIgnore": [

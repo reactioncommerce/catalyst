@@ -1,5 +1,6 @@
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
+import defaultTheme from "@material-ui/core/styles/defaultTheme";
 import colors from "./colors";
 
 const breakpoints = createBreakpoints({});
@@ -179,6 +180,9 @@ export const rawMuiTheme = {
       titleTypographyProps: {
         variant: "h4"
       }
+    },
+    MuiDialogContentText: {
+      color: "inherit"
     }
   },
   // Override defined theme properties
@@ -250,6 +254,21 @@ export const rawMuiTheme = {
         "&$disabled": {
           color: colors.coolGrey100
         }
+      }
+    },
+    MuiDialogTitle: {
+      root: {
+        padding: defaultTheme.spacing(4, 4, 1, 4)
+      }
+    },
+    MuiDialogContent: {
+      root: {
+        padding: defaultTheme.spacing(1, 4)
+      }
+    },
+    MuiDialogActions: {
+      root: {
+        padding: defaultTheme.spacing(1, 4, 4, 4)
       }
     },
     MuiDrawer: {

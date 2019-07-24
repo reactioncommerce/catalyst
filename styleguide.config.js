@@ -358,6 +358,14 @@ module.exports = {
           ],
           content: "styleguide/src/sections/Actions.md",
           name: "Actions"
+        }),
+        generateSection({
+          componentNames: [
+            "ConfirmDialog",
+            "DialogTitle"
+          ],
+          content: "styleguide/src/sections/Feedback.md",
+          name: "Feedback"
         })
       ],
       sectionDepth: 2
