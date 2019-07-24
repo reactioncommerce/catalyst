@@ -83,38 +83,25 @@ Button.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Classes
+   * CSS Classes
    */
   classes: PropTypes.object,
   /**
-   * Color: "danger", "primary", "secondary"
+   * Options: `default` | `inherit` | `primary` | `secondary` | `danger`
    */
-  color: PropTypes.string,
+  color: PropTypes.enum,
   /**
-   * Disables button click
+   * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool, // eslint-disable-line
   /**
-   * Adds spinner
+   * If `true`, the CircularProgress will be displayed.
    */
   isWaiting: PropTypes.bool,
   /**
    * onClick callback
    */
   onClick: PropTypes.func
-};
-
-Button.defaultProps = {
-  color: "default",
-  component: "button",
-  disabled: false,
-  disableFocusRipple: false,
-  disableRipple: false,
-  fullWidth: false,
-  href: null,
-  mini: false,
-  size: "medium",
-  variant: "text"
 };
 
 export default Button;
