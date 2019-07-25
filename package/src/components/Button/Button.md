@@ -21,7 +21,7 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
 
 #### Material UI options
 
-- **Solid button**: The solid button is used for a primary action in a modal, card, large view and generally throughout.
+- **Solid (Contained) button**: The solid button is used for a primary action in a modal, card, large view and generally throughout.
 - **Outline button**: The outline button is used for a secondary or dismissive action. The outline button should be paired with the solid button in cases such as dismissing a modal or canceling an action.
 
 ```jsx
@@ -38,17 +38,17 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
 </div>
 ```
 
-- **Disabled**: Docs go here. When do you use this button in Catalyst?
+- **Disabled**:
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" isWaiting>isWaiting</Button>
+    <Button variant="contained" disabled>Disabled</Button>
   </div>
 </div>
 ```
 
-- **Full Width**: Docs go here. When do you use this button in Catalyst?
+- **Full Width**:
 
 ```jsx
 <div style={{ display: "block" }}>
@@ -58,20 +58,20 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
 
 #### Catalyst-custom buttons
 
-- **Danger button**: The danger button is used for a destructive action that is difficult to recover from such as deleting information. The danger button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the danger button.
+- **Error button**: The error button is used for a destructive action that is difficult to recover from such as deleting information. The danger button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the danger button.
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" color="danger">Danger - Contained</Button>
+    <Button variant="contained" color="error">Error - Contained</Button>
   </div>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="outlined" color="danger">Danger - Outlined</Button>
+    <Button variant="outlined" color="error">Error - Outlined</Button>
   </div>
 </div>
 ```
 
-- **isWaiting**: Docs go here.
+- **isWaiting**: The `isWaiting` prop combines `disabled` with a CircularProgress animation.
 
 ```jsx
 <div style={{ display: "flex" }}>
@@ -83,4 +83,3 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
   </div>
 </div>
 ```
-
