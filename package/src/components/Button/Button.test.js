@@ -1,16 +1,13 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import { defaultTheme } from "../../theme/defaultTheme";
-import mockComponents from "../../tests/mockComponents";
+import { render } from "../../tests/index.js";
 import Button from "./Button";
 
-test("basic snapshot", () => {
-  const component = renderer.create(<MuiThemeProvider theme={defaultTheme}>
-    <Button components={mockComponents} title="title" className="a b">Submit</Button>
-  </MuiThemeProvider>);
-
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+test("basic snapshot - only default props", async () => {
+  const { asFragment } = render(<Button className="myBtn">Submit</Button>);
+  expect(asFragment()).toMatchSnapshot();
 });
 
+test("basic snapshot - with props for an Error button", async () => {
+  const { asFragment } = render(<Button className="myBtn" variant="contained" color="danger">Submit</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});

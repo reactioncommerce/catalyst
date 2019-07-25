@@ -76,7 +76,6 @@ module.exports = function (api) {
     ignore = [
       "**/*.test.js",
       "__snapshots__",
-      "**/setupTests.js",
       "**/tests",
       "**/scripts"
     ];
