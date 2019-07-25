@@ -1,6 +1,6 @@
 ### Overview
 
-The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to tne Material-UI [Button API docs](https://material-ui.com/api/button/) for more information. 
+The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to the Material-UI [Button API docs](https://material-ui.com/api/button/) for more information. 
 
 ### Usage
 
