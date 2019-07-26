@@ -19,5 +19,6 @@ test("error button snapshot", () => {
 
 test("isWaiting button snapshot", () => {
   const { asFragment } = render(<Button className="myBtn" isWaiting>Upload</Button>);
+  expect(asFragment()).toBeDisabled();
   expect(asFragment()).toMatchSnapshot();
 });

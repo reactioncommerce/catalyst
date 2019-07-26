@@ -16,6 +16,7 @@ test("basic snapshot - with opening the dialog", () => {
       )}
     </ConfirmDialog>);
   fireEvent.click(getByText("Open Confirm Dialog"));
+  expect(getByRole("dialog")).toBeInTheDocument();
   expect(getByRole("dialog")).toHaveTextContent("Are you sure you want to do that?");
   expect(getByRole("dialog")).toHaveTextContent("Are you sure?");
   expect(getByRole("dialog")).toHaveTextContent("OK");
