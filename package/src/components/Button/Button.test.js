@@ -5,6 +5,6 @@ import Button from "./Button";
 afterEach(cleanup);
 
 test("basic snapshot - only default props", () => {
-  const component = render(<Button className="myBtn">Submit</Button>);
-  expect(component).toMatchSnapshot();
+  const { asFragment } = render(<Button className="myBtn">Submit</Button>);
+  expect(asFragment()).toMatchSnapshot();
 });

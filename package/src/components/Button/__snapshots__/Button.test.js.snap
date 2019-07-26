@@ -1,3 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic snapshot - only default props 1`] = `undefined`;
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Submit
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
