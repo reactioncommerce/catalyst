@@ -309,7 +309,8 @@ module.exports = {
     }
   },
   styleguideComponents: {
-    Wrapper: path.join(__dirname, "styleguide/src/components/Wrapper")
+    Wrapper: path.join(__dirname, "styleguide/src/components/Wrapper"),
+    ComponentsListRenderer: path.join(__dirname, "styleguide/src/components/ComponentsListRenderer")
   },
   sections: [
     {
