@@ -36,17 +36,10 @@ const useStyles = makeStyles((theme) => ({
 /**
  * @name Button
  * @param {Object} props Component props
- * @returns {React.Component} returns a React component
+ * @returns {React.Component} A React component
  */
-function Button(props) {
-  const {
-    children,
-    color,
-    disabled,
-    isWaiting,
-    ...otherProps
-  } = props;
-
+const Button = React.forwardRef(function Button(props, ref) {
+  const { children, color, disabled, isWaiting, ...otherProps } = props;
   const classes = useStyles();
 
   if (color === "error") {
@@ -58,6 +51,7 @@ function Button(props) {
         }}
         color="primary"
         disabled={disabled || isWaiting}
+        ref={ref}
         {...otherProps}
       >
         {children}
@@ -70,13 +64,14 @@ function Button(props) {
     <MuiButton
       color={color}
       disabled={disabled || isWaiting}
+      ref={ref}
       {...otherProps}
     >
       {children}
       {isWaiting && <CircularProgress size={16} className={classes.buttonProgress} />}
     </MuiButton>
   );
-}
+});
 
 Button.propTypes = {
   /**

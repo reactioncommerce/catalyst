@@ -22,7 +22,26 @@ exports[`basic snapshot - only default props 1`] = `
 exports[`error button snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text MuiButton-textPrimary"
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-35"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Delete
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`error button snapshot 2`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-outlined MuiButton-outlinedPrimary makeStyles-outlinedPrimary-69"
     tabindex="0"
     type="button"
   >
@@ -51,7 +70,7 @@ exports[`isWaiting button snapshot 1`] = `
     >
       Upload
       <div
-        class="MuiCircularProgress-root makeStyles-buttonProgress-67 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+        class="MuiCircularProgress-root makeStyles-buttonProgress-100 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
         role="progressbar"
         style="width: 16px; height: 16px;"
       >
