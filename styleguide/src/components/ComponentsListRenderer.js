@@ -1,10 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from "clsx";
 import Styled from "rsg-components/Styled";
 import { getHash } from "react-styleguidist/lib/client/utils/handleHash";
-import ListItem from "@material-ui/core/ListItem";
-import Collapse from "@material-ui/core/Collapse";
+import { Collapse, ListItem } from "@material-ui/core";
 
 const styles = ({ color, fontSize }) => ({
   item: {
