@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { render } from "@testing-library/react";
-import { MuiThemeProvider } from "@material-ui/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import defaultTheme from "../theme/defaultTheme";
 
 /**
@@ -25,7 +25,7 @@ TestProviders.propTypes = {
  * @param {Object} options - Options.
  * @return {Object} - @see {@link https://testing-library.com/docs/react-testing-library/api#render-result|react-testing-library}
  */
-const renderWithProviders = async (component, options) => {
+const renderWithProviders = (component, options) => {
   render(component, { wrapper: TestProviders, ...options });
 };
 

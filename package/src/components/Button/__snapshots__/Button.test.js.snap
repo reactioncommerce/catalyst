@@ -1,38 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic snapshot 1`] = `
-<button
-  className="MuiButtonBase-root MuiButton-root a b MuiButton-text"
-  components={
-    Object {
-      "Button": [Function],
-    }
-  }
-  disabled={false}
-  href={null}
-  mini={false}
-  onBlur={[Function]}
-  onDragLeave={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={0}
-  title="title"
-  type="button"
->
-  <span
-    className="MuiButton-label"
-  >
-    Submit
-  </span>
-  <span
-    className="MuiTouchRipple-root"
-  />
-</button>
-`;
+exports[`basic snapshot - only default props 1`] = `undefined`;
