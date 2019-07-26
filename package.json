@@ -64,10 +64,6 @@
       "!**/vendor/**"
     ],
     "coverageDirectory": "reports/coverage",
-    "moduleDirectories": [
-      "<rootDir>/package/src/",
-      "<rootDir>/package/src/tests"
-    ],
     "moduleFileExtensions": [
       "web.js",
       "mjs",
