@@ -80,6 +80,10 @@
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
+    "setupFilesAfterEnv": [
+      "react-testing-library/cleanup-after-each",
+      "jest-dom/extend-expect"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/config/",
       "<rootDir>/node_modules/",

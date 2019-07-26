@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render } from "../../tests/index.js";
+import { render } from "../../tests/index.js";
 import COMPONENT from "./COMPONENT";
-
-afterEach(cleanup);
 
 test("basic snapshot - only default props", () => {
   const { asFragment } = render(<COMPONENT></COMPONENT>);
