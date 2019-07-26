@@ -123,6 +123,7 @@
     "@commitlint/cli": "~7.0.0",
     "@commitlint/config-conventional": "~7.0.1",
     "@reactioncommerce/eslint-config": "~2.0.0",
+    "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.6",
     "adr": "~1.1.1",
     "autoprefixer": "~7.1.6",
