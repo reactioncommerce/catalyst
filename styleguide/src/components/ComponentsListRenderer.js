@@ -62,39 +62,35 @@ export function ComponentsListRenderer({ classes, items: itemsProp }) {
     const [isOpen, setIsOpen] = useState(depth < 2 || windowHash.includes(visibleName));
     const isItemSelected = href.endsWith(encodeURI(windowHash));
 
-    return (
-      <Fragment>
-        <ListItem
-          className={classes.item}
-          target={shouldOpenInNewTab ? "_blank" : undefined}
-          component="a"
-          href={href}
-          key={href}
-          disablePadding
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-          style={{
-            paddingTop: 4,
-            paddingBottom: 4,
-            paddingLeft: (Math.abs(depth - 2) * 16) + 16
-          }}
+    return [
+      <ListItem
+        className={classes.item}
+        target={shouldOpenInNewTab ? "_blank" : undefined}
+        component="a"
+        href={href}
+        key={href}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+        style={{
+          paddingTop: 4,
+          paddingBottom: 4,
+          paddingLeft: (Math.abs(depth - 2) * 16) + 16
+        }}
+      >
+        <span
+          className={cx(classes.text, {
+            [classes.heading]: heading,
+            [classes.isSelected]: isItemSelected
+          })}
         >
-          <span
-            className={cx(classes.text, {
-              [classes.heading]: heading,
-              [classes.isSelected]: isItemSelected
-            })}
-          >
-            {visibleName}
-          </span>
-        </ListItem>
-
-        <Collapse in={isOpen}>
-          {content}
-        </Collapse>
-      </Fragment>
-    );
+          {visibleName}
+        </span>
+      </ListItem>,
+      <Collapse in={isOpen} key={`collapse:${href}`}>
+        {content}
+      </Collapse>
+    ];
   });
 }
 
