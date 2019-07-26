@@ -7,7 +7,7 @@ import { CircularProgress, Button as MuiButton, makeStyles } from "@material-ui/
 
 const useStyles = makeStyles((theme) => ({
   buttonProgress: {
-    marginLeft: theme.spacing.unit
+    marginLeft: theme.spacing()
   },
   containedPrimary: {
     "color": theme.palette.primary.contrastText,
