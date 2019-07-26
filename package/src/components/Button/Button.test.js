@@ -8,3 +8,13 @@ test("basic snapshot - only default props", () => {
   const { asFragment } = render(<Button className="myBtn">Submit</Button>);
   expect(asFragment()).toMatchSnapshot();
 });
+
+test("error button snapshot", () => {
+  const { asFragment } = render(<Button className="myBtn" color="error">Delete</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("isWaiting button snapshot", () => {
+  const { asFragment } = render(<Button className="myBtn" isWaiting>Upload</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});

@@ -49,7 +49,7 @@ function Button(props) {
 
   const classes = useStyles();
 
-  if (color === "danger") {
+  if (color === "error") {
     return (
       <MuiButton
         classes={{
