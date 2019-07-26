@@ -1,10 +1,8 @@
 import React from "react";
-import { render, fireEvent, cleanup } from "../../tests/";
+import { render, fireEvent } from "../../tests/";
 import "@testing-library/jest-dom/extend-expect";
 import Button from "../Button";
 import ConfirmDialog from "./ConfirmDialog";
-
-afterEach(cleanup);
 
 test("basic snapshot - with opening the dialog", () => {
   /* eslint-disable function-paren-newline */
