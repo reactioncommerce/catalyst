@@ -58,7 +58,7 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
 
 #### Catalyst-custom buttons
 
-- **Error button**: The error button is used for a destructive action that is difficult to recover from such as deleting information. The danger button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the danger button.
+- **Error button**: The error button is used for a destructive action that is difficult to recover from such as deleting information. The error button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the error button.
 
 ```jsx
 <div style={{ display: "flex" }}>
