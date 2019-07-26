@@ -25,13 +25,9 @@ TestProviders.propTypes = {
  * @param {Object} options - Options.
  * @return {Object} - @see {@link https://testing-library.com/docs/react-testing-library/api#render-result|react-testing-library}
  */
-const renderWithProviders = (component, options) => {
-  /* eslint-disable react/no-multi-comp */
-  /* eslint-disable react/prop-types */
-  const Wrapper = ({ children }) => React.createElement(TestProviders, { children });
-  const renderer = render(component, { wrapper: Wrapper, ...options });
-  return renderer;
-};
+const renderWithProviders = (component, options) => (
+  render(component, { wrapper: TestProviders, ...options })
+);
 
 export * from "@testing-library/react";
 export { renderWithProviders as render };
