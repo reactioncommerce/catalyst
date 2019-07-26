@@ -1,12 +1,24 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import mockComponents from "../../tests/mockComponents";
+import { render } from "../../tests/index.js";
 import Button from "./Button";
 
-test("basic snapshot", () => {
-  const component = renderer.create(<Button components={mockComponents} title="title" className="a b">Submit</Button>);
-
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+test("basic snapshot - only default props", () => {
+  const { asFragment } = render(<Button className="myBtn">Submit</Button>);
+  expect(asFragment()).toMatchSnapshot();
 });
 
+test("error button snapshot", () => {
+  const { asFragment } = render(<Button className="myBtn" color="error" variant="contained">Delete</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("error button snapshot", () => {
+  const { asFragment } = render(<Button className="myBtn" color="error" variant="outlined">Delete</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("isWaiting button snapshot", () => {
+  const { asFragment, getByText } = render(<Button className="myBtn" isWaiting>Upload</Button>);
+  expect(getByText("Upload")).toBeDisabled();
+  expect(asFragment()).toMatchSnapshot();
+});

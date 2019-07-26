@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic snapshot 1`] = `
-<div
-  className="MuiDialogTitle-root"
->
-  <h2
-    className="MuiTypography-root MuiTypography-h4"
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiDialogTitle-root"
   >
-    Archive 24 products?
-  </h2>
-</div>
+    <h2
+      class="MuiTypography-root MuiTypography-h4"
+    >
+      Archive 24 products?
+    </h2>
+  </div>
+</DocumentFragment>
 `;

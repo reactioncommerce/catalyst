@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import withStyles from "@material-ui/core/styles/withStyles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import MuiButton from "@material-ui/core/Button";
+// import CircularProgress from "@material-ui/core/CircularProgress";
+// import MuiButton from "@material-ui/core/Button";
+// import makeStyles from "@material-ui/core/styles/makeStyles";
+import { CircularProgress, Button as MuiButton, makeStyles } from "@material-ui/core";
 
-/*
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   buttonProgress: {
-    marginLeft: theme.spacing.unit
+    marginLeft: theme.spacing()
   },
   containedPrimary: {
     "color": theme.palette.primary.contrastText,
@@ -32,25 +32,18 @@ const styles = (theme) => ({
       }
     }
   }
-});
-*/
+}));
 
 /**
  * @name Button
  * @param {Object} props Component props
- * @returns {React.Component} returns a React component
+ * @returns {React.Component} A React component
  */
-function Button(props) {
-  const {
-    children,
-    classes,
-    color,
-    disabled,
-    isWaiting,
-    ...otherProps
-  } = props;
+const Button = React.forwardRef(function Button(props, ref) {
+  const { children, color, disabled, isWaiting, ...otherProps } = props;
+  const classes = useStyles();
 
-  if (color === "danger") {
+  if (color === "error") {
     return (
       <MuiButton
         classes={{
@@ -59,6 +52,7 @@ function Button(props) {
         }}
         color="primary"
         disabled={disabled || isWaiting}
+        ref={ref}
         {...otherProps}
       >
         {children}
@@ -71,37 +65,40 @@ function Button(props) {
     <MuiButton
       color={color}
       disabled={disabled || isWaiting}
+      ref={ref}
       {...otherProps}
     >
       {children}
       {isWaiting && <CircularProgress size={16} className={classes.buttonProgress} />}
     </MuiButton>
   );
-}
-
-Button.defaultProps = {
-  color: "default",
-  component: "button",
-  disabled: false,
-  disableFocusRipple: false,
-  disableRipple: false,
-  fullWidth: false,
-  href: null,
-  mini: false,
-  size: "medium",
-  variant: "text"
-};
+});
 
 Button.propTypes = {
+  /**
+   * The content of the Button
+   */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes: PropTypes.object,
+  /**
+   * Options: `default` | `inherit` | `primary` | `secondary` | `danger`
+   */
   color: PropTypes.string,
+  /**
+   * If `true`, the button will be disabled.
+   */
   disabled: PropTypes.bool, // eslint-disable-line
+  /**
+   * If `true`, the CircularProgress will be displayed and the button will be disabled.
+   */
   isWaiting: PropTypes.bool,
+  /**
+   * onClick callback
+   */
   onClick: PropTypes.func
 };
 
-// withStyles() will work after 'theme' is defined in this context
-// export default withStyles(styles, { name: "RuiButton" })(Button);
 export default Button;
-

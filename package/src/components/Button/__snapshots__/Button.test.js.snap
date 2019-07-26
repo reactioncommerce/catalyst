@@ -1,38 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic snapshot 1`] = `
-<button
-  className="MuiButtonBase-root MuiButton-root a b MuiButton-text"
-  components={
-    Object {
-      "Button": [Function],
-    }
-  }
-  disabled={false}
-  href={null}
-  mini={false}
-  onBlur={[Function]}
-  onDragLeave={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={0}
-  title="title"
-  type="button"
->
-  <span
-    className="MuiButton-label"
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text"
+    tabindex="0"
+    type="button"
   >
-    Submit
-  </span>
-  <span
-    className="MuiTouchRipple-root"
-  />
-</button>
+    <span
+      class="MuiButton-label"
+    >
+      Submit
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`error button snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-35"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Delete
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`error button snapshot 2`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-outlined MuiButton-outlinedPrimary makeStyles-outlinedPrimary-69"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Delete
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`isWaiting button snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text Mui-disabled Mui-disabled"
+    disabled=""
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Upload
+      <div
+        class="MuiCircularProgress-root makeStyles-buttonProgress-100 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+        role="progressbar"
+        style="width: 16px; height: 16px;"
+      >
+        <svg
+          class="MuiCircularProgress-svg"
+          viewBox="22 22 44 44"
+        >
+          <circle
+            class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+            cx="44"
+            cy="44"
+            fill="none"
+            r="20.2"
+            stroke-width="3.6"
+          />
+        </svg>
+      </div>
+    </span>
+  </button>
+</DocumentFragment>
 `;
