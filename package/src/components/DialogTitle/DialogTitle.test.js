@@ -1,12 +1,10 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { cleanup, render } from "../../tests/index.js";
 import DialogTitle from "./DialogTitle";
 
-test("basic snapshot", () => {
-  const component = renderer.create((
-    <DialogTitle>Archive 24 products?</DialogTitle>
-  ));
+afterEach(cleanup);
 
-  const tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+test("basic snapshot - only default props", () => {
+  const { asFragment } = render(<DialogTitle>Archive 24 products?</DialogTitle>);
+  expect(asFragment()).toMatchSnapshot();
 });
