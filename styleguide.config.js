@@ -334,7 +334,7 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: "Base Components",
+      name: "Catalyst Components",
       sections: [
         generateSection({
           componentNames: [
