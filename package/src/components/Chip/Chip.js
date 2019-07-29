@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MuiChip from "@material-ui/core/Chip";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import { Chip as MuiChip, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   containedPrimary: {
