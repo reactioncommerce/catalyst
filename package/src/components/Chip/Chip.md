@@ -1,6 +1,6 @@
 ### Overview
 
-The Catalyst Chip inherits from the Material-UI [Chip component](https://material-ui.com/components/chips/). Refer to tne Material-UI [Chip API docs](https://material-ui.com/api/chip/) for more information. 
+The Catalyst Chip inherits from the Material-UI [Chip component](https://material-ui.com/components/chips/). Refer to the Material-UI [Chip API docs](https://material-ui.com/api/chip/) for more information. 
 
 ### Usage
 
