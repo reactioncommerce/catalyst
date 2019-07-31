@@ -20,6 +20,8 @@ volumes:
 + - /{Path-to-your-local-repo}/catalyst/package/dist:/opt/reaction/src/node_modules/@reactioncommerce/catalyst
 ```
 
+- Remove the `"@reactioncommerce/catalyst"` line from the project's `package.json` file. 
+
 - Next, run `docker-compose up -d` like normal to access the app in your browser and test it.
 
-**Be sure to remove and not commit the added line from `docker-compose.yml` when you are done testing.**
+**Be sure to remove and not commit the added line from `docker-compose.yml` and the removed line from `package.json` when you are done testing.**
