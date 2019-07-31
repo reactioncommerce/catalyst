@@ -1,5 +1,5 @@
 /**
- * Default Reaction Design System Colors
+ * Default Catalyst Colors
  */
 
 export default {

@@ -1,6 +1,6 @@
 # Running and Developing Locally
 
-These instructions are the same regardless of whether you're developing components within the Reaction Design System or developing the Reaction Design System website itself.
+These instructions are the same regardless of whether you're developing components within Catalyst or developing the Catalyst website itself.
 
 ## Run for Development
 

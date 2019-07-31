@@ -301,26 +301,18 @@ module.exports = {
       content: "styleguide/src/sections/Introduction.md",
       sections: [
         {
-          name: "Using Components",
-          content: "styleguide/src/sections/InstallingandImporting.md"
-        },
-        {
-          name: "Theming Components",
-          content: "styleguide/src/sections/ThemingComponents.md"
+          name: "Installation",
+          content: "styleguide/src/sections/Installation.md"
         },
         {
           name: "Understanding Component References",
           content: "styleguide/src/sections/ComponentsContext.md"
-        },
-        {
-          name: "Developing Locally Inside Another Project",
-          content: "styleguide/src/sections/LocalDevelopment.md"
         }
       ],
       sectionDepth: 2
     },
     {
-      name: "Style",
+      name: "Designers",
       sections: [
         {
           name: "Colors",
@@ -334,13 +326,26 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: "Base Components",
+      name: "Developers",
+      sections: [
+        {
+          name: "Theming",
+          content: "styleguide/src/sections/Theming.md"
+        },
+        {
+          name: "Developing Locally Inside Another Project",
+          content: "styleguide/src/sections/LocalDevelopment.md"
+        }
+      ],
+      sectionDepth: 2
+    },
+    {
+      name: "Components",
       sections: [
         generateSection({
           componentNames: [
             "Button"
           ],
-          content: "styleguide/src/sections/Actions.md",
           name: "Actions"
         }),
         generateSection({
@@ -348,7 +353,6 @@ module.exports = {
             "ConfirmDialog",
             "DialogTitle"
           ],
-          content: "styleguide/src/sections/Feedback.md",
           name: "Feedback"
         })
       ],
@@ -384,8 +388,8 @@ module.exports = {
     return `import ${name} from "@reactioncommerce/catalyst/${name}"`;
   },
   pagePerSection: true,
-  showCode: true,
-  showUsage: true,
+  exampleMode: true,
+  usageMode: true,
   serverPort: Number(process.env.PORT || 6060),
   assetsDir: "styleguide/src/assets/",
   styleguideDir: "styleguide/dist",
