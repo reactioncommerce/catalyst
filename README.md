@@ -1,4 +1,4 @@
-# Reaction Catalyst Component Library
+# Catalyst
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
@@ -24,7 +24,7 @@ Refer to the [contributor docs](./docs)
 
 ## License
 
-Copyright 2018 Reaction Commerce
+Copyright 2019 Reaction Commerce
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
