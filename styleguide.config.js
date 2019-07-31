@@ -388,8 +388,8 @@ module.exports = {
     return `import ${name} from "@reactioncommerce/catalyst/${name}"`;
   },
   pagePerSection: true,
-  exampleMode: true,
-  usageMode: true,
+  exampleMode: "expand",
+  usageMode: "expand",
   serverPort: Number(process.env.PORT || 6060),
   assetsDir: "styleguide/src/assets/",
   styleguideDir: "styleguide/dist",
