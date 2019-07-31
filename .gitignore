@@ -15,4 +15,6 @@ styleguide/favicon.png
 styleguide/fonts/
 styleguide/index.html
 styleguide/manifest.json
-styleguide/reaction-design-system-logo.svg
+styleguide/catalyst-logo.svg
+
+.DS_Store

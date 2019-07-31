@@ -118,7 +118,7 @@ module.exports = {
       },
       logo: {
         borderBottom: [[0]],
-        backgroundImage: "url(reaction-design-system-logo.svg)",
+        backgroundImage: "url(catalyst-logo.svg)",
         backgroundRepeat: "no-repeat",
         height: 110,
         backgroundPosition: "25% 50%",
