@@ -350,6 +350,13 @@ module.exports = {
         }),
         generateSection({
           componentNames: [
+            "Chip"
+          ],
+          content: "styleguide/src/sections/Content.md",
+          name: "Content"
+        }),
+        generateSection({
+          componentNames: [
             "ConfirmDialog",
             "DialogTitle"
           ],
