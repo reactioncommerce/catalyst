@@ -12,7 +12,7 @@ This is a single project with a package of commerce-focused React UI components 
 
 We use the [React Styleguidist](https://react-styleguidist.js.org/) package to run and build the Catalyst website, and running the style guide locally doubles as an interactive playground for developing and testing the components.
 
-## Use the React components in your project
+## Use the React components in your Reaction Admin plugin
 
 Refer to the [Reaction Catalyst Components doc](https://catalyst.reactioncommerce.com/#/Introduction/Using%20Components)
 
