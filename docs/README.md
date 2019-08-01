@@ -1,4 +1,4 @@
-# Reaction Design System and Component Library - Contributor Docs
+# Catayst - Contributor Docs
 
 ## Getting Started
 

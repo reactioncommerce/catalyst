@@ -28,4 +28,4 @@ There are two package.json files.
 
 If you're working on the Style Guide exclusively, you'll mostly edit `styleguide.config.js` and the files in the `styleguide` folder.
 
-If you're creating or modifying component library components, you'll mostly edit files in the `package` folder, but you'll also need to add new components to `styleguide.config.js` to get them to appear in the Style Guide. You might also need to add or modify section markdown in the `styleguide` folder.
+If you're creating or modifying Catalyst components, you'll mostly edit files in the `package` folder, but you'll also need to add new components to `styleguide.config.js` to get them to appear in the Style Guide. You might also need to add or modify section markdown in the `styleguide` folder.

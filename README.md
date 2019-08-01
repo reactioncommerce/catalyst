@@ -1,20 +1,18 @@
-# Reaction Catalyst Component Library
+# Catalyst
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
 
-![Reaction Design System](https://blog.reactioncommerce.com/content/images/2018/09/style-guide-artwork.jpg)
-
 > ⚠️ Warning: This repository is in active development and is not ready for testing or usage.
 
-This is a single project with a package of commerce-focused React UI components and the code for the Reaction Design System website:
+This is a single project with a package of commerce-focused React UI components and the code for the Catalyst website:
 
 - [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst): See the [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package/package.json) in [`/package`](https://github.com/reactioncommerce/catalyst/tree/master/package) folder.
 - [Catalyst Components](https://catalyst.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package.json).
 
-We use the [React Styleguidist](https://react-styleguidist.js.org/) package to run and build the Reaction Design System website, and running the style guide locally doubles as an interactive playground for developing and testing the components.
+We use the [React Styleguidist](https://react-styleguidist.js.org/) package to run and build the Catalyst website, and running the style guide locally doubles as an interactive playground for developing and testing the components.
 
-## Use the React components in your project
+## Use the React components in your Reaction Admin plugin
 
 Refer to the [Reaction Catalyst Components doc](https://catalyst.reactioncommerce.com/#/Introduction/Using%20Components)
 
@@ -24,7 +22,7 @@ Refer to the [contributor docs](./docs)
 
 ## License
 
-Copyright 2018 Reaction Commerce
+Copyright 2019 Reaction Commerce
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

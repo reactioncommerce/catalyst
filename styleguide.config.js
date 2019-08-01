@@ -28,7 +28,7 @@ function generateSection({ componentNames, name, content }) {
 }
 
 module.exports = {
-  title: "Reaction Design System",
+  title: "Catalyst Design System | Reaction Commerce",
   theme: {
     sidebarWidth: 320,
     maxWidth: 1000,
@@ -118,7 +118,7 @@ module.exports = {
       },
       logo: {
         borderBottom: [[0]],
-        backgroundImage: "url(reaction-design-system-logo.svg)",
+        backgroundImage: "url(catalyst-logo.svg)",
         backgroundRepeat: "no-repeat",
         height: 110,
         backgroundPosition: "25% 50%",
@@ -301,26 +301,18 @@ module.exports = {
       content: "styleguide/src/sections/Introduction.md",
       sections: [
         {
-          name: "Using Components",
-          content: "styleguide/src/sections/InstallingandImporting.md"
-        },
-        {
-          name: "Theming Components",
-          content: "styleguide/src/sections/ThemingComponents.md"
+          name: "Installation",
+          content: "styleguide/src/sections/Installation.md"
         },
         {
           name: "Understanding Component References",
           content: "styleguide/src/sections/ComponentsContext.md"
-        },
-        {
-          name: "Developing Locally Inside Another Project",
-          content: "styleguide/src/sections/LocalDevelopment.md"
         }
       ],
       sectionDepth: 2
     },
     {
-      name: "Style",
+      name: "Designers",
       sections: [
         {
           name: "Colors",
@@ -334,13 +326,26 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: "Base Components",
+      name: "Developers",
+      sections: [
+        {
+          name: "Theming",
+          content: "styleguide/src/sections/Theming.md"
+        },
+        {
+          name: "Developing Locally Inside Another Project",
+          content: "styleguide/src/sections/LocalDevelopment.md"
+        }
+      ],
+      sectionDepth: 2
+    },
+    {
+      name: "Components",
       sections: [
         generateSection({
           componentNames: [
             "Button"
           ],
-          content: "styleguide/src/sections/Actions.md",
           name: "Actions"
         }),
         generateSection({
@@ -355,7 +360,6 @@ module.exports = {
             "ConfirmDialog",
             "DialogTitle"
           ],
-          content: "styleguide/src/sections/Feedback.md",
           name: "Feedback"
         })
       ],
@@ -391,8 +395,8 @@ module.exports = {
     return `import ${name} from "@reactioncommerce/catalyst/${name}"`;
   },
   pagePerSection: true,
-  showCode: true,
-  showUsage: true,
+  exampleMode: "expand",
+  usageMode: "expand",
   serverPort: Number(process.env.PORT || 6060),
   assetsDir: "styleguide/src/assets/",
   styleguideDir: "styleguide/dist",
