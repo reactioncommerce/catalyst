@@ -3,8 +3,6 @@
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
 
-![Catalyst](https://blog.reactioncommerce.com/content/images/2018/09/style-guide-artwork.jpg)
-
 > ⚠️ Warning: This repository is in active development and is not ready for testing or usage.
 
 This is a single project with a package of commerce-focused React UI components and the code for the Catalyst website:
