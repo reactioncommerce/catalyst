@@ -1,6 +1,6 @@
-If you'd like to see your changes locally inside of another project, such as the [Reaction Admin](https://github.com/reactioncommerce/reaction), it's possible to link your local version of this Catalyst Component Library using the following steps:
+If you'd like to see your changes locally inside of [Reaction Admin](https://github.com/reactioncommerce/reaction), it's possible to link your local version of Catalyst using the following steps:
 
-- `cd` into your local version of the [Catalyst](https://github.com/reactioncommerce/catalyst), and run the following commands:
+- `cd` into your local version of [`Catalyst`](https://github.com/reactioncommerce/catalyst), and run the following commands:
 
 ```diff
 yarn install
