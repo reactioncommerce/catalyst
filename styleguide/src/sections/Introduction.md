@@ -1,8 +1,8 @@
-<! -- Ryan, insert a paragraph here about what Catalyst is -->
+Introducing Reaction Commerce's **Catalyst Design System** and the `@reactioncommerce/catalyst` NPM module, built with React, React Hooks, Material-UI, JSS and the React Testing Library. The **Catalyst Design System** is a lightweight open source design system for building Reaction Admin tools and plugins.
 
 #### Designers
 
-<! -- Ryan, add something here -->
+- Use the documentation here to learn about how Reaction uses Color, Typography in Reaction Admin.
 
 #### Developers
 
