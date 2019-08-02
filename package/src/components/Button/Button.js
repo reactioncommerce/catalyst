@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 import { CircularProgress, Button as MuiButton, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  normalPadding: {
+    "padding": "10px 20px"
+  },
+  shortPadding: {
+    "padding": "5px 20px"
+  },
   buttonProgress: {
     marginLeft: theme.spacing()
   },
@@ -37,16 +43,23 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} A React component
  */
 const Button = React.forwardRef(function Button(props, ref) {
-  const { children, color, disabled, isWaiting, ...otherProps } = props;
+  const { children, color, disabled, isWaiting, isShortHeight, ...otherProps } = props;
   const classes = useStyles();
 
+  let componentClasses = {};
+  if (isShortHeight) {
+    componentClasses.root = classes.shortPadding;
+  } else {
+    componentClasses.root = classes.normalPadding;
+  }
+
   if (color === "error") {
+    componentClasses.containedPrimary = classes.containedPrimary;
+    componentClasses.outlinedPrimary = classes.outlinedPrimary;
+
     return (
       <MuiButton
-        classes={{
-          containedPrimary: classes.containedPrimary,
-          outlinedPrimary: classes.outlinedPrimary
-        }}
+        classes={componentClasses}
         color="primary"
         disabled={disabled || isWaiting}
         ref={ref}
@@ -60,6 +73,7 @@ const Button = React.forwardRef(function Button(props, ref) {
 
   return (
     <MuiButton
+      classes={componentClasses}
       color={color}
       disabled={disabled || isWaiting}
       ref={ref}
@@ -95,7 +109,11 @@ Button.propTypes = {
   /**
    * onClick callback
    */
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  /**
+   * Use short vertical padding? (5px instead of 10px)
+   */
+  isShortHeight: PropTypes.bool
 };
 
 export default Button;

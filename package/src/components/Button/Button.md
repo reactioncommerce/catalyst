@@ -83,3 +83,16 @@ It's a button with `variant` set to `text`, `size` set to `medium`, `color` set 
   </div>
 </div>
 ```
+
+- **isShortHeight**: The `isShortHeight` prop halves the vertical padding of the button contents from 10px to 5px. This is useful for tighter spaces such as table headers.
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="contained" isShortHeight>isShortHeight - Contained</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="outlined" isShortHeight>isShortHeight - Outlined</Button>
+  </div>
+</div>
+```
