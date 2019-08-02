@@ -4,10 +4,10 @@ import { CircularProgress, Button as MuiButton, makeStyles } from "@material-ui/
 
 const useStyles = makeStyles((theme) => ({
   normalPadding: {
-    "padding": "10px 20px"
+    padding: "10px 20px"
   },
   shortPadding: {
-    "padding": "5px 20px"
+    padding: "5px 20px"
   },
   buttonProgress: {
     marginLeft: theme.spacing()
@@ -46,7 +46,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   const { children, color, disabled, isWaiting, isShortHeight, ...otherProps } = props;
   const classes = useStyles();
 
-  let componentClasses = {};
+  const componentClasses = {};
   if (isShortHeight) {
     componentClasses.root = classes.shortPadding;
   } else {
@@ -103,17 +103,17 @@ Button.propTypes = {
    */
   disabled: PropTypes.bool, // eslint-disable-line
   /**
+   * Use short vertical padding? (5px instead of 10px)
+   */
+  isShortHeight: PropTypes.bool,
+  /**
    * If `true`, the CircularProgress will be displayed and the button will be disabled.
    */
   isWaiting: PropTypes.bool,
   /**
    * onClick callback
    */
-  onClick: PropTypes.func,
-  /**
-   * Use short vertical padding? (5px instead of 10px)
-   */
-  isShortHeight: PropTypes.bool
+  onClick: PropTypes.func
 };
 
 export default Button;
