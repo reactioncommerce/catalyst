@@ -1,11 +1,29 @@
 ### Overview
 
+<!-- Get this short paragraph from design. -->
+
+The X component inherits from the Material-UI [X component](https://material-ui.com/components/X/). Refer to the Material-UI [X docs](https://material-ui.com/api/X/) for more information.
+
 ### Usage
 
-Document various live component examples here. See https://react-styleguidist.js.org/docs/documenting.html
+<!-- Show all the variants/combos we use in Reaction Admin, without the code box > -->
 
-### Theme
+```jsx noeditor
+<div>
+ All possible examples, types go here
+</div>
+```
 
-Assume that any theme prop that does not begin with "rui" is within `rui_components`. See [Theming Components](./#!/Theming%20Components).
+#### Types
 
-| Theme Prop | Default | Description |
+<!-- Show all Types of the component used in Reaction Admin -->
+
+##### Name of type
+
+<!-- Explain when to use this type of the component, and give a real life Reaction Admin example. If needed, add instruction for developers on how to set up the component. -->
+
+Use a X component to allow a user to XX, such as XYXY.
+
+```jsx
+<span>Example of the component goes here</span>
+```
