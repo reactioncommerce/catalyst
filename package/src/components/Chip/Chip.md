@@ -1,32 +1,50 @@
-### Overview
+### H1. Overview
+
+Chips are compact visual elements that are used to present information to an operator to communicate a status or feedback on an action taken. Chips can be used to represent tags, badges, and other to convey compact bits of information to a user.
+
+[Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
 The Catalyst Chip inherits from the Material-UI [Chip component](https://material-ui.com/components/chips/). Refer to the Material-UI [Chip API docs](https://material-ui.com/api/chip/) for more information. 
 
 ### Usage
 
-#### Default Catalyst chip
+<!-- Show all the variants/combos we use in Reaction Admin, without the code box > -->
 
-This is what a chip with all the default prop options looks like:
-
-```jsx
-<div style={{ display: "flex" }}>
-  <div style={{ marginRight: "1rem" }}>
-    <Chip label="Default" />
+```jsx noeditor
+const onDelete = () => { console.log("stuff") };
+<div>
+  <div style={{ display: "flex" }}>
+    <div style={{ marginRight: "1rem" }}>
+      <Chip label="stuff.csv" variant="outlined" color="primary" onDelete={onDelete} />
+    </div>
+    <div style={{ marginRight: "1rem" }}>
+      <Chip color="error" label="Order Cancelled" />
+    </div>
   </div>
 </div>
 ```
 
-It's a chip with `variant` set to `outlined`, and `color` set to `primary`.
+#### Types
 
-#### Catalyst-custom chips
+<!-- Show all Types of the component used in Reaction Admin -->
 
-- **Error chip**: The error chip is used to indicate an error condition.
+##### Deletable chip
+
+<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
+
+Use a Deletable chip to allow a user to remove something, like removing a tag from a filter. To create a Deletable chip, pass a Delete function to `onDelete`.
 
 ```jsx
-<div style={{ display: "flex" }}>
-  <div style={{ marginRight: "1rem" }}>
-    <Chip color="error" label="Error" />
-  </div>
-</div>
+const onDelete = () => { console.log("stuff") };
+<Chip label="stuff.csv" variant="outlined" color="primary" onDelete={onDelete} />
 ```
 
+##### Error chip
+
+<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
+
+The error chip is used to indicate an error status, such as when an order has been cancelled.
+
+```jsx
+<Chip color="error" label="Order Cancelled" />
+```
