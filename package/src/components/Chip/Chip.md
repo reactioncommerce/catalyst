@@ -1,4 +1,4 @@
-### H1. Overview
+### Overview
 
 Chips are compact visual elements that are used to present information to an operator to communicate a status or feedback on an action taken. Chips can be used to represent tags, badges, and other to convey compact bits of information to a user.
 
