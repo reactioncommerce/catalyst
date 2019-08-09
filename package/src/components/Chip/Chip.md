@@ -4,7 +4,7 @@ Chips are compact visual elements that are used to present information to an ope
 
 [Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
-The Catalyst Chip inherits from the Material-UI [Chip component](https://material-ui.com/components/chips/). Refer to the Material-UI [Chip API docs](https://material-ui.com/api/chip/) for more information. 
+The Catalyst Chip inherits from the Material-UI [Chip component](https://material-ui.com/components/chips/). Refer to the Material-UI [Chip API docs](https://material-ui.com/api/chip/) for more information.
 
 ### Usage
 
