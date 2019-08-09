@@ -1,6 +1,6 @@
 ### Overview
 
-Chips are compact visual elements that are used to present information to an operator to communicate a status or feedback on an action taken. Chips can be used to represent tags, badges, and other to convey compact bits of information to a user.
+Chips are compact visual elements that are used to present information to an operator to communicate status or feedback on an action taken. Chips can be used to represent tags, badges, and other compact bits of information to a user.
 
 [Chips](https://material.io/design/components/chips.html) allow users to enter information, make selections, filter content, or trigger actions.
 
