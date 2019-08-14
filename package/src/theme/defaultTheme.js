@@ -234,6 +234,23 @@ export const rawMuiTheme = {
         border: `1px solid ${colorSecondaryMain}`
       }
     },
+    MuiButtonGroup: {
+      groupedContained: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
+      },
+      groupedContainedPrimary: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
+      },
+      groupedContainedSecondary: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
+      }
+    },
     MuiCard: {
       root: {
         border: `1px solid ${colors.black10}`,
