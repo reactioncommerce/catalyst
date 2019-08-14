@@ -1,6 +1,5 @@
 import React from "react";
 import { render, fireEvent } from "../../tests/";
-import "@testing-library/jest-dom/extend-expect";
 import Button from "../Button";
 import ConfirmDialog from "./ConfirmDialog";
 
