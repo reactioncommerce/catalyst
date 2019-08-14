@@ -55,9 +55,9 @@ export const rawMuiTheme = {
     fontWeightBold,
     useNextVariants: true,
     button: {
-      fontSize: 16,
+      fontSize: defaultFontSize,
       letterSpacing: 0.3,
-      fontWeight: 600
+      fontWeight: fontWeightSemiBold
     },
     h1: {
       color: colors.coolGrey500,
@@ -220,8 +220,8 @@ export const rawMuiTheme = {
       },
       text: {
         color: colors.coolGrey400,
-        fontWeight: 400,
-        fontSize: 14,
+        fontWeight: fontWeightRegular,
+        fontSize: defaultFontSize * 0.875,
         padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`
       },
       outlined: {
@@ -238,7 +238,7 @@ export const rawMuiTheme = {
         border: `1px solid ${colorSecondaryMain}`
       },
       sizeSmall: {
-        fontSize: 14
+        fontSize: defaultFontSize * 0.875
       }
     },
     MuiCard: {
