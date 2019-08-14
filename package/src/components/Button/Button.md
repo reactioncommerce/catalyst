@@ -1,85 +1,113 @@
-### Overview
-
-The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to the Material-UI [Button API docs](https://material-ui.com/api/button/) for more information. 
+```jsx noeditor
+<div style={{ marginBottom: "2rem", border: "1px solid #e6e6e6", padding: "1rem"}}>
+  <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evently", marginBottom: "1rem" }}>
+    <div style={{marginRight: "1rem"}}>
+      <Button variant="contained" color="primary">Solid</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button variant="outlined" color="primary">Outlined</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button>Text-only</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button variant="contained" color="error">Error</Button>
+    </div>
+    <div style={{ marginRight: "1rem" }}>
+      <Button variant="outlined" color="error">Error</Button>
+    </div>
+  </div>
+  <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evently"}}>
+    <div style={{marginRight: "1rem"}}>
+      <Button size="small" variant="contained" color="primary">Solid</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button size="small" variant="outlined" color="primary">Outlined</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button size="small">Text-only</Button>
+    </div>
+    <div style={{marginRight: "1rem"}}>
+      <Button size="small" variant="contained" color="error">Error</Button>
+    </div>
+    <div style={{ marginRight: "1rem" }}>
+      <Button size="small" variant="outlined" color="error">Error</Button>
+    </div>
+  </div>
+</div>
+```
 
 ### Usage
 
+#### Types
 
-#### Default Catalyst button
-
-This is what a button with all the default prop options looks like:
-
-```jsx
-<div style={{ display: "flex" }}>
-  <div style={{ marginRight: "1rem" }}>
-    <Button>Text-only</Button>
-  </div>
-</div>
-```
-
-It's a button with `variant` set to `text`, `size` set to `medium`, `color` set to `default`.
-
-#### Material UI options
-
-- **Solid (Contained) button**: The solid button is used for a primary action in a modal, card, large view and generally throughout.
-- **Outline button**: The outline button is used for a secondary or dismissive action. The outline button should be paired with the solid button in cases such as dismissing a modal or canceling an action.
+##### Contained buttons
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button>Text-only</Button>
-  </div>
-  <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained">Solid</Button>
-  </div>
-  <div style={{ marginRight: "1rem" }}>
-    <Button variant="outlined">Outlined</Button>
+    <Button variant="contained" color="primary">Contained</Button>
   </div>
 </div>
 ```
 
-- **Disabled**:
+##### Outlined buttons
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" disabled>Disabled</Button>
+    <Button variant="outlined" color="primary">Outlined</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="outlined" color="error">Outlined</Button>
   </div>
 </div>
 ```
 
-- **Full Width**:
+##### Error buttons
 
-```jsx
-<div style={{ display: "block" }}>
-  <Button variant="contained" fullWidth>FullWidth</Button>
-</div>
-```
-
-#### Catalyst-custom buttons
-
-- **Error button**: The error button is used for a destructive action that is difficult to recover from such as deleting information. The error button should be used at the point that the destructive action actually takes place. For example, you can have a delete button as a secondary action on a page and in this case you would use a an outline button, the outline button would then trigger a modal confirmation, which is where you would use the error button.
+The error button is used for a destructive action that is difficult to recover from such as deleting information. The error button should be used at the point that the destructive action actually takes place.
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" color="error">Error - Contained</Button>
+    <Button variant="contained" color="error">Error</Button>
   </div>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="outlined" color="error">Error - Outlined</Button>
+    <Button variant="outlined" color="error">Error</Button>
   </div>
 </div>
 ```
 
-- **isWaiting**: The `isWaiting` prop combines `disabled` with a CircularProgress animation.
+##### Text buttons
 
 ```jsx
 <div style={{ display: "flex" }}>
   <div style={{ marginRight: "1rem" }}>
-    <Button variant="contained" isWaiting>isWaiting - Contained</Button>
-  </div>
-  <div style={{ marginRight: "1rem" }}>
-    <Button variant="outlined" isWaiting>isWaiting - Outlined</Button>
+    <Button variant="text" color="primary">Text</Button>
   </div>
 </div>
 ```
+
+##### Small buttons
+
+```jsx
+<div style={{ display: "flex" }}>
+  <div style={{ marginRight: "1rem" }}>
+    <Button size="small" variant="contained" color="primary">Button</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button size="small" variant="outlined" color="primary">Button</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button size="small" variant="outlined" color="error" size="small">Error - Small</Button>
+  </div>
+  <div style={{ marginRight: "1rem" }}>
+    <Button variant="text" size="small">Text - Small</Button>
+  </div>
+</div>
+```
+
+### API
+
+The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to the Material-UI [Button API docs](https://material-ui.com/api/button/) for more information.
