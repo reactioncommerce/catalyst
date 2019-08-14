@@ -1,4 +1,4 @@
-Multi value select with options provided synchronously 
+##### Multi value select with options provided synchronously
 ```jsx
 const options = [
   { value: "mens", label: "Mens" },
@@ -18,13 +18,9 @@ function handleOnSelection(value) {
   />
 ```
 
-Multi value select with options provided asynchronously 
+##### Multi value select with options provided asynchronously
 ```jsx
-const options = [
-  { value: "mens", label: "Mens" },
-  { value: "womens", label: "Womens" },
-  { value: "kids", label: "Kids" }
-];
+import options from "./helpers/tagData";
 
 const filterOptions = (inputValue) => options.filter((i) => {
   return i.label.toLowerCase().includes(inputValue.toLowerCase());
@@ -48,6 +44,6 @@ function handleOnSelection(value) {
   defaultOptions 
   loadOptions={promiseOptions}
   onSelection={handleOnSelection}
-  placeholder="Select tags"
+  placeholder="Search tags"
   />
 ```
