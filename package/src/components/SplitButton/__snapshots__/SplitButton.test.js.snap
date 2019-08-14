@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiButtonGroup-root MuiButtonGroup-contained"
+    role="group"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained"
+      data-testid="splitButton-action-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Add tags to products
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-haspopup="true"
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-sizeSmall"
+      data-testid="splitButton-dropdown-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7,10L12,15L17,10H7Z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`select destructive option 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiButtonGroup-root MuiButtonGroup-contained"
+    role="group"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained"
+      data-testid="splitButton-action-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Remove tags from products
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-haspopup="true"
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-sizeSmall"
+      data-testid="splitButton-dropdown-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7,10L12,15L17,10H7Z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`set initial selected option to destructive option snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiButtonGroup-root MuiButtonGroup-contained"
+    role="group"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained"
+      data-testid="splitButton-action-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Remove tags from products
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      aria-haspopup="true"
+      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-sizeSmall"
+      data-testid="splitButton-dropdown-button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7,10L12,15L17,10H7Z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</DocumentFragment>
+`;
