@@ -15,7 +15,10 @@ const onDelete = () => { console.log("stuff") };
 <div>
   <div style={{ display: "flex" }}>
     <div style={{ marginRight: "1rem" }}>
-      <Chip label="stuff.csv" variant="outlined" color="primary" onDelete={onDelete} />
+      <Chip label="deletable chip" variant="outlined" color="primary" onDelete={onDelete} />
+    </div>
+    <div style={{ marginRight: "1rem" }}>
+      <Chip label="small deletable chip for multiselect" variant="default" color="secondary" size="small" onDelete={onDelete} />
     </div>
     <div style={{ marginRight: "1rem" }}>
       <Chip color="error" label="Order Cancelled" />
@@ -32,18 +35,31 @@ const onDelete = () => { console.log("stuff") };
 
 <!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
 
-Use a Deletable chip to allow a user to remove something, like removing a tag from a filter. To create a Deletable chip, pass a Delete function to `onDelete`.
+Use a Deletable chip to allow users to remove an entity, like removing a Tag from a filter input. To create a Deletable chip, pass a Delete function to `onDelete`, and use the `default` variant with the `primary` color.
 
 ```jsx
 const onDelete = () => { console.log("stuff") };
-<Chip label="stuff.csv" variant="outlined" color="primary" onDelete={onDelete} />
+<div>
+  <Chip label="stuff.csv" variant="default" color="primary" onDelete={onDelete} />
+</div>
+```
+
+##### Deletable chip for Selects, MultiSelects
+
+Use a Deletable chip in components like a Select or MultiSelect to allow users to remove entities within another action. To create a Deletable chip for a Select or MultiSelect, use the `default` variant with the `secondary` color and `small` size props, along with p assing an `onDelete` function.
+
+```jsx
+const onDelete = () => { console.log("stuff") };
+<div>
+  <Chip label="stuff.csv" variant="default" color="secondary" size="small" onDelete={onDelete} />
+</div>
 ```
 
 ##### Error chip
 
 <!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
 
-The error chip is used to indicate an error status, such as when an order has been cancelled.
+The Error chip is used to indicate an error status, such as when an order has been cancelled.
 
 ```jsx
 <Chip color="error" label="Order Cancelled" />

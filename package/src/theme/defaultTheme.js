@@ -284,6 +284,45 @@ export const rawMuiTheme = {
         }
       }
     },
+    MuiChip: {
+      root: {
+        fontSize: defaultFontSize * 0.875,
+        letterSpacing: 0.28
+      },
+      deletable: {
+        backgroundColor: colors.black02,
+        border: `1px solid ${colors.black30}`,
+        color: colors.coolGrey500
+      },
+      deleteIconColorPrimary: {
+        "color": colors.coolGrey,
+        "fontSize": 17,
+        "&:hover": {
+          color: colors.reactionBlue500
+        }
+      },
+      deletableColorSecondary: {
+        "color": colors.coolGrey500,
+        "border": `1px solid ${colors.coolGrey300}`,
+        "backgroundColor": colors.reactionBlue100,
+        "&:hover": {
+          backgroundColor: colors.reactionBlue100
+        }
+      },
+      deleteIconColorSecondary: {
+        "color": colors.coolGrey,
+        "&:hover": {
+          color: colors.reactionBlue500
+        }
+      },
+      sizeSmall: {
+        height: 30
+      },
+      deleteIconSmall: {
+        margin: "0 4px 0 0",
+        fontSize: 17
+      }
+    },
     MuiDialogTitle: {
       root: {
         padding: defaultTheme.spacing(4, 4, 1, 4)
