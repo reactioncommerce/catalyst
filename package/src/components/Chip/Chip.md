@@ -15,7 +15,7 @@ const onDelete = () => { console.log("stuff") };
 <div>
   <div style={{ display: "flex" }}>
     <div style={{ marginRight: "1rem" }}>
-      <Chip label="deletable chip" variant="outlined" color="primary" onDelete={onDelete} />
+      <Chip label="deletable chip" variant="default" color="primary" onDelete={onDelete} />
     </div>
     <div style={{ marginRight: "1rem" }}>
       <Chip label="small deletable chip for multiselect" variant="default" color="secondary" size="small" onDelete={onDelete} />
@@ -40,7 +40,7 @@ Use a Deletable chip to allow users to remove an entity, like removing a Tag fro
 ```jsx
 const onDelete = () => { console.log("stuff") };
 <div>
-  <Chip label="stuff.csv" variant="default" color="primary" onDelete={onDelete} />
+  <Chip label="sale-fall2019.csv" variant="default" color="primary" onDelete={onDelete} />
 </div>
 ```
 
@@ -51,7 +51,9 @@ Use a Deletable chip in components like a Select or MultiSelect to allow users t
 ```jsx
 const onDelete = () => { console.log("stuff") };
 <div>
-  <Chip label="stuff.csv" variant="default" color="secondary" size="small" onDelete={onDelete} />
+  <Chip label="sale" variant="default" color="secondary" size="small" onDelete={onDelete} />
+  <Chip label="winter-specials" variant="default" color="secondary" size="small" onDelete={onDelete} />
+  <Chip label="sale-fall2019" variant="default" color="secondary" size="small" onDelete={onDelete} />
 </div>
 ```
 
