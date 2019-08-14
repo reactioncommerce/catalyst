@@ -1,12 +1,12 @@
 ### Overview
 
-The Catalyst SplitButton inherits from the Material-UI example for a [SplitButton](https://material-ui.com/components/buttons/#split-button).
+The Catalyst SplitButton is based on the the Material-UI example for a [SplitButton](https://material-ui.com/components/buttons/#split-button).
 
 ### Usage
 
 #### Simple SplitButton
 
-This is what a button with all the default prop options looks like:
+This is basic example of how to implement the SplitButton.
 
 ```jsx
 const options = [{
@@ -15,7 +15,7 @@ const options = [{
   label: "Remove tags from products",
   isDestructive: true
 }, {
-  label: "Remove all tags products",
+  label: "Remove all tags from products",
   isDisabled: true,
   isDestructive: true
 }];
@@ -37,7 +37,7 @@ const options = [{
   label: "Remove tags from products",
   isDestructive: true
 }, {
-  label: "Remove all tags products",
+  label: "Remove all tags from products",
   isDisabled: true,
   isDestructive: true
 }];
@@ -62,8 +62,8 @@ const options = [{
   details: "Remove the selected tags from the filtered products list provided.",
   isDestructive: true
 }, {
-  label: "Remove all tags products",
-  details: "Remove all tags from the filtered products list provided",
+  label: "Remove all tags from products",
+  details: "Remove all tags from the filtered products list provided.",
   isDisabled: true,
   isDestructive: true
 }];
