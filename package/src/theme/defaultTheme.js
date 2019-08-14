@@ -43,6 +43,10 @@ export const rawMuiTheme = {
       secondary: colors.black15,
       secondaryActive: colors.white,
       active: "#8acef2"
+    },
+    action: {
+      hover: colors.reactionBlue100,
+      hoverOpacity: 1
     }
   },
   typography: {
