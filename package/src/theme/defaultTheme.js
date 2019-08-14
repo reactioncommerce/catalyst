@@ -40,7 +40,7 @@ export const rawMuiTheme = {
     },
     divider: colors.black10,
     text: {
-      secondary: colors.black15,
+      secondary: colors.black60,
       secondaryActive: colors.white,
       active: "#8acef2"
     },
