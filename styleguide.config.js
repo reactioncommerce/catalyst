@@ -361,6 +361,12 @@ module.exports = {
             "DialogTitle"
           ],
           name: "Feedback"
+        }),
+        generateSection({
+          componentNames: [
+            "MultiSelect"
+          ],
+          name: "Inputs"
         })
       ],
       sectionDepth: 2
