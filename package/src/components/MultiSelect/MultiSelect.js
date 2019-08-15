@@ -107,7 +107,7 @@ const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
    */
   function handleChangeMulti(selectedValue) {
     setValue(selectedValue);
-    onSelection(selectedValue);
+    onSelection && onSelection(selectedValue);
   }
 
   const selectStyles = {

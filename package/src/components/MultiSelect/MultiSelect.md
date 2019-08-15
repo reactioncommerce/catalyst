@@ -1,4 +1,11 @@
-##### Multi value select with options provided synchronously
+### Overview
+The `MultiSelect` component provides functionality to select multiple options with
+autocompletion; options may be provided synchronously or asynchronously. Under the hood, it uses the [react-select](https://react-select.com) component.
+
+### Usage
+
+#### Basic
+Multi value select with options provided synchronously:
 ```jsx
 const options = [
   { value: "mens", label: "Mens" },
@@ -18,7 +25,8 @@ function handleOnSelection(value) {
   />
 ```
 
-##### Multi value select with options provided asynchronously
+#### Async options
+Multi value select with options provided asynchronously:
 ```jsx
 import options from "./helpers/tagData";
 
