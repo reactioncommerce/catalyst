@@ -11,7 +11,7 @@ export default [
   "New Arrivals",
   "Nike",
   "Outdoor",
-  "Pats",
+  "Pants",
   "Running",
   "Sales",
   "Shoes",
