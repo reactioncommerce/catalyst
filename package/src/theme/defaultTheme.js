@@ -294,7 +294,7 @@ export const rawMuiTheme = {
         "border": `1px solid ${colors.black30}`,
         "color": colors.coolGrey500,
         "&:hover, &:focus, &:active": {
-          backgroundColor: colors.black02
+          backgroundColor: colors.black05
         }
       },
       deleteIconColorPrimary: {
@@ -309,7 +309,7 @@ export const rawMuiTheme = {
         "border": `1px solid ${colors.coolGrey300}`,
         "backgroundColor": colors.reactionBlue100,
         "&:hover, &:focus, &:active": {
-          backgroundColor: colors.reactionBlue100
+          backgroundColor: colors.darkBlue100
         }
       },
       deleteIconColorSecondary: {
