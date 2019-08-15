@@ -11,7 +11,6 @@ export default function Option(props) {
   return (
     <MenuItem
       ref={props.innerRef}
-      selected={props.isFocused}
       component="div"
       style={{
         fontWeight: props.isSelected ? 500 : 400
