@@ -14,20 +14,6 @@ exports[`basic snapshot test 1`] = `
         <div
           class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
         >
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root-46 MuiOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend-47"
-              style="width: 0px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
           <div
             aria-invalid="false"
             class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-2"
@@ -91,6 +77,20 @@ exports[`basic snapshot test 1`] = `
               </div>
             </div>
           </div>
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend-78"
+              style="width: 0px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
         </div>
       </div>
     </div>
