@@ -40,9 +40,14 @@ export const rawMuiTheme = {
     },
     divider: colors.black10,
     text: {
-      secondary: colors.black15,
+      secondary: colors.black60,
       secondaryActive: colors.white,
       active: "#8acef2"
+    },
+    action: {
+      hover: colors.reactionBlue100,
+      hoverOpacity: 1,
+      selected: colors.black10
     }
   },
   typography: {
@@ -239,6 +244,23 @@ export const rawMuiTheme = {
       },
       sizeSmall: {
         fontSize: defaultFontSize * 0.875
+      }
+    },
+    MuiButtonGroup: {
+      groupedContained: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
+      },
+      groupedContainedPrimary: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
+      },
+      groupedContainedSecondary: {
+        "&:not(:last-child)": {
+          borderRight: `1px solid ${colors.white}`
+        }
       }
     },
     MuiCard: {
