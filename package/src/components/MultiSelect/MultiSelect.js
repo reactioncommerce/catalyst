@@ -56,19 +56,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// Rather than pass through all props to react-select, we'll keep a whitelist
-// to better control the usage and appearance of this component.
-const supportedPassthroughProps = [
-  "async",
-  "cacheOptions",
-  "classes",
-  "defaultOptions",
-  "loadOptions",
-  "placeholder",
-  "onSelection",
-  "options"
-];
-
 // Custom components for various aspects of the select
 const components = {
   Control,
@@ -91,13 +78,7 @@ const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
   const defaultClasses = useStyles();
   const theme = useTheme();
   const [value, setValue] = useState(null);
-
-  const passThroughProps = {};
-  supportedPassthroughProps.forEach((supportedProp) => {
-    passThroughProps[supportedProp] = props[supportedProp];
-  });
-
-  const { classes, isAsync, onSelection } = props;
+  const { classes, isAsync, onSelection, ...otherProps } = props;
   const SelectComponent = isAsync ? AsyncSelect : Select;
 
   /**
@@ -138,7 +119,7 @@ const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
           }
         }}
         value={value}
-        {...props}
+        {...otherProps}
       />
     </div>
   );
