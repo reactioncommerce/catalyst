@@ -30,8 +30,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     flex: 1,
     overflow: "hidden",
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1)
+    paddingLeft: theme.spacing(0.5)
   },
   chip: {
     margin: theme.spacing(0.5, 0.25)
