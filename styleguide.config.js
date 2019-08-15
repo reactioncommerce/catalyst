@@ -344,7 +344,8 @@ module.exports = {
       sections: [
         generateSection({
           componentNames: [
-            "Button"
+            "Button",
+            "SplitButton"
           ],
           name: "Actions"
         }),
