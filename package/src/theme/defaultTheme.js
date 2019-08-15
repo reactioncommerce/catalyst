@@ -289,15 +289,18 @@ export const rawMuiTheme = {
         fontSize: defaultFontSize * 0.875,
         letterSpacing: 0.28
       },
-      deletable: {
-        backgroundColor: colors.black02,
-        border: `1px solid ${colors.black30}`,
-        color: colors.coolGrey500
+      deletableColorPrimary: {
+        "backgroundColor": colors.black02,
+        "border": `1px solid ${colors.black30}`,
+        "color": colors.coolGrey500,
+        "&:hover, &:focus, &:active": {
+          backgroundColor: colors.black02
+        }
       },
       deleteIconColorPrimary: {
         "color": colors.coolGrey,
         "fontSize": 17,
-        "&:hover": {
+        "&:hover, &:focus, &:active": {
           color: colors.reactionBlue500
         }
       },
@@ -305,13 +308,13 @@ export const rawMuiTheme = {
         "color": colors.coolGrey500,
         "border": `1px solid ${colors.coolGrey300}`,
         "backgroundColor": colors.reactionBlue100,
-        "&:hover": {
+        "&:hover, &:focus, &:active": {
           backgroundColor: colors.reactionBlue100
         }
       },
       deleteIconColorSecondary: {
         "color": colors.coolGrey,
-        "&:hover": {
+        "&:hover, &:focus, &:active": {
           color: colors.reactionBlue500
         }
       },
