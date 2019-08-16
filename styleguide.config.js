@@ -353,8 +353,7 @@ module.exports = {
           componentNames: [
             "Chip"
           ],
-          content: "styleguide/src/sections/Content.md",
-          ame: "Content"
+          name: "Content"
         }),
         generateSection({
           componentNames: [

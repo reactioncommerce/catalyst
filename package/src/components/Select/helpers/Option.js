@@ -12,9 +12,7 @@ export default function Option(props) {
     <MenuItem
       ref={props.innerRef}
       component="div"
-      style={{
-        fontWeight: props.isSelected ? 500 : 400
-      }}
+      selected={props.isSelected}
       {...props.innerProps}
     >
       {props.children}
