@@ -1,3 +1,7 @@
+### Overview
+
+Buttons allow users to take an action such as add, save, cancel or delete. Buttons should clearly and simply communicate the action that will happen when they are pressed.
+
 ```jsx noeditor
 <div style={{ marginBottom: "2rem", border: "1px solid #e6e6e6", padding: "1rem"}}>
   <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evently", marginBottom: "1rem" }}>
