@@ -12,7 +12,7 @@ export default function Option(props) {
     <MenuItem
       ref={props.innerRef}
       component="div"
-      selected={props.isSelected}
+      selected={props.isFocused}
       {...props.innerProps}
     >
       {props.children}
