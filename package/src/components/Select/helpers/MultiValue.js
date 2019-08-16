@@ -12,6 +12,8 @@ export default function MultiValue(props) {
   return (
     <Chip
       size="small"
+      variant="default"
+      color="secondary"
       label={props.children}
       className={clsx(props.selectProps.classes.chip, {
         [props.selectProps.classes.chipFocused]: props.isFocused
