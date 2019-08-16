@@ -289,6 +289,11 @@ export const rawMuiTheme = {
         fontSize: defaultFontSize * 0.875,
         letterSpacing: 0.28
       },
+      deletable: {
+        "&:hover": {
+          cursor: "pointer"
+        }
+      },
       deletableColorPrimary: {
         "backgroundColor": colors.black02,
         "border": `1px solid ${colors.black30}`,
