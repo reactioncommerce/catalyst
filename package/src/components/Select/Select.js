@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Select from "react-select";
+import ReactSelect from "react-select";
 import AsyncSelect from "react-select/async";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
@@ -67,18 +67,18 @@ const components = {
 };
 
 /**
- * @name MultiSelect
- * @summary A Select component that supports selecting multiple options, and
- * loading options asynchronously and synchronously.
+ * @name Select
+ * @summary A Select component that supports selecting single or multiple option(s), and
+ * loading options synchronously or asynchronously.
  * @param {Object} props - component props
  * @returns {React.Component} A React component
  */
-const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
+const Select = React.forwardRef(function Select(props, ref) {
   const defaultClasses = useStyles();
   const theme = useTheme();
   const [value, setValue] = useState(null);
   const { classes, isAsync, onSelection, ...otherProps } = props;
-  const SelectComponent = isAsync ? AsyncSelect : Select;
+  const SelectComponent = isAsync ? AsyncSelect : ReactSelect;
 
   /**
    *
@@ -105,7 +105,6 @@ const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
       <SelectComponent
         classes={{ ...defaultClasses, ...classes }}
         components={components}
-        isMulti={true}
         inputId="react-select-multiple"
         onChange={handleChangeMulti}
         ref={ref}
@@ -124,11 +123,11 @@ const MultiSelect = React.forwardRef(function MultiSelect(props, ref) {
   );
 });
 
-MultiSelect.defaultProps = {
+Select.defaultProps = {
   placeholder: "Select options"
 };
 
-MultiSelect.propTypes = {
+Select.propTypes = {
   /**
    * When provided options will be cached
    */
@@ -170,4 +169,4 @@ MultiSelect.propTypes = {
   placeholder: PropTypes.string
 };
 
-export default MultiSelect;
+export default Select;

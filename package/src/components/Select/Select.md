@@ -1,10 +1,33 @@
 ### Overview
-The `MultiSelect` component provides functionality to select multiple options with
-autocompletion; options may be provided synchronously or asynchronously. Under the hood, it uses the [react-select](https://react-select.com) component.
+The `Select` component provides functionality to select single or multiple value(s) with
+autocompletion; options may be provided synchronously or asynchronously. Under the hood, the [react-select](https://react-select.com) component is used.
+
+**NOTE**: In addition to the props listed above, all props supported by `react-select` will be passed through. To see the full list click [here](https://react-select.com/props)
 
 ### Usage
 
-#### Basic
+#### Basic Single Select
+Single value select with options provided synchronously:
+```jsx
+const options = [
+  { value: "mens", label: "Mens" },
+  { value: "womens", label: "Womens" },
+  { value: "kids", label: "Kids" }
+];
+
+// Log selected value
+function handleOnSelection(value) {
+  console.log("Selected value: ", value);
+}
+
+<Select 
+  onSelection={handleOnSelection}
+  options={options}
+  placeholder="Select a tag"
+  />
+```
+
+#### Basic Multi Select
 Multi value select with options provided synchronously:
 ```jsx
 const options = [
@@ -18,7 +41,8 @@ function handleOnSelection(value) {
   console.log("Selected value: ", value);
 }
 
-<MultiSelect 
+<Select 
+  isMulti
   onSelection={handleOnSelection}
   options={options}
   placeholder="Select tags"
@@ -46,7 +70,8 @@ function handleOnSelection(value) {
   console.log("Selected value: ", value);
 }
 
-<MultiSelect 
+<Select 
+  isMulti
   isAsync
   cacheOptions 
   defaultOptions 

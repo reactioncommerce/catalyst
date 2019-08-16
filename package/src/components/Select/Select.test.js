@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "../../tests";
-import MultiSelect from "./MultiSelect";
+import Select from "./Select";
 
 const options = [
   "Mens",
@@ -13,7 +13,7 @@ const options = [
 
 test("basic snapshot test", () => {
   const { asFragment } = render((
-    <MultiSelect options={options} />
+    <Select options={options} />
   ));
 
   expect(asFragment()).toMatchSnapshot();
