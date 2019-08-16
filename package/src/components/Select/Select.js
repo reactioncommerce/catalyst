@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: "flex",
     padding: theme.spacing(0.25),
-    height: "auto"
+    height: "auto",
+    cursor: "pointer"
   },
   valueContainer: {
     display: "flex",
