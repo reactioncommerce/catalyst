@@ -25,6 +25,12 @@ export const fontWeightMedium = 500;
 export const fontWeightSemiBold = 600;
 export const fontWeightBold = 700;
 
+// Typography - Letter-spacing
+export const captionLetterSpacing = 0.28;
+
+// Icons
+export const smallFontIconSize = 17;
+
 export const rawMuiTheme = {
   palette: {
     colors, // TODO: De-structure these colors into various MUI properties rather than using them from this object
@@ -107,7 +113,8 @@ export const rawMuiTheme = {
       lineHeight: 1.5
     },
     caption: {
-      color: colors.black30
+      color: colors.black30,
+      letterSpacing: captionLetterSpacing
     },
     subtitle1: {
       fontSize: defaultFontSize * 0.875,
@@ -287,7 +294,7 @@ export const rawMuiTheme = {
     MuiChip: {
       root: {
         fontSize: defaultFontSize * 0.875,
-        letterSpacing: 0.28
+        letterSpacing: captionLetterSpacing
       },
       deletable: {
         "&:hover": {
@@ -304,7 +311,7 @@ export const rawMuiTheme = {
       },
       deleteIconColorPrimary: {
         "color": colors.coolGrey,
-        "fontSize": 17,
+        "fontSize": smallFontIconSize,
         "&:hover, &:focus, &:active": {
           color: colors.reactionBlue500
         }
@@ -328,7 +335,7 @@ export const rawMuiTheme = {
       },
       deleteIconSmall: {
         margin: "0 4px 0 0",
-        fontSize: 17
+        fontSize: smallFontIconSize
       }
     },
     MuiDialogTitle: {
