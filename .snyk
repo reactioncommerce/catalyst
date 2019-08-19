@@ -5,5 +5,5 @@ ignore:
   'npm:mem:20180117':
     - libnpx > yargs > os-locale > mem:
         reason: No update available
-        expires: '2019-09-15T21:34:43.636Z'
+        expires: '2019-09-16T00:24:48.037Z'
 patch: {}

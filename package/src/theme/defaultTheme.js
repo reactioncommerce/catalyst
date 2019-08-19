@@ -46,7 +46,6 @@ export const rawMuiTheme = {
     },
     action: {
       hover: colors.reactionBlue100,
-      hoverOpacity: 1,
       selected: colors.black10
     }
   },
