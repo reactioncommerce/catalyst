@@ -3,7 +3,7 @@
 exports[`basic snapshot - only default props 1`] = `
 <DocumentFragment>
   <div
-    class="MuiChip-root makeStyles-root-1 MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary"
+    class="MuiChip-root MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary"
   >
     <span
       class="MuiChip-label"
@@ -15,7 +15,7 @@ exports[`basic snapshot - only default props 1`] = `
 exports[`deletable chip in small, secondary sizesnapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiChip-root makeStyles-root-78 MuiChip-colorSecondary MuiChip-deletableColorSecondary MuiChip-sizeSmall makeStyles-sizeSmall-79 MuiChip-deletable"
+    class="MuiChip-root MuiChip-colorSecondary MuiChip-deletableColorSecondary MuiChip-sizeSmall MuiChip-deletable"
     role="button"
     tabindex="0"
   >
@@ -40,7 +40,7 @@ exports[`deletable chip in small, secondary sizesnapshot 1`] = `
 exports[`deletable chip snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiChip-root makeStyles-root-35 MuiChip-colorPrimary MuiChip-deletableColorPrimary MuiChip-deletable"
+    class="MuiChip-root MuiChip-colorPrimary MuiChip-deletableColorPrimary MuiChip-deletable"
     role="button"
     tabindex="0"
   >
@@ -65,7 +65,7 @@ exports[`deletable chip snapshot 1`] = `
 exports[`error chip snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiChip-root makeStyles-root-121 MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary makeStyles-outlinedPrimary-124"
+    class="MuiChip-root MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary makeStyles-outlinedPrimary-116"
   >
     <span
       class="MuiChip-label"
