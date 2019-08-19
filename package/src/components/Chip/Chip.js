@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import { Chip as MuiChip, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  // Our chips are a little smaller, overriding medium and small sizes
+  root: {
+    height: "30px"
+  },
+  sizeSmall: {
+    height: "28px"
+  },
   colorPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.colors.red
@@ -31,7 +38,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       <MuiChip
         classes={{
           containedPrimary: classes.containedPrimary,
-          outlinedPrimary: classes.outlinedPrimary
+          outlinedPrimary: classes.outlinedPrimary,
+          root: classes.root,
+          sizeSmall: classes.sizeSmall
         }}
         color="primary"
         ref={ref}
@@ -42,6 +51,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <MuiChip
+      classes={{
+        root: classes.root,
+        sizeSmall: classes.sizeSmall
+      }}
       color={color}
       ref={ref}
       {...otherProps}

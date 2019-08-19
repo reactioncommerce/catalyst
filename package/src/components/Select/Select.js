@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     padding: theme.spacing(0.25),
     height: "auto",
-    cursor: "pointer"
+    cursor: "pointer",
+    fontSize: theme.typography.fontSize,
+    background: theme.palette.colors.black02,
+    border: `1px solid ${theme.palette.colors.black20}`,
+    borderRadius: theme.shape.borderRadius
   },
   valueContainer: {
     display: "flex",
@@ -37,12 +41,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5, 0.25)
   },
   noOptionsMessage: {
-    padding: theme.spacing(1, 2)
+    padding: theme.spacing(1, 2),
+    color: theme.palette.colors.black20
   },
   placeholder: {
     position: "absolute",
     left: theme.spacing(1),
-    fontSize: theme.typography.fontSize
+    fontSize: theme.typography.fontSize,
+    color: theme.palette.colors.black20
   },
   paper: {
     position: "absolute",
