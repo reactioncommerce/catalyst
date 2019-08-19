@@ -25,6 +25,12 @@ export const fontWeightMedium = 500;
 export const fontWeightSemiBold = 600;
 export const fontWeightBold = 700;
 
+// Typography - Letter-spacing
+export const captionLetterSpacing = 0.28;
+
+// Icons
+export const smallFontIconSize = 17;
+
 export const rawMuiTheme = {
   palette: {
     colors, // TODO: De-structure these colors into various MUI properties rather than using them from this object
@@ -107,7 +113,8 @@ export const rawMuiTheme = {
       lineHeight: 1.5
     },
     caption: {
-      color: colors.black30
+      color: colors.black30,
+      letterSpacing: captionLetterSpacing
     },
     subtitle1: {
       fontSize: defaultFontSize * 0.875,
@@ -282,6 +289,53 @@ export const rawMuiTheme = {
         "&$disabled": {
           color: colors.coolGrey100
         }
+      }
+    },
+    MuiChip: {
+      root: {
+        fontSize: defaultFontSize * 0.875,
+        letterSpacing: captionLetterSpacing
+      },
+      deletable: {
+        "&:hover": {
+          cursor: "pointer"
+        }
+      },
+      deletableColorPrimary: {
+        "backgroundColor": colors.black02,
+        "border": `1px solid ${colors.black30}`,
+        "color": colors.coolGrey500,
+        "&:hover, &:focus, &:active": {
+          backgroundColor: colors.black05
+        }
+      },
+      deleteIconColorPrimary: {
+        "color": colors.coolGrey,
+        "fontSize": smallFontIconSize,
+        "&:hover, &:focus, &:active": {
+          color: colors.reactionBlue500
+        }
+      },
+      deletableColorSecondary: {
+        "color": colors.coolGrey500,
+        "border": `1px solid ${colors.coolGrey300}`,
+        "backgroundColor": colors.reactionBlue100,
+        "&:hover, &:focus, &:active": {
+          backgroundColor: colors.darkBlue100
+        }
+      },
+      deleteIconColorSecondary: {
+        "color": colors.coolGrey,
+        "&:hover, &:focus, &:active": {
+          color: colors.reactionBlue500
+        }
+      },
+      sizeSmall: {
+        height: 30
+      },
+      deleteIconSmall: {
+        margin: "0 4px 0 0",
+        fontSize: smallFontIconSize
       }
     },
     MuiDialogTitle: {

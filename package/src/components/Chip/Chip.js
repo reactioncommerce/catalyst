@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Chip as MuiChip, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  containedPrimary: {
+  colorPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.colors.red
   },
