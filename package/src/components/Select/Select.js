@@ -16,7 +16,6 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: 250,
     minWidth: 290
   },
   input: {
