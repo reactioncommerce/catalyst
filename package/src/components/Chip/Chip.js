@@ -3,13 +3,6 @@ import PropTypes from "prop-types";
 import { Chip as MuiChip, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  // Our chips are a little smaller, overriding medium and small sizes
-  root: {
-    height: 30
-  },
-  sizeSmall: {
-    height: 28
-  },
   colorPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.colors.red

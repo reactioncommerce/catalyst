@@ -294,7 +294,8 @@ export const rawMuiTheme = {
     MuiChip: {
       root: {
         fontSize: defaultFontSize * 0.875,
-        letterSpacing: captionLetterSpacing
+        letterSpacing: captionLetterSpacing,
+        height: 30
       },
       deletable: {
         "&:hover": {
@@ -331,7 +332,7 @@ export const rawMuiTheme = {
         }
       },
       sizeSmall: {
-        height: 30
+        height: 28
       },
       deleteIconSmall: {
         margin: "0 4px 0 0",
