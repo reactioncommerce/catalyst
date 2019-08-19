@@ -353,7 +353,6 @@ module.exports = {
           componentNames: [
             "Chip"
           ],
-          content: "styleguide/src/sections/Content.md",
           name: "Content"
         }),
         generateSection({
@@ -362,6 +361,12 @@ module.exports = {
             "DialogTitle"
           ],
           name: "Feedback"
+        }),
+        generateSection({
+          componentNames: [
+            "Select"
+          ],
+          name: "Inputs"
         })
       ],
       sectionDepth: 2
@@ -396,7 +401,7 @@ module.exports = {
     return `import ${name} from "@reactioncommerce/catalyst/${name}"`;
   },
   pagePerSection: true,
-  exampleMode: "expand",
+  exampleMode: "collapse",
   usageMode: "expand",
   serverPort: Number(process.env.PORT || 6060),
   assetsDir: "styleguide/src/assets/",

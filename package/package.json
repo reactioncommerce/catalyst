@@ -23,13 +23,15 @@
   "dependencies": {
     "@babel/runtime": "~7.3.1",
     "accounting-js": "~1.1.1",
+    "clsx": "^1.0.4",
     "lodash.debounce": "~4.0.8",
     "lodash.get": "~4.4.2",
     "lodash.isempty": "~4.4.0",
     "lodash.isequal": "~4.5.0",
     "lodash.uniqueid": "~4.0.1",
     "mdi-material-ui": "~5.8.0",
-    "react-is": "~16.4.1"
+    "react-is": "~16.4.1",
+    "react-select": "^3.0.4"
   },
   "devDependencies": {
     "@babel/cli": "~7.2.3",

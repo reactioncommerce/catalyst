@@ -105,7 +105,7 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
               transformOrigin: placement === "bottom" ? "center top" : "center bottom"
             }}
           >
-            <Paper elevation={4} id="menu-list-grow">
+            <Paper elevation={2} id="menu-list-grow">
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
                   {options.map(({ label, details, isDisabled }, index) => (

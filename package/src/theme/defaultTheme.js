@@ -127,11 +127,11 @@ export const rawMuiTheme = {
   },
   shadows: [
     "none",
-    "0px 2px 2px 0px rgba(0,0,0,0.05)",
-    "0px 3px 6px 0px rgba(0,0,0,0.05)",
-    "0px 5px 10px 0 rgba(0,0,0,0.05);",
-    "0px 8px 16px 0 rgba(0,0,0,0.05);",
-    "0px 13px 26px 0 rgba(0,0,0,0.05);",
+    "0 2px 2px 0 rgba(0, 0, 0, 0.05);",
+    "0 3px 6px 0 rgba(0, 0, 0, 0.05);",
+    "0 5px 10px 0 rgba(0, 0, 0, 0.05);",
+    "0 8px 16px 0 rgba(0, 0, 0, 0.05);",
+    "0 13px 26px 0 rgba(0, 0, 0, 0.05)",
     "0px 13px 26px 0 rgba(0,0,0,0.05);",
     "0px 13px 26px 0 rgba(0,0,0,0.05);",
     "0px 13px 26px 0 rgba(0,0,0,0.05);",
@@ -294,7 +294,8 @@ export const rawMuiTheme = {
     MuiChip: {
       root: {
         fontSize: defaultFontSize * 0.875,
-        letterSpacing: captionLetterSpacing
+        letterSpacing: captionLetterSpacing,
+        height: 30
       },
       deletable: {
         "&:hover": {
@@ -331,7 +332,7 @@ export const rawMuiTheme = {
         }
       },
       sizeSmall: {
-        height: 30
+        height: 28
       },
       deleteIconSmall: {
         margin: "0 4px 0 0",
@@ -401,6 +402,14 @@ export const rawMuiTheme = {
       /* Styles applied to the root element if `padding="checkbox"`. */
       paddingCheckbox: {
         padding: "4px 0 4px 4px"
+      }
+    },
+    MuiPaper: {
+      root: {
+        border: `1px solid ${colors.black10}`
+      },
+      elevation0: {
+        border: "none"
       }
     }
   }

@@ -31,7 +31,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       <MuiChip
         classes={{
           containedPrimary: classes.containedPrimary,
-          outlinedPrimary: classes.outlinedPrimary
+          outlinedPrimary: classes.outlinedPrimary,
+          root: classes.root,
+          sizeSmall: classes.sizeSmall
         }}
         color="primary"
         ref={ref}
@@ -42,6 +44,10 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <MuiChip
+      classes={{
+        root: classes.root,
+        sizeSmall: classes.sizeSmall
+      }}
       color={color}
       ref={ref}
       {...otherProps}
