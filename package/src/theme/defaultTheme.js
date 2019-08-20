@@ -225,7 +225,7 @@ export const rawMuiTheme = {
       }
     },
     MuiDialogContentText: {
-      color: colors.coolGrey500
+      color: "inherit"
     }
   },
   // Override defined theme properties
