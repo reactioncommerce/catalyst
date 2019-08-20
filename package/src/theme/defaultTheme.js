@@ -26,7 +26,28 @@ export const fontWeightSemiBold = 600;
 export const fontWeightBold = 700;
 
 // Typography - Letter-spacing
-export const captionLetterSpacing = 0.28;
+const captionLetterSpacing = 0.28;
+// const captionBoldLetterSpacing = 0.28;
+const body2LetterSpacing = 0.28;
+// const body2BoldLetterSpacing = 0.28;
+const body1LetterSpacing = 0.3;
+const body1BoldLetterSpacing = 0.3;
+const subtitle2LetterSpacing = 0.24;
+// const subtitle2BoldLetterSpacing = 0.24;
+const subtitle1LetterSpacing = 0.26;
+// const subtitle1BoldLetterSpacing = 0.26;
+const h6LetterSpacing = 0.24;
+// const h6BoldLetterSpacing = 0.24;
+const h5LetterSpacing = 0.5;
+// const h5BoldLetterSpacing = 0.5;
+const h4LetterSpacing = 0.5;
+// const h4BoldLetterSpacing = 0.5;
+const h3LetterSpacing = 0.42;
+// const h3BoldLetterSpacing = 0.42;
+const h2LetterSpacing = 0.35;
+// const h2BoldLetterSpacing = 0.35;
+const h1LetterSpacing = 0.42;
+// const h1BoldLetterSpacing = 0.42;
 
 // Icons
 export const smallFontIconSize = 17;
@@ -66,51 +87,59 @@ export const rawMuiTheme = {
     useNextVariants: true,
     button: {
       fontSize: defaultFontSize,
-      letterSpacing: 0.3,
-      fontWeight: fontWeightSemiBold
+      fontWeight: fontWeightSemiBold,
+      letterSpacing: body1BoldLetterSpacing
     },
     h1: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.5,
+      letterSpacing: h1LetterSpacing,
       lineHeight: 1.25
     },
     h2: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.25,
-      lineHeight: 1.25
+      letterSpacing: h2LetterSpacing,
+      lineHeight: 1.5
     },
     h3: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.125,
+      letterSpacing: h3LetterSpacing,
       lineHeight: 1.25
     },
     h4: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize,
       fontWeight: fontWeightSemiBold,
+      letterSpacing: h4LetterSpacing,
       lineHeight: 1.25
     },
     h5: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
       fontWeight: fontWeightSemiBold,
+      letterSpacing: h5LetterSpacing,
       lineHeight: 1.25
     },
     h6: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.75,
       fontWeight: fontWeightSemiBold,
-      lineHeight: 1.25
+      letterSpacing: h6LetterSpacing,
+      lineHeight: 1.46
     },
     body1: {
       color: colors.black70,
       fontSize: defaultFontSize,
+      letterSpacing: body1LetterSpacing,
       lineHeight: 1.5
     },
     body2: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
-      lineHeight: 1.5
+      letterSpacing: body2LetterSpacing,
+      lineHeight: 1.25
     },
     caption: {
       color: colors.black30,
@@ -118,11 +147,13 @@ export const rawMuiTheme = {
     },
     subtitle1: {
       fontSize: defaultFontSize * 0.875,
-      lineHeight: 1.5
+      letterSpacing: subtitle1LetterSpacing,
+      lineHeight: 1.71
     },
     subtitle2: {
       fontSize: defaultFontSize * 0.75,
-      lineHeight: 1.5
+      letterSpacing: subtitle2LetterSpacing,
+      lineHeight: 1.46
     }
   },
   shadows: [
@@ -194,7 +225,7 @@ export const rawMuiTheme = {
       }
     },
     MuiDialogContentText: {
-      color: "inherit"
+      color: colors.coolGrey500
     }
   },
   // Override defined theme properties
