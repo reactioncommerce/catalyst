@@ -88,7 +88,9 @@ export const rawMuiTheme = {
     button: {
       fontSize: defaultFontSize,
       fontWeight: fontWeightSemiBold,
-      letterSpacing: body1BoldLetterSpacing
+      letterSpacing: body1BoldLetterSpacing,
+      lineHeight: 1.5,
+      textTransform: "capitalize"
     },
     h1: {
       color: colors.coolGrey500,
