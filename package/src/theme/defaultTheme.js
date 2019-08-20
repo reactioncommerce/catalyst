@@ -27,27 +27,17 @@ export const fontWeightBold = 700;
 
 // Typography - Letter-spacing
 const captionLetterSpacing = 0.28;
-// const captionBoldLetterSpacing = 0.28;
 const body2LetterSpacing = 0.28;
-// const body2BoldLetterSpacing = 0.28;
 const body1LetterSpacing = 0.3;
 const body1BoldLetterSpacing = 0.3;
 const subtitle2LetterSpacing = 0.24;
-// const subtitle2BoldLetterSpacing = 0.24;
 const subtitle1LetterSpacing = 0.26;
-// const subtitle1BoldLetterSpacing = 0.26;
 const h6LetterSpacing = 0.24;
-// const h6BoldLetterSpacing = 0.24;
 const h5LetterSpacing = 0.5;
-// const h5BoldLetterSpacing = 0.5;
 const h4LetterSpacing = 0.5;
-// const h4BoldLetterSpacing = 0.5;
 const h3LetterSpacing = 0.42;
-// const h3BoldLetterSpacing = 0.42;
 const h2LetterSpacing = 0.35;
-// const h2BoldLetterSpacing = 0.35;
 const h1LetterSpacing = 0.42;
-// const h1BoldLetterSpacing = 0.42;
 
 // Icons
 export const smallFontIconSize = 17;
@@ -67,6 +57,7 @@ export const rawMuiTheme = {
     },
     divider: colors.black10,
     text: {
+      primary: colors.coolGrey500,
       secondary: colors.black60,
       secondaryActive: colors.white,
       active: "#8acef2"
@@ -113,26 +104,23 @@ export const rawMuiTheme = {
     h4: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize,
-      fontWeight: fontWeightSemiBold,
       letterSpacing: h4LetterSpacing,
       lineHeight: 1.25
     },
     h5: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
-      fontWeight: fontWeightSemiBold,
       letterSpacing: h5LetterSpacing,
       lineHeight: 1.25
     },
     h6: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.75,
-      fontWeight: fontWeightSemiBold,
       letterSpacing: h6LetterSpacing,
       lineHeight: 1.46
     },
     body1: {
-      color: colors.black70,
+      color: colors.coolGrey500,
       fontSize: defaultFontSize,
       letterSpacing: body1LetterSpacing,
       lineHeight: 1.5
@@ -144,15 +132,19 @@ export const rawMuiTheme = {
       lineHeight: 1.25
     },
     caption: {
-      color: colors.black30,
-      letterSpacing: captionLetterSpacing
+      color: colors.coolGrey500,
+      fontSize: defaultFontSize * 0.875,
+      letterSpacing: captionLetterSpacing,
+      lineHeight: 1.25
     },
     subtitle1: {
+      color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
       letterSpacing: subtitle1LetterSpacing,
       lineHeight: 1.71
     },
     subtitle2: {
+      color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.75,
       letterSpacing: subtitle2LetterSpacing,
       lineHeight: 1.46
