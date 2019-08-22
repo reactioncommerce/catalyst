@@ -3,6 +3,8 @@
 exports[`basic snapshot - only default props 1`] = `
 <DocumentFragment>
   <button
+    aria-controls="action-menu"
+    aria-haspopup="true"
     class="MuiButtonBase-root MuiButton-root makeStyles-button-1 MuiButton-outlined MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
@@ -37,7 +39,9 @@ exports[`basic snapshot - only default props 1`] = `
 exports[`select an option 1`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-49 MuiButton-outlined MuiButton-outlinedPrimary"
+    aria-controls="action-menu"
+    aria-haspopup="true"
+    class="MuiButtonBase-root MuiButton-root makeStyles-button-135 MuiButton-outlined MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -46,7 +50,7 @@ exports[`select an option 1`] = `
     >
       Actions
       <div
-        class="MuiBox-root MuiBox-root-74"
+        class="MuiBox-root MuiBox-root-160"
       >
         <svg
           aria-hidden="true"
