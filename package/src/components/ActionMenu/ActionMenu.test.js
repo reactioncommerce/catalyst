@@ -5,12 +5,10 @@ import ActionMenu from "./ActionMenu";
 const options = [{
   label: "Add tags to products"
 }, {
-  label: "Remove tags from products",
-  isDestructive: true
+  label: "Remove tags from products"
 }, {
   label: "Remove all tags",
-  isDisabled: true,
-  isDestructive: true
+  isDisabled: true
 }];
 
 test("basic snapshot - only default props", () => {
