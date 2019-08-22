@@ -220,6 +220,11 @@ export const rawMuiTheme = {
     },
     MuiDialogContentText: {
       color: "inherit"
+    },
+    MuiListItemText: {
+      primaryTypographyProps: {
+        variant: "body1"
+      }
     }
   },
   // Override defined theme properties

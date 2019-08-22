@@ -119,9 +119,6 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
                         <ListItemText
                           primary={label}
                           secondary={details}
-                          primaryTypographyProps={{
-                            variant: "body1"
-                          }}
                         />
                       </Box>
                     </MenuItem>
