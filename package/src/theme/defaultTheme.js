@@ -304,7 +304,7 @@ export const rawMuiTheme = {
         }
       },
       deletableColorPrimary: {
-        "backgroundColor": colors.black05,
+        "backgroundColor": colors.black02,
         "border": `1px solid ${colors.coolGrey}`,
         "color": colors.coolGrey500,
         "&:hover, &:focus, &:active": {
