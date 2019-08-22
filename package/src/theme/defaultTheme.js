@@ -226,7 +226,7 @@ export const rawMuiTheme = {
     },
     MuiButton: {
       root: {
-        lineHeight: "1.5",
+        lineHeight: 1.5,
         padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`,
         textTransform: "initial"
       },
