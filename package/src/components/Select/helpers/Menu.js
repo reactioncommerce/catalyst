@@ -10,7 +10,6 @@ import { Paper } from "@material-ui/core";
 export default function Menu(props) {
   return (
     <Paper
-      rounded="true"
       elevation={2}
       className={props.selectProps.classes.paper}
       {...props.innerProps}
