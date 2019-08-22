@@ -12,12 +12,10 @@ This is basic example of how to implement the ActionMenu.
 const options = [{
   label: "Add tags to products"
 }, {
-  label: "Remove tags from products",
-  isDestructive: true
+  label: "Remove tags from products"
 }, {
   label: "Remove all tags from products",
-  isDisabled: true,
-  isDestructive: true
+  isDisabled: true
 }];
 
 <ActionMenu
