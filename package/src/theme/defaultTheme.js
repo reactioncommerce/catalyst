@@ -114,6 +114,7 @@ export const rawMuiTheme = {
     },
     caption: {
       color: colors.black30,
+      fontSize: defaultFontSize * 0.875,
       letterSpacing: captionLetterSpacing
     },
     subtitle1: {

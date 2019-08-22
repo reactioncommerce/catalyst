@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0.25),
     height: "auto",
     cursor: "pointer",
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.caption.fontSize,
+    letterSpacing: theme.typography.caption.letterSpacing,
     background: theme.palette.colors.black02,
     border: `1px solid ${theme.palette.colors.black20}`,
     borderRadius: theme.shape.borderRadius
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     left: theme.spacing(1),
     fontSize: theme.typography.caption.fontSize,
+    letterSpacing: theme.typography.caption.letterSpacing,
     color: theme.palette.colors.black20
   },
   paper: {
