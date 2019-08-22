@@ -397,7 +397,7 @@ export const rawMuiTheme = {
         width: detailDrawerWidth
       },
       paperAnchorDockedRight: {
-        borderRight: "none"
+        border: "none"
       }
     },
     MuiFab: {
