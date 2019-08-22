@@ -112,6 +112,42 @@ The error button is used for a destructive action that is difficult to recover f
 </div>
 ```
 
+#### Example
+
+##### Button groups
+
+- Follow these patterns for groups of buttons in Cards and the Primary AppBar:
+
+```jsx
+<div>
+  <Button style={{marginRight: "0.5rem"}} variant="default" color="primary">Discard</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="outlined" color="primary">Save changes</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="contained" color="primary">Publish</Button>
+</div>
+```
+
+```jsx
+<div>
+  <Button style={{marginRight: "0.5rem"}} variant="outlined" color="primary">Cancel</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="contained" color="primary">OK</Button>
+</div>
+```
+
+
+```jsx
+<div>
+  <Button style={{marginRight: "0.5rem"}} variant="outlined" color="primary">Cancel</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="contained" color="primary">Save</Button>
+</div>
+```
+
+```jsx
+<div>
+  <Button style={{marginRight: "0.5rem"}} variant="outlined" color="primary">Cancel</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="contained" color="error">Delete</Button>
+</div>
+```
+
 ### API
 
 The Catalyst Button inherits from the Material-UI [Button component](https://material-ui.com/components/buttons/). Refer to the Material-UI [Button API docs](https://material-ui.com/api/button/) for more information.
