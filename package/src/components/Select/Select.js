@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   placeholder: {
     position: "absolute",
     left: theme.spacing(1),
-    fontSize: theme.typography.fontSize,
+    fontSize: theme.typography.caption.fontSize,
     color: theme.palette.colors.black20
   },
   paper: {
