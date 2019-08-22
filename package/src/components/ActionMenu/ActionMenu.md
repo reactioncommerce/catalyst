@@ -10,34 +10,17 @@ This is basic example of how to implement the ActionMenu.
 
 ```jsx
 const options = [{
-  label: "Add tags to products"
+  label: "Filter by file"
 }, {
-  label: "Remove tags from products"
+  label: "Publish"
 }, {
-  label: "Remove all tags from products",
-  isDisabled: true
-}];
-
-<ActionMenu
-  options={options}
-  onSelect={(option, index) => alert(`Selected option "${option.label}" at index (${index})`)}
->
-  Actions
-</ActionMenu>
-```
-
-#### Set the default selected option
-
-Set the default selected option by index.
-
-```jsx
-const options = [{
-  label: "Add tags to products"
+  label: "Make Visible"
 }, {
-  label: "Remove tags from products"
+  label: "Make Hidden"
 }, {
-  label: "Remove all tags from products",
-  isDisabled: true
+  label: "Duplicate"
+}, {
+  label: "Archive"
 }];
 
 <ActionMenu
