@@ -26,18 +26,18 @@ export const fontWeightSemiBold = 600;
 export const fontWeightBold = 700;
 
 // Typography - Letter-spacing
-const captionLetterSpacing = 0.28;
-const body2LetterSpacing = 0.28;
-const body1LetterSpacing = 0.3;
-const body1BoldLetterSpacing = 0.3;
-const subtitle2LetterSpacing = 0.24;
-const subtitle1LetterSpacing = 0.26;
-const h6LetterSpacing = 0.24;
-const h5LetterSpacing = 0.5;
-const h4LetterSpacing = 0.5;
-const h3LetterSpacing = 0.42;
-const h2LetterSpacing = 0.35;
-const h1LetterSpacing = 0.42;
+export const captionLetterSpacing = 0.28;
+export const body2LetterSpacing = 0.28;
+export const body1LetterSpacing = 0.3;
+export const body1BoldLetterSpacing = 0.3;
+export const subtitle2LetterSpacing = 0.24;
+export const subtitle1LetterSpacing = 0.26;
+export const h6LetterSpacing = 0.24;
+export const h5LetterSpacing = 0.5;
+export const h4LetterSpacing = 0.5;
+export const h3LetterSpacing = 0.42;
+export const h2LetterSpacing = 0.35;
+export const h1LetterSpacing = 0.42;
 
 // Icons
 export const smallFontIconSize = 17;
