@@ -2,11 +2,9 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import {
   Box,
-  ClickAwayListener,
   ListItemText,
   Menu,
   MenuItem,
-  MenuList,
   makeStyles
 } from "@material-ui/core";
 import ChevronDownIcon from "mdi-material-ui/ChevronDown";
@@ -70,6 +68,8 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
   return (
     <Fragment>
       <Button
+        aria-controls="action-menu"
+        aria-haspopup="true"
         className={classes.button}
         onClick={handleToggle}
         ref={anchorRef}
@@ -80,32 +80,35 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
           <ChevronDownIcon />
         </Box>
       </Button>
-      <Menu open={open} anchorEl={anchorRef.current}>
-        <ClickAwayListener onClickAway={handleClose}>
-          <MenuList disablePadding>
-            <MenuItem key="default-label" disabled>
-              <Box maxWidth={320} whiteSpace="normal">
-                <ListItemText
-                  primary={children}
-                />
-              </Box>
-            </MenuItem>
-            {options.map(({ label, details, isDisabled }, index) => (
-              <MenuItem
-                key={index}
-                disabled={isDisabled}
-                onClick={(event) => handleMenuItemClick(event, index)}
-              >
-                <Box maxWidth={320} whiteSpace="normal">
-                  <ListItemText
-                    primary={label}
-                    secondary={details}
-                  />
-                </Box>
-              </MenuItem>
-            ))}
-          </MenuList>
-        </ClickAwayListener>
+      <Menu
+        MenuListProps={{ disablePadding: true }}
+        anchorEl={anchorRef.current}
+        id="action-menu"
+        keepMounted
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem key="default-label" disabled>
+          <Box maxWidth={320} whiteSpace="normal">
+            <ListItemText
+              primary={children}
+            />
+          </Box>
+        </MenuItem>
+        {options.map(({ label, details, isDisabled }, index) => (
+          <MenuItem
+            key={index}
+            disabled={isDisabled}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            <Box maxWidth={320} whiteSpace="normal">
+              <ListItemText
+                primary={label}
+                secondary={details}
+              />
+            </Box>
+          </MenuItem>
+        ))}
       </Menu>
     </Fragment>
   );
