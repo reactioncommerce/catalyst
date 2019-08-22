@@ -296,7 +296,7 @@ export const rawMuiTheme = {
       root: {
         fontSize: defaultFontSize * 0.875,
         letterSpacing: captionLetterSpacing,
-        height: 30
+        height: 32
       },
       deletable: {
         "&:hover": {
@@ -304,8 +304,8 @@ export const rawMuiTheme = {
         }
       },
       deletableColorPrimary: {
-        "backgroundColor": colors.black02,
-        "border": `1px solid ${colors.black30}`,
+        "backgroundColor": colors.black05,
+        "border": `1px solid ${colors.coolGrey}`,
         "color": colors.coolGrey500,
         "&:hover, &:focus, &:active": {
           backgroundColor: colors.black05
