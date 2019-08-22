@@ -20,8 +20,8 @@ test("basic snapshot - only default props", () => {
 
 test("select an option", async () => {
   const onSelect = jest.fn();
-  const { asFragment, getByText } = render(<ActionMenu onSelect={onSelect} options={options}>Actions</ActionMenu>);
-  fireEvent.click(getByText("Actions"));
+  const { asFragment, getAllByText, getByText } = render(<ActionMenu onSelect={onSelect} options={options}>Actions</ActionMenu>);
+  fireEvent.click(getAllByText("Actions")[0]);
   const removeButton = await waitForElement(() => getByText("Remove tags from products"));
   fireEvent.click(removeButton);
   expect(onSelect).toHaveBeenCalled();
