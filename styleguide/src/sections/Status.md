@@ -1,6 +1,14 @@
+### Components
+
+Tracking the design, development and usage of new Catalyst components in Reaction Admin:
+
 #### Catalyst
 
-##### Catalyst-approved components:
+##### Catalyst-approved components
+
+Catalyst components that are design approved and in the process of being integrated and used in Reaction Admin.
+
+Components ready and used:
 
 - **ActionMenu**: Design approved. Introduced in 1.8.
 - **Button**: Design approved. Deployed in Reaction Admin. Introduced in 1.2.
@@ -16,31 +24,26 @@ Catalyst-approved themes and variables:
 - **Typography**
 - **Grid & Spacing**
 
-##### Components in design & development:
-
+Components that are designed and ready to be developed:
 - **Table**: Design ready. Need more development specs.
-- **Form Inputs**: Need more development specs.
 
-#### Reaction Admin
+Components that are in design stage:
+- **Form Inputs**: Need more design & development specs.
 
-Components used in Reaction Admin that are not yet in Catalyst - a combination of components from Material-UI and the Storefront Component Library.
+##### Storefront Component Library
 
-##### Material-UI components used in Reaction Admin:
+Catalyst components that are used in Reaction Admin: 
+
+- **InlineAlert**: No design changes necessary. Needs to be converted to React Hooks, JSS and migrated to Reaction.
+- **Forms**: Currently in design.
+- **styled-components**, **styled-components-mui**: Dependency that can be removed from Reaction Admin once all XSF Component Library components are out of Reaction Admin.
+
+#### Material UI
+
+Components used in Reaction Admin that are not yet in Catalyst - a combination of components from Material-UI.
 
 - **Card**: Used in Product, Tags, Orders
 - **Tabs**: Used in Tags, Orders
-
-##### Custom Reaction Admin components made from Material-UI components:
-
-- **Primary AppBar**: Used in Navigation, Orders
-- **Sidebar**: Used on all pages
-- **Drawer**: Used on Orders
-
-##### Storefront Component Library components used in Reaction Admin:
-
-- **InlineAlert**
-- **Forms**
-- **styled-components**, **styled-components-mui**
 
 #### Other libraries used in Reaction Admin:
 
@@ -50,3 +53,28 @@ Components used in Reaction Admin that are not yet in Catalyst - a combination o
 - **React S-Alert**
 - **React Table**
 - **sweetalert2**
+
+<hr>
+
+### Admin migration
+
+Tracking the migration of Meteor, Blaze, Bootstrap (LESS) front-ends to Catalyst (React, Material-UI) and GraphQL.
+
+#### Core:
+
+- **Orders / Listing**: Some Bootstrap.
+- **Orders / Create**: No Bootstrap.
+- **Products / Listing**: No Bootstrap. Some Meteor.
+- **Products / Create**: Some Bootstrap. Some Meteor.
+- **Tags / Listing**: Some Bootstrap.
+- **Tags / Create**: No Bootstrap. Mostly MUI/XSF/Catalyst.
+- **Accounts**: All Bootstrap, Meteor.
+- **Navigation**: No Bootstrap. Meteor (?)
+- **Settings / Shop**: All Bootstrap, Meteor.
+- **Settings / Payment**: All Bootstrap, Meteor.
+- **Settings / Taxes**: All Bootstrap, Meteor.
+- **Settings / Shipping**: All Bootstrap, Meteor.
+- **Settings / Login services**: All Bootstrap, Meteor.
+- **Settings / Email**: All Bootstrap, Meteor.
+- **Settings / Shop localization**: All Bootstrap, Meteor.
+- **Settings / Template**: All Bootstrap, Meteor.

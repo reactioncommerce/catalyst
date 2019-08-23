@@ -343,7 +343,7 @@ module.exports = {
       name: "Components",
       sections: [
         {
-          name: "Components Status",
+          name: "Components & Migration Status",
           content: "styleguide/src/sections/Status.md"
         },
         {
