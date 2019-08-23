@@ -342,6 +342,10 @@ module.exports = {
     {
       name: "Components",
       sections: [
+        {
+          name: "Themed Components",
+          content: "styleguide/src/sections/Playground.md"
+        },
         generateSection({
           componentNames: [
             "ActionMenu",
