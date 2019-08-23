@@ -24,13 +24,13 @@ Catalyst-approved themes and variables:
 - **Typography**
 - **Grid & Spacing**
 
-Components that are designed and ready to be developed:
+##### Components that are designed and ready to be developed:
 - **Table**: Design ready. Need more development specs.
 
-Components that are in design stage:
+##### Components that are in design stage:
 - **Form Inputs**: Need more design & development specs.
 
-##### Storefront Component Library
+#### Storefront Component Library
 
 Catalyst components that are used in Reaction Admin: 
 
