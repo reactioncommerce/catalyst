@@ -35,6 +35,7 @@ Components that are in design stage:
 Catalyst components that are used in Reaction Admin: 
 
 - **InlineAlert**: No design changes necessary. Needs to be converted to React Hooks, JSS and migrated to Reaction.
+- **Select**: Dropdowns used in Settings, like Taxes, Site Map and more.
 - **Forms**: Currently in design.
 - **styled-components**, **styled-components-mui**: Dependency that can be removed from Reaction Admin once all XSF Component Library components are out of Reaction Admin.
 
@@ -78,3 +79,9 @@ Tracking the migration of Meteor, Blaze, Bootstrap (LESS) front-ends to Catalyst
 - **Settings / Email**: All Bootstrap, Meteor.
 - **Settings / Shop localization**: All Bootstrap, Meteor.
 - **Settings / Template**: All Bootstrap, Meteor.
+
+#### Other:
+
+- **Toasts**
+- **Dialogs**
+- **Icons**
