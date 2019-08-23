@@ -343,6 +343,10 @@ module.exports = {
       name: "Components",
       sections: [
         {
+          name: "Components Status",
+          content: "styleguide/src/sections/Status.md"
+        },
+        {
           name: "Themed Components",
           content: "styleguide/src/sections/Playground.md"
         },
