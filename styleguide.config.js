@@ -343,12 +343,18 @@ module.exports = {
       name: "Components",
       sections: [
         {
-          name: "Components & Migration Status",
-          content: "styleguide/src/sections/Status.md"
-        },
-        {
           name: "Themed Components",
-          content: "styleguide/src/sections/Playground.md"
+          sections: [
+            {
+              name: "Card",
+              content: "styleguide/src/sections/Card.md"
+            },
+            {
+              name: "Tabs",
+              content: "styleguide/src/sections/Tabs.md"
+            }
+          ],
+          sectionDepth: 2
         },
         generateSection({
           componentNames: [

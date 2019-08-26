@@ -1,5 +1,3 @@
-Test Material-UI components with default theme variables from Catalyst here:
-
 #### Card
 
 ```jsx
@@ -45,17 +43,4 @@ import CloseIcon from "mdi-material-ui/Close";
         <Typography variant="body2">Help text goes here</Typography>
     </CardContent>
 </Card>
-```
-
-#### Tabs
-
-```jsx
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-
-<Tabs value={0}>
-    <Tab label={"Tag details"} />
-    <Tab label={"Metadata"} />
-    <Tab label={"Products"} />
-</Tabs>
 ```
