@@ -1,4 +1,8 @@
-#### Card
+Cards in Reaction Admin can be used to display information and forms for users.
+
+Use Material-UI's Card with icons from `mdi-material-ui` and Catalyst's default theme variables to create Basic cards and Quick Edit cards in Reaction Admin.
+
+#### Basic Card
 
 ```jsx
 import Card from '@material-ui/core/Card';
