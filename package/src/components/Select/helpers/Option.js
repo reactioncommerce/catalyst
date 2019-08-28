@@ -58,5 +58,6 @@ Option.propTypes = {
   /**
    * Whether the option is selected.
    */
-  isSelected: PropTypes.bool.isRequired
+  isSelected: PropTypes.bool.isRequired,
+  selectProps: PropTypes.object.isRequired
 };
