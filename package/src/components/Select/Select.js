@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 290
   },
   input: {
+    color: theme.palette.colors.coolGrey500,
     display: "flex",
     padding: theme.spacing(0.25),
     height: "auto",
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.caption.fontSize,
     letterSpacing: theme.typography.caption.letterSpacing,
     background: theme.palette.colors.black02,
-    border: `1px solid ${theme.palette.colors.black20}`,
     borderRadius: theme.shape.borderRadius
   },
   valueContainer: {
@@ -39,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: {
     margin: theme.spacing(0.5, 0.25)
+  },
+  menuItem: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    minHeight: theme.spacing(5)
   },
   noOptionsMessage: {
     padding: theme.spacing(1, 2),
@@ -54,12 +59,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
     zIndex: 1,
-    marginTop: theme.spacing(1),
+    marginTop: 0,
     left: 0,
     right: 0
   },
   divider: {
-    height: theme.spacing(2)
+    height: theme.spacing(2),
+    color: theme.palette.colors.black20
   }
 }));
 
@@ -101,7 +107,6 @@ const Select = React.forwardRef(function Select(props, ref) {
   const selectStyles = {
     input: (base) => ({
       ...base,
-      "color": theme.palette.text.primary,
       "& input": {
         font: "inherit"
       }
@@ -125,6 +130,14 @@ const Select = React.forwardRef(function Select(props, ref) {
           }
         }}
         value={value}
+        theme={(selectTheme) => ({
+          ...selectTheme,
+          borderRadius: 0,
+          colors: {
+            ...theme.colors,
+            neutral20: theme.palette.colors.coolGrey500
+          }
+        })}
         {...otherProps}
       />
     </div>
