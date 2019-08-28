@@ -5,6 +5,7 @@ import AsyncSelect from "react-select/async";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Control,
+  IndicatorSeparator,
   Menu,
   MultiValue,
   NoOptionsMessage,
@@ -71,9 +72,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// const IndicatorSeparator = ({ innerProps }) => <span style={indicatorSeparatorStyle} {...innerProps} />;
+
 // Custom components for various aspects of the select
 const components = {
   Control,
+  IndicatorSeparator,
   Menu,
   MultiValue,
   NoOptionsMessage,
