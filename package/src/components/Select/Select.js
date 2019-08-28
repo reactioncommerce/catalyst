@@ -105,15 +105,6 @@ const Select = React.forwardRef(function Select(props, ref) {
     onSelection && onSelection(selectedValue);
   }
 
-  const selectStyles = {
-    input: (base) => ({
-      ...base,
-      "& input": {
-        font: "inherit"
-      }
-    })
-  };
-
   return (
     <div className={defaultClasses.root}>
       <SelectComponent
@@ -122,7 +113,7 @@ const Select = React.forwardRef(function Select(props, ref) {
         inputId="react-select-multiple"
         onChange={handleChangeMulti}
         ref={ref}
-        styles={selectStyles}
+        // styles={selectStyles}
         innerRef={ref}
         TextFieldProps={{
           InputLabelProps: {
@@ -136,7 +127,7 @@ const Select = React.forwardRef(function Select(props, ref) {
           borderRadius: 0,
           colors: {
             ...theme.colors,
-            neutral20: theme.palette.colors.coolGrey500
+            neutral20: "#3c3c3c"
           }
         })}
         {...otherProps}
