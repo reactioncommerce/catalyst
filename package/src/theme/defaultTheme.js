@@ -383,6 +383,14 @@ export const rawMuiTheme = {
       }
     },
     MuiOutlinedInput: {
+      root: {
+        "&:hover $notchedOutline": {
+          borderColor: colors.black20
+        },
+        "&$focused $notchedOutline": {
+          borderColor: colors.teal500
+        }
+      },
       inputMarginDense: {
         paddingTop: 8,
         paddingBottom: 8
