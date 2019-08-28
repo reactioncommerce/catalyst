@@ -27,6 +27,17 @@ export const fontWeightBold = 700;
 
 // Typography - Letter-spacing
 export const captionLetterSpacing = 0.28;
+export const body2LetterSpacing = 0.28;
+export const body1LetterSpacing = 0.3;
+export const body1BoldLetterSpacing = 0.3;
+export const subtitle2LetterSpacing = 0.24;
+export const subtitle1LetterSpacing = 0.26;
+export const h6LetterSpacing = 0.24;
+export const h5LetterSpacing = 0.5;
+export const h4LetterSpacing = 0.5;
+export const h3LetterSpacing = 0.42;
+export const h2LetterSpacing = 0.35;
+export const h1LetterSpacing = 0.42;
 
 // Icons
 export const smallFontIconSize = 17;
@@ -46,6 +57,7 @@ export const rawMuiTheme = {
     },
     divider: colors.black10,
     text: {
+      primary: colors.coolGrey500,
       secondary: colors.black60,
       secondaryActive: colors.white,
       active: "#8acef2"
@@ -66,64 +78,82 @@ export const rawMuiTheme = {
     useNextVariants: true,
     button: {
       fontSize: defaultFontSize,
-      letterSpacing: 0.3,
-      fontWeight: fontWeightSemiBold
+      fontWeight: fontWeightSemiBold,
+      letterSpacing: body1BoldLetterSpacing,
+      lineHeight: 1.5,
+      textTransform: "capitalize"
     },
     h1: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.5,
+      letterSpacing: h1LetterSpacing,
       lineHeight: 1.25
     },
     h2: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.25,
-      lineHeight: 1.25
+      letterSpacing: h2LetterSpacing,
+      lineHeight: 1.5
     },
     h3: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 1.125,
+      letterSpacing: h3LetterSpacing,
       lineHeight: 1.25
     },
     h4: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize,
-      fontWeight: fontWeightSemiBold,
+      letterSpacing: h4LetterSpacing,
       lineHeight: 1.25
     },
     h5: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
-      fontWeight: fontWeightSemiBold,
+      letterSpacing: h5LetterSpacing,
       lineHeight: 1.25
     },
     h6: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.75,
-      fontWeight: fontWeightSemiBold,
-      lineHeight: 1.25
+      letterSpacing: h6LetterSpacing,
+      lineHeight: 1.46
     },
     body1: {
-      color: colors.black70,
+      color: colors.coolGrey500,
       fontSize: defaultFontSize,
+      letterSpacing: body1LetterSpacing,
       lineHeight: 1.5
     },
     body2: {
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
-      lineHeight: 1.5
+      letterSpacing: body2LetterSpacing,
+      lineHeight: 1.25
     },
     caption: {
+<<<<<<< HEAD
       color: colors.black30,
       fontSize: defaultFontSize * 0.875,
       letterSpacing: captionLetterSpacing
+=======
+      color: colors.coolGrey500,
+      fontSize: defaultFontSize * 0.875,
+      letterSpacing: captionLetterSpacing,
+      lineHeight: 1.25
+>>>>>>> master
     },
     subtitle1: {
+      color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
-      lineHeight: 1.5
+      letterSpacing: subtitle1LetterSpacing,
+      lineHeight: 1.71
     },
     subtitle2: {
+      color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.75,
-      lineHeight: 1.5
+      letterSpacing: subtitle2LetterSpacing,
+      lineHeight: 1.46
     }
   },
   shadows: [
@@ -196,6 +226,11 @@ export const rawMuiTheme = {
     },
     MuiDialogContentText: {
       color: "inherit"
+    },
+    MuiListItemText: {
+      primaryTypographyProps: {
+        variant: "body1"
+      }
     }
   },
   // Override defined theme properties
@@ -227,6 +262,7 @@ export const rawMuiTheme = {
     },
     MuiButton: {
       root: {
+        lineHeight: 1.5,
         padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`,
         textTransform: "initial"
       },
@@ -296,7 +332,7 @@ export const rawMuiTheme = {
       root: {
         fontSize: defaultFontSize * 0.875,
         letterSpacing: captionLetterSpacing,
-        height: 30
+        height: 32
       },
       deletable: {
         "&:hover": {
@@ -305,7 +341,7 @@ export const rawMuiTheme = {
       },
       deletableColorPrimary: {
         "backgroundColor": colors.black02,
-        "border": `1px solid ${colors.black30}`,
+        "border": `1px solid ${colors.coolGrey}`,
         "color": colors.coolGrey500,
         "&:hover, &:focus, &:active": {
           backgroundColor: colors.black05
@@ -360,20 +396,20 @@ export const rawMuiTheme = {
         width: drawerWidth
       },
       paperAnchorLeft: {
-        borderRight: "none",
+        border: "none",
         backgroundColor: colors.darkBlue500,
         color: colors.black15
       },
       paperAnchorDockedLeft: {
-        borderRight: "none"
+        border: "none"
       },
       paperAnchorRight: {
-        borderLeft: "none",
+        border: "none",
         backgroundColor: colors.black02,
         width: detailDrawerWidth
       },
       paperAnchorDockedRight: {
-        borderRight: "none"
+        border: "none"
       }
     },
     MuiFab: {

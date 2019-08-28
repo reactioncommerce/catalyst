@@ -344,6 +344,7 @@ module.exports = {
       sections: [
         generateSection({
           componentNames: [
+            "ActionMenu",
             "Button",
             "SplitButton"
           ],
