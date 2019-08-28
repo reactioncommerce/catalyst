@@ -132,16 +132,10 @@ export const rawMuiTheme = {
       lineHeight: 1.25
     },
     caption: {
-<<<<<<< HEAD
-      color: colors.black30,
-      fontSize: defaultFontSize * 0.875,
-      letterSpacing: captionLetterSpacing
-=======
       color: colors.coolGrey500,
       fontSize: defaultFontSize * 0.875,
       letterSpacing: captionLetterSpacing,
       lineHeight: 1.25
->>>>>>> master
     },
     subtitle1: {
       color: colors.coolGrey500,
