@@ -418,7 +418,7 @@ export const rawMuiTheme = {
           borderColor: colors.black20
         },
         "&$focused $notchedOutline": {
-          borderColor: colors.teal500
+          borderColor: colors.blue400
         }
       },
       inputMarginDense: {

@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     left: theme.spacing(1),
     fontSize: theme.typography.caption.fontSize,
     letterSpacing: theme.typography.caption.letterSpacing,
-    color: theme.palette.colors.black20
+    color: theme.palette.colors.black55
   },
   paper: {
     position: "absolute",
@@ -62,11 +62,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     left: 0,
     right: 0,
-    borderTop: 0,
-    div: {
-      paddingTop: 0,
-      paddingBottom: 0
-    }
+    borderTop: 0
   },
   divider: {
     height: theme.spacing(2),
