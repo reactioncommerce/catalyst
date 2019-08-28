@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
   noOptionsMessage: {
     padding: theme.spacing(1, 2),
-    color: theme.palette.colors.black20
+    color: theme.palette.colors.black20,
+    minHeight: theme.spacing(5)
   },
   placeholder: {
     position: "absolute",
