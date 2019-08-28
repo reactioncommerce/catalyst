@@ -118,7 +118,6 @@ const Select = React.forwardRef(function Select(props, ref) {
         inputId="react-select-multiple"
         onChange={handleChangeMulti}
         ref={ref}
-        // styles={selectStyles}
         innerRef={ref}
         TextFieldProps={{
           InputLabelProps: {
