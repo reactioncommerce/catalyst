@@ -61,7 +61,12 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
     marginTop: 0,
     left: 0,
-    right: 0
+    right: 0,
+    borderTop: 0,
+    div: {
+      paddingTop: 0,
+      paddingBottom: 0
+    }
   },
   divider: {
     height: theme.spacing(2),
