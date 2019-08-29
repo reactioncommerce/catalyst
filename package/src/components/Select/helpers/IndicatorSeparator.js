@@ -7,7 +7,7 @@ import { useTheme } from "@material-ui/core/styles";
  * @param {Object} props Component props
  * @returns {React.Component} A React component
  */
-export default function IndicatorSeparator(props) {
+export default function IndicatorSeparator() {
   const theme = useTheme();
   const indicatorSeparatorStyle = {
     alignSelf: "stretch",
@@ -18,10 +18,6 @@ export default function IndicatorSeparator(props) {
   };
 
   return (
-    <span style={indicatorSeparatorStyle} {...props} />
+    <span style={indicatorSeparatorStyle}/>
   );
 }
-
-IndicatorSeparator.propTypes = {
-  props: PropTypes.object.isRequired
-};
