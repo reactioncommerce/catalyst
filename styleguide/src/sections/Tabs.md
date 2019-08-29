@@ -5,8 +5,7 @@ Use Material-UI's Tabs and Tab components with Catalyt's default theme variables
 #### Tabs
 
 ```jsx
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Tabs, Tab } from "@material-ui/core";
 
 <Tabs value={0}>
     <Tab label={"Tag details"} />
