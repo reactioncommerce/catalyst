@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useTheme } from "@material-ui/core/styles";
 
 /**
  * @name IndicatorSeparator
- * @param {Object} props Component props
  * @returns {React.Component} A React component
  */
 export default function IndicatorSeparator() {
@@ -18,6 +16,6 @@ export default function IndicatorSeparator() {
   };
 
   return (
-    <span style={indicatorSeparatorStyle}/>
+    <span style={indicatorSeparatorStyle} />
   );
 }
