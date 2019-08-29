@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   noOptionsMessage: {
     padding: theme.spacing(1, 2),
     color: theme.palette.colors.black20,
-    minHeight: theme.spacing(5)
+    lineHeight: "40px"
   },
   placeholder: {
     position: "absolute",
@@ -59,20 +59,23 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.colors.black55
   },
   paper: {
-    position: "absolute",
-    zIndex: 1,
-    marginTop: 0,
-    left: 0,
-    right: 0,
-    borderTop: 0
+    "position": "absolute",
+    "zIndex": 1,
+    "marginTop": 0,
+    "left": 0,
+    "right": 0,
+    "borderTop": 0,
+    "minHeight": theme.spacing(5),
+    "& div": {
+      paddingTop: 0,
+      paddingBottom: 0
+    }
   },
   divider: {
     height: theme.spacing(2),
     color: theme.palette.colors.black20
   }
 }));
-
-// const IndicatorSeparator = ({ innerProps }) => <span style={indicatorSeparatorStyle} {...innerProps} />;
 
 // Custom components for various aspects of the select
 const components = {
