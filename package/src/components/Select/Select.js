@@ -134,7 +134,7 @@ const Select = React.forwardRef(function Select(props, ref) {
           borderRadius: 0,
           colors: {
             ...theme.colors,
-            neutral20: "#3c3c3c"
+            neutral20: theme.palette.colors.coolGrey500
           }
         })}
         {...otherProps}

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import defaultTheme from "../../../theme/defaultTheme";
+import { useTheme } from "@material-ui/core/styles";
 
 /**
  * @name IndicatorSeparator
@@ -8,9 +8,10 @@ import defaultTheme from "../../../theme/defaultTheme";
  * @returns {React.Component} A React component
  */
 export default function IndicatorSeparator(props) {
+  const theme = useTheme();
   const indicatorSeparatorStyle = {
     alignSelf: "stretch",
-    backgroundColor: defaultTheme.palette.colors.black20,
+    backgroundColor: theme.palette.colors.black20,
     marginBottom: 8,
     marginTop: 8,
     width: 1
