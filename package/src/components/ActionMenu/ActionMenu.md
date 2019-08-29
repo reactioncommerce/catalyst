@@ -27,9 +27,9 @@ const options = [{
 </ActionMenu>
 ```
 
-### Options with confirmation
+#### Options with confirmation
 
-ActionMenu options can be guarded with a confirmation dialog on click. To achieve this, provide either `confirmTitle` or `confirmMessage` as part of the option object. You may also supply an `onClick` handler for more control of the menu item click.
+ActionMenu options can be guarded with a confirmation dialog on selection. To achieve this, provide any combination of `confirmTitle` and `confirmMessage` as part of the option object. You may also supply an `onClick` handler to each option for more control of the "click" action. The `onSelect` callback will still fire when an item is selected. In most cases you'll want to avoid using `onSelect` and `onClick` for each option together unless you plan to do some advanced event handling using both.
 
 ```jsx
 const options = [{
