@@ -215,7 +215,12 @@ export const rawMuiTheme = {
     },
     MuiCardHeader: {
       titleTypographyProps: {
+        display: "inline",
         variant: "h4"
+      },
+      subheaderTypographyProps: {
+        display: "inline",
+        variant: "h5"
       }
     },
     MuiDialogContentText: {
@@ -309,6 +314,14 @@ export const rawMuiTheme = {
         paddingBottom: defaultSpacingUnit
       }
     },
+    MuiCardHeader: {
+      title: {
+        fontWeight: fontWeightSemiBold
+      },
+      subheader: {
+        marginLeft: defaultSpacingUnit * 2
+      }
+    },
     MuiCheckbox: {
       root: {
         color: colors.coolGrey500
@@ -390,7 +403,7 @@ export const rawMuiTheme = {
         width: drawerWidth
       },
       paperAnchorLeft: {
-        border: "none",
+        borderRight: "none",
         backgroundColor: colors.darkBlue500,
         color: colors.black15
       },
@@ -432,6 +445,18 @@ export const rawMuiTheme = {
         // theme being 14px, not allowing for `pxToRem(24)` to be the correct value for MUI icons.
         // This should be revisited once the Reaction admin no longer has a need for bootstrap.
         fontSize: 24
+      }
+    },
+    MuiTabs: {
+      indicator: {
+        height: 4,
+        backgroundColor: colors.reactionBlue400
+      }
+    },
+    MuiTab: {
+      root: {
+        minHeight: 60,
+        textTransform: "initial"
       }
     },
     MuiTableCell: {

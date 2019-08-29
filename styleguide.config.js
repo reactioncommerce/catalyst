@@ -368,7 +368,21 @@ module.exports = {
             "Select"
           ],
           name: "Inputs"
-        })
+        }),
+        {
+          name: "Themed Components",
+          sections: [
+            {
+              name: "Card",
+              content: "styleguide/src/sections/Card.md"
+            },
+            {
+              name: "Tabs",
+              content: "styleguide/src/sections/Tabs.md"
+            }
+          ],
+          sectionDepth: 2
+        }
       ],
       sectionDepth: 2
     }
