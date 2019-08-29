@@ -10,23 +10,71 @@ This is basic example of how to implement the ActionMenu.
 
 ```jsx
 const options = [{
-  label: "Filter by file"
+  label: "Open"
 }, {
-  label: "Publish"
+  label: "Archived"
 }, {
-  label: "Make Visible"
+  label: "Shipped"
 }, {
-  label: "Make Hidden"
-}, {
-  label: "Duplicate"
-}, {
-  label: "Archive"
-}];
+  label: "Canceled"
+} ];
 
 <ActionMenu
   options={options}
   onSelect={(option, index) => alert(`Selected option "${option.label}" at index (${index})`)}
 >
+  Set status
+</ActionMenu>
+```
+
+#### Options with confirmation
+
+ActionMenu options can be guarded with a confirmation dialog on selection. To achieve this, provide any combination of `confirmTitle` and `confirmMessage` as part of the option object. You may also supply an `onClick` handler to each option for more control of the "click" action. The `onSelect` callback will still fire when an item is selected. In most cases you'll want to avoid using `onSelect` and `onClick` for each option together unless you plan to do some advanced event handling using both.
+
+```jsx
+const options = [{
+  label: "Filter by file",
+  onClick: () => {
+    console.log("Filter by file");
+  }
+}, {
+  label: "Publish",
+  confirmTitle: "Publish 32 products",
+  confirmMessage: "Are you sure you want to publish 32 products to your storefront?",
+  onClick: () => {
+    console.log("Published 32 products");
+  }
+}, {
+  label: "Make Visible",
+  confirmTitle: "Make 32 products visible",
+  confirmMessage: "Are you sure you want to make 32 products visible to customers?",
+  onClick: () => {
+    console.log("Made 32 products visible");
+  }
+}, {
+  label: "Make Hidden",
+  confirmTitle: "Make 32 products hidden",
+  confirmMessage: "Are you sure you want to make 32 products hidden from customers?",
+  onClick: () => {
+    console.log("Made 32 products hidden");
+  }
+}, {
+  label: "Duplicate",
+  confirmTitle: "Duplicate 32 products",
+  confirmMessage: "Are you sure you want to duplicate 32 products?",
+  onClick: () => {
+    console.log("Duplicated 32 products");
+  }
+}, {
+  label: "Archive",
+  confirmTitle: "Archive 32 products",
+  confirmMessage: "Are you sure you want to archive 32 products? This will hide them from both admins and customers.",
+  onClick: () => {
+    console.log("Archived 32 products");
+  }
+}];
+
+<ActionMenu options={options}>
   Actions
 </ActionMenu>
 ```

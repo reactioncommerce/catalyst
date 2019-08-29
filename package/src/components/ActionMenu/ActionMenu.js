@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import ChevronDownIcon from "mdi-material-ui/ChevronDown";
 import Button from "../Button";
+import ConfirmDialog from "../ConfirmDialog";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -38,9 +39,10 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
    * @param {Number} index Menu item index
    * @returns {undefined}
    */
-  function handleMenuItemClick(event, index) {
+  function handleMenuItemClick({ event, index, onClick }) {
     const selectedOption = options[index];
     onSelect && onSelect(selectedOption, index);
+    onClick && onClick(event);
     setOpen(false);
   }
 
@@ -95,20 +97,62 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
             />
           </Box>
         </MenuItem>
-        {options.map(({ label, details, isDisabled }, index) => (
-          <MenuItem
-            key={index}
-            disabled={isDisabled}
-            onClick={(event) => handleMenuItemClick(event, index)}
-          >
-            <Box maxWidth={320} whiteSpace="normal">
-              <ListItemText
-                primary={label}
-                secondary={details}
-              />
-            </Box>
-          </MenuItem>
-        ))}
+        {options.map((option, index) => {
+          const {
+            label,
+            details,
+            isDisabled,
+            cancelActionText,
+            confirmActionText,
+            confirmTitle,
+            confirmMessage,
+            onClick
+          } = option;
+
+          const callback = (event) => handleMenuItemClick({ event, index, onClick });
+
+          if (confirmTitle || confirmMessage) {
+            return (
+              <ConfirmDialog
+                cancelActionText={cancelActionText}
+                confirmActionText={confirmActionText}
+                title={confirmTitle}
+                message={confirmMessage}
+                onConfirm={callback}
+              >
+                {({ openDialog }) => (
+                  <MenuItem
+                    key={index}
+                    disabled={isDisabled}
+                    onClick={openDialog}
+                  >
+                    <Box maxWidth={320} whiteSpace="normal">
+                      <ListItemText
+                        primary={label}
+                        secondary={details}
+                      />
+                    </Box>
+                  </MenuItem>
+                )}
+              </ConfirmDialog>
+            );
+          }
+
+          return (
+            <MenuItem
+              key={index}
+              disabled={isDisabled}
+              onClick={callback}
+            >
+              <Box maxWidth={320} whiteSpace="normal">
+                <ListItemText
+                  primary={label}
+                  secondary={details}
+                />
+              </Box>
+            </MenuItem>
+          );
+        })}
       </Menu>
     </Fragment>
   );
@@ -141,16 +185,45 @@ ActionMenu.propTypes = {
    */
   isWaiting: PropTypes.bool,
   /**
-   * onSelect callback when an option is selected from the menu
+   * Called when an option is selected. Can be use simultaneously with option onClick callbacks.
    */
   onSelect: PropTypes.func,
   /**
    * Menu options
    */
   options: PropTypes.arrayOf(PropTypes.shape({
+    /**
+     * Change the cancel button label in the confirm dialog
+     */
+    cancelActionText: PropTypes.string,
+    /**
+     * Change the label of the confirmation button in the confirm dialog
+     */
+    confirmActionText: PropTypes.string,
+    /**
+     * If supplied, the option will show a confirm dialog this message when selected.
+     */
+    confirmMessage: PropTypes.string,
+    /**
+     * If supplied, the option will show a confirm dialog this title when selected
+     */
+    confirmTitle: PropTypes.string,
+    /**
+     * Secondary option label
+     */
     details: PropTypes.string,
+    /**
+     * Disable the option
+     */
     isDisabled: PropTypes.bool,
-    label: PropTypes.string.isRequired
+    /**
+     * Option label
+     */
+    label: PropTypes.string.isRequired,
+    /**
+     * If supplied, this function will be called in addition to onSelect
+     */
+    onClick: PropTypes.func
   }))
 };
 
