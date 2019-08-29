@@ -403,7 +403,7 @@ export const rawMuiTheme = {
         width: drawerWidth
       },
       paperAnchorLeft: {
-        border: "none",
+        borderRight: "none",
         backgroundColor: colors.darkBlue500,
         color: colors.black15
       },
