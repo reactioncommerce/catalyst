@@ -28,7 +28,7 @@ exports[`basic snapshot test 1`] = `
                 Select options
               </p>
               <div
-                class="css-yi4co9"
+                class="css-3y1qaa"
               >
                 <div
                   class=""
@@ -47,7 +47,7 @@ exports[`basic snapshot test 1`] = `
                     value=""
                   />
                   <div
-                    style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: inherit; letter-spacing: normal; text-transform: none;"
+                    style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: inherit; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
                   />
                 </div>
               </div>
@@ -56,7 +56,10 @@ exports[`basic snapshot test 1`] = `
               class=" css-1wy0on6"
             >
               <span
-                class=" css-14ctuyv-indicatorSeparator"
+                options="[object Object],[object Object],[object Object]"
+                selectprops="[object Object]"
+                style="align-self: stretch; background-color: rgb(204, 204, 204); margin-bottom: 8px; margin-top: 8px; width: 1px;"
+                theme="[object Object]"
               />
               <div
                 aria-hidden="true"
