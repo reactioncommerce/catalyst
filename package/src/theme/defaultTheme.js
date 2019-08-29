@@ -442,7 +442,7 @@ export const rawMuiTheme = {
     MuiTabs: {
       indicator: {
         height: 4,
-        backgroundColor: "#4b81c6"
+        backgroundColor: colors.reactionBlue400
       }
     },
     MuiTab: {
