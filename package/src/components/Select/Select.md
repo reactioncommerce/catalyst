@@ -101,7 +101,7 @@ function handleOnSelection(value) {
 ```
 #### Async options
 
-Multi value select with options provided asynchronously:
+MultiSelect with options provided asynchronously:
 
 ```jsx
 import options from "./helpers/tagData";
