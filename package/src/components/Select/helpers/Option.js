@@ -12,6 +12,7 @@ export default function Option(props) {
     <MenuItem
       ref={props.innerRef}
       component="div"
+      className={props.selectProps.classes.menuItem}
       selected={props.isFocused}
       {...props.innerProps}
     >
@@ -25,6 +26,10 @@ Option.propTypes = {
    * The children to be rendered.
    */
   children: PropTypes.node,
+  /**
+   * CSS class passed down from parent
+   */
+  className: PropTypes.string,
   /**
    * props passed to the wrapping element for the group.
    */
@@ -53,5 +58,6 @@ Option.propTypes = {
   /**
    * Whether the option is selected.
    */
-  isSelected: PropTypes.bool.isRequired
+  isSelected: PropTypes.bool.isRequired,
+  selectProps: PropTypes.object.isRequired
 };

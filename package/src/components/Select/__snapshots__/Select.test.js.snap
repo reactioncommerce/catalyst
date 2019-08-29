@@ -23,12 +23,12 @@ exports[`basic snapshot test 1`] = `
               class="makeStyles-valueContainer-3"
             >
               <p
-                class="MuiTypography-root makeStyles-placeholder-6 MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiTypography-root makeStyles-placeholder-7 MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
                 Select options
               </p>
               <div
-                class="css-1lq0l2i"
+                class="css-3y1qaa"
               >
                 <div
                   class=""
@@ -47,7 +47,7 @@ exports[`basic snapshot test 1`] = `
                     value=""
                   />
                   <div
-                    style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: inherit; letter-spacing: normal; text-transform: none;"
+                    style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: inherit; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
                   />
                 </div>
               </div>
@@ -56,11 +56,14 @@ exports[`basic snapshot test 1`] = `
               class=" css-1wy0on6"
             >
               <span
-                class=" css-1okebmr-indicatorSeparator"
+                options="[object Object],[object Object],[object Object]"
+                selectprops="[object Object]"
+                style="align-self: stretch; background-color: rgb(204, 204, 204); margin-bottom: 8px; margin-top: 8px; width: 1px;"
+                theme="[object Object]"
               />
               <div
                 aria-hidden="true"
-                class=" css-tlfecz-indicatorContainer"
+                class=" css-1dk35j4-indicatorContainer"
               >
                 <svg
                   aria-hidden="true"
@@ -79,11 +82,11 @@ exports[`basic snapshot test 1`] = `
           </div>
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root-77 MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root-78 MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="PrivateNotchedOutline-legend-78"
+              class="PrivateNotchedOutline-legend-79"
               style="width: 0px;"
             >
               <span>

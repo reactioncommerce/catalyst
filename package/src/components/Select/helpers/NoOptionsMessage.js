@@ -10,7 +10,7 @@ import { Typography } from "@material-ui/core";
 export default function NoOptionsMessage(props) {
   return (
     <Typography
-      color="textSecondary"
+      variant="caption"
       className={props.selectProps.classes.noOptionsMessage}
       {...props.innerProps}
     >

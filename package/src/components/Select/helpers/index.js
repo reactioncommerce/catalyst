@@ -1,4 +1,5 @@
 import Control from "./Control";
+import IndicatorSeparator from "./IndicatorSeparator";
 import Menu from "./Menu";
 import MultiValue from "./MultiValue";
 import NoOptionsMessage from "./NoOptionsMessage";
@@ -8,6 +9,7 @@ import ValueContainer from "./ValueContainer";
 
 export {
   Control,
+  IndicatorSeparator,
   Menu,
   MultiValue,
   NoOptionsMessage,
