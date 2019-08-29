@@ -56,10 +56,7 @@ exports[`basic snapshot test 1`] = `
               class=" css-1wy0on6"
             >
               <span
-                options="[object Object],[object Object],[object Object]"
-                selectprops="[object Object]"
                 style="align-self: stretch; background-color: rgb(204, 204, 204); margin-bottom: 8px; margin-top: 8px; width: 1px;"
-                theme="[object Object]"
               />
               <div
                 aria-hidden="true"
