@@ -266,10 +266,14 @@ export const rawMuiTheme = {
         textTransform: "initial"
       },
       text: {
-        color: colors.coolGrey400,
-        fontWeight: fontWeightRegular,
-        fontSize: defaultFontSize * 0.875,
-        padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`
+        "color": colors.coolGrey400,
+        "fontWeight": fontWeightRegular,
+        "fontSize": defaultFontSize * 0.875,
+        "padding": `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`,
+        "border": "1.5px solid transparent",
+        "& hover": {
+          border: `1.5px solid ${colors.coolGrey100}`
+        }
       },
       outlined: {
         // Removed 1px of padding from the top/bottom to account for the border
