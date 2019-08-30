@@ -325,19 +325,19 @@ module.exports = {
       name: "Getting started",
       sections: [
         {
-          name: "Installation",
+          name: "Install",
           content: "styleguide/src/sections/Installation.md"
         },
         {
-          name: "Theming",
+          name: "Theme components",
           content: "styleguide/src/sections/Theming.md"
         },
         {
-          name: "Developing Locally Inside Another Project",
+          name: "Develop locally",
           content: "styleguide/src/sections/LocalDevelopment.md"
         },
         {
-          name: "Understanding Component References",
+          name: "Component references",
           content: "styleguide/src/sections/ComponentsContext.md"
         }
       ],
