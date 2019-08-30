@@ -297,22 +297,18 @@ module.exports = {
   },
   sections: [
     {
-      name: "Introduction",
+      name: "Overview",
       content: "styleguide/src/sections/Introduction.md",
       sections: [
         {
-          name: "Installation",
-          content: "styleguide/src/sections/Installation.md"
-        },
-        {
-          name: "Understanding Component References",
-          content: "styleguide/src/sections/ComponentsContext.md"
+          name: "Component status",
+          content: "styleguide/src/sections/Status.md"
         }
       ],
       sectionDepth: 2
     },
     {
-      name: "Designers",
+      name: "Foundations",
       sections: [
         {
           name: "Colors",
@@ -326,15 +322,23 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: "Developers",
+      name: "Getting started",
       sections: [
         {
-          name: "Theming",
+          name: "Install",
+          content: "styleguide/src/sections/Installation.md"
+        },
+        {
+          name: "Theme components",
           content: "styleguide/src/sections/Theming.md"
         },
         {
-          name: "Developing Locally Inside Another Project",
+          name: "Develop locally within an app",
           content: "styleguide/src/sections/LocalDevelopment.md"
+        },
+        {
+          name: "Component references",
+          content: "styleguide/src/sections/ComponentsContext.md"
         }
       ],
       sectionDepth: 2

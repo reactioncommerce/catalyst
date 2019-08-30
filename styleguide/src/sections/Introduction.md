@@ -6,7 +6,7 @@ Introducing Reaction Commerce's **Catalyst Design System** and the `@reactioncom
 
 #### Developers
 
-- Use the documentation here to learn how to [install and import components](/#/Introduction/Installation/) with the [NPM package](https://www.npmjs.com/package/@reactioncommerce/catalyst) and [theme components](/#/Developers/Theming).
+- Use the documentation here to learn how to install, theme and use these components.
 - Use the [GitHub documentation](https://github.com/reactioncommerce/catalyst/blob/master/docs/README.md) for instructions on how to contribute to this package and the docs.
 
 #### Contribute
