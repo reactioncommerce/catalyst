@@ -333,7 +333,7 @@ module.exports = {
           content: "styleguide/src/sections/Theming.md"
         },
         {
-          name: "Develop locally",
+          name: "Develop locally within an app",
           content: "styleguide/src/sections/LocalDevelopment.md"
         },
         {
