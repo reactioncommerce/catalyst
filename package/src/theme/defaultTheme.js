@@ -385,7 +385,10 @@ export const rawMuiTheme = {
     },
     MuiDialogTitle: {
       root: {
-        padding: defaultTheme.spacing(4, 4, 1, 4)
+        "padding": defaultTheme.spacing(4, 4, 1, 4),
+        "& h2": {
+          fontWeight: fontWeightSemiBold
+        }
       }
     },
     MuiDialogContent: {
