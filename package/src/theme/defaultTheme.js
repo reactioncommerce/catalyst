@@ -406,12 +406,13 @@ export const rawMuiTheme = {
         width: drawerWidth
       },
       paperAnchorLeft: {
-        borderRight: "none",
+        border: "none",
         backgroundColor: colors.darkBlue500,
         color: colors.black15
       },
       paperAnchorDockedLeft: {
-        border: "none"
+        border: "none",
+        borderRight: "none"
       },
       paperAnchorRight: {
         border: "none",
