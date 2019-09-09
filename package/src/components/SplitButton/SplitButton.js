@@ -107,7 +107,7 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
           >
             <Paper elevation={2} id="menu-list-grow">
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList>
+                <MenuList disablePadding>
                   {options.map(({ label, details, isDisabled }, index) => (
                     <MenuItem
                       key={label}
