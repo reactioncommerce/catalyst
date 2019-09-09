@@ -315,10 +315,14 @@ export const rawMuiTheme = {
       }
     },
     MuiCardHeader: {
+      root: {
+        paddingTop: defaultSpacingUnit * 3
+      },
       title: {
         fontWeight: fontWeightSemiBold
       },
       subheader: {
+        color: colors.coolGrey500,
         marginLeft: defaultSpacingUnit * 2
       }
     },
