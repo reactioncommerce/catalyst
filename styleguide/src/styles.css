@@ -42,6 +42,7 @@ body {
   margin-bottom: 15px;
 }
 
-.rsg--button-21 {
+[data-testid="Button-isolate-button"],
+[aria-label="Open isolated"] {
   display: none;
 }

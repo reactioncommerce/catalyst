@@ -269,7 +269,7 @@ export const rawMuiTheme = {
         color: colors.coolGrey400,
         fontWeight: fontWeightRegular,
         fontSize: defaultFontSize * 0.875,
-        padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`
+        padding: `${defaultSpacingUnit + 1.5}px ${defaultSpacingUnit * 2}px`
       },
       outlined: {
         // Removed 1px of padding from the top/bottom to account for the border

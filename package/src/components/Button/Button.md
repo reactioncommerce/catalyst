@@ -120,7 +120,7 @@ The error button is used for a destructive action that is difficult to recover f
 
 ```jsx
 <div>
-  <Button style={{marginRight: "0.5rem"}} variant="default" color="primary">Discard</Button>
+  <Button style={{marginRight: "0.5rem"}} variant="text" color="primary">Discard</Button>
   <Button style={{marginRight: "0.5rem"}} variant="outlined" color="primary">Save changes</Button>
   <Button style={{marginRight: "0.5rem"}} variant="contained" color="primary">Publish</Button>
 </div>
