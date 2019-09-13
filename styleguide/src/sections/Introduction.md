@@ -1,6 +1,6 @@
 **Catalyst** is [Reaction Commerce](https://www.reactioncommerce.com/)'s lightweight design system that we use to build Reaction's Admin interface. Catalyst components are used for Reaction Admin and any future operator user interfaces we may build. The Catalyst components are focused on the user experience for operators and will help consistency across the Reaction Admin. Additionally, Catalyst will make it easier to build and update new user interfaces in the future.
 
-** *Note, Catalyst is a work in progress **
+** Note, Catalyst is a work in progress **
 
 Consistent with our principles of work we've made Catalyst public early in its development. That means that we do not have all the components needed to build for Reaction Admin. Conversely, not all of Reaction Admin has been converted to using Catalyst. With each release we plan to add more components, more documentation and convert more of Reaction Admin to Catalyst.
 
