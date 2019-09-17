@@ -16,8 +16,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    minWidth: 290
+    flexGrow: 1
   },
   input: {
     color: theme.palette.colors.coolGrey500,
