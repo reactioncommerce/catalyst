@@ -226,10 +226,6 @@ workflows:
           context: reaction-validation
           requires:
             - docker-build
-      - snyk-security:
-          context: reaction-validation
-          requires:
-            - docker-build
       - publish-npm-package:
           context: reaction-publish-semantic-release
           requires:
