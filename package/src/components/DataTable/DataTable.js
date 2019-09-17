@@ -143,8 +143,8 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
         <Box flex={1} maxWidth={120}>
           <Select
             value={{ label: `${pageSize} rows`, value: pageSize }}
-            onChange={(event) => {
-              setPageSize(Number(event.target.value));
+            onChange={({ value }) => {
+              setPageSize(value);
             }}
             options={pageSizes.map((value) => ({ label: value, value }))}
           />
