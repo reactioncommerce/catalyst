@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTable, usePagination } from "react-table";
 import {
   Box,
   Table,
@@ -50,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} A React component
  */
 const DataTable = React.forwardRef(function DataTable(props, ref) {
-  const { columns, data, pageSizes } = props;
-  const classes = useStyles();
-
   const {
+    pageSizes,
+
+    // useTable Props
     getTableProps,
     headerGroups,
     page,
@@ -67,13 +66,8 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     previousPage,
     setPageSize,
     state: [{ pageIndex, pageSize }]
-  } = useTable(
-    {
-      columns,
-      data
-    },
-    usePagination
-  );
+  } = props;
+  const classes = useStyles();
 
   return (
     <div>
@@ -164,6 +158,14 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
 DataTable.propTypes = {
   /**
+   * Can go to next page
+  */
+  canNextPage: PropTypes.bool,
+  /**
+   * Can go to previous page
+  */
+  canPreviousPage: PropTypes.bool,
+  /**
    * The content of the Button
    */
   children: PropTypes.node,
@@ -180,9 +182,53 @@ DataTable.propTypes = {
    */
   data: PropTypes.arrayOf(PropTypes.object),
   /**
+   * Get props for table
+   */
+  getTableProps: PropTypes.func,
+  /**
+   * Jump to a page
+   */
+  gotoPage: PropTypes.func,
+  /**
+   * Table headers
+   */
+  headerGroups: PropTypes.array,
+  /**
+   * Go to next page
+   */
+  nextPage: PropTypes.func,
+  /**
+   * Pages
+   */
+  page: PropTypes.array,
+  /**
+   * pageCount
+   */
+  pageCount: PropTypes.number,
+  /**
+   * Page options
+   */
+  pageOptions: PropTypes.array,
+  /**
    * Row data as an array of objects
    */
-  pageSizes: PropTypes.arrayOf(PropTypes.number)
+  pageSizes: PropTypes.arrayOf(PropTypes.number),
+  /**
+   * Custom row renderer
+   */
+  prepareRow: PropTypes.func,
+  /**
+   * Go to previous page
+   */
+  previousPage: PropTypes.func,
+  /**
+   * Set the size of the pages
+   */
+  setPageSize: PropTypes.func,
+  /**
+   * Table state [state, updater]
+   */
+  state: PropTypes.array
 };
 
 DataTable.defaultProps = {
