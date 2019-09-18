@@ -32,7 +32,7 @@
     "mdi-material-ui": "~5.8.0",
     "react-is": "~16.4.1",
     "react-select": "^3.0.4",
-    "react-table": "7.0.0-alpha.35"
+    "react-table": "7.0.0-beta.0"
   },
   "devDependencies": {
     "@babel/cli": "~7.2.3",
