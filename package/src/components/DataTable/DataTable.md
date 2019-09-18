@@ -33,8 +33,6 @@ function TableExample() {
     }
   ], []);
 
-  const d = useMemo(() => [], [])
-
   const onFetchData = useCallback(async ({ setData, pageIndex, pageSize }) => {
     const { data } = await getPaginatedData({
       offset: pageIndex * pageSize,
@@ -46,11 +44,11 @@ function TableExample() {
       data: data.nodes,
       pageCount: data.totalCount / pageSize
     }
-  }, [])
+  }, []);
 
   const onSelectRows = useCallback(async ({ selectedRows }) => {
     console.log("Selected rows", selectedRows);
-  }, [])
+  }, []);
 
   const {
     dataTableProps,
@@ -66,14 +64,7 @@ function TableExample() {
     onSelectRows
   });
 
-  return (
-    <div>
-      <pre>
-        <code>{JSON.stringify(tableState[0].filters, null, 2)}</code>
-      </pre>
-      <DataTable {...dataTableProps} />
-    </div>
-  );
+  return <DataTable {...dataTableProps} />
 }
 
 TableExample()
@@ -104,8 +95,6 @@ function TableExample() {
     }
   ], []);
 
-  const d = useMemo(() => [], [])
-
   const onFetchData = useCallback(async ({ setData, pageIndex, pageSize }) => {
     const { data } = await getPaginatedData({
       offset: pageIndex * pageSize,
@@ -117,11 +106,11 @@ function TableExample() {
       data: data.nodes,
       pageCount: data.totalCount / pageSize
     }
-  }, [])
+  }, []);
 
   const onSelectRows = useCallback(async ({ selectedRows }) => {
     console.log("Selected rows", selectedRows);
-  }, [])
+  }, []);
 
   const {
     dataTableProps,
