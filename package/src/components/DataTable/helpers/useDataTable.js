@@ -124,7 +124,10 @@ export default function useDataTable({
   );
 
   return {
-    dataTableProps,
+    dataTableProps: {
+      ...dataTableProps,
+      isSelectable
+    },
     sortBy,
     filters,
     pageIndex,
