@@ -1,13 +1,30 @@
-Introducing Reaction Commerce's **Catalyst Design System** and the `@reactioncommerce/catalyst` NPM module, built with React, React Hooks, Material-UI, JSS and the React Testing Library. The **Catalyst Design System** is a lightweight open source design system for building Reaction Admin tools and plugins.
+**Catalyst** is [Reaction Commerce](https://www.reactioncommerce.com/)'s design system that we use to build Reaction's Admin interface. Catalyst components are used for Reaction Admin and any future operator user interfaces we may build. The Catalyst components are focused on the user experience for operators and will help consistency across the Reaction Admin. Additionally, Catalyst will make it easier to build and update new user interfaces in the future.
 
-#### Designers
+** Note, Catalyst is a work in progress **
 
-- Use the documentation here to learn about how Reaction uses Color, Typography in Reaction Admin.
+Consistent with our principles of work we've made Catalyst public early in its development. That means that we do not have all the components needed to build for Reaction Admin. Conversely, not all of Reaction Admin has been converted to using Catalyst. With each release we plan to add more components, more documentation and convert more of Reaction Admin to Catalyst.
 
-#### Developers
+#### Guiding design principles
 
-- Use the documentation here to learn how to install, theme and use these components.
-- Use the [GitHub documentation](https://github.com/reactioncommerce/catalyst/blob/master/docs/README.md) for instructions on how to contribute to this package and the docs.
+- **Design for the user.**
+    - Reaction Commerce should feel easy to use on a daily basis. Our design should be empathetic and encourage new ideas in commerce.
+- **Be simple, not boring.**
+    - Our design is considered, useful, and aesthetic. In our design decisions, we want to attain consistency and beauty.
+- **Easy to start, easy to grow.**
+    - Be welcoming while progressively revealing the complexity under the hood.
+- **Always be forward thinking.**
+    - Design and architect for the future. Design flexible, customizable, modular, and extendable flows that will contribute to the overall system.
 
-#### Contribute
-Have feedback or questions about a component? Make an issue on the [Catalyst GitHub repository](https://github.com/reactioncommerce/catalyst).
+#### Who is it for?
+
+##### Designers
+
+Catalyst is a tool for Reaction designers to both maintain consistency and facilitate ease of communication with developers. 
+
+##### Developers
+
+Catalyst is a tool for Reaction developers for speed and consistency when building user interfaces for Reaction Admin. Catalyst also operates as a manual for user experience and consistent client side development patterns that will reduce technical and design debt. 
+
+##### Open source
+
+Catalyst is open source and allows for designers and developers in the community to build Reaction Admin plugins in order to extend and customize their store's capabilities. Additionally, Catalyst makes it easier for Reaction's open source community to make contributions by providing user interface components to build plugins consistent to Reaction Admin.
