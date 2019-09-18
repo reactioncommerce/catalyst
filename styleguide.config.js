@@ -381,6 +381,10 @@ module.exports = {
               content: "styleguide/src/sections/Card.md"
             },
             {
+              name: "Quick Edit Card",
+              content: "styleguide/src/sections/QuickEditCard.md"
+            },
+            {
               name: "Tabs",
               content: "styleguide/src/sections/Tabs.md"
             }
