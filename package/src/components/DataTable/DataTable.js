@@ -19,7 +19,6 @@ import Select from "../Select";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
-    borderBottom: "none",
     color: theme.palette.colors.coolGrey500,
     letterSpacing: 0.28,
     paddingTop: theme.spacing(2)
@@ -30,14 +29,12 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   tableHead: {
-    borderBottom: "none",
     fontWeight: theme.typography.fontWeightSemiBold,
     letterSpacing: 0.5,
     padding: theme.spacing(0.5, 2),
     color: theme.palette.colors.coolGrey500
   },
   tableCell: {
-    borderBottom: "none",
     letterSpacing: 0.28,
     color: theme.palette.colors.coolGrey500
   }
@@ -51,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const DataTable = React.forwardRef(function DataTable(props, ref) {
   const {
     pageSizes,
+    isSelectable,
 
     // useTable Props
     getTableProps,
@@ -77,6 +75,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <TableCell
+                  padding={isSelectable ? "checkbox" : "default"}
                   classes={{
                     root: classes.tableHead
                   }}
@@ -94,6 +93,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               <TableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
                   <TableCell
+                    padding={isSelectable ? "checkbox" : "default"}
                     classes={{
                       root: classes.tableCell
                     }}
@@ -193,6 +193,10 @@ DataTable.propTypes = {
    * Table headers
    */
   headerGroups: PropTypes.array,
+  /**
+   * Is set to true if the table rows are selectable
+   */
+  isSelectable: PropTypes.bool,
   /**
    * Go to next page
    */
