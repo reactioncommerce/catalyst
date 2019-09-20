@@ -15,9 +15,10 @@ This is the most common table type used in Reaction.
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
 import { useDataTable } from "./";
-import { getPaginatedData, data } from "./mocks/sampleData";
+import { getPaginatedData } from "./mocks/sampleData";
 
 function TableExample() {
+  // Create and memoize the column data
   const columns = useMemo(() => [
     {
       Header: "Name",
@@ -33,38 +34,100 @@ function TableExample() {
     }
   ], []);
 
-  const onFetchData = useCallback(async ({ setData, pageIndex, pageSize }) => {
+  // Fetch data callback whenever the table requires more data to properly display.
+  // This is the case if theres an update with pagination, filtering or sorting.
+  // This function is called on the initial load of the table to fet the first set of results.
+  const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize }) => {
+    // Get data from an API.
     const { data } = await getPaginatedData({
+      filter: globalFilter,
       offset: pageIndex * pageSize,
       limit: (pageIndex + 1) * pageSize,
       simulatedDelay: 200 // 300 ms delay
     });
 
+    // Return the fetched data as an array of objects and the calculated page count
     return {
       data: data.nodes,
-      pageCount: data.totalCount / pageSize
+      pageCount: Math.ceil(data.totalCount / pageSize)
     }
   }, []);
 
+  // When rows are selected it will be reported here if additional actions need
+  // to take place on selection.
+  // Selected can also be accessed from the table state in the example below:
+  // `const [{ selectedRows }] = dataTableProps.state;`
   const onSelectRows = useCallback(async ({ selectedRows }) => {
     console.log("Selected rows", selectedRows);
   }, []);
 
-  const {
-    dataTableProps,
-    selectedRows,
-    tableState,
-    setData,
-    pageCount,
-    pageSize,
-    setPageCount
-  } = useDataTable({
+  const dataTableProps = useDataTable({
     columns,
     onFetchData,
-    onSelectRows
+    onSelectRows,
+    getRowID: (row, index) => row.id
   });
 
-  return <DataTable {...dataTableProps} />
+  // Table state is comes fom a `useState` hook, thus the state first element in
+  // the array, and the second is the updater function
+  // e.g. `const [state, updaterFunc] = dataTableProps.state;`
+  const [{ selectedRows }] = dataTableProps.state;
+
+  // Create options for the built-in ActionMenu in the DataTable
+  const options = useMemo(() => [{
+    label: "Filter by file",
+    onClick: () => {
+      console.log("Filter by file");
+    }
+  }, {
+    label: "Publish",
+    confirmTitle: `Publish ${selectedRows.length} products`,
+    confirmMessage: `Are you sure you want to publish ${selectedRows.length} products to your storefront?`,
+    isDisabled: selectedRows.length === 0,
+    onClick: () => {
+      console.log(`Published ${selectedRows.length} products`);
+    }
+  }, {
+    label: "Make Visible",
+    confirmTitle: `Make ${selectedRows.length} products visible`,
+    confirmMessage: `Are you sure you want to make ${selectedRows.length} products visible to customers?`,
+    isDisabled: selectedRows.length === 0,
+    onClick: () => {
+      console.log(`Made ${selectedRows.length} products visible`);
+    }
+  }, {
+    label: "Make Hidden",
+    confirmTitle: `Make ${selectedRows.length} products hidden`,
+    confirmMessage: `Are you sure you want to make ${selectedRows.length} products hidden from customers?`,
+    isDisabled: selectedRows.length === 0,
+    onClick: () => {
+      console.log(`Made ${selectedRows.length} products hidden`);
+    }
+  }, {
+    label: "Duplicate",
+    confirmTitle: `Duplicate ${selectedRows.length} products`,
+    confirmMessage: `Are you sure you want to duplicate ${selectedRows.length} products?`,
+    isDisabled: selectedRows.length === 0,
+    onClick: () => {
+      console.log(`Duplicated ${selectedRows.length} products`);
+    }
+  }, {
+    label: "Archive",
+    confirmTitle: `Archive ${selectedRows.length} products`,
+    confirmMessage: `Are you sure you want to archive ${selectedRows.length} products? This will hide them from both admins and customers.`,
+    isDisabled: selectedRows.length === 0,
+    onClick: () => {
+      console.log(`Archived ${selectedRows.length} products`);
+    }
+  }], [selectedRows]);
+
+  return (
+    <DataTable
+      {...dataTableProps}
+      actionMenuProps={{ options }}
+      isFilterable
+    />
+  );
 }
 
 TableExample()
@@ -78,6 +141,7 @@ Simple table with no filtering or selectable rows. Data fetching is simulated wi
 import { useMemo, useEffect, useCallback } from "react";
 import { useDataTable } from "./";
 import { getPaginatedData, data } from "./mocks/sampleData";
+import CreditCardIcon from "mdi-material-ui/CreditCard";
 
 function TableExample() {
   const columns = useMemo(() => [
@@ -92,6 +156,10 @@ function TableExample() {
     {
       Header: "Card Type",
       accessor: 'cardType',
+      Cell: ({ row }) => {
+        // console.log(row);
+        return <span><CreditCardIcon /> {row.values.cardType}</span>
+      }
     }
   ], []);
 
@@ -112,15 +180,7 @@ function TableExample() {
     console.log("Selected rows", selectedRows);
   }, []);
 
-  const {
-    dataTableProps,
-    selectedRows,
-    tableState,
-    setData,
-    pageCount,
-    pageSize,
-    setPageCount
-  } = useDataTable({
+  const dataTableProps = useDataTable({
     columns,
     onFetchData
   });
@@ -139,6 +199,7 @@ import { useDataTable } from "./";
 import { getPaginatedData, data } from "./mocks/sampleData";
 
 function TableExample() {
+  // Create and memoize the column data
   const columns = useMemo(() => [
     {
       Header: "Name",
@@ -154,21 +215,18 @@ function TableExample() {
     }
   ], []);
 
+  // Create and memoize the row data
+  // This data should contain all the rows that the table could possibly display
+  // as this table set up will not fetch additional data from the server.
   const memoizedData = useMemo(() => data, []);
 
-  const {
-    dataTableProps,
-    selectedRows,
-    tableState,
-    setData,
-    pageCount,
-    pageSize,
-    setPageCount
-  } = useDataTable({
+  // Setup the data with the columns and data
+  const dataTableProps = useDataTable({
     columns,
     data: memoizedData
   });
 
+  // Render the DataTable component with all props provided from the useDataTable hook
   return <DataTable {...dataTableProps} />;
 }
 
