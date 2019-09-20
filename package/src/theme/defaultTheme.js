@@ -178,7 +178,7 @@ export const rawMuiTheme = {
     "0px 13px 26px 0 rgba(0,0,0,0.05);"
   ],
   shape: {
-    borderRadius: 2
+    borderRadius: 3
   },
   dimensions: {
     drawerWidth,
