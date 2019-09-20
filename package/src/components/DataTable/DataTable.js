@@ -158,7 +158,6 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 size="small"
                 min={1}
                 max={pageOptions.length}
-                defaultValue={pageIndex + 1}
                 value={pageIndex + 1}
                 onChange={(event) => {
                   let pageNumber = Number(event.target.value);
