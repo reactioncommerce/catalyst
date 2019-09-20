@@ -443,8 +443,8 @@ export const rawMuiTheme = {
         }
       },
       inputMarginDense: {
-        paddingTop: 8,
-        paddingBottom: 8
+        paddingTop: 9.5,
+        paddingBottom: 9.5
       }
     },
     MuiSvgIcon: {
