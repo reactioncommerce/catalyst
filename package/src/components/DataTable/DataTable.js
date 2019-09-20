@@ -140,7 +140,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             ))}
         </TableBody>
       </Table>
-      {PaginationComponent(props) && (
+      {PaginationComponent(props) || (
         <Toolbar>
           <Box
             display="flex"
