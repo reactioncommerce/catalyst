@@ -16,6 +16,7 @@ import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
 import Button from "../Button";
 import Select from "../Select";
+import ActionMenu from "../ActionMenu";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   tableCell: {
     letterSpacing: 0.28,
     color: theme.palette.colors.coolGrey500
+  },
+  textField: {
+    marginTop: 0,
+    marginBottom: 0
   }
 }));
 
@@ -47,8 +52,16 @@ const useStyles = makeStyles((theme) => ({
  */
 const DataTable = React.forwardRef(function DataTable(props, ref) {
   const {
+    // DataTable specific props
     pageSizes,
+    isFilterable,
+    actionMenuProps,
+    ToolbarComponent,
+    PaginationComponent,
+
+    // Props unique from the useDataTable hook
     isSelectable,
+    onGlobalFilterChange,
 
     // useTable Props
     getTableProps,
@@ -65,10 +78,31 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     setPageSize,
     state: [{ pageIndex, pageSize }]
   } = props;
+
   const classes = useStyles();
+  const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
 
   return (
-    <div>
+    <>
+      {ToolbarComponent(props) || (shouldShowStandardToolbar && (
+        <Toolbar>
+          {actionMenuProps && (
+            <Box paddingRight={2}>
+              <ActionMenu children="Actions" {...actionMenuProps} />
+            </Box>
+          )}
+          {isFilterable && (
+            <TextField
+              className={classes.textField}
+              fullWidth
+              margin="dense"
+              placeholder="Filter"
+              onChange={onGlobalFilterChange}
+              variant="outlined"
+            />
+          )}
+        </Toolbar>
+      ))}
       <Table ref={ref} {...getTableProps()}>
         <TableHead className={classes.tableHead}>
           {headerGroups.map((headerGroup) => (
@@ -106,57 +140,105 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             ))}
         </TableBody>
       </Table>
-      <Toolbar>
-        <Box
-          display="flex"
-          alignItems="center"
-          paddingRight={2}
-        >
-          {"Page"}
-          <Box maxWidth={80} paddingLeft={1} paddingRight={1}>
-            <TextField
-              className={classes.pageInput}
-              margin="dense"
-              variant="outlined"
-              disableUnderline
-              type="number"
-              size="small"
-              min={1}
-              max={pageOptions.length}
-              defaultValue={pageIndex + 1}
-              value={pageIndex + 1}
-              onChange={(event) => {
-                let pageNumber = Number(event.target.value);
-                pageNumber = pageNumber > 0 ? pageNumber - 1 : 0;
-                gotoPage(pageNumber);
+      {PaginationComponent(props) && (
+        <Toolbar>
+          <Box
+            display="flex"
+            alignItems="center"
+            paddingRight={2}
+          >
+            {"Page"}
+            <Box maxWidth={80} paddingLeft={1} paddingRight={1}>
+              <TextField
+                className={classes.textField}
+                margin="dense"
+                variant="outlined"
+                disableUnderline
+                type="number"
+                size="small"
+                min={1}
+                max={pageOptions.length}
+                defaultValue={pageIndex + 1}
+                value={pageIndex + 1}
+                onChange={(event) => {
+                  let pageNumber = Number(event.target.value);
+                  pageNumber = pageNumber > 0 ? pageNumber - 1 : 0;
+                  gotoPage(pageNumber);
+                }}
+              />
+            </Box>
+            <span>{"of "}{pageCount}</span>
+          </Box>
+          <Box flex={1} maxWidth={120}>
+            <Select
+              value={{ label: `${pageSize} rows`, value: pageSize }}
+              onChange={({ value }) => {
+                setPageSize(value);
               }}
+              options={pageSizes.map((value) => ({ label: value, value }))}
             />
           </Box>
-          <span>{"of "}{pageCount}</span>
-        </Box>
-        <Box flex={1} maxWidth={120}>
-          <Select
-            value={{ label: `${pageSize} rows`, value: pageSize }}
-            onChange={({ value }) => {
-              setPageSize(value);
-            }}
-            options={pageSizes.map((value) => ({ label: value, value }))}
-          />
-        </Box>
-        <Box flex={1} />
-        <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          <ChevronLeftIcon /> Previous
-        </Button>
-        <Typography component="span">{" | "}</Typography>
-        <Button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next <ChevronRightIcon />
-        </Button>
-      </Toolbar>
-    </div>
+          <Box flex={1} />
+          <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            <ChevronLeftIcon /> Previous
+          </Button>
+          <Typography component="span">{" | "}</Typography>
+          <Button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next <ChevronRightIcon />
+          </Button>
+        </Toolbar>
+      )}
+    </>
   );
 });
 
 DataTable.propTypes = {
+  /**
+   * Replace the built-in pagination component with a custom component
+   */
+  PaginationComponent: PropTypes.component,
+  /**
+   * Replace the built-in toolbar component that contains the action menu and global filter controls
+   * with a custom component.
+   */
+  ToolbarComponent: PropTypes.component,
+  /**
+   * Props applied to the built-in action menu
+   */
+  actionMenuProps: PropTypes.arrayOf(PropTypes.shape({
+    /**
+     * Change the cancel button label in the confirm dialog
+     */
+    cancelActionText: PropTypes.string,
+    /**
+     * Change the label of the confirmation button in the confirm dialog
+     */
+    confirmActionText: PropTypes.string,
+    /**
+     * If supplied, the option will show a confirm dialog this message when selected.
+     */
+    confirmMessage: PropTypes.string,
+    /**
+     * If supplied, the option will show a confirm dialog this title when selected
+     */
+    confirmTitle: PropTypes.string,
+    /**
+     * Secondary option label
+     */
+    details: PropTypes.string,
+    /**
+     * Disable the option
+     */
+    isDisabled: PropTypes.bool,
+    /**
+     * Option label
+     */
+    label: PropTypes.string.isRequired,
+    /**
+     * If supplied, this function will be called in addition to onSelect
+     */
+    onClick: PropTypes.func
+  })),
   /**
    * Can go to next page
   */
@@ -194,6 +276,10 @@ DataTable.propTypes = {
    */
   headerGroups: PropTypes.array,
   /**
+   * Should the table show filters
+   */
+  isFilterable: PropTypes.bool,
+  /**
    * Is set to true if the table rows are selectable
    */
   isSelectable: PropTypes.bool,
@@ -201,6 +287,10 @@ DataTable.propTypes = {
    * Go to next page
    */
   nextPage: PropTypes.func,
+  /**
+   * Event triggered when global filter field has changed
+   */
+  onGlobalFilterChange: PropTypes.func,
   /**
    * Pages
    */
@@ -236,6 +326,8 @@ DataTable.propTypes = {
 };
 
 DataTable.defaultProps = {
+  ToolbarComponent() { },
+  PaginationComponent() { },
   pageSizes: [10, 20, 30, 40, 50]
 };
 
