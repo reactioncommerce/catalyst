@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { Checkbox } from "@material-ui/core";
 import {
   useTable,
@@ -18,10 +18,13 @@ export default function useDataTable({
   columns,
   onFetchData,
   onSelectRows,
-  pageSize: defaultPageSize = 10
+  onGlobalFilterChange,
+  pageSize: defaultPageSize = 10,
+  ...otherProps
 }) {
   const [stateData, setData] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [globalFilter, setGlobalFilter] = useState();
   const tableState = useTableState({ pageCount: 0, pageSize: defaultPageSize });
   const [{ sortBy, filters, pageIndex, pageSize, selectedRows }] = tableState;
 
@@ -65,6 +68,8 @@ export default function useDataTable({
     if (isServerControlled) {
       const fetch = async () => {
         const { data: fetchedData, pageCount: newPageCount } = await onFetchData({
+          globalFilter,
+          data,
           setData,
           setPageCount,
           sortBy,
@@ -81,6 +86,7 @@ export default function useDataTable({
       fetch();
     }
   }, [
+    globalFilter,
     onFetchData,
     setData,
     pageCount,
@@ -92,6 +98,7 @@ export default function useDataTable({
   useEffect(() => {
     if (isSelectable) {
       onSelectRows({
+        data,
         setData,
         setPageCount,
         sortBy,
@@ -108,15 +115,21 @@ export default function useDataTable({
     onSelectRows
   ]);
 
+  const handleGlobalFilterChange = useCallback((event) => {
+    setGlobalFilter(event.target.value);
+  }, [onGlobalFilterChange]);
+
   const dataTableProps = useTable(
     {
       columns: columnsWithCheckboxes,
       data,
+      getRowID: (row, index) => `${pageIndex}.${index}`,
       state: tableState,
       manualFilters: isServerControlled,
       manualSorting: isServerControlled,
       manualPagination: isServerControlled,
-      pageCount
+      pageCount,
+      ...otherProps
     },
     useFilters,
     usePagination,
@@ -124,18 +137,8 @@ export default function useDataTable({
   );
 
   return {
-    dataTableProps: {
-      ...dataTableProps,
-      isSelectable
-    },
-    sortBy,
-    filters,
-    pageIndex,
-    pageSize,
-    setData,
+    ...dataTableProps,
     isSelectable,
-    pageCount,
-    setPageCount,
-    tableState
+    onGlobalFilterChange: handleGlobalFilterChange
   };
 }
