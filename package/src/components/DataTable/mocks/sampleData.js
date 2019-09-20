@@ -110,8 +110,22 @@ export const data = [
  * @param {Number} args.simulatedDelay Time in miliseconds to simulate a delay for
  * @returns {Array} arg.array
  */
-export async function getPaginatedData({ offset, limit, simulatedDelay = 0 }) {
+export async function getPaginatedData({ filter, offset = 0, limit = 10, simulatedDelay = 0 }) {
   await new Promise((resolve) => setTimeout(resolve, simulatedDelay));
+
+  if (filter) {
+    const nodes = data.filter((item) => (
+      Object.values(item).join(" ").includes(filter)
+    ));
+
+    return {
+      data: {
+        nodes: nodes.slice(offset, limit),
+        totalCount: nodes.length
+      }
+    };
+  }
+
   return {
     data: {
       nodes: data.slice(offset, limit),
