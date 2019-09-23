@@ -1,6 +1,12 @@
-import React, { useMemo } from "react";
-import { render } from "../../tests/index.js";
-import DataTable from "./DataTable";
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
+/* eslint-disable require-jsdoc */
+/* eslint-disable react/no-multi-comp */
+import React, { useMemo, useCallback } from "react";
+import CreditCardIcon from "mdi-material-ui/CreditCard";
+import { fireEvent, render, waitForElement } from "../../tests/index.js";
+import { getPaginatedData, data } from "./mocks/sampleData";
+import DataTable, { useDataTable } from "./";
 
 const columnData = [
   {
@@ -17,28 +23,123 @@ const columnData = [
   }
 ];
 
-const rowData = [
-  { id: 1, fullName: "Emmalyn Boldero", email: "eboldero0@freewebs.com", cardType: "jcb" },
-  { id: 2, fullName: "Fiona Acory", email: "facory1@bing.com", cardType: "china-unionpay" },
-  { id: 3, fullName: "Muffin Nuttall", email: "mnuttall2@ucoz.ru", cardType: "jcb" },
-  { id: 4, fullName: "Carlye Benford", email: "cbenford3@un.org", cardType: "jcb" },
-  { id: 5, fullName: "Rolland Eastope", email: "reastope4@hubpages.com", cardType: "americanexpress" },
-  { id: 6, fullName: "Vallie Fownes", email: "vfownes5@delicious.com", cardType: "jcb" },
-  { id: 7, fullName: "Nady Wolfit", email: "nwolfit6@nifty.com", cardType: "jcb" },
-  { id: 8, fullName: "Karel Keitch", email: "kkeitch7@samsung.com", cardType: "jcb" },
-  { id: 9, fullName: "Krystle Smallcombe", email: "ksmallcombe8@cbsnews.com", cardType: "bankcard" },
-  { id: 10, fullName: "Cordula Taill", email: "ctaill9@weebly.com", cardType: "visa-electron" }
-];
+// Basic table
+function TestTable() {
+  const columns = useMemo(() => columnData, []);
+  const memoizedData = useMemo(() => data, []);
+
+  const dataTableProps = useDataTable({
+    columns,
+    data: memoizedData
+  });
+
+  return <DataTable {...dataTableProps} />;
+}
+
+// Basic table
+function TestTableWithServerSidePagination() {
+  const columns = useMemo(() => [
+    {
+      Header: "Name",
+      accessor: "fullName"
+    },
+    {
+      Header: "Email",
+      accessor: "email"
+    },
+    {
+      Header: "Card Type",
+      accessor: "cardType",
+      Cell: ({ row }) => (
+        <span><CreditCardIcon /> {row.values.cardType}</span>
+      )
+    }
+  ], []);
+
+  const onFetchData = useCallback(async ({ pageIndex, pageSize }) => {
+    const { data: fetchedData } = await getPaginatedData({
+      offset: pageIndex * pageSize,
+      limit: (pageIndex + 1) * pageSize,
+      simulatedDelay: 200 // 300ms delay
+    });
+
+    return {
+      data: fetchedData.nodes,
+      pageCount: fetchedData.totalCount / pageSize
+    };
+  }, []);
+
+  const dataTableProps = useDataTable({
+    columns,
+    onFetchData
+  });
+
+  return <DataTable {...dataTableProps} />;
+}
+
+function TestTableWithClientSidePagination() {
+  const columns = useMemo(() => [
+    {
+      Header: "Name",
+      accessor: "fullName"
+    },
+    {
+      Header: "Email",
+      accessor: "email"
+    },
+    {
+      Header: "Card Type",
+      accessor: "cardType",
+      Cell: ({ row }) => (
+        <span><CreditCardIcon /> {row.values.cardType}</span>
+      )
+    }
+  ], []);
+
+  const memoizedData = useMemo(() => data, []);
+
+  const dataTableProps = useDataTable({
+    columns,
+    data: memoizedData
+  });
+
+  return <DataTable {...dataTableProps} />;
+}
+
 
 test("basic snapshot - only default props", () => {
-  // eslint-disable-next-line require-jsdoc
-  function TestTable() {
-    const columns = useMemo(() => columnData, []);
-    const data = useMemo(() => rowData, []);
+  const { asFragment } = render(<TestTable />);
+  expect(asFragment()).toMatchSnapshot();
+});
 
-    return <DataTable columns={columns} data={data} />;
-  }
+test("server-side paginated snapshot - advances one page forward", async () => {
+  const { asFragment, getByText } = render(<TestTableWithServerSidePagination />);
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  fireEvent.click(getByText("Next"));
+  await waitForElement(() => getByText("Kennett Fenlon"));
+  expect(asFragment()).toMatchSnapshot();
+});
 
-  const { asFragment } = render(TestTable);
+test("server-side paginated snapshot - advances one page forward and back to first", async () => {
+  const { asFragment, getByText } = render(<TestTableWithServerSidePagination />);
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  fireEvent.click(getByText("Previous"));
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("client-side paginated snapshot - advances one page forward", async () => {
+  const { asFragment, getByText } = render(<TestTableWithClientSidePagination />);
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  fireEvent.click(getByText("Next"));
+  await waitForElement(() => getByText("Kennett Fenlon"));
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test("client-side paginated snapshot - advances one page forward and back to first", async () => {
+  const { asFragment, getByText } = render(<TestTableWithClientSidePagination />);
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  fireEvent.click(getByText("Previous"));
+  await waitForElement(() => getByText("Claudia Whitmarsh"));
   expect(asFragment()).toMatchSnapshot();
 });
