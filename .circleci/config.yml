@@ -168,30 +168,6 @@ jobs:
       - store_artifacts:
           path: reports
 
-  snyk-security:
-    <<: *defaults
-    steps:
-      - setup_remote_docker
-      - attach_workspace:
-          at: docker-cache
-      - run:
-          name: Load Docker Image
-          command: |
-            docker load < docker-cache/docker-image.tar
-      - run:
-          name: Snyk
-          command: |
-            # Snyk doesn't look up the directory tree for node_modules as
-            # NodeJS does so we have to take some extra measures to test in the
-            # Docker image. Copy package.json up a directory so that it is a
-            # sibling to node_modules, then run snyk test.
-            docker run \
-              --env-file docker-cache/.env \
-              -e "SNYK_TOKEN=$SNYK_TOKEN" \
-              --name reactionapp_web_1 \
-              "$DOCKER_REPOSITORY:$CIRCLE_SHA1" \
-              sh -c "snyk test"
-
   publish-npm-package:
     docker:
       - image: node:8
@@ -226,16 +202,11 @@ workflows:
           context: reaction-validation
           requires:
             - docker-build
-      - snyk-security:
-          context: reaction-validation
-          requires:
-            - docker-build
       - publish-npm-package:
           context: reaction-publish-semantic-release
           requires:
             - lint
             - test
-            - snyk-security
           filters:
             branches:
               only: master
