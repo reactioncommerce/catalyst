@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 import {
   Box,
   Table,
@@ -25,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2)
   },
   tableBody: {
-    "& tr:nth-child(odd)": {
-      backgroundColor: theme.palette.colors.black02
-    }
+
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.colors.black02
   },
   tableHead: {
     fontWeight: theme.typography.fontWeightSemiBold,
@@ -42,6 +44,14 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginTop: 0,
     marginBottom: 0
+  },
+  tableRowHover: {
+    "&:hover": {
+      backgroundColor: theme.palette.colors.black05
+    }
+  },
+  tableRowSelected: {
+    backgroundColor: theme.palette.colors.coolGrey100
   }
 }));
 
@@ -122,9 +132,16 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           ))}
         </TableHead>
         <TableBody className={classes.tableBody}>
-          {page.map((row) =>
+          {page.map((row, index) =>
             prepareRow(row) || (
-              <TableRow {...row.getRowProps()}>
+              <TableRow
+                {...row.getRowProps()}
+                className={clsx({
+                  [classes.tableRowHover]: true,
+                  [classes.tableRowSelected]: row.isSelected,
+                  [classes.tableRowOdd]: !row.isSelected && (index % 2 !== 0)
+                })}
+              >
                 {row.cells.map((cell) => (
                   <TableCell
                     padding={isSelectable ? "checkbox" : "default"}
