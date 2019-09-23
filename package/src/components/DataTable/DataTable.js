@@ -212,12 +212,12 @@ DataTable.propTypes = {
   /**
    * Replace the built-in pagination component with a custom component
    */
-  PaginationComponent: PropTypes.component,
+  PaginationComponent: PropTypes.elementType,
   /**
    * Replace the built-in toolbar component that contains the action menu and global filter controls
    * with a custom component.
    */
-  ToolbarComponent: PropTypes.component,
+  ToolbarComponent: PropTypes.elementType,
   /**
    * Props applied to the built-in action menu
    */
