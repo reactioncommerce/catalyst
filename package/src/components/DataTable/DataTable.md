@@ -14,6 +14,7 @@ This is the most common table type used in Reaction.
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
+import { Box } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
 
@@ -22,15 +23,29 @@ function TableExample() {
   const columns = useMemo(() => [
     {
       Header: "Name",
-      accessor: 'fullName',
+      accessor: "fullName",
     },
     {
       Header: "Email",
-      accessor: 'email',
+      accessor: "email",
     },
     {
       Header: "Card Type",
-      accessor: 'cardType',
+      accessor: "cardType",
+    },
+    // Custom cell and header renderer
+    {
+      Cell: ({ row }) => (
+        <Box textAlign="right">
+          {row.values.amount}
+        </Box>
+      ),
+      Header: ({ header }) => (
+        <Box textAlign="right">
+          Amount
+        </Box>
+      ),
+      accessor: "amount"
     }
   ], []);
 
@@ -139,6 +154,7 @@ Simple table with no filtering or selectable rows. Data fetching is simulated wi
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
+import { Box } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData, data } from "./mocks/sampleData";
 import CreditCardIcon from "mdi-material-ui/CreditCard";
@@ -147,19 +163,38 @@ function TableExample() {
   const columns = useMemo(() => [
     {
       Header: "Name",
-      accessor: 'fullName',
+      accessor: "fullName"
     },
     {
       Header: "Email",
-      accessor: 'email',
+      accessor: "email"
     },
+    // Custom cell with an icon
     {
+      Cell: ({ row }) => (
+        <Box display="flex" alignItems="center">
+          <Box component="span" paddingRight={1}>
+            <CreditCardIcon />
+          </Box>
+          {row.values.cardType}
+        </Box>
+      ),
       Header: "Card Type",
-      accessor: 'cardType',
-      Cell: ({ row }) => {
-        // console.log(row);
-        return <span><CreditCardIcon /> {row.values.cardType}</span>
-      }
+      accessor: "cardType"
+    },
+    // Custom cell and header renderer
+    {
+      Cell: ({ row }) => (
+        <Box textAlign="right">
+          {row.values.amount}
+        </Box>
+      ),
+      Header: ({ header }) => (
+        <Box textAlign="right">
+          Amount
+        </Box>
+      ),
+      accessor: "amount"
     }
   ], []);
 
@@ -195,6 +230,7 @@ TableExample()
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
+import { Box } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData, data } from "./mocks/sampleData";
 
@@ -203,15 +239,29 @@ function TableExample() {
   const columns = useMemo(() => [
     {
       Header: "Name",
-      accessor: 'fullName',
+      accessor: "fullName",
     },
     {
       Header: "Email",
-      accessor: 'email',
+      accessor: "email",
     },
     {
       Header: "Card Type",
-      accessor: 'cardType',
+      accessor: "cardType",
+    },
+    // Custom cell and header renderer
+    {
+      Cell: ({ row }) => (
+        <Box textAlign="right">
+          {row.values.amount}
+        </Box>
+      ),
+      Header: ({ header }) => (
+        <Box textAlign="right">
+          Amount
+        </Box>
+      ),
+      accessor: "amount"
     }
   ], []);
 
