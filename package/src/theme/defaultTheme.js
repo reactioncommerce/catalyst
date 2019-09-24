@@ -178,7 +178,7 @@ export const rawMuiTheme = {
     "0px 13px 26px 0 rgba(0,0,0,0.05);"
   ],
   shape: {
-    borderRadius: 2
+    borderRadius: 3
   },
   dimensions: {
     drawerWidth,
@@ -443,8 +443,8 @@ export const rawMuiTheme = {
         }
       },
       inputMarginDense: {
-        paddingTop: 8,
-        paddingBottom: 8
+        paddingTop: 9.5,
+        paddingBottom: 9.5
       }
     },
     MuiSvgIcon: {
@@ -469,11 +469,28 @@ export const rawMuiTheme = {
     },
     MuiTableCell: {
       root: {
-        borderBottom: `1px solid ${colors.black10}`
+        borderBottom: "none"
+      },
+      sizeSmall: {
+        "padding": "4x 16px 4px 16px",
+        "&:last-child": {
+          paddingRight: 16
+        },
+        "&$paddingCheckbox": {
+          "padding": "4px 16px 4px   16px",
+          "&:last-child": {
+            paddingLeft: 12,
+            paddingRight: 16
+          }
+        }
       },
       /* Styles applied to the root element if `padding="checkbox"`. */
       paddingCheckbox: {
-        padding: "4px 0 4px 4px"
+        "padding": "4px 16px 4px 16px",
+        "&:last-child": {
+          paddingLeft: 0,
+          paddingRight: 16
+        }
       }
     },
     MuiPaper: {

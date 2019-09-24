@@ -357,6 +357,7 @@ module.exports = {
         generateSection({
           componentNames: [
             "Chip",
+            "DataTable",
             "Toast"
           ],
           name: "Content"
@@ -380,6 +381,10 @@ module.exports = {
             {
               name: "Card",
               content: "styleguide/src/sections/Card.md"
+            },
+            {
+              name: "Quick Edit Card",
+              content: "styleguide/src/sections/QuickEditCard.md"
             },
             {
               name: "Tabs",
