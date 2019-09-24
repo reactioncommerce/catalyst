@@ -356,7 +356,8 @@ module.exports = {
         }),
         generateSection({
           componentNames: [
-            "Chip"
+            "Chip",
+            "Toast"
           ],
           name: "Content"
         }),

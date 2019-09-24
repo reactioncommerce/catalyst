@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { render } from "@testing-library/react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { SnackbarProvider } from "notistack";
 import defaultTheme from "../theme/defaultTheme";
 
 /**
@@ -10,7 +11,9 @@ import defaultTheme from "../theme/defaultTheme";
  */
 const TestProviders = ({ children }) => (
   <MuiThemeProvider theme={defaultTheme}>
-    {children}
+    <SnackbarProvider>
+      {children}
+    </SnackbarProvider>
   </MuiThemeProvider>
 );
 
