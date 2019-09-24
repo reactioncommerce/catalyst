@@ -38,24 +38,28 @@ export default function useDataTable({
 
   const columnsWithCheckboxes = useMemo(() => {
     if (isSelectable) {
-      return [
-        {
-          id: "selection",
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
-          // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <Checkbox {...getToggleAllRowsSelectedProps()} />
-          ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-          Cell: ({ row }) => (
-            <Checkbox {...row.getToggleRowSelectedProps()} />
-          )
-        },
-        ...columns
-      ];
+      const hasCheckboxColumn = Boolean(columns.find(({ id }) => id === "selection"));
+
+      if (!hasCheckboxColumn) {
+        return [
+          {
+            id: "selection",
+            // The header can use the table's getToggleAllRowsSelectedProps method
+            // to render a checkbox
+            // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <Checkbox {...getToggleAllRowsSelectedProps()} />
+            ),
+            // The cell can use the individual row's getToggleRowSelectedProps method
+            // to the render a checkbox
+            // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
+            Cell: ({ row }) => (
+              <Checkbox {...row.getToggleRowSelectedProps()} />
+            )
+          },
+          ...columns
+        ];
+      }
     }
 
     return columns;
