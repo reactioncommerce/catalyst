@@ -138,7 +138,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 className={clsx({
                   [classes.tableRowHover]: true,
                   [classes.tableRowSelected]: row.isSelected,
-                  [classes.tableRowOdd]: !row.isSelected && (index % 2 !== 0)
+                  [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0)
                 })}
               >
                 {row.cells.map((cell) => (
