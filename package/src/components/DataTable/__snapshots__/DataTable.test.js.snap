@@ -235,9 +235,13 @@ exports[`basic snapshot - only default props 1`] = `
     <div
       class="MuiBox-root MuiBox-root-33"
     >
-      Page
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        Page
+      </span>
       <div
-        class="MuiBox-root MuiBox-root-34"
+        class="MuiBox-root MuiBox-root-64"
       >
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-6 MuiFormControl-marginDense"
@@ -255,11 +259,11 @@ exports[`basic snapshot - only default props 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-73 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-103 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-74"
+                class="PrivateNotchedOutline-legend-104"
                 style="width: 0px;"
               >
                 <span>
@@ -270,15 +274,17 @@ exports[`basic snapshot - only default props 1`] = `
           </div>
         </div>
       </div>
-      <span>
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
         of 10
       </span>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-75"
+      class="MuiBox-root MuiBox-root-105"
     >
       <div
-        class="makeStyles-root-76"
+        class="makeStyles-root-106"
       >
         <div
           class=" css-2b097c-container"
@@ -291,11 +297,11 @@ exports[`basic snapshot - only default props 1`] = `
             >
               <div
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-77"
+                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-107"
                 type="text"
               >
                 <div
-                  class="makeStyles-valueContainer-78"
+                  class="makeStyles-valueContainer-108"
                 >
                   <div
                     class=" css-cs1jeq-singleValue"
@@ -354,11 +360,11 @@ exports[`basic snapshot - only default props 1`] = `
               </div>
               <fieldset
                 aria-hidden="true"
-                class="PrivateNotchedOutline-root-73 MuiOutlinedInput-notchedOutline"
+                class="PrivateNotchedOutline-root-103 MuiOutlinedInput-notchedOutline"
                 style="padding-left: 8px;"
               >
                 <legend
-                  class="PrivateNotchedOutline-legend-74"
+                  class="PrivateNotchedOutline-legend-104"
                   style="width: 0px;"
                 >
                   <span>
@@ -372,7 +378,7 @@ exports[`basic snapshot - only default props 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-85"
+      class="MuiBox-root MuiBox-root-115"
     />
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
@@ -796,9 +802,13 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
     <div
       class="MuiBox-root MuiBox-root-513"
     >
-      Page
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        Page
+      </span>
       <div
-        class="MuiBox-root MuiBox-root-514"
+        class="MuiBox-root MuiBox-root-544"
       >
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-477 MuiFormControl-marginDense"
@@ -816,11 +826,11 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-553 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-583 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-554"
+                class="PrivateNotchedOutline-legend-584"
                 style="width: 0px;"
               >
                 <span>
@@ -831,15 +841,17 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
           </div>
         </div>
       </div>
-      <span>
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
         of 10
       </span>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-555"
+      class="MuiBox-root MuiBox-root-585"
     >
       <div
-        class="makeStyles-root-556"
+        class="makeStyles-root-586"
       >
         <div
           class=" css-2b097c-container"
@@ -852,11 +864,11 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
             >
               <div
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-557"
+                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-587"
                 type="text"
               >
                 <div
-                  class="makeStyles-valueContainer-558"
+                  class="makeStyles-valueContainer-588"
                 >
                   <div
                     class=" css-cs1jeq-singleValue"
@@ -915,11 +927,11 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
               </div>
               <fieldset
                 aria-hidden="true"
-                class="PrivateNotchedOutline-root-553 MuiOutlinedInput-notchedOutline"
+                class="PrivateNotchedOutline-root-583 MuiOutlinedInput-notchedOutline"
                 style="padding-left: 8px;"
               >
                 <legend
-                  class="PrivateNotchedOutline-legend-554"
+                  class="PrivateNotchedOutline-legend-584"
                   style="width: 0px;"
                 >
                   <span>
@@ -933,7 +945,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-565"
+      class="MuiBox-root MuiBox-root-595"
     />
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-text"
@@ -1359,9 +1371,13 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
     <div
       class="MuiBox-root MuiBox-root-670"
     >
-      Page
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        Page
+      </span>
       <div
-        class="MuiBox-root MuiBox-root-671"
+        class="MuiBox-root MuiBox-root-701"
       >
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-634 MuiFormControl-marginDense"
@@ -1379,11 +1395,11 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-710 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-740 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-711"
+                class="PrivateNotchedOutline-legend-741"
                 style="width: 0px;"
               >
                 <span>
@@ -1394,15 +1410,17 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
           </div>
         </div>
       </div>
-      <span>
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
         of 10
       </span>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-712"
+      class="MuiBox-root MuiBox-root-742"
     >
       <div
-        class="makeStyles-root-713"
+        class="makeStyles-root-743"
       >
         <div
           class=" css-2b097c-container"
@@ -1415,11 +1433,11 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
             >
               <div
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-714"
+                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-744"
                 type="text"
               >
                 <div
-                  class="makeStyles-valueContainer-715"
+                  class="makeStyles-valueContainer-745"
                 >
                   <div
                     class=" css-cs1jeq-singleValue"
@@ -1478,11 +1496,11 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
               </div>
               <fieldset
                 aria-hidden="true"
-                class="PrivateNotchedOutline-root-710 MuiOutlinedInput-notchedOutline"
+                class="PrivateNotchedOutline-root-740 MuiOutlinedInput-notchedOutline"
                 style="padding-left: 8px;"
               >
                 <legend
-                  class="PrivateNotchedOutline-legend-711"
+                  class="PrivateNotchedOutline-legend-741"
                   style="width: 0px;"
                 >
                   <span>
@@ -1496,7 +1514,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
       </div>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-722"
+      class="MuiBox-root MuiBox-root-752"
     />
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
@@ -1920,9 +1938,13 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
     <div
       class="MuiBox-root MuiBox-root-190"
     >
-      Page
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        Page
+      </span>
       <div
-        class="MuiBox-root MuiBox-root-191"
+        class="MuiBox-root MuiBox-root-221"
       >
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-163 MuiFormControl-marginDense"
@@ -1940,11 +1962,11 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-230 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-260 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-231"
+                class="PrivateNotchedOutline-legend-261"
                 style="width: 0px;"
               >
                 <span>
@@ -1955,15 +1977,17 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
           </div>
         </div>
       </div>
-      <span>
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
         of 10
       </span>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-232"
+      class="MuiBox-root MuiBox-root-262"
     >
       <div
-        class="makeStyles-root-233"
+        class="makeStyles-root-263"
       >
         <div
           class=" css-2b097c-container"
@@ -1976,11 +2000,11 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
             >
               <div
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-234"
+                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-264"
                 type="text"
               >
                 <div
-                  class="makeStyles-valueContainer-235"
+                  class="makeStyles-valueContainer-265"
                 >
                   <div
                     class=" css-cs1jeq-singleValue"
@@ -2039,11 +2063,11 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
               </div>
               <fieldset
                 aria-hidden="true"
-                class="PrivateNotchedOutline-root-230 MuiOutlinedInput-notchedOutline"
+                class="PrivateNotchedOutline-root-260 MuiOutlinedInput-notchedOutline"
                 style="padding-left: 8px;"
               >
                 <legend
-                  class="PrivateNotchedOutline-legend-231"
+                  class="PrivateNotchedOutline-legend-261"
                   style="width: 0px;"
                 >
                   <span>
@@ -2057,7 +2081,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
       </div>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-242"
+      class="MuiBox-root MuiBox-root-272"
     />
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-text"
@@ -2483,9 +2507,13 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
     <div
       class="MuiBox-root MuiBox-root-347"
     >
-      Page
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
+        Page
+      </span>
       <div
-        class="MuiBox-root MuiBox-root-348"
+        class="MuiBox-root MuiBox-root-378"
       >
         <div
           class="MuiFormControl-root MuiTextField-root makeStyles-textField-320 MuiFormControl-marginDense"
@@ -2503,11 +2531,11 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
             />
             <fieldset
               aria-hidden="true"
-              class="PrivateNotchedOutline-root-387 MuiOutlinedInput-notchedOutline"
+              class="PrivateNotchedOutline-root-417 MuiOutlinedInput-notchedOutline"
               style="padding-left: 8px;"
             >
               <legend
-                class="PrivateNotchedOutline-legend-388"
+                class="PrivateNotchedOutline-legend-418"
                 style="width: 0px;"
               >
                 <span>
@@ -2518,15 +2546,17 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
           </div>
         </div>
       </div>
-      <span>
+      <span
+        class="MuiTypography-root MuiTypography-body2"
+      >
         of 10
       </span>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-389"
+      class="MuiBox-root MuiBox-root-419"
     >
       <div
-        class="makeStyles-root-390"
+        class="makeStyles-root-420"
       >
         <div
           class=" css-2b097c-container"
@@ -2539,11 +2569,11 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
             >
               <div
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-391"
+                class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-421"
                 type="text"
               >
                 <div
-                  class="makeStyles-valueContainer-392"
+                  class="makeStyles-valueContainer-422"
                 >
                   <div
                     class=" css-cs1jeq-singleValue"
@@ -2602,11 +2632,11 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
               </div>
               <fieldset
                 aria-hidden="true"
-                class="PrivateNotchedOutline-root-387 MuiOutlinedInput-notchedOutline"
+                class="PrivateNotchedOutline-root-417 MuiOutlinedInput-notchedOutline"
                 style="padding-left: 8px;"
               >
                 <legend
-                  class="PrivateNotchedOutline-legend-388"
+                  class="PrivateNotchedOutline-legend-418"
                   style="width: 0px;"
                 >
                   <span>
@@ -2620,7 +2650,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
       </div>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-399"
+      class="MuiBox-root MuiBox-root-429"
     />
     <button
       class="MuiButtonBase-root MuiButton-root MuiButton-text Mui-disabled Mui-disabled"
