@@ -38,7 +38,7 @@ exports[`basic snapshot - only default props 1`] = `
       class="MuiTableBody-root makeStyles-tableBody-2"
     >
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7"
+        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -57,7 +57,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
+        class="MuiTableRow-root makeStyles-tableRowHover-7"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -76,7 +76,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7"
+        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -95,7 +95,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
+        class="MuiTableRow-root makeStyles-tableRowHover-7"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -114,7 +114,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7"
+        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -133,7 +133,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
+        class="MuiTableRow-root makeStyles-tableRowHover-7"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -152,7 +152,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7"
+        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -171,7 +171,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
+        class="MuiTableRow-root makeStyles-tableRowHover-7"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -190,7 +190,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7"
+        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -209,7 +209,7 @@ exports[`basic snapshot - only default props 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-7 makeStyles-tableRowOdd-3"
+        class="MuiTableRow-root makeStyles-tableRowHover-7"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-5 MuiTableCell-body"
@@ -475,7 +475,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
       class="MuiTableBody-root makeStyles-tableBody-473"
     >
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478"
+        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -507,7 +507,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
+        class="MuiTableRow-root makeStyles-tableRowHover-478"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -539,7 +539,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478"
+        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -571,7 +571,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
+        class="MuiTableRow-root makeStyles-tableRowHover-478"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -603,7 +603,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478"
+        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -635,7 +635,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
+        class="MuiTableRow-root makeStyles-tableRowHover-478"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -667,7 +667,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478"
+        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -699,7 +699,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
+        class="MuiTableRow-root makeStyles-tableRowHover-478"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -731,7 +731,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478"
+        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -763,7 +763,7 @@ exports[`client-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-478 makeStyles-tableRowOdd-474"
+        class="MuiTableRow-root makeStyles-tableRowHover-478"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-476 MuiTableCell-body"
@@ -1044,7 +1044,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
       class="MuiTableBody-root makeStyles-tableBody-630"
     >
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635"
+        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1076,7 +1076,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
+        class="MuiTableRow-root makeStyles-tableRowHover-635"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1108,7 +1108,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635"
+        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1140,7 +1140,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
+        class="MuiTableRow-root makeStyles-tableRowHover-635"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1172,7 +1172,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635"
+        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1204,7 +1204,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
+        class="MuiTableRow-root makeStyles-tableRowHover-635"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1236,7 +1236,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635"
+        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1268,7 +1268,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
+        class="MuiTableRow-root makeStyles-tableRowHover-635"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1300,7 +1300,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635"
+        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1332,7 +1332,7 @@ exports[`client-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-635 makeStyles-tableRowOdd-631"
+        class="MuiTableRow-root makeStyles-tableRowHover-635"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-633 MuiTableCell-body"
@@ -1611,7 +1611,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
       class="MuiTableBody-root makeStyles-tableBody-159"
     >
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164"
+        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1643,7 +1643,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
+        class="MuiTableRow-root makeStyles-tableRowHover-164"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1675,7 +1675,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164"
+        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1707,7 +1707,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
+        class="MuiTableRow-root makeStyles-tableRowHover-164"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1739,7 +1739,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164"
+        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1771,7 +1771,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
+        class="MuiTableRow-root makeStyles-tableRowHover-164"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1803,7 +1803,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164"
+        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1835,7 +1835,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
+        class="MuiTableRow-root makeStyles-tableRowHover-164"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1867,7 +1867,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164"
+        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -1899,7 +1899,7 @@ exports[`server-side paginated snapshot - advances one page forward 1`] = `
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-164 makeStyles-tableRowOdd-160"
+        class="MuiTableRow-root makeStyles-tableRowHover-164"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-162 MuiTableCell-body"
@@ -2180,7 +2180,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
       class="MuiTableBody-root makeStyles-tableBody-316"
     >
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321"
+        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2212,7 +2212,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
+        class="MuiTableRow-root makeStyles-tableRowHover-321"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2244,7 +2244,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321"
+        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2276,7 +2276,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
+        class="MuiTableRow-root makeStyles-tableRowHover-321"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2308,7 +2308,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321"
+        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2340,7 +2340,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
+        class="MuiTableRow-root makeStyles-tableRowHover-321"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2372,7 +2372,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321"
+        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2404,7 +2404,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
+        class="MuiTableRow-root makeStyles-tableRowHover-321"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2436,7 +2436,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321"
+        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
@@ -2468,7 +2468,7 @@ exports[`server-side paginated snapshot - advances one page forward and back to 
         </td>
       </tr>
       <tr
-        class="MuiTableRow-root makeStyles-tableRowHover-321 makeStyles-tableRowOdd-317"
+        class="MuiTableRow-root makeStyles-tableRowHover-321"
       >
         <td
           class="MuiTableCell-root makeStyles-tableCell-319 MuiTableCell-body"
