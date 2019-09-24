@@ -6,11 +6,11 @@ The DataTable provides a robust solution for displaying tabular data. It is buil
 
 #### Types
 
-##### Standard selectable table data fetching and filtering
+##### Standard table
 
-This example is of a standard table what has selectable rows, bulk actions, filtering and pagination controlled by data from an API. Data fetching is simulated with a 200ms delay.
+This example is of the DataTable with selectable rows, bulk actions, filtering and pagination controlled by data from an API. Data fetching is simulated with a 200ms delay.
 
-This is the most common table type used in Reaction.
+This is the most common table setup used in Reaction.
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
@@ -148,9 +148,9 @@ function TableExample() {
 TableExample()
 ```
 
-##### Simple table with data fetching
+##### Table with data fetching
 
-Simple table with no filtering or selectable rows. Data fetching is simulated with a 200ms delay.
+A DataTable without filtering or selectable rows. Data fetching is simulated with a 200ms delay.
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
@@ -226,7 +226,7 @@ function TableExample() {
 TableExample()
 ```
 
-##### Simple table with client-side data
+##### Table with client-side data
 
 ```jsx
 import { useMemo, useEffect, useCallback } from "react";
