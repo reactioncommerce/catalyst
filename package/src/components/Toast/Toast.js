@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Snackbar } from "@material-ui/core";
+import { ToastWrapper } from "./helpers";
 
 /**
  * @name Toast
@@ -8,12 +9,17 @@ import { Snackbar } from "@material-ui/core";
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const { className, ...otherProps } = props;
+  const { className, message, ...otherProps } = props;
   return (
     <Snackbar
       ref={ref}
       {...otherProps}
-    />
+    >
+      <ToastWrapper
+        props={otherProps}
+        message={message}
+      />
+    </Snackbar>
   );
 });
 
