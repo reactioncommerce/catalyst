@@ -51,6 +51,7 @@ export default {
   coolGreyActiveLight: "#c9d9e1",
   coolGreyHover: "#5d8fa9",
   coolGreyHoverLight: "#eaeff3",
+  coolGreyHoverSelected: "#D9E2E7",
 
   paleGrey: "#e9f0f4",
   lightBlueGrey: "#c8d9e3",
