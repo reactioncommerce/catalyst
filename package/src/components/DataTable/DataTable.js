@@ -21,8 +21,6 @@ import ActionMenu from "../ActionMenu";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
-    color: theme.palette.colors.coolGrey500,
-    letterSpacing: 0.28,
     paddingTop: theme.spacing(2)
   },
   tableBody: {
@@ -32,14 +30,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.colors.black02
   },
   tableHead: {
+    ...theme.typography.h5,
     fontWeight: theme.typography.fontWeightSemiBold,
-    letterSpacing: 0.5,
-    padding: theme.spacing(0.5, 2),
-    color: theme.palette.colors.coolGrey500
+    padding: theme.spacing(0.5, 2)
   },
   tableCell: {
-    letterSpacing: 0.28,
-    color: theme.palette.colors.coolGrey500
+    ...theme.typography.body2
   },
   textField: {
     marginTop: 0,
@@ -164,7 +160,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             alignItems="center"
             paddingRight={2}
           >
-            {"Page"}
+            <Typography component="span" variant="body2">{"Page"}</Typography>
             <Box maxWidth={80} paddingLeft={1} paddingRight={1}>
               <TextField
                 className={classes.textField}
@@ -183,7 +179,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 }}
               />
             </Box>
-            <span>{"of "}{pageCount}</span>
+            <Typography component="span" variant="body2">{"of "}{pageCount}</Typography>
           </Box>
           <Box flex={1} maxWidth={120}>
             <Select
