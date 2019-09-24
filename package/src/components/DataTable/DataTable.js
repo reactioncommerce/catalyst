@@ -47,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   tableRowSelected: {
-    backgroundColor: theme.palette.colors.coolGrey100
+    "backgroundColor": theme.palette.colors.coolGrey100,
+    "&:hover": {
+      backgroundColor: theme.palette.colors.coolGreyHoverSelected
+    }
   }
 }));
 
