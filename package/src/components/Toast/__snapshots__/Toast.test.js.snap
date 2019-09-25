@@ -1,3 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic snapshot - only default props 1`] = `<DocumentFragment />`;
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 MuiSnackbarContent-root makeStyles-info-10 MuiTypography-body2"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="MuiSnackbarContent-message"
+      >
+        Test message
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
