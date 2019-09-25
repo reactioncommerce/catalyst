@@ -9,7 +9,7 @@ import { ToastWrapper } from "./helpers";
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const { className, message, variant, ...otherProps } = props;
+  const { className, message, variant, title, ...otherProps } = props;
   return (
     <Snackbar
       ref={ref}
@@ -18,7 +18,7 @@ const Toast = React.forwardRef(function Toast(props, ref) {
       <ToastWrapper
         props={otherProps}
         variant={variant}
-        title={props.title}
+        title={title}
         message={message}
       />
     </Snackbar>

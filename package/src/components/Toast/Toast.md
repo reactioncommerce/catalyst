@@ -8,46 +8,20 @@ The X component inherits from the Material-UI [X component](https://material-ui.
 
 <!-- Show all the variants/combos we use in Reaction Admin, without the code box > -->
 
-```jsx noeditor
-import Button from "../Button";
-import IconButton from "@material-ui/core/IconButton";
-
-function OpenToast() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="contained" color="primary" onClick={handleClick}>Open toast</Button>
-      <Toast
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={"Note archived"}
-      />
-    </div>
-  );
-}
-
-<OpenToast/>
+```jsx
+<Toast
+  anchorOrigin={{
+    vertical: 'bottom',
+    horizontal: 'left',
+  }}
+  open
+  autoHideDuration={6000}
+  ContentProps={{
+    'aria-describedby': 'message-id',
+  }}
+  message={"Note archived"}
+  title={"Title"}
+/>
 ```
 
 #### Types
@@ -93,12 +67,13 @@ function OpenToast(props) {
         }}
         message={props.message}
         variant={props.variant}
+        title={props.title}
       />
     </div>
   );
 }
 
-<OpenToast message="Information toast" variant="info" />
+<OpenToast message="Information toast" title="Info" variant="info" />
 ```
 
 ##### Success
