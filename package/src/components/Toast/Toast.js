@@ -18,6 +18,7 @@ const Toast = React.forwardRef(function Toast(props, ref) {
       <ToastWrapper
         props={otherProps}
         variant={variant}
+        title={props.title}
         message={message}
       />
     </Snackbar>
@@ -36,6 +37,7 @@ Toast.propTypes = {
    * Message
    */
   message: PropTypes.string,
+  title: PropTypes.string,
   /**
    * Variant: Info, Success, Warning, Error
    */

@@ -8,12 +8,14 @@ const useStyles = makeStyles((theme) => ({
   success: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.forestGreenBackground,
-    color: theme.palette.colors.black
+    color: theme.palette.colors.black,
+    border: `2px solid ${theme.palette.colors.forestGreenBorder}`
   },
   error: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.redBackground,
-    color: theme.palette.colors.black
+    color: theme.palette.colors.black,
+    border: `2px solid ${theme.palette.colors.redBorder}`
   },
   info: {
     fontSize: theme.typography.fontSize,
@@ -24,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   warning: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.yellowBackground,
-    color: theme.palette.colors.black
+    color: theme.palette.colors.black,
+    border: `2px solid ${theme.palette.colors.yellowBorder}`
   },
   message: {
     display: "flex",
@@ -46,14 +49,13 @@ export default function ToastWrapper(props) {
       className={clsx(classes[variant], className)}
       message={message}
       {...otherProps}
-    >
-      <div className={classes.message}>{message}</div>
-    </SnackbarContent>
+    />
   );
 }
 
 ToastWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
+  title: PropTypes.string,
   variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };
