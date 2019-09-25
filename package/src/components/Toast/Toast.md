@@ -11,7 +11,6 @@ The X component inherits from the Material-UI [X component](https://material-ui.
 ```jsx noeditor
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "mdi-material-ui/Close";
 
 function OpenToast() {
   const [open, setOpen] = React.useState(false);
@@ -55,12 +54,51 @@ function OpenToast() {
 
 <!-- Show all Types of the component used in Reaction Admin -->
 
-##### Name of type
+##### Information
 
 <!-- Explain when to use this type of the component, and give a real life Reaction Admin example. If needed, add instruction for developers on how to set up the component. -->
 
 Use a X component to allow a user to XX, such as XYXY.
 
 ```jsx
-<Toast/>
+import Button from "../Button";
+import IconButton from "@material-ui/core/IconButton";
+
+function OpenToast(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClick}>Open information toast</Button>
+      <Toast
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={props.message}
+        variant={props.variant}
+      />
+    </div>
+  );
+}
+
+<OpenToast message="Information toast" variant="info" />
 ```

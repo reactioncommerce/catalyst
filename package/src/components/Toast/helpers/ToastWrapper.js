@@ -1,6 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
+import clsx from "clsx";
 import { SnackbarContent } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  success: {
+    fontSize: theme.typography.fontSize,
+    backgroundColor: theme.palette.colors.forestGreenBackground,
+    color: theme.palette.colors.black
+  },
+  error: {
+    fontSize: theme.typography.fontSize,
+    backgroundColor: theme.palette.colors.redBackground,
+    color: theme.palette.colors.black
+  },
+  info: {
+    fontSize: theme.typography.fontSize,
+    backgroundColor: theme.palette.colors.reactionBlueBackground,
+    color: theme.palette.colors.black,
+    border: `2px solid ${theme.palette.colors.reactionBlueBorder}`
+  },
+  warning: {
+    fontSize: theme.typography.fontSize,
+    backgroundColor: theme.palette.colors.yellowBackground,
+    color: theme.palette.colors.black
+  },
+  message: {
+    display: "flex",
+    alignItems: "center"
+  }
+}));
 
 /**
  * @name ToastWrapper
@@ -8,18 +38,22 @@ import { SnackbarContent } from "@material-ui/core";
  * @returns {React.Component} A React component
  */
 export default function ToastWrapper(props) {
-  const { message, ...otherProps } = props;
+  const { className, message, variant, ...otherProps } = props;
+  const classes = useStyles();
 
   return (
     <SnackbarContent
+      className={clsx(classes[variant], className)}
       message={message}
       {...otherProps}
     >
-      <div>{message}</div>
+      <div className={classes.message}>{message}</div>
     </SnackbarContent>
   );
 }
 
 ToastWrapper.propTypes = {
-  message: PropTypes.object
+  className: PropTypes.string,
+  message: PropTypes.string,
+  variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };

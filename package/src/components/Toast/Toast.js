@@ -9,7 +9,7 @@ import { ToastWrapper } from "./helpers";
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const { className, message, ...otherProps } = props;
+  const { className, message, variant, ...otherProps } = props;
   return (
     <Snackbar
       ref={ref}
@@ -17,6 +17,7 @@ const Toast = React.forwardRef(function Toast(props, ref) {
     >
       <ToastWrapper
         props={otherProps}
+        variant={variant}
         message={message}
       />
     </Snackbar>
@@ -34,11 +35,15 @@ Toast.propTypes = {
   /**
    * Message
    */
-  message: PropTypes.object
+  message: PropTypes.string,
+  /**
+   * Variant: Info, Success, Warning, Error
+   */
+  variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };
 
 Toast.defaultProps = {
-
+  variant: "info"
 };
 
 export default Toast;
