@@ -5,19 +5,15 @@ import { Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  message: {
-    padding: "8px 0"
+  messageWrapper: {
+    // padding: "8px 0"
   },
   title: {
-    padding: "8px 0 0 0",
+    padding: "4px 0 8px 0",
     fontWeight: theme.typography.fontWeightSemiBold
   },
   action: {
-    display: "flex",
-    alignItems: "center",
-    marginLeft: "auto",
-    paddingLeft: 16,
-    marginRight: -8
+    marginLeft: "auto"
   },
   success: {
     fontSize: theme.typography.fontSize,
@@ -27,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px 16px",
     borderRadius: theme.shape.borderRadius,
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     minWidth: 288
   },
   error: {
@@ -38,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px 16px",
     borderRadius: theme.shape.borderRadius,
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     minWidth: 288
   },
   info: {
@@ -49,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px 16px",
     borderRadius: theme.shape.borderRadius,
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     minWidth: 288
   },
   warning: {
@@ -60,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px 16px",
     borderRadius: theme.shape.borderRadius,
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     minWidth: 288
   }
 }));
@@ -76,7 +72,7 @@ export default function ToastWrapper(props) {
 
   return (
     <Paper
-      component={Typography}
+      component={"div"}
       role="alertdialog"
       square
       elevation={6}
@@ -85,8 +81,10 @@ export default function ToastWrapper(props) {
       title={title}
       {...otherProps}
     >
-      { title ? <Typography variant="h4" component="div" className={classes.title}>{title}</Typography> : null }
-      <div className={classes.message}>{message}</div>
+      <div className={classes.messageWrapper}>
+        { title ? <Typography variant="h4" component="div" className={classes.title}>{title}</Typography> : null }
+        {message}
+      </div>
       {action ? <div className={classes.action}>{action}</div> : null }
     </Paper>
   );
@@ -95,7 +93,7 @@ export default function ToastWrapper(props) {
 ToastWrapper.propTypes = {
   action: PropTypes.node,
   className: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.node,
   title: PropTypes.string,
   variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };
