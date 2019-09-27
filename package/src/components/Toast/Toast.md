@@ -25,7 +25,7 @@ Users should be able to dismiss Toasts when appropriate. Information and success
 
 #### Types
 
-##### Information
+##### Default: Information
 
 - Used when there is information or tips that users can benefit from
 - Can close automatically after 10 seconds
@@ -37,10 +37,6 @@ import IconButton from "@material-ui/core/IconButton";
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -51,18 +47,11 @@ function OpenToast(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClick}>Open information toast</Button>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true))}>Open information toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false))}>Close information toast</Button>
       <Toast
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
         open={open}
-        autoHideDuration={6000}
         onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
         message={props.message}
         variant={props.variant}
         title={props.title}
@@ -71,151 +60,20 @@ function OpenToast(props) {
   );
 }
 
-<OpenToast message={<span>Information toast</span>} title="Info" variant="info" />
+<OpenToast message={<span>Information toast</span>} title="Info" />
 ```
 
 ##### Success
 
-<!-- Explain when to use this type of the component, and give a real life Reaction Admin example. If needed, add instruction for developers on how to set up the component. -->
-
 - Used when an action has been completed successfully
 - Can close automatically after 10 seconds
-
-```jsx
-import Button from "../Button";
-import IconButton from "@material-ui/core/IconButton";
-
-function OpenToast(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="contained" color="primary" onClick={handleClick}>Open success toast</Button>
-      <Toast
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={props.message}
-        variant={props.variant}
-      />
-    </div>
-  );
-}
-
-<OpenToast message={<span>Success toast</span>} variant="success" />
-```
 
 ##### Warning
 
 - Used when an action or item needs attention
 - Should not close automatically, unless the action has been resolved
 
-```jsx
-import Button from "../Button";
-import IconButton from "@material-ui/core/IconButton";
-
-function OpenToast(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="contained" color="secondary" onClick={handleClick}>Open warning toast</Button>
-      <Toast
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={props.message}
-        variant={props.variant}
-      />
-    </div>
-  );
-}
-
-<OpenToast message={<span>Warning toast</span>} variant="warning" />
-```
-
 ##### Error
 
 - Used when the system has failed to complete an action, or the user has made an error
 - Should not close automatically, unless the action has been resolved
-
-```jsx
-import Button from "../Button";
-import IconButton from "@material-ui/core/IconButton";
-
-function OpenToast(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button variant="contained" color="error" onClick={handleClick}>Open error toast</Button>
-      <Toast
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={props.message}
-        variant={props.variant}
-      />
-    </div>
-  );
-}
-
-<OpenToast message={<span>Error toast</span>} variant="error" />
-```
