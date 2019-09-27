@@ -14,6 +14,7 @@ import {
  * @returns {Object} args
  */
 export default function useDataTable({
+  DefaultColumnFilter,
   data: simpleData,
   columns,
   onFetchData,
@@ -25,6 +26,7 @@ export default function useDataTable({
   const [stateData, setData] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [globalFilter, setGlobalFilter] = useState();
+  const [shouldShowAdditionalFilters, setShowAdditionalFilters] = useState(false);
   const tableState = useTableState({ pageCount: 0, pageSize: defaultPageSize });
   const [{ sortBy, filters, pageIndex, pageSize, selectedRows }] = tableState;
 
@@ -35,6 +37,14 @@ export default function useDataTable({
   if (Array.isArray(simpleData)) {
     data = simpleData;
   }
+
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter || (() => null)
+    }),
+    [DefaultColumnFilter]
+  );
 
   const columnsWithCheckboxes = useMemo(() => {
     if (isSelectable) {
@@ -127,6 +137,7 @@ export default function useDataTable({
     {
       columns: columnsWithCheckboxes,
       data,
+      defaultColumn,
       getRowID: (row, index) => `${pageIndex}.${index}`,
       state: tableState,
       manualFilters: isServerControlled,
@@ -143,6 +154,8 @@ export default function useDataTable({
   return {
     ...dataTableProps,
     isSelectable,
+    setShowAdditionalFilters,
+    shouldShowAdditionalFilters,
     onGlobalFilterChange: handleGlobalFilterChange
   };
 }
