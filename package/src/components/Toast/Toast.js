@@ -9,7 +9,7 @@ import { ToastWrapper } from "./helpers";
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const { className, message, variant, title, ...otherProps } = props;
+  const { message, variant, title, ...otherProps } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
@@ -38,10 +38,6 @@ const Toast = React.forwardRef(function Toast(props, ref) {
 
 
 Toast.propTypes = {
-  /**
-   * Class name
-   */
-  className: PropTypes.string,
   /**
    * Message: Node
    */
