@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import {
+  AppBar,
+  ButtonGroup,
   Box,
+  Drawer,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -10,11 +14,12 @@ import {
   TextField,
   TableRow,
   Toolbar,
-  makeStyles,
-  Typography
+  Typography,
+  makeStyles
 } from "@material-ui/core";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
+import CloseIcon from "mdi-material-ui/Close";
 import Button from "../Button";
 import Select from "../Select";
 import ActionMenu from "../ActionMenu";
@@ -67,6 +72,8 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     actionMenuProps,
     ToolbarComponent,
     PaginationComponent,
+    setShowAdditionalFilters,
+    shouldShowAdditionalFilters,
 
     // Props unique from the useDataTable hook
     isSelectable,
@@ -74,6 +81,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
     // useTable Props
     getTableProps,
+    flatColumns,
     headerGroups,
     page,
     prepareRow,
@@ -90,6 +98,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
   const classes = useStyles();
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
+  const hasMoreFilters = flatColumns.filter(({ canFilter }) => canFilter).length > 3;
 
   return (
     <>
@@ -110,6 +119,49 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               variant="outlined"
             />
           )}
+          <Box paddingLeft={2}>
+            <ButtonGroup>
+              {flatColumns
+                .filter(({ canFilter }) => canFilter)
+                .slice(0, 3)
+                .map((column) => (
+                  column.render("Filter")
+                ))
+              }
+              {hasMoreFilters &&
+                <Button
+                  color="primary"
+                  onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
+                >
+                  More Filters
+                </Button>
+              }
+            </ButtonGroup>
+            <Drawer
+              anchor="right"
+              open={shouldShowAdditionalFilters}
+              onClose={() => setShowAdditionalFilters(false)}
+            >
+              <AppBar position="sticky">
+                <Toolbar>
+                  <Box flex={1} paddingLeft={2}>
+                    <Typography variant="h3">More Filters</Typography>
+                  </Box>
+                  <IconButton>
+                    <CloseIcon />
+                  </IconButton>
+                </Toolbar>
+              </AppBar>
+              {flatColumns
+                .filter(({ canFilter }) => canFilter)
+                .map((column) => (
+                  React.cloneElement(column.render("Filter"), {
+                    container: "card"
+                  })
+                ))
+              }
+            </Drawer>
+          </Box>
         </Toolbar>
       ))}
       <Table ref={ref} {...getTableProps()}>
@@ -279,6 +331,10 @@ DataTable.propTypes = {
    */
   data: PropTypes.arrayOf(PropTypes.object),
   /**
+   * Flattened array of the original column data
+   */
+  flatColumns: PropTypes.arrayOf(PropTypes.object),
+  /**
    * Get props for table
    */
   getTableProps: PropTypes.func,
@@ -334,6 +390,14 @@ DataTable.propTypes = {
    * Set the size of the pages
    */
   setPageSize: PropTypes.func,
+  /**
+   * Callback for setting the state shouldShowAdditionalFilters
+   */
+  setShowAdditionalFilters: PropTypes.func,
+  /**
+   * Show or hide the additional filters drawer
+   */
+  shouldShowAdditionalFilters: PropTypes.bool,
   /**
    * Table state [state, updater]
    */
