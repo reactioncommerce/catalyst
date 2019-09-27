@@ -1,16 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Snackbar, IconButton } from "@material-ui/core";
-import CloseIcon from "mdi-material-ui/Close";
-import { makeStyles } from "@material-ui/core/styles";
+import { Snackbar } from "@material-ui/core";
 import { ToastWrapper } from "./helpers";
-
-const useStyles = makeStyles((theme) => ({
-  close: {
-    padding: 4,
-    marginRight: -8
-  }
-}));
 
 /**
  * @name Toast
@@ -18,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const classes = useStyles();
   const { className, message, variant, title, ...otherProps } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -26,7 +16,6 @@ const Toast = React.forwardRef(function Toast(props, ref) {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
@@ -42,16 +31,6 @@ const Toast = React.forwardRef(function Toast(props, ref) {
         title={title}
         message={message}
         onClose={handleClose}
-        action={
-          <IconButton
-            key="close"
-            aria-label="close"
-            color="inherit"
-            className={classes.close}
-            onClick={handleClose}
-          >
-            <CloseIcon />
-          </IconButton>}
       />
     </Snackbar>
   );
@@ -60,10 +39,8 @@ const Toast = React.forwardRef(function Toast(props, ref) {
 
 Toast.propTypes = {
   /**
-    * You can provide a `className` prop that will be applied to the outermost DOM element
-    * rendered by this component. We do not recommend using this for styling purposes, but
-    * it can be useful as a selector in some situations.
-    */
+   * Class name
+   */
   className: PropTypes.string,
   /**
    * Message: Node

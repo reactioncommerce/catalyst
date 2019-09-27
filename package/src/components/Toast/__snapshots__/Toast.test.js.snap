@@ -5,20 +5,45 @@ exports[`basic snapshot - only default props 1`] = `
   <div
     class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
   >
-    <p
-      class="MuiTypography-root MuiPaper-root MuiPaper-elevation6 makeStyles-info-13 MuiTypography-body1"
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-info-14"
       direction="up"
-      message="Test message"
       props="[object Object]"
       role="alertdialog"
       style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    />
-    <div
-      class="makeStyles-message-8"
     >
-      Test message
+      <div
+        class="makeStyles-messageWrapper-9"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-8"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
     </div>
-    <p />
   </div>
 </DocumentFragment>
 `;

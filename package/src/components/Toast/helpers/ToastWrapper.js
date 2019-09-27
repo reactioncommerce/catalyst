@@ -1,15 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import CloseIcon from "mdi-material-ui/Close";
 
 const useStyles = makeStyles((theme) => ({
+  close: {
+    padding: theme.spacing(0.5),
+    float: "right"
+  },
   messageWrapper: {
-    // padding: "8px 0"
+    display: "inline-block"
   },
   title: {
-    padding: "4px 0 8px 0",
+    padding: theme.spacing(0.5, 0, 1, 0),
     fontWeight: theme.typography.fontWeightSemiBold
   },
   action: {
@@ -19,44 +24,36 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.forestGreenBackground,
     color: theme.palette.colors.forestGreen600,
-    border: `2px solid ${theme.palette.colors.forestGreenBorder}`,
-    padding: "8px 16px",
+    border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.forestGreenBorder}`,
+    padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    display: "flex",
-    flexDirection: "row",
     minWidth: 288
   },
   error: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.redBackground,
     color: theme.palette.colors.red600,
-    border: `2px solid ${theme.palette.colors.redBorder}`,
-    padding: "8px 16px",
+    border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.redBorder}`,
+    padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    display: "flex",
-    flexDirection: "row",
     minWidth: 288
   },
   info: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.reactionBlueBackground,
     color: theme.palette.colors.reactionBlue600,
-    border: `2px solid ${theme.palette.colors.reactionBlueBorder}`,
-    padding: "8px 16px",
+    border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.reactionBlueBorder}`,
+    padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    display: "flex",
-    flexDirection: "row",
     minWidth: 288
   },
   warning: {
     fontSize: theme.typography.fontSize,
     backgroundColor: theme.palette.colors.yellowBackground,
     color: theme.palette.colors.yellow600,
-    border: `2px solid ${theme.palette.colors.yellowBorder}`,
-    padding: "8px 16px",
+    border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.yellowBorder}`,
+    padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    display: "flex",
-    flexDirection: "row",
     minWidth: 288
   }
 }));
@@ -67,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} A React component
  */
 export default function ToastWrapper(props) {
-  const { className, message, variant, title, action, ...otherProps } = props;
+  const { className, message, variant, title, onClose, ...otherProps } = props;
   const classes = useStyles();
 
   return (
@@ -77,15 +74,21 @@ export default function ToastWrapper(props) {
       square
       elevation={6}
       className={clsx(classes[variant], className)}
-      message={message}
-      title={title}
+      aria-describedby="message-id"
       {...otherProps}
     >
       <div className={classes.messageWrapper}>
         { title ? <Typography variant="h4" component="div" className={classes.title}>{title}</Typography> : null }
         {message}
       </div>
-      {action ? <div className={classes.action}>{action}</div> : null }
+      <IconButton
+        key="close"
+        aria-label="close"
+        className={classes.close}
+        onClick={onClose}
+      >
+        <CloseIcon />
+      </IconButton>
     </Paper>
   );
 }
@@ -94,6 +97,7 @@ ToastWrapper.propTypes = {
   action: PropTypes.node,
   className: PropTypes.string,
   message: PropTypes.node,
+  onClose: PropTypes.func,
   title: PropTypes.string,
   variant: PropTypes.oneOf(["error", "info", "success", "warning"]).isRequired
 };

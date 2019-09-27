@@ -6,15 +6,6 @@ The Toast component inherits from the Material-UI [Snackbar component](https://m
 
 ### Usage
 
-```jsx
-<Toast
-  open
-  autoHideDuration={300}
-  message={"Note archived"}
-  title={"Title"}
-/>
-```
-
 Toasts are most often used when the user has taken an action. Messages appear in context and communicate when that action is successful, unsuccessful, or that it otherwise needs attention and further context.
 
 Language should be polite, clear and concise. Optionally, a title can be added to a Toast to give clarity, or when there are 2 or more lines of information to display.
@@ -47,8 +38,8 @@ function OpenToast(props) {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={() => setOpen(true))}>Open information toast</Button>
-      <Button variant="outlined" color="primary" onClick={() => setOpen(false))}>Close information toast</Button>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open information toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close information toast</Button>
       <Toast
         open={open}
         onClose={handleClose}
