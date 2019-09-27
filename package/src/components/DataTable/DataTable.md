@@ -13,10 +13,47 @@ This example is of the DataTable with selectable rows, bulk actions, filtering a
 This is the most common table setup used in Reaction.
 
 ```jsx
-import { useMemo, useEffect, useCallback } from "react";
+import { useMemo, useEffect, useCallback, forwardRef } from "react";
 import { Box, Checkbox } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
+import Select from "../Select";
+import DataTableFilter from "../DataTableFilter";
+
+function StatusSelectColumnFilter({
+  column: { filterValue, setFilter, preFilteredRows, id },
+  container,
+  className,
+  ...otherProps
+}) {
+  // Create options
+  const options = React.useMemo(() => {
+    return [{
+      label: "All",
+      value: ""
+    },{
+      label: "New",
+      value: "new"
+    },{
+      label: "Processing",
+      value: "processing"
+    }, {
+      label: "Canceled",
+      value: "canceled"
+    }]
+  }, [id, preFilteredRows]);
+
+  // Render filter control
+  return (
+    <DataTableFilter
+      className={className}
+      container={container}
+      onSelect={(value) => setFilter(value)}
+      options={options}
+      title="Order Status"
+    />
+  )
+}
 
 function TableExample() {
   // Create and memoize the column data
@@ -24,14 +61,28 @@ function TableExample() {
     {
       Header: "Name",
       accessor: "fullName",
+      disableFilters: true
     },
     {
       Header: "Email",
       accessor: "email",
+      disableFilters: true
     },
     {
       Header: "Card Type",
       accessor: "cardType",
+      Filter: StatusSelectColumnFilter
+    },
+    {
+      Header: "Status",
+      accessor: "status",
+      Filter: StatusSelectColumnFilter
+    },
+    {
+      Header: "Status",
+      accessor: "status",
+      Filter: StatusSelectColumnFilter,
+      show: false
     },
     // Custom cell and header renderer
     {
@@ -45,14 +96,18 @@ function TableExample() {
           Amount
         </Box>
       ),
-      accessor: "amount"
+      accessor: "amount",
+      // disableFilters: true,
+      Filter: StatusSelectColumnFilter
     }
   ], []);
 
   // Fetch data callback whenever the table requires more data to properly display.
   // This is the case if theres an update with pagination, filtering or sorting.
   // This function is called on the initial load of the table to fet the first set of results.
-  const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize }) => {
+  const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize, filters }) => {
+    console.log("Fetch Data")
+    console.log("-- Filters", filters)
     // Get data from an API.
     const { data } = await getPaginatedData({
       filter: globalFilter,
