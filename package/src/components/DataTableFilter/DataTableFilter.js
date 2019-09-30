@@ -112,7 +112,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
   return (
     <Fragment>
       <Button
-        aria-controls="action-menu"
+        aria-controls="filter-menu"
         aria-haspopup="true"
         className={clsx(classes.button, classNameProp)}
         onClick={handleToggle}
