@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     paddingRight: theme.spacing(1.5)
   },
-  expansionPanel: {}
+  expansionPanel: {},
+  expansionPanelDetails: {
+    paddingLeft: theme.spacing(1.5)
+  }
 }));
 
 /**
@@ -94,7 +97,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
         >
           <Typography>{title}</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails className={classes.expansionPanelDetails}>
           <RadioGroup
             onChange={(event) => onSelect(event.target.value)}
             defaultValue={value}
