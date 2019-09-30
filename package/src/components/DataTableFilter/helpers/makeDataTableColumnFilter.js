@@ -12,12 +12,12 @@ import DataTableFilter from "../DataTableFilter";
  */
 export default function makeDataTableColumnFilter(props) {
   const DataTableColumnFilter = ({
-    column: { filterValue, setFilter },
+    column: { Header, filterValue, setFilter },
     container,
     className
   }) => (
     <DataTableFilter
-      title="Filter"
+      title={typeof Header === "string" ? Header : "Filter"}
       className={className}
       container={container}
       onSelect={(value) => setFilter(value)}
