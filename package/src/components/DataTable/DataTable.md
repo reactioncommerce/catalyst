@@ -14,11 +14,12 @@ This is the most common table setup used in Reaction.
 
 ```jsx
 import { useMemo, useEffect, useCallback, forwardRef } from "react";
-import { Box, Checkbox } from "@material-ui/core";
+import { Box, Checkbox, Typography } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
 import Select from "../Select";
-import DataTableFilter from "../DataTableFilter";
+import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
+import dateFormat from "dateformat";
 
 function StatusSelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
@@ -59,6 +60,16 @@ function TableExample() {
   // Create and memoize the column data
   const columns = useMemo(() => [
     {
+      Header: "Date",
+      accessor: "createdAt",
+      disableFilters: true,
+      Cell: ({ row }) =>  (
+        <span style={{ whiteSpace: "noWrap" }}>
+          {dateFormat(row.values.date, "mm-dd-yyyy h:MM TT")}
+        </span>
+      )
+    },
+    {
       Header: "Name",
       accessor: "fullName",
       disableFilters: true
@@ -71,17 +82,38 @@ function TableExample() {
     {
       Header: "Card Type",
       accessor: "cardType",
-      Filter: StatusSelectColumnFilter
+      Filter: makeDataTableColumnFilter({
+        title: "Card Type",
+        options: [
+          { label: "JCB", value: "jcb" },
+          { label: "Visa", value: "visa" }
+        ]
+      })
     },
     {
-      Header: "Status",
+      Header: "Order Status",
       accessor: "status",
-      Filter: StatusSelectColumnFilter
+      Filter: makeDataTableColumnFilter({
+        isMulti: true,
+        // `title` can be omitted if the Header is a string
+        // title: "Order Status",
+        options: [
+          { label: "All", value: "" },
+          { label: "New", value: "new" },
+          { label: "Processing", value: "processing" },
+          { label: "Canceled", value: "canceled" }
+        ]
+      })
     },
     {
-      Header: "Status",
-      accessor: "status",
-      Filter: StatusSelectColumnFilter,
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus",
+      Filter: makeDataTableColumnFilter({
+        options: [
+          { label: "Unfulfilled", value: "unfulfilled" },
+          { label: "Fulfilled", value: "fulfilled" }
+        ]
+      }),
       show: false
     },
     // Custom cell and header renderer
@@ -97,8 +129,14 @@ function TableExample() {
         </Box>
       ),
       accessor: "amount",
-      // disableFilters: true,
-      Filter: StatusSelectColumnFilter
+      Filter: makeDataTableColumnFilter({
+        // `title` is required here since Header is a react component and not a string
+        title: "Amount",
+        options: [
+          { label: "Under 100", value: "lt:99.99" },
+          { label: "Over 100", value: "gte:100.00" },
+        ]
+      })
     }
   ], []);
 
