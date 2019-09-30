@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import {
+  Checkbox,
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
   const {
     children,
+    isMulti,
     onSelect,
     options,
     container,
@@ -70,24 +72,73 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
     setOpen(false);
   }
 
-  const menuItems = options.map((option, index) => {
-    const {
-      label,
-      value: optionValue,
-      isDisabled
-    } = option;
+  const handleCheckboxChange = useCallback((event) => {
+    const values = Array.isArray(value) ? value : [];
+    const controlValue = event.target.value;
+    let selectedValues = [];
 
-    return (
-      <ListItem key={index}>
-        <FormControlLabel
-          value={optionValue}
-          control={<Radio />}
-          label={label}
-          disabled={isDisabled}
-        />
-      </ListItem>
+    if (event.target.checked === false) {
+      selectedValues = values.filter((item) => item !== controlValue);
+    } else {
+      selectedValues = [...new Set([
+        event.target.value,
+        ...values
+      ])];
+    }
+
+    onSelect(selectedValues);
+  }, [onSelect]);
+
+  let menuItems;
+
+  if (isMulti) {
+    menuItems = options.map((option, index) => {
+      const {
+        label,
+        value: optionValue,
+        isDisabled
+      } = option;
+
+      return (
+        <ListItem key={index}>
+          <FormControlLabel
+            onChange={handleCheckboxChange}
+            value={optionValue}
+            control={<Checkbox />}
+            label={label}
+            disabled={isDisabled}
+          />
+        </ListItem>
+      );
+    });
+  } else {
+    menuItems = (
+      <RadioGroup
+        onChange={(event) => onSelect(event.target.value)}
+        defaultValue={value}
+        aria-label={title}
+      >
+        {options.map((option, index) => {
+          const {
+            label,
+            value: optionValue,
+            isDisabled
+          } = option;
+
+          return (
+            <ListItem key={index}>
+              <FormControlLabel
+                value={optionValue}
+                control={<Radio />}
+                label={label}
+                disabled={isDisabled}
+              />
+            </ListItem>
+          );
+        })}
+      </RadioGroup>
     );
-  });
+  }
 
   if (container === "card") {
     return (
@@ -98,15 +149,9 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           <Typography>{title}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-          <RadioGroup
-            onChange={(event) => onSelect(event.target.value)}
-            defaultValue={value}
-            aria-label={title}
-          >
-            <List>
-              {menuItems}
-            </List>
-          </RadioGroup>
+          <List>
+            {menuItems}
+          </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );
@@ -136,13 +181,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
         open={open}
         onClose={handleClose}
       >
-        <RadioGroup
-          onChange={(event) => onSelect(event.target.value)}
-          defaultValue={value}
-          aria-label={title}
-        >
-          {menuItems}
-        </RadioGroup>
+        {menuItems}
       </Menu>
     </Fragment>
   );
@@ -150,6 +189,8 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
 
 DataTableFilter.defaultProps = {
   color: "primary",
+  isMulti: false,
+  onSelect: () => { },
   variant: "outlined"
 };
 
@@ -178,6 +219,10 @@ DataTableFilter.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool, // eslint-disable-line
+  /**
+   * If `true, the filter options can be multi-selected
+   */
+  isMulti: PropTypes.bool,
   /**
    * If `true`, the CircularProgress will be displayed and the button will be disabled.
    */
