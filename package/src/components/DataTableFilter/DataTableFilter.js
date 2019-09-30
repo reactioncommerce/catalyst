@@ -8,8 +8,10 @@ import {
   ExpansionPanelDetails,
   Box,
   Menu,
+  MenuItem,
   List,
   ListItem,
+  ListItemText,
   Typography,
   RadioGroup,
   Radio,
@@ -181,6 +183,11 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem key="default-label" disabled>
+          <Box whiteSpace="normal">
+            <ListItemText primary={title} />
+          </Box>
+        </MenuItem>
         {menuItems}
       </Menu>
     </Fragment>
