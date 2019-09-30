@@ -99,6 +99,8 @@ const options = [{
     value={"canceled"}
   />
   <DataTableFilter
+    isMultiSelect
+    onSelect={(values) => console.log(values)}
     options={options}
     title="Fulfillment Status"
     value={"canceled"}
