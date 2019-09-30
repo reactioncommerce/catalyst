@@ -428,6 +428,13 @@ export const rawMuiTheme = {
         border: "none"
       }
     },
+    MuiExpansionPanel: {
+      root: {
+        "&$expanded": {
+          margin: 0
+        }
+      }
+    },
     MuiFab: {
       sizeSmall: {
         width: 36,
