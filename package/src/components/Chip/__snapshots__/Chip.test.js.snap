@@ -65,7 +65,7 @@ exports[`deletable chip snapshot 1`] = `
 exports[`error chip snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="MuiChip-root MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary makeStyles-outlinedPrimary-116"
+    class="MuiChip-root MuiChip-colorPrimary MuiChip-outlined MuiChip-outlinedPrimary makeStyles-outlinedPrimary-128"
   >
     <span
       class="MuiChip-label"

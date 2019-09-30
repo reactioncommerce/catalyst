@@ -1,8 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Chip as MuiChip, makeStyles } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
+  new: {
+    color: theme.palette.colors.coolGrey500,
+    backgroundColor: theme.palette.colors.forestGreen100
+  },
+  processing: {
+    color: theme.palette.colors.coolGrey500,
+    backgroundColor: theme.palette.colors.darkBlue100
+  },
+  canceled: {
+    color: theme.palette.colors.coolGrey500,
+    backgroundColor: theme.palette.colors.red100
+  },
   colorPrimary: {
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.colors.red
@@ -19,37 +32,41 @@ const useStyles = makeStyles((theme) => ({
  * @returns {React.Component} returns a React component
  */
 const Chip = React.forwardRef(function Chip(props, ref) {
-  const {
-    color,
-    ...otherProps
-  } = props;
-
+  const { color, ...otherProps } = props;
   const classes = useStyles();
 
+  const colorVariants = clsx({
+    [classes.new]: color === "new",
+    [classes.processing]: color === "processing",
+    [classes.canceled]: color === "canceled"
+  });
+
+  let errorClasses = {};
+  let errorColorProp = {};
   if (color === "error") {
-    return (
-      <MuiChip
-        classes={{
-          containedPrimary: classes.containedPrimary,
-          outlinedPrimary: classes.outlinedPrimary,
-          root: classes.root,
-          sizeSmall: classes.sizeSmall
-        }}
-        color="primary"
-        ref={ref}
-        {...otherProps}
-      />
-    );
+    errorClasses = {
+      containedPrimary: classes.containedPrimary,
+      outlinedPrimary: classes.outlinedPrimary
+    };
+    errorColorProp = { color: "primary" };
+  }
+
+  let colorProp = {};
+  // Only add props accepted by MUI Chip
+  if (["default", "primary", "secondary"].includes(color)) {
+    colorProp = { color };
   }
 
   return (
     <MuiChip
+      {...colorProp}
       classes={{
-        root: classes.root,
-        sizeSmall: classes.sizeSmall
+        ...errorClasses,
+        root: colorVariants
       }}
-      color={color}
+      {...errorColorProp}
       ref={ref}
+      // eslint-disable-next-line react/jsx-indent-props
       {...otherProps}
     />
   );
@@ -63,7 +80,7 @@ Chip.propTypes = {
   /**
    * The color of the component
    */
-  color: PropTypes.oneOf(["default", "primary", "secondary", "error"]),
+  color: PropTypes.oneOf(["default", "primary", "secondary", "new", "processing", "canceled", "error"]),
   /**
    * The variant to use
    */
@@ -72,7 +89,7 @@ Chip.propTypes = {
 
 Chip.defaultProps = {
   color: "primary",
-  variant: "outlined"
+  variant: "default"
 };
 
 export default Chip;

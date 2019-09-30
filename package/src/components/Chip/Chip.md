@@ -11,20 +11,27 @@ The Catalyst Chip inherits from the Material-UI [Chip component](https://materia
 <!-- Show all the variants/combos we use in Reaction Admin, without the code box > -->
 
 ```jsx noeditor
-const onDelete = () => { console.log("stuff") };
+const onDelete = () => {
+  console.log("stuff");
+};
 <div>
   <div style={{ display: "flex" }}>
     <div style={{ marginRight: "1rem" }}>
       <Chip color="error" label="status chip" />
     </div>
     <div style={{ marginRight: "1rem" }}>
-      <Chip label="deletable chip" variant="default" color="primary" onDelete={onDelete} />
+      <Chip label="deletable chip" color="primary" onDelete={onDelete} />
     </div>
     <div style={{ marginRight: "1rem" }}>
-      <Chip label="small deletable chip for multiselect" variant="default" color="secondary" size="small" onDelete={onDelete} />
+      <Chip
+        label="small deletable chip for multiselect"
+        color="secondary"
+        size="small"
+        onDelete={onDelete}
+      />
     </div>
   </div>
-</div>
+</div>;
 ```
 
 #### Types
@@ -40,9 +47,9 @@ Use a Deletable chip to allow users to remove an entity, like removing a Tag fro
 ```jsx
 function ChipsArray() {
   const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'swim-2019.csv' },
-    { key: 1, label: 'womens-2019.csv' },
-    { key: 2, label: 'mens-2019.csv' }
+    { key: 0, label: "swim-2019.csv" },
+    { key: 1, label: "womens-2019.csv" },
+    { key: 2, label: "mens-2019.csv" }
   ]);
 
   const handleDelete = chipToDelete => () => {
@@ -54,12 +61,11 @@ function ChipsArray() {
       {chipData.map(data => {
         return (
           <Chip
-            variant="default"
             color="primary"
             key={data.key}
             label={data.label}
             onDelete={handleDelete(data)}
-            style={{marginRight: "4px"}}
+            style={{ marginRight: "4px" }}
           />
         );
       })}
@@ -67,7 +73,7 @@ function ChipsArray() {
   );
 }
 
-<ChipsArray/>
+<ChipsArray />;
 ```
 
 ##### Deletable chip for MultiSelects
@@ -77,9 +83,9 @@ Use a Deletable chip in components a MultiSelect to allow users to remove entiti
 ```jsx
 function ChipsArray() {
   const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'womens' },
-    { key: 1, label: 'mens' },
-    { key: 2, label: 'fall-winter-2019' }
+    { key: 0, label: "womens" },
+    { key: 1, label: "mens" },
+    { key: 2, label: "fall-winter-2019" }
   ]);
 
   const handleDelete = chipToDelete => () => {
@@ -91,13 +97,12 @@ function ChipsArray() {
       {chipData.map(data => {
         return (
           <Chip
-            variant="default"
             color="secondary"
             size="small"
             key={data.key}
             label={data.label}
             onDelete={handleDelete(data)}
-            style={{marginRight: "4px"}}
+            style={{ marginRight: "4px" }}
           />
         );
       })}
@@ -105,7 +110,7 @@ function ChipsArray() {
   );
 }
 
-<ChipsArray/>
+<ChipsArray />;
 ```
 
 ##### Error chip
@@ -115,5 +120,15 @@ function ChipsArray() {
 The Error chip is used to indicate an error status, such as when an order has been cancelled.
 
 ```jsx
-<Chip color="error" label="Order Cancelled" />
+<Chip color="error" variant="outlined" label="Order Cancelled" />
+```
+
+##### Color variant
+
+<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
+
+A color variant chip to indicate a status, for example a new order status.
+
+```jsx
+<Chip color="new" label="New" />
 ```
