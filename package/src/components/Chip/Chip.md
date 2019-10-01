@@ -40,8 +40,6 @@ const onDelete = () => {
 
 ##### Deletable chip
 
-<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
-
 Use a Deletable chip to allow users to remove an entity, like removing a Tag from a filter input. To create a Deletable chip, pass a Delete function to `onDelete`, and use the `default` variant with the `primary` color.
 
 ```jsx
@@ -115,20 +113,137 @@ function ChipsArray() {
 
 ##### Error chip
 
-<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
-
 The Error chip is used to indicate an error status, such as when an order has been cancelled.
 
 ```jsx
-<Chip color="error" variant="outlined" label="Order Cancelled" />
+<Chip color="error" label="Order Cancelled" />
 ```
 
-##### Color variant
+##### All Chip variants
 
-<!-- Explain when to use this type of the component, and give a real life Reaction Admin example -->
-
-A color variant chip to indicate a status, for example a new order status.
+These are all the possible chip variants.
 
 ```jsx
-<Chip color="new" label="New" />
+function ChipsArray() {
+  const handleDelete = chipToDelete => () => {
+    alert("You clicked the delete button");
+  };
+
+  const [chipData, setChipData] = React.useState([
+    [
+      {
+        label: "primary-default",
+        color: "primary",
+        variant: "default"
+      },
+      { label: "primary-outlined", color: "primary", variant: "outlined" },
+      {
+        label: "primary-deletable",
+        color: "primary",
+        key: 0,
+        onDelete: handleDelete
+      },
+      {
+        label: "primary-deletable-outlined",
+        color: "primary",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ],
+    [
+      { label: "secondary-default", color: "secondary", variant: "default" },
+      { label: "secondary-outlined", color: "secondary", variant: "outlined" },
+      {
+        label: "secondary-deletable",
+        color: "secondary",
+        onDelete: handleDelete
+      },
+      {
+        label: "secondary-deletable-outlined",
+        color: "secondary",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ],
+    [
+      { label: "error-default", color: "error" },
+      { label: "error-outlined", color: "error", variant: "outlined" },
+      {
+        label: "error-deletable-outlined",
+        color: "error",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ],
+    [
+      { label: "success-default", color: "success" },
+      { label: "success-outlined", color: "success", variant: "outlined" },
+      { label: "success-deletable", color: "success", onDelete: handleDelete },
+      {
+        label: "success-deletable-outlined",
+        color: "success",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ],
+    [
+      { label: "info-default", color: "info" },
+      {
+        label: "info-outlined",
+        color: "info",
+        variant: "outlined"
+      },
+      {
+        label: "info-deletable",
+        color: "info",
+        onDelete: handleDelete
+      },
+      {
+        label: "info-deletable-outlined",
+        color: "info",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ],
+    [
+      { label: "danger-default", color: "danger" },
+      { label: "danger-outlined", color: "danger", variant: "outlined" },
+      {
+        label: "danger-deletable",
+        color: "danger",
+        onDelete: handleDelete
+      },
+      {
+        label: "danger-deletable-outlined",
+        color: "danger",
+        variant: "outlined",
+        onDelete: handleDelete
+      }
+    ]
+  ]);
+
+  return (
+    <div>
+      {chipData.map((chipRow, index) => {
+        return (
+          <div key={index} style={{ marginBottom: "8px" }}>
+            {chipRow.map((data, chipIndex) => {
+              return (
+                <Chip
+                  color="secondary"
+                  {...data}
+                  key={chipIndex}
+                  label={data.label}
+                  onDelete={data.onDelete && data.onDelete(data)}
+                  style={{ marginRight: "4px" }}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+<ChipsArray />;
 ```
