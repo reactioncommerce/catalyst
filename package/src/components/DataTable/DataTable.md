@@ -60,41 +60,24 @@ function TableExample() {
   // Create and memoize the column data
   const columns = useMemo(() => [
     {
+      Header: "Order ID",
+      accessor: "referenceId",
+      disableFilters: true
+    },
+    {
       Header: "Date",
       accessor: "createdAt",
       disableFilters: true,
       Cell: ({ row }) =>  (
         <span style={{ whiteSpace: "noWrap" }}>
-          {dateFormat(row.values.date, "mm-dd-yyyy h:MM TT")}
+          {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
         </span>
       )
-    },
-    {
-      Header: "Name",
-      accessor: "fullName",
-      disableFilters: true
-    },
-    {
-      Header: "Email",
-      accessor: "email",
-      disableFilters: true
-    },
-    {
-      Header: "Card Type",
-      accessor: "cardType",
-      Filter: makeDataTableColumnFilter({
-        title: "Card Type",
-        options: [
-          { label: "JCB", value: "jcb" },
-          { label: "Visa", value: "visa" }
-        ]
-      })
     },
     {
       Header: "Order Status",
       accessor: "status",
       Filter: makeDataTableColumnFilter({
-        isMulti: true,
         // `title` can be omitted if the Header is a string
         // title: "Order Status",
         options: [
@@ -103,40 +86,55 @@ function TableExample() {
           { label: "Processing", value: "processing" },
           { label: "Canceled", value: "canceled" }
         ]
+      }),
+      show: false
+    },
+    {
+      Header: "Payment Status",
+      accessor: "paymentStatus",
+      Filter: makeDataTableColumnFilter({
+        isMulti: true,
+        options: [
+          { label: "Authorized", value: "authorized" },
+          { label: "Paid", value: "Paid" },
+          { label: "Partially Refunded", value: "partially_refunded" },
+          { label: "Pending", value: "pending" },
+          { label: "Refunded", value: "refunded" },
+          { label: "Unpaid", value: "unpaid" }
+        ]
       })
     },
     {
       Header: "Fulfillment Status",
       accessor: "fulfillmentStatus",
       Filter: makeDataTableColumnFilter({
+        isMulti: true,
         options: [
           { label: "Unfulfilled", value: "unfulfilled" },
-          { label: "Fulfilled", value: "fulfilled" }
+          { label: "Fulfilled", value: "fulfilled" },
+          { label: "Partially Fulfilled", value: "partially_fulfilled" },
         ]
-      }),
-      show: false
+      })
+    },
+    {
+      Header: "Customer",
+      accessor: "customer",
+      disableFilters: true
     },
     // Custom cell and header renderer
     {
       Cell: ({ row }) => (
         <Box textAlign="right">
-          {row.values.amount}
+          {row.values.total}
         </Box>
       ),
       Header: ({ header }) => (
         <Box textAlign="right">
-          Amount
+          Total
         </Box>
       ),
-      accessor: "amount",
-      Filter: makeDataTableColumnFilter({
-        // `title` is required here since Header is a react component and not a string
-        title: "Amount",
-        options: [
-          { label: "Under 100", value: "lt:99.99" },
-          { label: "Over 100", value: "gte:100.00" },
-        ]
-      })
+      accessor: "total",
+      disableFilters: true
     }
   ], []);
 
@@ -172,8 +170,8 @@ function TableExample() {
   const dataTableProps = useDataTable({
     columns,
     onFetchData,
-    onSelectRows,
-    getRowID: (row, index) => row.id
+    // onSelectRows,
+    getRowID: (row, index) => row.referenceId
   });
 
   // Table state is comes fom a `useState` hook, thus the state first element in
@@ -232,7 +230,7 @@ function TableExample() {
   return (
     <DataTable
       {...dataTableProps}
-      actionMenuProps={{ options }}
+      // actionMenuProps={{ options }}
       isFilterable
     />
   );
