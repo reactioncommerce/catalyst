@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 0,
     marginBottom: 0
   },
+  tableRowClickable: {
+    cursor: "pointer"
+  },
   tableRowHover: {
     "&:hover": {
       backgroundColor: theme.palette.colors.black05
@@ -67,6 +70,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     actionMenuProps,
     ToolbarComponent,
     PaginationComponent,
+    onRowClick,
 
     // Props unique from the useDataTable hook
     isSelectable,
@@ -90,6 +94,12 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
   const classes = useStyles();
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
+
+  const handleCellClick = React.useCallback((isClickDisabled) => (event) => {
+    if (isClickDisabled) {
+      event.stopPropagation();
+    }
+  }, []);
 
   return (
     <>
@@ -134,24 +144,31 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           {page.map((row, index) =>
             prepareRow(row) || (
               <TableRow
+                onClick={onRowClick && onRowClick(row)}
                 {...row.getRowProps()}
                 className={clsx({
                   [classes.tableRowHover]: true,
                   [classes.tableRowSelected]: row.isSelected,
-                  [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0)
+                  [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0),
+                  [classes.tableRowClickable]: onRowClick
                 })}
               >
-                {row.cells.map((cell) => (
-                  <TableCell
-                    padding={isSelectable ? "checkbox" : "default"}
-                    classes={{
-                      root: classes.tableCell
-                    }}
-                    {...cell.getCellProps()}
-                  >
-                    {cell.render("Cell")}
-                  </TableCell>
-                ))}
+                {row.cells.map((cell) => {
+                  const { isClickDisabled, ...cellProps } = cell.getCellProps();
+
+                  return (
+                    <TableCell
+                      onClick={handleCellClick(isClickDisabled)}
+                      // padding={isSelectable ? "checkbox" : "default"}
+                      classes={{
+                        root: classes.tableCell
+                      }}
+                      {...cellProps}
+                    >
+                      {cell.render("Cell")}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
         </TableBody>
@@ -306,6 +323,10 @@ DataTable.propTypes = {
    * Event triggered when global filter field has changed
    */
   onGlobalFilterChange: PropTypes.func,
+  /**
+   * Event triggered when a row is clicked
+   */
+  onRowClick: PropTypes.func,
   /**
    * Pages
    */
