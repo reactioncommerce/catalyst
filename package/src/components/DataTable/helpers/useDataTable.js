@@ -7,6 +7,7 @@ import {
   usePagination,
   useRowSelect
 } from "react-table";
+import useDataTableCellProps from "./useDataTableCellProps";
 
 /**
  * useDataTable
@@ -18,6 +19,7 @@ export default function useDataTable({
   columns,
   onFetchData,
   onSelectRows,
+  onRowClick,
   onGlobalFilterChange,
   pageSize: defaultPageSize = 10,
   ...otherProps
@@ -30,6 +32,7 @@ export default function useDataTable({
 
   const isServerControlled = typeof onFetchData === "function";
   const isSelectable = typeof onSelectRows === "function";
+  const isRowInteractive = typeof onRowClick === "function";
   let data = stateData;
 
   if (Array.isArray(simpleData)) {
@@ -44,6 +47,11 @@ export default function useDataTable({
         return [
           {
             id: "selection",
+            cellProps: {
+              // Disable cell click so that clicking the checkbox doesn't also trigger the row click
+              isClickDisabled: true,
+              padding: "checkbox"
+            },
             // The header can use the table's getToggleAllRowsSelectedProps method
             // to render a checkbox
             // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
@@ -123,6 +131,26 @@ export default function useDataTable({
     setGlobalFilter(event.target.value);
   }, [onGlobalFilterChange]);
 
+  const handleRowClick = useMemo(() => {
+    if (isRowInteractive) {
+      return (row) => () => {
+        onRowClick({
+          row,
+          data,
+          setData,
+          setPageCount,
+          sortBy,
+          filters,
+          pageIndex,
+          pageSize,
+          selectedRows
+        });
+      };
+    }
+
+    return null;
+  }, [onRowClick]);
+
   const dataTableProps = useTable(
     {
       columns: columnsWithCheckboxes,
@@ -137,12 +165,14 @@ export default function useDataTable({
     },
     useFilters,
     usePagination,
-    useRowSelect
+    useRowSelect,
+    useDataTableCellProps
   );
 
   return {
     ...dataTableProps,
     isSelectable,
-    onGlobalFilterChange: handleGlobalFilterChange
+    onGlobalFilterChange: handleGlobalFilterChange,
+    onRowClick: handleRowClick
   };
 }
