@@ -109,6 +109,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
             control={<Checkbox />}
             label={label}
             disabled={isDisabled}
+            checked={Array.isArray(value) && value.includes(optionValue)}
           />
         </ListItem>
       );
@@ -117,9 +118,15 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
     menuItems = (
       <RadioGroup
         onChange={(event) => onSelect(event.target.value)}
-        defaultValue={value}
+        value={value || ""}
         aria-label={title}
       >
+        <FormControlLabel
+          style={{ display: "none" }}
+          key="noneSelected"
+          control={<Radio />}
+          value=""
+        />
         {options.map((option, index) => {
           const {
             label,
@@ -151,9 +158,14 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           <Typography>{title}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.expansionPanelDetails}>
-          <List>
-            {menuItems}
-          </List>
+          <Box>
+            <List>
+              {menuItems}
+            </List>
+            <Button onClick={() => onSelect(null)}>
+              Clear all
+            </Button>
+          </Box>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     );
@@ -189,6 +201,11 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           </Box>
         </MenuItem>
         {menuItems}
+        <ListItem key="clear-button">
+          <Button onClick={() => onSelect(null)}>
+            Clear
+          </Button>
+        </ListItem>
       </Menu>
     </Fragment>
   );
