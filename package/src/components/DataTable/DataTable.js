@@ -15,7 +15,9 @@ import {
   TableRow,
   Toolbar,
   Typography,
-  makeStyles
+  makeStyles,
+  useMediaQuery,
+  useTheme
 } from "@material-ui/core";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
@@ -59,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.colors.coolGreyHoverSelected
     }
+  },
+  tableWrapper: {
+    overflowX: "auto"
   }
 }));
 
@@ -101,6 +106,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   } = props;
 
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
   const hasMoreFilters = flatColumns.filter(({ canFilter }) => canFilter).length > 3;
 
@@ -109,6 +117,14 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
       event.stopPropagation();
     }
   }, []);
+
+  let maxFilterButtons = 3;
+
+  if (isMobile) {
+    maxFilterButtons = 0;
+  } else if (isTablet) {
+    maxFilterButtons = 1;
+  }
 
   return (
     <>
@@ -133,7 +149,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             <ButtonGroup>
               {flatColumns
                 .filter(({ canFilter }) => canFilter)
-                .slice(0, 3)
+                .slice(0, maxFilterButtons)
                 .map((column) => (
                   column.render("Filter")
                 ))
@@ -174,57 +190,58 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           </Box>
         </Toolbar>
       ))}
-      <Table ref={ref} {...getTableProps()}>
-        <TableHead className={classes.tableHead}>
-          {headerGroups.map((headerGroup) => (
-            <TableRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <TableCell
-                  padding={isSelectable ? "checkbox" : "default"}
-                  classes={{
-                    root: classes.tableHead
-                  }}
-                  {...column.getHeaderProps()}
-                >
-                  {column.render("Header")}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableHead>
-        <TableBody className={classes.tableBody}>
-          {page.map((row, index) =>
-            prepareRow(row) || (
-              <TableRow
-                onClick={onRowClick && onRowClick(row)}
-                {...row.getRowProps()}
-                className={clsx({
-                  [classes.tableRowHover]: true,
-                  [classes.tableRowSelected]: row.isSelected,
-                  [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0),
-                  [classes.tableRowClickable]: onRowClick
-                })}
-              >
-                {row.cells.map((cell) => {
-                  const { isClickDisabled, ...cellProps } = cell.getCellProps();
-
-                  return (
-                    <TableCell
-                      onClick={handleCellClick(isClickDisabled)}
-                      // padding={isSelectable ? "checkbox" : "default"}
-                      classes={{
-                        root: classes.tableCell
-                      }}
-                      {...cellProps}
-                    >
-                      {cell.render("Cell")}
-                    </TableCell>
-                  );
-                })}
+      <div className={classes.tableWrapper}>
+        <Table ref={ref} {...getTableProps()}>
+          <TableHead className={classes.tableHead}>
+            {headerGroups.map((headerGroup) => (
+              <TableRow {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <TableCell
+                    padding={isSelectable ? "checkbox" : "default"}
+                    classes={{
+                      root: classes.tableHead
+                    }}
+                    {...column.getHeaderProps()}
+                  >
+                    {column.render("Header")}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody className={classes.tableBody}>
+            {page.map((row, index) =>
+              prepareRow(row) || (
+                <TableRow
+                  onClick={onRowClick && onRowClick(row)}
+                  {...row.getRowProps()}
+                  className={clsx({
+                    [classes.tableRowHover]: true,
+                    [classes.tableRowSelected]: row.isSelected,
+                    [classes.tableRowOdd]: !row.isSelected && ((index + 1) % 2 !== 0),
+                    [classes.tableRowClickable]: onRowClick
+                  })}
+                >
+                  {row.cells.map((cell) => {
+                    const { isClickDisabled, ...cellProps } = cell.getCellProps();
+
+                    return (
+                      <TableCell
+                        onClick={handleCellClick(isClickDisabled)}
+                        classes={{
+                          root: classes.tableCell
+                        }}
+                        {...cellProps}
+                      >
+                        {cell.render("Cell")}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </div>
       {PaginationComponent(props) || (
         <Toolbar>
           <Box
