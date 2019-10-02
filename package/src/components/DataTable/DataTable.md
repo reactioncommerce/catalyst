@@ -167,11 +167,18 @@ function TableExample() {
     console.log("Selected rows", selectedRows);
   }, []);
 
+  // Row click callback
+  const onRowClick = useCallback(async ({ row }) => {
+    console.log("Row clicked", row);
+  }, []);
+
   const dataTableProps = useDataTable({
     columns,
     onFetchData,
     // onSelectRows,
-    getRowID: (row, index) => row.referenceId
+    onRowClick,
+    onSelectRows,
+    getRowID: (row, index) => row.id
   });
 
   // Table state is comes fom a `useState` hook, thus the state first element in
@@ -392,6 +399,18 @@ function TableExample() {
     // to the `useDataTable` hook.
     {
       id: "selection",
+      headerProps: {},
+      cellProps: {
+        // Disables the cell click if the row is clickable
+        // This is important if you have a callback for onRowClick, as the checkbox cell
+        // will also trigger the row click.
+        // Alternatively you can control the onClick with the following option
+        // onClick: (event) => event.stopPropagation(),
+        isClickDisabled: true,
+
+        // All other props will be applied to the table cell.
+        padding: "checkbox",
+      },
       // The header can use the table's getToggleAllRowsSelectedProps method
       // to render a checkbox
       // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
@@ -411,6 +430,15 @@ function TableExample() {
     {
       Header: "Name",
       accessor: "fullName",
+      cellProps: (cell) => {
+        // Call props can also be a function, in case you want to
+        // dynamically create props
+        return {
+          style: {
+            cursor: "pointer"
+          }
+        }
+      },
       Cell: ({ row }) => (
         <Link href={`#/Components/Content/DataTable/${row.values.fullName}`}>
           {row.values.fullName}
@@ -490,9 +518,15 @@ function TableExample() {
     console.log("Selected rows", selectedRows);
   }, []);
 
+  // Row click callback
+  const onRowClick = useCallback(async ({ row }) => {
+    console.log("Row clicked", row);
+  }, []);
+
   const dataTableProps = useDataTable({
     columns,
     onFetchData,
+    onRowClick,
     onSelectRows,
     getRowID: (row, index) => row.id
   });
