@@ -135,7 +135,20 @@ function TableExample() {
       ),
       accessor: "total",
       disableFilters: true
-    }
+    },
+    {
+      // Hide this column, it's only for filtering
+      Header: "Order date",
+      Filter: makeDataTableColumnFilter({
+        options: [
+          { label: "Today", value: "today" },
+          { label: "Last 7 days", value: "last7" },
+          { label: "Last 30", value: "last30" },
+        ]
+      }),
+      accessor: "createdAt",
+      show: false
+    },
   ], []);
 
   // Fetch data callback whenever the table requires more data to properly display.
@@ -177,7 +190,6 @@ function TableExample() {
     onFetchData,
     // onSelectRows,
     onRowClick,
-    onSelectRows,
     getRowID: (row, index) => row.id
   });
 
