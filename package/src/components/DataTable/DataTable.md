@@ -30,9 +30,6 @@ function StatusSelectColumnFilter({
   // Create options
   const options = React.useMemo(() => {
     return [{
-      label: "All",
-      value: ""
-    },{
       label: "New",
       value: "new"
     },{
@@ -81,7 +78,7 @@ function TableExample() {
         // `title` can be omitted if the Header is a string
         // title: "Order Status",
         options: [
-          { label: "All", value: "" },
+          // { label: "All", value: "" },
           { label: "New", value: "new" },
           { label: "Processing", value: "processing" },
           { label: "Canceled", value: "canceled" }
@@ -96,7 +93,7 @@ function TableExample() {
         isMulti: true,
         options: [
           { label: "Authorized", value: "authorized" },
-          { label: "Paid", value: "Paid" },
+          { label: "Paid", value: "paid" },
           { label: "Partially Refunded", value: "partially_refunded" },
           { label: "Pending", value: "pending" },
           { label: "Refunded", value: "refunded" },
@@ -268,44 +265,49 @@ import { Box } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData, data } from "./mocks/sampleData";
 import CreditCardIcon from "mdi-material-ui/CreditCard";
+import dateFormat from "dateformat";
 
 function TableExample() {
   const columns = useMemo(() => [
     {
-      Header: "Name",
-      accessor: "fullName"
+      Header: "Order ID",
+      accessor: "referenceId"
     },
     {
-      Header: "Email",
-      accessor: "email"
+      Header: "Date",
+      accessor: "createdAt",
+      Cell: ({ row }) =>  (
+        <span style={{ whiteSpace: "noWrap" }}>
+          {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
+        </span>
+      )
     },
-    // Custom cell with an icon
     {
-      Cell: ({ row }) => (
-        <Box display="flex" alignItems="center">
-          <Box component="span" paddingRight={1}>
-            <CreditCardIcon />
-          </Box>
-          {row.values.cardType}
-        </Box>
-      ),
-      Header: "Card Type",
-      accessor: "cardType"
+      Header: "Payment Status",
+      accessor: "paymentStatus"
+    },
+    {
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus"
+    },
+    {
+      Header: "Customer",
+      accessor: "customer"
     },
     // Custom cell and header renderer
     {
       Cell: ({ row }) => (
         <Box textAlign="right">
-          {row.values.amount}
+          {row.values.total}
         </Box>
       ),
       Header: ({ header }) => (
         <Box textAlign="right">
-          Amount
+          Total
         </Box>
       ),
-      accessor: "amount"
-    }
+      accessor: "total"
+    },
   ], []);
 
   const onFetchData = useCallback(async ({ setData, pageIndex, pageSize }) => {
@@ -342,37 +344,51 @@ TableExample()
 import { useMemo, useEffect, useCallback } from "react";
 import { Box } from "@material-ui/core";
 import { useDataTable } from "./";
-import { getPaginatedData, data } from "./mocks/sampleData";
+import data from "./mocks/orders.json";
+import dateFormat from "dateformat"
 
 function TableExample() {
   // Create and memoize the column data
   const columns = useMemo(() => [
     {
-      Header: "Name",
-      accessor: "fullName",
+      Header: "Order ID",
+      accessor: "referenceId"
     },
     {
-      Header: "Email",
-      accessor: "email",
+      Header: "Date",
+      accessor: "createdAt",
+      Cell: ({ row }) =>  (
+        <span style={{ whiteSpace: "noWrap" }}>
+          {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
+        </span>
+      )
     },
     {
-      Header: "Card Type",
-      accessor: "cardType",
+      Header: "Payment Status",
+      accessor: "paymentStatus"
+    },
+    {
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus"
+    },
+    {
+      Header: "Customer",
+      accessor: "customer"
     },
     // Custom cell and header renderer
     {
       Cell: ({ row }) => (
         <Box textAlign="right">
-          {row.values.amount}
+          {row.values.total}
         </Box>
       ),
       Header: ({ header }) => (
         <Box textAlign="right">
-          Amount
+          Total
         </Box>
       ),
-      accessor: "amount"
-    }
+      accessor: "total"
+    },
   ], []);
 
   // Create and memoize the row data
@@ -440,8 +456,53 @@ function TableExample() {
       )
     },
     {
-      Header: "Name",
-      accessor: "fullName",
+      Header: "Order ID",
+      accessor: "referenceId",
+      cellProps: {
+        padding: "checkbox"
+      },
+      Cell: ({ row, cell }) => {
+        const { status } = row.values;
+        let color = "success";
+
+        if (row.values.status === "canceled") {
+          color = "danger";
+        } else if (status === "processing") {
+          color = "info"
+        }
+
+        return (
+          <>
+            <Box
+              component="span"
+              paddingRight={2}
+            >
+              {cell.value}
+            </Box>
+            <Chip
+              color={color}
+              variant="default"
+              label={row.values.status}
+            />
+          </>
+        );
+      },
+    },
+    {
+      show: false,
+      accessor: "status"
+    },
+    {
+      Header: "Payment Status",
+      accessor: "paymentStatus"
+    },
+    {
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus"
+    },
+    {
+      Header: "Customer",
+      accessor: "customer",
       cellProps: (cell) => {
         // Call props can also be a function, in case you want to
         // dynamically create props
@@ -451,55 +512,25 @@ function TableExample() {
           }
         }
       },
-      Cell: ({ row }) => (
-        <Link href={`#/Components/Content/DataTable/${row.values.fullName}`}>
-          {row.values.fullName}
+      Cell: ({ cell }) => (
+        <Link href={`#/Components/Content/DataTable/${cell.value}`}>
+          {cell.value}
         </Link>
       ),
     },
-    {
-      Header: "Email",
-      accessor: "email",
-    },
-    {
-      Header: "Card Type",
-      accessor: "cardType",
-    },
-    {
-      Header: "Status",
-      accessor: "status",
-      Cell: ({ row }) => {
-        const { status } = row.values;
-        let color = "default";
-
-        if (row.values.status === "canceled") {
-          color = "error";
-        } else if (status === "processing") {
-          color = "primary"
-        }
-
-        return (
-          <Chip
-            color={color}
-            variant="default"
-            label={row.values.status}
-          />
-        );
-      },
-    },
     // Custom cell and header renderer
     {
-      Cell: ({ row }) => (
+      Cell: ({ cell }) => (
         <Box textAlign="right">
-          {row.values.amount}
+          {cell.value}
         </Box>
       ),
       Header: ({ header }) => (
         <Box textAlign="right">
-          Amount
+          Total
         </Box>
       ),
-      accessor: "amount"
+      accessor: "total"
     }
   ], []);
 
