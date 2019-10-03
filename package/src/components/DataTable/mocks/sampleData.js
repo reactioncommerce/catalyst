@@ -1,5 +1,7 @@
 import data from "./orders.json";
 
+export { data };
+
 /**
  * Simulate a request for paginated data
  * @param {Object} args Arguments for simulated request and pagination
@@ -9,7 +11,7 @@ import data from "./orders.json";
  * @returns {Array} arg.array
  */
 export async function getPaginatedData({
-  filter,
+  filters = {},
   offset = 0,
   limit = 10,
   simulatedDelay = 0,
@@ -19,16 +21,40 @@ export async function getPaginatedData({
   await new Promise((resolve) => setTimeout(resolve, simulatedDelay));
 
   const sortedData = data.sort((itemA, itemB) => {
+    const va = itemA[sortBy];
+    const vb = itemB[sortBy];
+
     if (sortOrder === "desc") {
-      return itemA[sortBy] < itemB[sortBy];
+      // Sort is reverse order
+      if (va > vb) return -1;
+      else if (va < vb) return 1;
+      return 0;
     }
-    return itemA[sortBy] > itemB[sortBy];
+    // Sort in order
+    if (va < vb) return -1;
+    else if (va > vb) return 1;
+    return 0;
   });
 
-  if (filter) {
-    const nodes = sortedData.filter((item) => (
-      Object.values(item).join(" ").includes(filter)
-    ));
+  const filterValues = Object.values(filters).filter((value) => value !== undefined);
+
+  if (filterValues.length) {
+    const nodes = sortedData.filter((item) => {
+      const combinedRowValue = Object.values(item).join(" ");
+
+      for (const filterValue of filterValues) {
+        if (Array.isArray(filterValue) && filterValue.length > 0) {
+          for (const multiSelectFilterValue of filterValue) {
+            if (combinedRowValue.includes(` ${multiSelectFilterValue} `)) {
+              return true;
+            }
+          }
+        } else if (combinedRowValue.includes(filterValue)) {
+          return true;
+        }
+      }
+      return false;
+    });
 
     return {
       data: {
