@@ -3,7 +3,7 @@
 exports[`basic snapshot - only default props 1`] = `
 <DocumentFragment>
   <button
-    aria-controls="action-menu"
+    aria-controls="filter-menu"
     aria-haspopup="true"
     class="MuiButtonBase-root MuiButton-root makeStyles-button-1 MuiButton-outlined MuiButton-outlinedPrimary"
     tabindex="0"
@@ -14,7 +14,7 @@ exports[`basic snapshot - only default props 1`] = `
     >
       Filter
       <div
-        class="MuiBox-root MuiBox-root-27"
+        class="MuiBox-root MuiBox-root-28"
       >
         <svg
           aria-hidden="true"
