@@ -17,6 +17,7 @@ import { useMemo, useEffect, useCallback, forwardRef } from "react";
 import { Box, Checkbox, Typography } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
+import Chip from "../Chip";
 import Select from "../Select";
 import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
 import dateFormat from "dateformat";
@@ -59,12 +60,43 @@ function TableExample() {
     {
       Header: "Order ID",
       accessor: "referenceId",
-      disableFilters: true
+      cellProps: {
+        padding: "checkbox"
+      },
+      Cell: ({ row, cell }) => {
+        const { status } = row.values;
+        let color = "success";
+
+        if (row.values.status === "canceled") {
+          color = "danger";
+        } else if (status === "processing") {
+          color = "info"
+        }
+
+        return (
+          <Box style={{ whiteSpace: "nowrap" }}>
+            <Box
+              component="span"
+              paddingRight={2}
+            >
+              {cell.value}
+            </Box>
+            {status !== "completed" ?
+              <Chip
+                color={color}
+                variant="default"
+                label={row.values.status}
+              />
+              :
+              <span>{row.values.status}</span>
+            }
+          </Box>
+        );
+      },
     },
     {
       Header: "Date",
       accessor: "createdAt",
-      disableFilters: true,
       Cell: ({ row }) =>  (
         <span style={{ whiteSpace: "noWrap" }}>
           {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
@@ -115,8 +147,7 @@ function TableExample() {
     },
     {
       Header: "Customer",
-      accessor: "customer",
-      disableFilters: true
+      accessor: "customer"
     },
     // Custom cell and header renderer
     {
@@ -130,8 +161,7 @@ function TableExample() {
           Total
         </Box>
       ),
-      accessor: "total",
-      disableFilters: true
+      accessor: "total"
     },
     {
       // Hide this column, it's only for filtering
@@ -156,7 +186,10 @@ function TableExample() {
     console.log("-- Filters", filters)
     // Get data from an API.
     const { data } = await getPaginatedData({
-      filter: globalFilter,
+      filters: {
+        searchField: globalFilter,
+        ...filters
+      },
       offset: pageIndex * pageSize,
       limit: (pageIndex + 1) * pageSize,
       simulatedDelay: 200 // 300 ms delay
@@ -472,19 +505,23 @@ function TableExample() {
         }
 
         return (
-          <>
+          <Box style={{ whiteSpace: "nowrap" }}>
             <Box
               component="span"
               paddingRight={2}
             >
               {cell.value}
             </Box>
-            <Chip
-              color={color}
-              variant="default"
-              label={row.values.status}
-            />
-          </>
+            {status !== "completed" ?
+              <Chip
+                color={color}
+                variant="default"
+                label={row.values.status}
+              />
+              :
+              <span>{row.values.status}</span>
+            }
+          </Box>
         );
       },
     },
