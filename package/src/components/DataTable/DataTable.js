@@ -110,7 +110,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
-  const hasMoreFilters = flatColumns.filter(({ canFilter }) => canFilter).length > 3;
+  const activeFilterCount = flatColumns.filter(({ canFilter }) => canFilter).length;
 
   const handleCellClick = React.useCallback((isClickDisabled) => (event) => {
     if (isClickDisabled) {
@@ -119,11 +119,16 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   }, []);
 
   let maxFilterButtons = 3;
+  let hasMoreFilters = false;
 
   if (isMobile) {
     maxFilterButtons = 0;
   } else if (isTablet) {
     maxFilterButtons = 1;
+  }
+
+  if (activeFilterCount > maxFilterButtons) {
+    hasMoreFilters = true;
   }
 
   return (
@@ -159,7 +164,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                   color="primary"
                   onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
                 >
-                  More Filters
+                  All Filters
                 </Button>
               }
             </ButtonGroup>
@@ -171,7 +176,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               <AppBar position="sticky">
                 <Toolbar>
                   <Box flex={1} paddingLeft={2}>
-                    <Typography variant="h3">More Filters</Typography>
+                    <Typography variant="h3">All filters</Typography>
                   </Box>
                   <IconButton>
                     <CloseIcon />
