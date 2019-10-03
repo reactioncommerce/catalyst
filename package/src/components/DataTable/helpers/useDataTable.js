@@ -190,12 +190,25 @@ export default function useDataTable({
     useDataTableCellProps
   );
 
+  const handleRemoveFilter = useCallback((key, multiSelectValue) => {
+    const filterValue = filters[key];
+    const { setFilter } = dataTableProps;
+
+    if (Array.isArray(filterValue)) {
+      const newMultiFilters = filterValue.filter((valueToKeep) => valueToKeep !== multiSelectValue);
+      setFilter(key, newMultiFilters.length === 0 ? null : newMultiFilters);
+    } else {
+      setFilter(key, null);
+    }
+  }, [filters]);
+
   return {
     ...dataTableProps,
     isSelectable,
     setShowAdditionalFilters,
     shouldShowAdditionalFilters,
     onGlobalFilterChange: handleGlobalFilterChange,
-    onRowClick: handleRowClick
+    onRowClick: handleRowClick,
+    onRemoveFilter: handleRemoveFilter
   };
 }
