@@ -18,41 +18,8 @@ import { Box, Checkbox, Typography } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
 import Chip from "../Chip";
-import Select from "../Select";
 import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
 import dateFormat from "dateformat";
-
-function StatusSelectColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id },
-  container,
-  className,
-  ...otherProps
-}) {
-  // Create options
-  const options = React.useMemo(() => {
-    return [{
-      label: "New",
-      value: "new"
-    },{
-      label: "Processing",
-      value: "processing"
-    }, {
-      label: "Canceled",
-      value: "canceled"
-    }]
-  }, [id, preFilteredRows]);
-
-  // Render filter control
-  return (
-    <DataTableFilter
-      className={className}
-      container={container}
-      onSelect={(value) => setFilter(value)}
-      options={options}
-      title="Order Status"
-    />
-  )
-}
 
 function TableExample() {
   // Create and memoize the column data
@@ -202,14 +169,6 @@ function TableExample() {
     }
   }, []);
 
-  // When rows are selected it will be reported here if additional actions need
-  // to take place on selection.
-  // Selected can also be accessed from the table state in the example below:
-  // `const [{ selectedRows }] = dataTableProps.state;`
-  const onSelectRows = useCallback(async ({ selectedRows }) => {
-    console.log("Selected rows", selectedRows);
-  }, []);
-
   // Row click callback
   const onRowClick = useCallback(async ({ row }) => {
     console.log("Row clicked", row);
@@ -218,7 +177,6 @@ function TableExample() {
   const dataTableProps = useDataTable({
     columns,
     onFetchData,
-    // onSelectRows,
     onRowClick,
     getRowID: (row, index) => row.id
   });
@@ -228,58 +186,29 @@ function TableExample() {
   // e.g. `const [state, updaterFunc] = dataTableProps.state;`
   const [{ selectedRows }] = dataTableProps.state;
 
-  // Create options for the built-in ActionMenu in the DataTable
-  const options = useMemo(() => [{
-    label: "Filter by file",
-    onClick: () => {
-      console.log("Filter by file");
-    }
-  }, {
-    label: "Publish",
-    confirmTitle: `Publish ${selectedRows.length} products`,
-    confirmMessage: `Are you sure you want to publish ${selectedRows.length} products to your storefront?`,
-    isDisabled: selectedRows.length === 0,
-    onClick: () => {
-      console.log(`Published ${selectedRows.length} products`);
-    }
-  }, {
-    label: "Make Visible",
-    confirmTitle: `Make ${selectedRows.length} products visible`,
-    confirmMessage: `Are you sure you want to make ${selectedRows.length} products visible to customers?`,
-    isDisabled: selectedRows.length === 0,
-    onClick: () => {
-      console.log(`Made ${selectedRows.length} products visible`);
-    }
-  }, {
-    label: "Make Hidden",
-    confirmTitle: `Make ${selectedRows.length} products hidden`,
-    confirmMessage: `Are you sure you want to make ${selectedRows.length} products hidden from customers?`,
-    isDisabled: selectedRows.length === 0,
-    onClick: () => {
-      console.log(`Made ${selectedRows.length} products hidden`);
-    }
-  }, {
-    label: "Duplicate",
-    confirmTitle: `Duplicate ${selectedRows.length} products`,
-    confirmMessage: `Are you sure you want to duplicate ${selectedRows.length} products?`,
-    isDisabled: selectedRows.length === 0,
-    onClick: () => {
-      console.log(`Duplicated ${selectedRows.length} products`);
-    }
-  }, {
-    label: "Archive",
-    confirmTitle: `Archive ${selectedRows.length} products`,
-    confirmMessage: `Are you sure you want to archive ${selectedRows.length} products? This will hide them from both admins and customers.`,
-    isDisabled: selectedRows.length === 0,
-    onClick: () => {
-      console.log(`Archived ${selectedRows.length} products`);
-    }
-  }], [selectedRows]);
+  const labels = useMemo(() => ({
+    "globalFilterPlaceholder": "Filter orders",
+    "filterChipValue.partially_fulfilled": "Partially Fulfilled",
+    "filterChipValue.fulfilled": "Fulfilled",
+    "filterChipValue.Unfulfilled": "Unfulfilled",
+    "filterChipValue.authorized": "Authorized",
+    "filterChipValue.paid": "Paid",
+    "filterChipValue.partially_refunded": "Partially Refunded",
+    "filterChipValue.pending": "Pending",
+    "filterChipValue.refunded": "Refunded",
+    "filterChipValue.unpaid": "Unpaid",
+    "filterChipValue.new": "New",
+    "filterChipValue.processing": "Processing",
+    "filterChipValue.canceled": "Canceled",
+    "filterChipValue.today": "Today",
+    "filterChipValue.last7": "Last 7 days",
+    "filterChipValue.last30": "Last 30"
+  }), []);
 
   return (
     <DataTable
       {...dataTableProps}
-      // actionMenuProps={{ options }}
+      labels={labels}
       isFilterable
     />
   );
