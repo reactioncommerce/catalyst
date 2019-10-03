@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import {
@@ -25,6 +25,7 @@ import CloseIcon from "mdi-material-ui/Close";
 import Button from "../Button";
 import Select from "../Select";
 import ActionMenu from "../ActionMenu";
+import DataTableFilterChipBar from "./helpers/DataTableFilterChipBar";
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -67,6 +68,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+export const defaultLabels = {
+  allFilters: "All filters",
+  allFiltersDrawerTitle: "All filters",
+  globalFilterPlaceholder: "Filter",
+  next: "Next",
+  page: "Page",
+  pageOf: ({ count }) => `of ${count}`,
+  pageSizeSelect: ({ count }) => `${count} rows`,
+  previous: "Previous"
+};
+
 /**
  * @name DataTable
  * @param {Object} props Component props
@@ -80,9 +92,11 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     actionMenuProps,
     ToolbarComponent,
     PaginationComponent,
+    labels: labelsProp,
     setShowAdditionalFilters,
     shouldShowAdditionalFilters,
     onRowClick,
+    onRemoveFilter,
 
     // Props unique from the useDataTable hook
     isSelectable,
@@ -102,7 +116,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     nextPage,
     previousPage,
     setPageSize,
-    state: [{ pageIndex, pageSize }]
+    state: [{ pageIndex, pageSize, filters }]
   } = props;
 
   const classes = useStyles();
@@ -112,7 +126,12 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
   const activeFilterCount = flatColumns.filter(({ canFilter }) => canFilter).length;
 
-  const handleCellClick = React.useCallback((isClickDisabled) => (event) => {
+  const labels = useMemo(() => ({
+    ...defaultLabels,
+    ...labelsProp
+  }), [labelsProp]);
+
+  const handleCellClick = useCallback((isClickDisabled) => (event) => {
     if (isClickDisabled) {
       event.stopPropagation();
     }
@@ -145,7 +164,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               className={classes.textField}
               fullWidth
               margin="dense"
-              placeholder="Filter"
+              placeholder={labels.globalFilterPlaceholder}
               onChange={onGlobalFilterChange}
               variant="outlined"
             />
@@ -164,7 +183,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                   color="primary"
                   onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
                 >
-                  All Filters
+                  {labels.allFilters}
                 </Button>
               }
             </ButtonGroup>
@@ -176,7 +195,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               <AppBar position="sticky">
                 <Toolbar>
                   <Box flex={1} paddingLeft={2}>
-                    <Typography variant="h3">All filters</Typography>
+                    <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
                   </Box>
                   <IconButton>
                     <CloseIcon />
@@ -195,6 +214,12 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           </Box>
         </Toolbar>
       ))}
+      <DataTableFilterChipBar
+        columns={flatColumns}
+        filters={filters}
+        labels={labels}
+        onRemove={onRemoveFilter}
+      />
       <div className={classes.tableWrapper}>
         <Table ref={ref} {...getTableProps()}>
           <TableHead className={classes.tableHead}>
@@ -273,11 +298,11 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 }}
               />
             </Box>
-            <Typography component="span" variant="body2">{"of "}{pageCount}</Typography>
+            <Typography component="span" variant="body2">{labels.pageOf({ count: pageCount })}</Typography>
           </Box>
           <Box flex={1} maxWidth={120}>
             <Select
-              value={{ label: `${pageSize} rows`, value: pageSize }}
+              value={{ label: labels.pageSizeSelect({ count: pageSize }), value: pageSize }}
               onChange={({ value }) => {
                 setPageSize(value);
               }}
@@ -286,11 +311,11 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           </Box>
           <Box flex={1} />
           <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            <ChevronLeftIcon /> Previous
+            <ChevronLeftIcon /> {labels.previous}
           </Button>
           <Typography component="span">{" | "}</Typography>
           <Button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next <ChevronRightIcon />
+            {labels.next} <ChevronRightIcon />
           </Button>
         </Toolbar>
       )}
@@ -394,6 +419,39 @@ DataTable.propTypes = {
    */
   isSelectable: PropTypes.bool,
   /**
+   * Labels for various controls
+   */
+  labels: PropTypes.shape({
+    /**
+     * The "All filters" button in table toolbar
+     */
+    allFilters: PropTypes.string.isRequired,
+    /**
+     * Drawer title for all filters
+     */
+    allFiltersDrawerTitle: PropTypes.string.isRequired,
+    /**
+     * Global filter text input label
+     */
+    globalFilterPlaceholder: PropTypes.string.isRequired,
+    /**
+     * Next button label
+     */
+    next: PropTypes.string.isRequired,
+    /**
+     * Function to generate the total number of pages ({ count }) => \`of ${count}\`,
+     */
+    pageOf: PropTypes.func.isRequired,
+    /**
+     * Function to generate the label in select dropdown ({ count }) => \`${count} rows`,
+     */
+    pageSizeSelect: PropTypes.func.isRequired,
+    /**
+     * Previous button label
+     */
+    previous: PropTypes.string.isRequired
+  }),
+  /**
    * Go to next page
    */
   nextPage: PropTypes.func,
@@ -401,6 +459,10 @@ DataTable.propTypes = {
    * Event triggered when global filter field has changed
    */
   onGlobalFilterChange: PropTypes.func,
+  /**
+   * Event triggered when a filter is removed with the `(key, multiSelectValueIfAvailable) => {}` signature.
+   */
+  onRemoveFilter: PropTypes.func,
   /**
    * Event triggered when a row is clicked
    */
@@ -450,6 +512,7 @@ DataTable.propTypes = {
 DataTable.defaultProps = {
   ToolbarComponent() { },
   PaginationComponent() { },
+  labels: defaultLabels,
   pageSizes: [10, 20, 30, 40, 50]
 };
 
