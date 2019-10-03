@@ -50,6 +50,14 @@ export default function useDataTable({
   );
 
   const columnsWithCheckboxes = useMemo(() => {
+    // Process columns with some default options
+    const updatedColumns = columns.map((column) => ({
+      // Disable filtering for all columns, unless a filter is
+      // specified via the `Filter` prop in the column definition
+      disableFilters: typeof column.Filter !== "function",
+      ...column
+    }));
+
     if (isSelectable) {
       const hasCheckboxColumn = Boolean(columns.find(({ id }) => id === "selection"));
 
@@ -62,6 +70,8 @@ export default function useDataTable({
               isClickDisabled: true,
               padding: "checkbox"
             },
+            // tTis column is not filterable
+            disableFilters: true,
             // The header can use the table's getToggleAllRowsSelectedProps method
             // to render a checkbox
             // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
@@ -75,12 +85,12 @@ export default function useDataTable({
               <Checkbox {...row.getToggleRowSelectedProps()} />
             )
           },
-          ...columns
+          ...updatedColumns
         ];
       }
     }
 
-    return columns;
+    return updatedColumns;
   }, [
     onSelectRows
   ]);
