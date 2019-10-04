@@ -9,6 +9,7 @@ import {
   Box,
   Menu,
   MenuItem,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -36,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const defaultLabels = {
+  clear: "Clear",
+  clearAll: "Clear all"
+};
+
 /**
  * @name DataTableFilter
  * @param {Object} props Component props
@@ -48,6 +54,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
     onSelect,
     options,
     container,
+    labels: labelsProp,
     title,
     value,
     className: classNameProp,
@@ -56,6 +63,11 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = ref || React.useRef(null);
+
+  const labels = {
+    ...defaultLabels,
+    ...labelsProp
+  };
 
   /**
    * Toggle menu open
@@ -165,10 +177,16 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           <Box>
             <List>
               {menuItems}
+              <ListItem key="clear-button">
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => onSelect(null)}
+                >
+                  {isMulti ? labels.clearAll : labels.clear}
+                </Link>
+              </ListItem>
             </List>
-            <Button onClick={() => onSelect(null)}>
-              Clear all
-            </Button>
           </Box>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -205,10 +223,14 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           </Box>
         </MenuItem>
         {menuItems}
-        <ListItem className={classes.listItem} key="clear-button">
-          <Button onClick={() => onSelect(null)}>
-            Clear
-          </Button>
+        <ListItem key="clear-button">
+          <Link
+            component="button"
+            variant="body2"
+            onClick={() => onSelect(null)}
+          >
+            {labels.clear}
+          </Link>
         </ListItem>
       </Menu>
     </Fragment>
@@ -218,6 +240,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
 DataTableFilter.defaultProps = {
   color: "primary",
   isMulti: false,
+  labels: defaultLabels,
   onSelect: () => { },
   variant: "outlined"
 };
@@ -255,6 +278,19 @@ DataTableFilter.propTypes = {
    * If `true`, the CircularProgress will be displayed and the button will be disabled.
    */
   isWaiting: PropTypes.bool,
+  /**
+   * Labels for various components
+   */
+  labels: PropTypes.shape({
+    /**
+     * Clear all for multi-select filters
+     */
+    clearAll: PropTypes.string.isRequired,
+    /**
+     * Clear label for single select filters
+     */
+    clear: PropTypes.string.isRequired
+  }),
   /**
    * Called when an option is selected. Can be use simultaneously with option onClick callbacks.
    */
