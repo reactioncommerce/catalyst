@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic snapshot - error variant 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-error-232"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="makeStyles-messageWrapper-228"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-227"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`basic snapshot - information variant 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-info-87"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="makeStyles-messageWrapper-82"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-81"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`basic snapshot - only default props 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-info-14"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="makeStyles-messageWrapper-9"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-8"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`basic snapshot - success variant 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-success-158"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="makeStyles-messageWrapper-155"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-154"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`basic snapshot - warning variant 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiSnackbar-root MuiSnackbar-anchorOriginBottomCenter"
+  >
+    <div
+      aria-describedby="message-id"
+      class="MuiPaper-root MuiPaper-elevation6 makeStyles-warning-307"
+      direction="up"
+      props="[object Object]"
+      role="alertdialog"
+      style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+    >
+      <div
+        class="makeStyles-messageWrapper-301"
+      >
+        Test message
+      </div>
+      <button
+        aria-label="close"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-300"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            role="presentation"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

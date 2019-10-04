@@ -2,6 +2,7 @@ import React from "react";
 import DefaultWrapper from "react-styleguidist/lib/client/rsg-components/Wrapper/Wrapper";
 import { ComponentsProvider } from "@reactioncommerce/components-context";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { SnackbarProvider } from "notistack";
 import appComponents from "../appComponents";
 import { defaultTheme } from "../../../package/src";
 
@@ -15,7 +16,9 @@ function Wrapper(props) {
   return (
     <ComponentsProvider value={appComponents}>
       <MuiThemeProvider theme={defaultTheme}>
-        <DefaultWrapper {...props} />
+        <SnackbarProvider>
+          <DefaultWrapper {...props} />
+        </SnackbarProvider>
       </MuiThemeProvider>
     </ComponentsProvider>
   );
