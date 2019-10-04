@@ -14,7 +14,7 @@ exports[`basic snapshot - only default props 1`] = `
     >
       Filter
       <div
-        class="MuiBox-root MuiBox-root-28"
+        class="MuiBox-root MuiBox-root-29"
       >
         <svg
           aria-hidden="true"
