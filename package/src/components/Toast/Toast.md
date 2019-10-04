@@ -24,7 +24,6 @@ Users should be able to dismiss Toasts when appropriate. Information and success
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
@@ -62,7 +61,6 @@ function OpenToast(props) {
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
@@ -101,7 +99,6 @@ function OpenToast(props) {
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
@@ -139,7 +136,6 @@ function OpenToast(props) {
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
@@ -177,7 +173,6 @@ function OpenToast(props) {
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
-import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
