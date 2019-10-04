@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     paddingRight: theme.spacing(1.5)
   },
+  listItem: {
+    paddingTop: 0,
+    paddingBottom: 0
+  },
   expansionPanel: {},
   expansionPanelDetails: {
     paddingLeft: theme.spacing(1.5)
@@ -102,7 +106,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
       } = option;
 
       return (
-        <ListItem key={index}>
+        <ListItem className={classes.listItem} key={index}>
           <FormControlLabel
             onChange={handleCheckboxChange}
             value={optionValue}
@@ -135,7 +139,7 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
           } = option;
 
           return (
-            <ListItem key={index}>
+            <ListItem className={classes.listItem} key={index}>
               <FormControlLabel
                 value={optionValue}
                 control={<Radio />}
@@ -195,13 +199,13 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem key="default-label" disabled>
+        <MenuItem className={classes.listItem} key="default-label" disabled>
           <Box whiteSpace="normal">
             <ListItemText primary={title} />
           </Box>
         </MenuItem>
         {menuItems}
-        <ListItem key="clear-button">
+        <ListItem className={classes.listItem} key="clear-button">
           <Button onClick={() => onSelect(null)}>
             Clear
           </Button>
