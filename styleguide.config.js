@@ -358,6 +358,7 @@ module.exports = {
           componentNames: [
             "Chip",
             "DataTable",
+            "DataTableFilter",
             "Toast"
           ],
           name: "Content"

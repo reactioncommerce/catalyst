@@ -3,23 +3,25 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable react/no-multi-comp */
 import React, { useMemo, useCallback } from "react";
-import CreditCardIcon from "mdi-material-ui/CreditCard";
 import { fireEvent, render, waitForElement } from "../../tests/index.js";
 import { getPaginatedData, data } from "./mocks/sampleData";
 import DataTable, { useDataTable } from "./";
 
 const columnData = [
   {
-    Header: "Name",
-    accessor: "fullName"
+    Header: "Order ID",
+    accessor: "referenceId"
   },
   {
-    Header: "Email",
-    accessor: "email"
+    Header: "Customer",
+    accessor: "customer",
+    Cell: ({ cell }) => (
+      <a href={`#${cell.value}`}>{cell.value}</a>
+    )
   },
   {
-    Header: "Card Type",
-    accessor: "cardType"
+    Header: "Total",
+    accessor: "total"
   }
 ];
 
@@ -38,29 +40,15 @@ function TestTable() {
 
 // Basic table
 function TestTableWithServerSidePagination() {
-  const columns = useMemo(() => [
-    {
-      Header: "Name",
-      accessor: "fullName"
-    },
-    {
-      Header: "Email",
-      accessor: "email"
-    },
-    {
-      Header: "Card Type",
-      accessor: "cardType",
-      Cell: ({ row }) => (
-        <span><CreditCardIcon /> {row.values.cardType}</span>
-      )
-    }
-  ], []);
+  const columns = useMemo(() => columnData, []);
 
   const onFetchData = useCallback(async ({ pageIndex, pageSize }) => {
     const { data: fetchedData } = await getPaginatedData({
       offset: pageIndex * pageSize,
       limit: (pageIndex + 1) * pageSize,
-      simulatedDelay: 200 // 300ms delay
+      simulatedDelay: 200, // 300ms delay
+      sortBy: "referenceId",
+      sortOrder: "asc"
     });
 
     return {
@@ -78,24 +66,7 @@ function TestTableWithServerSidePagination() {
 }
 
 function TestTableWithClientSidePagination() {
-  const columns = useMemo(() => [
-    {
-      Header: "Name",
-      accessor: "fullName"
-    },
-    {
-      Header: "Email",
-      accessor: "email"
-    },
-    {
-      Header: "Card Type",
-      accessor: "cardType",
-      Cell: ({ row }) => (
-        <span><CreditCardIcon /> {row.values.cardType}</span>
-      )
-    }
-  ], []);
-
+  const columns = useMemo(() => columnData, []);
   const memoizedData = useMemo(() => data, []);
 
   const dataTableProps = useDataTable({
@@ -114,32 +85,32 @@ test("basic snapshot - only default props", () => {
 
 test("server-side paginated snapshot - advances one page forward", async () => {
   const { asFragment, getByText } = render(<TestTableWithServerSidePagination />);
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   fireEvent.click(getByText("Next"));
-  await waitForElement(() => getByText("Kennett Fenlon"));
+  await waitForElement(() => getByText("10000011"));
   expect(asFragment()).toMatchSnapshot();
 });
 
 test("server-side paginated snapshot - advances one page forward and back to first", async () => {
   const { asFragment, getByText } = render(<TestTableWithServerSidePagination />);
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   fireEvent.click(getByText("Previous"));
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   expect(asFragment()).toMatchSnapshot();
 });
 
 test("client-side paginated snapshot - advances one page forward", async () => {
   const { asFragment, getByText } = render(<TestTableWithClientSidePagination />);
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   fireEvent.click(getByText("Next"));
-  await waitForElement(() => getByText("Kennett Fenlon"));
+  await waitForElement(() => getByText("10000011"));
   expect(asFragment()).toMatchSnapshot();
 });
 
 test("client-side paginated snapshot - advances one page forward and back to first", async () => {
   const { asFragment, getByText } = render(<TestTableWithClientSidePagination />);
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   fireEvent.click(getByText("Previous"));
-  await waitForElement(() => getByText("Claudia Whitmarsh"));
+  await waitForElement(() => getByText("10000001"));
   expect(asFragment()).toMatchSnapshot();
 });
