@@ -93,10 +93,11 @@ const DataTableFilter = React.forwardRef(function DataTableFilter(props, ref) {
   const handleCheckboxChange = useCallback((event) => {
     const values = Array.isArray(value) ? value : [];
     const controlValue = event.target.value;
-    let selectedValues = [];
+    let selectedValues;
 
     if (event.target.checked === false) {
-      selectedValues = values.filter((item) => item !== controlValue);
+      const newValues = values.filter((item) => item !== controlValue);
+      selectedValues = newValues.length > 0 ? newValues : null;
     } else {
       selectedValues = [...new Set([
         event.target.value,
