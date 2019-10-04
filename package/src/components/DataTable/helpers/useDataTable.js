@@ -15,6 +15,7 @@ import useDataTableCellProps from "./useDataTableCellProps";
  * @returns {Object} args
  */
 export default function useDataTable({
+  DefaultColumnFilter,
   data: simpleData,
   columns,
   onFetchData,
@@ -27,6 +28,7 @@ export default function useDataTable({
   const [stateData, setData] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [globalFilter, setGlobalFilter] = useState();
+  const [shouldShowAdditionalFilters, setShowAdditionalFilters] = useState(false);
   const tableState = useTableState({ pageCount: 0, pageSize: defaultPageSize });
   const [{ sortBy, filters, pageIndex, pageSize, selectedRows }] = tableState;
 
@@ -39,7 +41,23 @@ export default function useDataTable({
     data = simpleData;
   }
 
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter || (() => null)
+    }),
+    [DefaultColumnFilter]
+  );
+
   const columnsWithCheckboxes = useMemo(() => {
+    // Process columns with some default options
+    const updatedColumns = columns.map((column) => ({
+      // Disable filtering for all columns, unless a filter is
+      // specified via the `Filter` prop in the column definition
+      disableFilters: typeof column.Filter !== "function",
+      ...column
+    }));
+
     if (isSelectable) {
       const hasCheckboxColumn = Boolean(columns.find(({ id }) => id === "selection"));
 
@@ -52,6 +70,8 @@ export default function useDataTable({
               isClickDisabled: true,
               padding: "checkbox"
             },
+            // tTis column is not filterable
+            disableFilters: true,
             // The header can use the table's getToggleAllRowsSelectedProps method
             // to render a checkbox
             // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
@@ -65,12 +85,12 @@ export default function useDataTable({
               <Checkbox {...row.getToggleRowSelectedProps()} />
             )
           },
-          ...columns
+          ...updatedColumns
         ];
       }
     }
 
-    return columns;
+    return updatedColumns;
   }, [
     onSelectRows
   ]);
@@ -155,6 +175,7 @@ export default function useDataTable({
     {
       columns: columnsWithCheckboxes,
       data,
+      defaultColumn,
       getRowID: (row, index) => `${pageIndex}.${index}`,
       state: tableState,
       manualFilters: isServerControlled,
@@ -169,10 +190,25 @@ export default function useDataTable({
     useDataTableCellProps
   );
 
+  const handleRemoveFilter = useCallback((key, multiSelectValue) => {
+    const filterValue = filters[key];
+    const { setFilter } = dataTableProps;
+
+    if (Array.isArray(filterValue)) {
+      const newMultiFilters = filterValue.filter((valueToKeep) => valueToKeep !== multiSelectValue);
+      setFilter(key, newMultiFilters.length === 0 ? null : newMultiFilters);
+    } else {
+      setFilter(key, null);
+    }
+  }, [filters]);
+
   return {
     ...dataTableProps,
     isSelectable,
+    setShowAdditionalFilters,
+    shouldShowAdditionalFilters,
     onGlobalFilterChange: handleGlobalFilterChange,
-    onRowClick: handleRowClick
+    onRowClick: handleRowClick,
+    onRemoveFilter: handleRemoveFilter
   };
 }

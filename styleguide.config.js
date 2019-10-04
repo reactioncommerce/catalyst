@@ -357,7 +357,8 @@ module.exports = {
         generateSection({
           componentNames: [
             "Chip",
-            "DataTable"
+            "DataTable",
+            "DataTableFilter"
           ],
           name: "Content"
         }),

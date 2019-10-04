@@ -263,7 +263,8 @@ export const rawMuiTheme = {
       root: {
         lineHeight: 1.5,
         padding: `${defaultSpacingUnit}px ${defaultSpacingUnit * 2}px`,
-        textTransform: "initial"
+        textTransform: "initial",
+        whiteSpace: "nowrap"
       },
       text: {
         color: colors.coolGrey400,
@@ -425,6 +426,13 @@ export const rawMuiTheme = {
       },
       paperAnchorDockedRight: {
         border: "none"
+      }
+    },
+    MuiExpansionPanel: {
+      root: {
+        "&$expanded": {
+          margin: 0
+        }
       }
     },
     MuiFab: {
