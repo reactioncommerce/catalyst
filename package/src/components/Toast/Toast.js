@@ -10,12 +10,10 @@ import { ToastWrapper } from "./helpers";
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
   const { message, variant, title, onClose, ...otherProps } = props;
-  const [open] = React.useState(false);
 
   return (
     <Snackbar
       ref={ref}
-      open={open}
       {...otherProps}
     >
       <ToastWrapper
