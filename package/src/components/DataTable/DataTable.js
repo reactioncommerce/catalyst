@@ -71,6 +71,8 @@ const useStyles = makeStyles((theme) => ({
 export const defaultLabels = {
   allFilters: "All filters",
   allFiltersDrawerTitle: "All filters",
+  clearAllFilters: "Clear all",
+  clearFilter: "Clear",
   globalFilterPlaceholder: "Filter",
   next: "Next",
   page: "Page",
@@ -164,6 +166,10 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     // for the filter drawer
     filterDrawerComponents = activeFilters.map((column) => (
       React.cloneElement(column.render("Filter"), {
+        labels: {
+          clear: labels.clearFilter,
+          clearAll: labels.clearAllFilters
+        },
         container: "card"
       })
     ));
@@ -196,7 +202,12 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
               {activeFilters
                 .slice(0, maxFilterButtons)
                 .map((column) => (
-                  column.render("Filter")
+                  React.cloneElement(column.render("Filter"), {
+                    labels: {
+                      clear: labels.clearFilter,
+                      clearAll: labels.clearAllFilters
+                    }
+                  })
                 ))
               }
               {hasMoreFilters && (
@@ -469,6 +480,14 @@ DataTable.propTypes = {
      * Drawer title for all filters
      */
     allFiltersDrawerTitle: PropTypes.string.isRequired,
+    /**
+     * Label for clearing all filters
+     */
+    clearAllFilters: PropTypes.string.isRequired,
+    /**
+     * Label for clearing a single filter
+     */
+    clearFilter: PropTypes.string.isRequired,
     /**
      * Global filter text input label
      */
