@@ -54,6 +54,10 @@ function OpenToast(props) {
 
 <OpenToast message={<span>Information toast</span>} />
 ```
+##### Success
+
+- Used when an action has been completed successfully
+- Can close automatically after 10 seconds
 
 ```jsx
 import Button from "../Button";
@@ -73,8 +77,123 @@ function OpenToast(props) {
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open information toast</Button>
-      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close information toast</Button>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open success toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close success toast</Button>
+      <Toast
+        open={open}
+        onClose={handleClose}
+        message={props.message}
+        variant={props.variant}
+        title={props.title}
+      />
+    </div>
+  );
+}
+
+<OpenToast message={<span>Success toast</span>} variant="success" />
+```
+
+##### Warning
+
+- Used when an action or item needs attention
+- Should not close automatically, unless the action has been resolved
+
+```jsx
+import Button from "../Button";
+import IconButton from "@material-ui/core/IconButton";
+import { withSnackbar } from 'notistack';
+
+function OpenToast(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open warning toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close warning toast</Button>
+      <Toast
+        open={open}
+        onClose={handleClose}
+        message={props.message}
+        variant={props.variant}
+        title={props.title}
+      />
+    </div>
+  );
+}
+
+<OpenToast message={<span>Warning toast</span>} variant="warning" />
+```
+##### Error
+
+- Used when the system has failed to complete an action, or the user has made an error
+- Should not close automatically, unless the action has been resolved
+
+```jsx
+import Button from "../Button";
+import IconButton from "@material-ui/core/IconButton";
+import { withSnackbar } from 'notistack';
+
+function OpenToast(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="contained" color="error" onClick={() => setOpen(true)}>Open error toast</Button>
+      <Button variant="outlined" color="error" onClick={() => setOpen(false)}>Close error toast</Button>
+      <Toast
+        open={open}
+        onClose={handleClose}
+        message={props.message}
+        variant={props.variant}
+        title={props.title}
+      />
+    </div>
+  );
+}
+
+<OpenToast message={<span>Error toast</span>} variant="error" />
+```
+
+#### Toasts with Titles
+
+- All toasts can also have a `Title`
+
+```jsx
+import Button from "../Button";
+import IconButton from "@material-ui/core/IconButton";
+import { withSnackbar } from 'notistack';
+
+function OpenToast(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open title toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close title toast</Button>
       <Toast
         open={open}
         onClose={handleClose}
@@ -88,17 +207,3 @@ function OpenToast(props) {
 
 <OpenToast message={<span>Information toast with title</span>} title="Title" />
 ```
-##### Success
-
-- Used when an action has been completed successfully
-- Can close automatically after 10 seconds
-
-##### Warning
-
-- Used when an action or item needs attention
-- Should not close automatically, unless the action has been resolved
-
-##### Error
-
-- Used when the system has failed to complete an action, or the user has made an error
-- Should not close automatically, unless the action has been resolved
