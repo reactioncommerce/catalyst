@@ -40,16 +40,17 @@ export async function getPaginatedData({
 
   if (filterValues.length) {
     const nodes = sortedData.filter((item) => {
-      const combinedRowValue = Object.values(item).join(" ");
-
+      const itemValues = Object.values(item);
       for (const filterValue of filterValues) {
         if (Array.isArray(filterValue) && filterValue.length > 0) {
           for (const multiSelectFilterValue of filterValue) {
-            if (combinedRowValue.includes(` ${multiSelectFilterValue} `)) {
+            if (itemValues.find((valueToMatch) => valueToMatch === multiSelectFilterValue)) {
               return true;
             }
           }
-        } else if (combinedRowValue.includes(filterValue)) {
+        } else if (itemValues.find((valueToMatch) => valueToMatch === filterValue)) {
+          return true;
+        } else if (itemValues.join(" ").includes(filterValue)) {
           return true;
         }
       }
