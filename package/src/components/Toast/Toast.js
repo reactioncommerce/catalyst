@@ -9,15 +9,8 @@ import { ToastWrapper } from "./helpers";
  * @returns {React.Component} returns a React component
  */
 const Toast = React.forwardRef(function Toast(props, ref) {
-  const { message, variant, title, ...otherProps } = props;
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
+  const { message, variant, title, onClose, ...otherProps } = props;
+  const [open] = React.useState(false);
 
   return (
     <Snackbar
@@ -30,7 +23,7 @@ const Toast = React.forwardRef(function Toast(props, ref) {
         variant={variant}
         title={title}
         message={message}
-        onClose={handleClose}
+        onClose={onClose}
       />
     </Snackbar>
   );
@@ -39,11 +32,15 @@ const Toast = React.forwardRef(function Toast(props, ref) {
 
 Toast.propTypes = {
   /**
-   * Message: Node
+   * Message: Node, <span>Message goes here</span>
    */
   message: PropTypes.node,
   /**
-   * Title: Optional
+   * onClose: Callback fired when the component requests to be closed and when the X icon button is clicked
+   */
+  onClose: PropTypes.func.isRequired,
+  /**
+   * Title: Optional string, displayed in bold
    */
   title: PropTypes.string,
   /**
