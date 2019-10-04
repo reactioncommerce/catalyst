@@ -90,6 +90,8 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     pageSizes,
     isFilterable,
     actionMenuProps,
+    FilterDrawerComponent,
+    FilterDrawerButtonComponent,
     ToolbarComponent,
     PaginationComponent,
     labels: labelsProp,
@@ -124,19 +126,28 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
   const shouldShowStandardToolbar = (actionMenuProps || isFilterable);
-  const activeFilterCount = flatColumns.filter(({ canFilter }) => canFilter).length;
+  const activeFilters = flatColumns.filter(({ canFilter }) => canFilter);
+  const activeFilterCount = activeFilters.length;
 
+  // Merge labels from props with the default labels
   const labels = useMemo(() => ({
     ...defaultLabels,
     ...labelsProp
   }), [labelsProp]);
 
+  // Callback designed to stop event propagation on cells.
+  // This is important for cells like the checkbox cell, as clicking the
+  // checkbox would also trigger the row click.
   const handleCellClick = useCallback((isClickDisabled) => (event) => {
     if (isClickDisabled) {
       event.stopPropagation();
     }
   }, []);
 
+  // Callback for closing the filter drawer
+  const handleCloseDrawer = useCallback(() => setShowAdditionalFilters(false), []);
+
+  // Determine how many filter buttons to show
   let maxFilterButtons = 3;
   let hasMoreFilters = false;
 
@@ -146,7 +157,18 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     maxFilterButtons = 1;
   }
 
+  let filterDrawerComponents;
+
   if (activeFilterCount > maxFilterButtons) {
+    // If we have more filters, then generate the components
+    // for the filter drawer
+    filterDrawerComponents = activeFilters.map((column) => (
+      React.cloneElement(column.render("Filter"), {
+        container: "card"
+      })
+    ));
+
+    // Display the "All filters" button
     hasMoreFilters = true;
   }
 
@@ -171,46 +193,55 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           )}
           <Box paddingLeft={2}>
             <ButtonGroup>
-              {flatColumns
-                .filter(({ canFilter }) => canFilter)
+              {activeFilters
                 .slice(0, maxFilterButtons)
                 .map((column) => (
                   column.render("Filter")
                 ))
               }
-              {hasMoreFilters &&
-                <Button
-                  color="primary"
-                  onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
-                >
-                  {labels.allFilters}
-                </Button>
-              }
+              {hasMoreFilters && (
+                FilterDrawerButtonComponent({
+                  children: labels.allFilters
+                }) || (
+                  <Button
+                    color="primary"
+                    onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
+                  >
+                    {labels.allFilters}
+                  </Button>
+                )
+              )}
             </ButtonGroup>
-            <Drawer
-              anchor="right"
-              open={shouldShowAdditionalFilters}
-              onClose={() => setShowAdditionalFilters(false)}
-            >
-              <AppBar position="sticky">
-                <Toolbar>
-                  <Box flex={1} paddingLeft={2}>
-                    <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+            {hasMoreFilters && (
+              FilterDrawerComponent({
+                title: labels.allFiltersDrawerTitle,
+                children: filterDrawerComponents
+              }) || (
+                <Drawer
+                  anchor="right"
+                  open={shouldShowAdditionalFilters}
+                  onClose={handleCloseDrawer}
+                >
+                  <AppBar position="sticky">
+                    <Toolbar>
+                      <Box flex={1} paddingLeft={2}>
+                        <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+                      </Box>
+                      <IconButton onClick={handleCloseDrawer}>
+                        <CloseIcon />
+                      </IconButton>
+                    </Toolbar>
+                  </AppBar>
+                  <Box
+                    paddingTop={1}
+                    marginLeft="-1px"
+                    marginRight="-1px"
+                  >
+                    {filterDrawerComponents}
                   </Box>
-                  <IconButton>
-                    <CloseIcon />
-                  </IconButton>
-                </Toolbar>
-              </AppBar>
-              {flatColumns
-                .filter(({ canFilter }) => canFilter)
-                .map((column) => (
-                  React.cloneElement(column.render("Filter"), {
-                    container: "card"
-                  })
-                ))
-              }
-            </Drawer>
+                </Drawer>
+              )
+            )}
           </Box>
         </Toolbar>
       ))}
@@ -324,6 +355,14 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 });
 
 DataTable.propTypes = {
+  /**
+   * Component to replace the standard button for opening the filter drawer
+   */
+  FilterDrawerButtonComponent: PropTypes.func,
+  /**
+   * Component to replace the standard filter drawer
+   */
+  FilterDrawerComponent: PropTypes.func,
   /**
    * Replace the built-in pagination component with a custom component
    */
@@ -510,6 +549,8 @@ DataTable.propTypes = {
 };
 
 DataTable.defaultProps = {
+  FilterDrawerButtonComponent() { },
+  FilterDrawerComponent() { },
   ToolbarComponent() { },
   PaginationComponent() { },
   labels: defaultLabels,
