@@ -13,6 +13,7 @@ import DataTableFilter from "../DataTableFilter";
 export default function makeDataTableColumnFilter(props) {
   const DataTableColumnFilter = ({
     column: { Header, filterValue, setFilter },
+    labels,
     container,
     className
   }) => (
@@ -20,6 +21,7 @@ export default function makeDataTableColumnFilter(props) {
       title={typeof Header === "string" ? Header : "Filter"}
       className={className}
       container={container}
+      labels={labels}
       onSelect={(value) => setFilter(value)}
       value={filterValue}
       {...props}
@@ -32,7 +34,11 @@ export default function makeDataTableColumnFilter(props) {
       filterValue: PropTypes.any,
       setFilter: PropTypes.func
     }),
-    container: PropTypes.oneOf(["default", "card"])
+    container: PropTypes.oneOf(["default", "card"]),
+    labels: PropTypes.shape({
+      clearAll: PropTypes.string.isRequired,
+      clear: PropTypes.string.isRequired
+    })
   };
 
   return DataTableColumnFilter;
