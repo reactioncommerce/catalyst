@@ -24,6 +24,7 @@ Users should be able to dismiss Toasts when appropriate. Information and success
 ```jsx
 import Button from "../Button";
 import IconButton from "@material-ui/core/IconButton";
+import { withSnackbar } from 'notistack';
 
 function OpenToast(props) {
   const [open, setOpen] = React.useState(false);
@@ -51,9 +52,42 @@ function OpenToast(props) {
   );
 }
 
-<OpenToast message={<span>Information toast</span>} title="Info" />
+<OpenToast message={<span>Information toast</span>} />
 ```
 
+```jsx
+import Button from "../Button";
+import IconButton from "@material-ui/core/IconButton";
+import { withSnackbar } from 'notistack';
+
+function OpenToast(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="contained" color="primary" onClick={() => setOpen(true)}>Open information toast</Button>
+      <Button variant="outlined" color="primary" onClick={() => setOpen(false)}>Close information toast</Button>
+      <Toast
+        open={open}
+        onClose={handleClose}
+        message={props.message}
+        variant={props.variant}
+        title={props.title}
+      />
+    </div>
+  );
+}
+
+<OpenToast message={<span>Information toast with title</span>} title="Title" />
+```
 ##### Success
 
 - Used when an action has been completed successfully

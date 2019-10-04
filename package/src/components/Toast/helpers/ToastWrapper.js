@@ -8,10 +8,13 @@ import CloseIcon from "mdi-material-ui/Close";
 const useStyles = makeStyles((theme) => ({
   close: {
     padding: theme.spacing(0.5),
-    float: "right"
+    marginLeft: "auto",
+    height: "100%"
   },
   messageWrapper: {
-    display: "inline-block"
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column"
   },
   title: {
     padding: theme.spacing(0.5, 0, 1, 0),
@@ -27,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.forestGreenBorder}`,
     padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    minWidth: 288
+    minWidth: 288,
+    display: "flex"
   },
   error: {
     fontSize: theme.typography.fontSize,
@@ -36,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.redBorder}`,
     padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    minWidth: 288
+    minWidth: 288,
+    display: "flex"
   },
   info: {
     fontSize: theme.typography.fontSize,
@@ -45,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.reactionBlueBorder}`,
     padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    minWidth: 288
+    minWidth: 288,
+    display: "flex"
   },
   warning: {
     fontSize: theme.typography.fontSize,
@@ -54,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
     border: `${theme.spacing(0.25)}px solid ${theme.palette.colors.yellowBorder}`,
     padding: theme.spacing(1, 2),
     borderRadius: theme.shape.borderRadius,
-    minWidth: 288
+    minWidth: 288,
+    display: "flex"
   }
 }));
 
