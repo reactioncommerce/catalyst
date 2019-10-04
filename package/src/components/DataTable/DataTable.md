@@ -6,11 +6,11 @@ The DataTable provides a robust solution for displaying tabular data. It is buil
 
 #### Types
 
-##### Standard table
+##### Orders table
 
-This example is of the DataTable with selectable rows, bulk actions, filtering and pagination controlled by data from an API. Data fetching is simulated with a 200ms delay.
+This example showcases using the DataTable to display orders that come from an API. Data fetching is simulated with a 200ms delay.
 
-This is the most common table setup used in Reaction.
+This is example mimics the implementation of the Orders table in Reaction.
 
 ```jsx
 import { useMemo, useEffect, useCallback, forwardRef } from "react";
@@ -80,6 +80,7 @@ function TableExample() {
           // { label: "All", value: "" },
           { label: "New", value: "new" },
           { label: "Processing", value: "processing" },
+          { label: "Completed", value: "completed" },
           { label: "Canceled", value: "canceled" }
         ]
       }),
@@ -150,6 +151,7 @@ function TableExample() {
   // This function is called on the initial load of the table to fet the first set of results.
   const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize, filters }) => {
     console.log("Fetch Data")
+    console.log("-- Global Filter", globalFilter)
     console.log("-- Filters", filters)
     // Get data from an API.
     const { data } = await getPaginatedData({
