@@ -105,7 +105,7 @@
     "commitlint": "^8.0.0",
     "mdi-material-ui": "~5.8.0",
     "notistack": "^0.9.2",
-    "prop-types": "~15.6.2",
+    "prop-types": "~15.7.2",
     "react": "~16.9.0",
     "react-dom": "~16.9.0"
   },
