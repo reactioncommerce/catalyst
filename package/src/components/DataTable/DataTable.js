@@ -321,7 +321,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             alignItems="center"
             paddingRight={2}
           >
-            <Typography component="span" variant="body2">{"Page"}</Typography>
+            <Typography component="span" variant="body2">{labels.page}</Typography>
             <Box maxWidth={80} paddingLeft={1} paddingRight={1}>
               <TextField
                 className={classes.textField}
