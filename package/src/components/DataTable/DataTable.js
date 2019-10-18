@@ -327,7 +327,6 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 className={classes.textField}
                 margin="dense"
                 variant="outlined"
-                disableUnderline
                 type="number"
                 size="small"
                 min={1}
