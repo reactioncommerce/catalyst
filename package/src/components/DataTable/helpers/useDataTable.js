@@ -123,13 +123,15 @@ export default function useDataTable({
   ]);
 
   useEffect(() => {
-    onRowSelect({
-      globalFilter,
-      filters,
-      pageIndex,
-      pageSize,
-      selectedRows: Object.keys(selectedRowIds)
-    });
+    if (isSelectable) {
+      onRowSelect({
+        globalFilter,
+        filters,
+        pageIndex,
+        pageSize,
+        selectedRows: Object.keys(selectedRowIds)
+      });
+    }
   }, [
     globalFilter,
     filters,
