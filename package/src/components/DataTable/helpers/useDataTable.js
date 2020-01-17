@@ -106,7 +106,7 @@ export default function useDataTable({
   } = dataTableProps;
 
   useEffect(() => {
-    onFetchData({
+    onFetchData && onFetchData({
       globalFilter,
       sortBy,
       filters,
