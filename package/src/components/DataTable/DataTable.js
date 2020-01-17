@@ -19,6 +19,7 @@ import {
   useMediaQuery,
   useTheme
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
 import CloseIcon from "mdi-material-ui/Close";
@@ -74,6 +75,7 @@ export const defaultLabels = {
   clearAllFilters: "Clear all",
   clearFilter: "Clear",
   globalFilterPlaceholder: "Filter",
+  loading: "Loading...",
   next: "Next",
   page: "Page",
   pageOf: ({ count }) => `of ${count}`,
@@ -101,9 +103,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     shouldShowAdditionalFilters,
     onRowClick,
     onRemoveFilter,
+    isLoading,
 
     // Props from the useTable hook
-    isSelectable,
     getTableProps,
     flatColumns,
     headerGroups,
@@ -173,6 +175,76 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
     // Display the "All filters" button
     hasMoreFilters = true;
+  }
+
+  // Render loading rows
+  let loadingRows;
+  if (isLoading) {
+    loadingRows = [];
+
+    /* eslint-disable no-loop-func */
+    for (let index = 0; index < pageSize; index += 1) {
+      loadingRows.push((
+        <TableRow
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
+        >
+          {flatColumns.map((column) => {
+            if (column.show === false) return null;
+
+            return (
+              <TableCell
+                classes={{
+                  root: classes.tableCell
+                }}
+                padding={column.id === "selection" ? "checkbox" : undefined}
+              >
+                {column.id === "selection" ? (
+                  <Box paddingLeft="12px" paddingTop="13px" paddingBottom="12px">
+                    <Skeleton variant="rect" width={8 * 2 + 2} />
+                  </Box>
+                ) : (
+                  <Skeleton variant="text" />
+                )}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      ));
+      /* eslint-enable no-loop-func */
+    }
+  }
+
+  const extraRows = [];
+
+  if (page.length < pageSize && !isLoading) {
+    /* eslint-disable no-loop-func */
+    for (let index = page.length; index < pageSize; index += 1) {
+      extraRows.push((
+        <TableRow
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
+        >
+          {flatColumns.map((column) => {
+            if (column.show === false) return null;
+
+            return (
+              <TableCell
+                classes={{
+                  root: classes.tableCell
+                }}
+                padding={column.id === "selection" ? "checkbox" : undefined}
+              >
+                {"\u00A0"}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      ));
+      /* eslint-enable no-loop-func */
+    }
   }
 
   return (
@@ -271,7 +343,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
 
                   return (
                     <TableCell
-                      padding={isSelectable ? "checkbox" : "default"}
+                      padding={column.id === "selection" ? "checkbox" : "default"}
                       classes={{
                         root: classes.tableHead
                       }}
@@ -281,13 +353,12 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                     </TableCell>
                   );
                 })}
-
-
               </TableRow>
             ))}
           </TableHead>
           <TableBody className={classes.tableBody}>
-            {page.map((row, index) =>
+            {loadingRows}
+            {!isLoading && page.map((row, index) =>
               prepareRow(row) || (
                 <TableRow
                   onClick={onRowClick && onRowClick(row)}
@@ -316,7 +387,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                     );
                   })}
                 </TableRow>
-              ))}
+              ))
+            }
+            {extraRows}
           </TableBody>
         </Table>
       </div>
@@ -472,6 +545,10 @@ DataTable.propTypes = {
    */
   isFilterable: PropTypes.bool,
   /**
+   * Show loading indicator
+   */
+  isLoading: PropTypes.bool,
+  /**
    * Is set to true if the table rows are selectable
    */
   isSelectable: PropTypes.bool,
@@ -499,6 +576,10 @@ DataTable.propTypes = {
      * Global filter text input label
      */
     globalFilterPlaceholder: PropTypes.string.isRequired,
+    /**
+     * Loading message
+     */
+    loading: PropTypes.string.isRequired,
     /**
      * Next button label
      */
