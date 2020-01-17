@@ -34,14 +34,23 @@ export default function useDataTable({
   const defaultColumn = React.useMemo(
     () => ({
       // Let's set up our default Filter UI
-      Filter: DefaultColumnFilter || (() => null)
+      Filter: DefaultColumnFilter || (() => null),
+      disableFilters: true
     }),
     [DefaultColumnFilter]
   );
 
+  const updatedColumns = columns.map((column) => {
+    if (column.disableFilters !== true && (column.Filter || column.filter)) {
+      column.disableFilters = false;
+    }
+
+    return column;
+  });
+
   const dataTableProps = useTable(
     {
-      columns,
+      columns: updatedColumns,
       data,
       defaultColumn,
       getRowId,
