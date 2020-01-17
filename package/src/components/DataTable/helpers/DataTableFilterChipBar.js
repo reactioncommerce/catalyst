@@ -31,7 +31,7 @@ function DataTableFilterDisplay(props) {
 
   // Show filters as chips
   const chips = filterKeyArray.map((key) => {
-    const filterValue = customFilters[key];
+    const filterValue = customFilters[key].value;
 
     if (Array.isArray(filterValue)) {
       return filterValue.map((multiSelectValue) => (
