@@ -102,11 +102,8 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     onRowClick,
     onRemoveFilter,
 
-    // Props unique from the useDataTable hook
+    // Props from the useTable hook
     isSelectable,
-    onGlobalFilterChange,
-
-    // useTable Props
     getTableProps,
     flatColumns,
     headerGroups,
@@ -119,10 +116,10 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     gotoPage,
     nextPage,
     previousPage,
+    setGlobalFilter,
     setPageSize,
-    state: [{ pageIndex, pageSize, filters }]
+    state: { pageIndex, pageSize, filters }
   } = props;
-
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -188,72 +185,74 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             </Box>
           )}
           {isFilterable && (
-            <TextField
-              className={classes.textField}
-              fullWidth
-              margin="dense"
-              placeholder={labels.globalFilterPlaceholder}
-              onChange={onGlobalFilterChange}
-              variant="outlined"
-            />
-          )}
-          <Box paddingLeft={2}>
-            <ButtonGroup>
-              {activeFilters
-                .slice(0, maxFilterButtons)
-                .map((column) => (
-                  React.cloneElement(column.render("Filter"), {
-                    labels: {
-                      clear: labels.clearFilter,
-                      clearAll: labels.clearAllFilters
-                    }
-                  })
-                ))
-              }
-              {hasMoreFilters && (
-                FilterDrawerButtonComponent({
-                  children: labels.allFilters
-                }) || (
-                  <Button
-                    color="primary"
-                    onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
-                  >
-                    {labels.allFilters}
-                  </Button>
-                )
-              )}
-            </ButtonGroup>
-            {hasMoreFilters && (
-              FilterDrawerComponent({
-                title: labels.allFiltersDrawerTitle,
-                children: filterDrawerComponents
-              }) || (
-                <Drawer
-                  anchor="right"
-                  open={shouldShowAdditionalFilters}
-                  onClose={handleCloseDrawer}
-                >
-                  <AppBar position="sticky">
-                    <Toolbar>
-                      <Box flex={1} paddingLeft={2}>
-                        <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+            <>
+              <TextField
+                className={classes.textField}
+                fullWidth
+                margin="dense"
+                placeholder={labels.globalFilterPlaceholder}
+                onChange={(event) => setGlobalFilter(event.target.value)}
+                variant="outlined"
+              />
+              <Box paddingLeft={2}>
+                <ButtonGroup>
+                  {activeFilters
+                    .slice(0, maxFilterButtons)
+                    .map((column) => (
+                      React.cloneElement(column.render("Filter"), {
+                        labels: {
+                          clear: labels.clearFilter,
+                          clearAll: labels.clearAllFilters
+                        }
+                      })
+                    ))
+                  }
+                  {hasMoreFilters && (
+                    FilterDrawerButtonComponent({
+                      children: labels.allFilters
+                    }) || (
+                      <Button
+                        color="primary"
+                        onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
+                      >
+                        {labels.allFilters}
+                      </Button>
+                    )
+                  )}}
+                </ButtonGroup>
+                {hasMoreFilters && (
+                  FilterDrawerComponent({
+                    title: labels.allFiltersDrawerTitle,
+                    children: filterDrawerComponents
+                  }) || (
+                    <Drawer
+                      anchor="right"
+                      open={shouldShowAdditionalFilters}
+                      onClose={handleCloseDrawer}
+                    >
+                      <AppBar position="sticky">
+                        <Toolbar>
+                          <Box flex={1} paddingLeft={2}>
+                            <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+                          </Box>
+                          <IconButton onClick={handleCloseDrawer}>
+                            <CloseIcon />
+                          </IconButton>
+                        </Toolbar>
+                      </AppBar>
+                      <Box
+                        paddingTop={1}
+                        marginLeft="-1px"
+                        marginRight="-1px"
+                      >
+                        {filterDrawerComponents}
                       </Box>
-                      <IconButton onClick={handleCloseDrawer}>
-                        <CloseIcon />
-                      </IconButton>
-                    </Toolbar>
-                  </AppBar>
-                  <Box
-                    paddingTop={1}
-                    marginLeft="-1px"
-                    marginRight="-1px"
-                  >
-                    {filterDrawerComponents}
-                  </Box>
-                </Drawer>
-              )
-            )}
-          </Box>
+                    </Drawer>
+                  )
+                )}
+              </Box>
+            </>
+          )}
         </Toolbar>
       ))}
       <DataTableFilterChipBar
@@ -267,17 +266,23 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           <TableHead className={classes.tableHead}>
             {headerGroups.map((headerGroup) => (
               <TableRow {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <TableCell
-                    padding={isSelectable ? "checkbox" : "default"}
-                    classes={{
-                      root: classes.tableHead
-                    }}
-                    {...column.getHeaderProps()}
-                  >
-                    {column.render("Header")}
-                  </TableCell>
-                ))}
+                {headerGroup.headers.map((column) => {
+                  if (column.show === false) return null;
+
+                  return (
+                    <TableCell
+                      padding={isSelectable ? "checkbox" : "default"}
+                      classes={{
+                        root: classes.tableHead
+                      }}
+                      {...column.getHeaderProps()}
+                    >
+                      {column.render("Header")}
+                    </TableCell>
+                  );
+                })}
+
+
               </TableRow>
             ))}
           </TableHead>
@@ -296,6 +301,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 >
                   {row.cells.map((cell) => {
                     const { isClickDisabled, ...cellProps } = cell.getCellProps();
+                    if (cell.column.show === false) return null;
 
                     return (
                       <TableCell
@@ -383,42 +389,44 @@ DataTable.propTypes = {
    */
   ToolbarComponent: PropTypes.elementType,
   /**
-   * Props applied to the built-in action menu
+   * Props applied to the built-in action menu. See ActionMenu component for available props.
    */
-  actionMenuProps: PropTypes.arrayOf(PropTypes.shape({
-    /**
-     * Change the cancel button label in the confirm dialog
-     */
-    cancelActionText: PropTypes.string,
-    /**
-     * Change the label of the confirmation button in the confirm dialog
-     */
-    confirmActionText: PropTypes.string,
-    /**
-     * If supplied, the option will show a confirm dialog this message when selected.
-     */
-    confirmMessage: PropTypes.string,
-    /**
-     * If supplied, the option will show a confirm dialog this title when selected
-     */
-    confirmTitle: PropTypes.string,
-    /**
-     * Secondary option label
-     */
-    details: PropTypes.string,
-    /**
-     * Disable the option
-     */
-    isDisabled: PropTypes.bool,
-    /**
-     * Option label
-     */
-    label: PropTypes.string.isRequired,
-    /**
-     * If supplied, this function will be called in addition to onSelect
-     */
-    onClick: PropTypes.func
-  })),
+  actionMenuProps: PropTypes.shape({
+    options: {
+      /**
+       * Change the cancel button label in the confirm dialog
+       */
+      cancelActionText: PropTypes.string,
+      /**
+       * Change the label of the confirmation button in the confirm dialog
+       */
+      confirmActionText: PropTypes.string,
+      /**
+       * If supplied, the option will show a confirm dialog this message when selected.
+       */
+      confirmMessage: PropTypes.string,
+      /**
+       * If supplied, the option will show a confirm dialog this title when selected
+       */
+      confirmTitle: PropTypes.string,
+      /**
+       * Secondary option label
+       */
+      details: PropTypes.string,
+      /**
+       * Disable the option
+       */
+      isDisabled: PropTypes.bool,
+      /**
+       * Option label
+       */
+      label: PropTypes.string.isRequired,
+      /**
+       * If supplied, this function will be called in addition to onSelect
+       */
+      onClick: PropTypes.func
+    }
+  }),
   /**
    * Can go to next page
   */
@@ -460,7 +468,7 @@ DataTable.propTypes = {
    */
   headerGroups: PropTypes.array,
   /**
-   * Should the table show filters
+   * Should show the table filters
    */
   isFilterable: PropTypes.bool,
   /**
@@ -549,6 +557,10 @@ DataTable.propTypes = {
    */
   previousPage: PropTypes.func,
   /**
+   * Set the global text filter
+   */
+  setGlobalFilter: PropTypes.func,
+  /**
    * Set the size of the pages
    */
   setPageSize: PropTypes.func,
@@ -571,6 +583,7 @@ DataTable.defaultProps = {
   FilterDrawerComponent() { },
   ToolbarComponent() { },
   PaginationComponent() { },
+  isFilterable: true,
   labels: defaultLabels,
   pageSizes: [10, 20, 30, 40, 50]
 };
