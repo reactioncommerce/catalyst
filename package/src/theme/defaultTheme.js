@@ -455,6 +455,11 @@ export const rawMuiTheme = {
         paddingBottom: 9.5
       }
     },
+    MuiSkeleton: {
+      root: {
+        backgroundColor: colors.black10
+      }
+    },
     MuiSvgIcon: {
       root: {
         // This is a hack to fix issues with the base font-size in the bootstrap
