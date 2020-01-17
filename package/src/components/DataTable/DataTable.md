@@ -10,7 +10,7 @@ The DataTable provides a robust solution for displaying tabular data. It is buil
 
 This example showcases using the DataTable to display orders that come from an API. Data fetching is simulated with a 200ms delay.
 
-This is example mimics the implementation of the Orders table in Reaction.
+This example uses many of the available features of the DataTable.
 
 ```jsx
 import { useMemo, useEffect, useCallback, forwardRef, useState } from "react";
@@ -26,6 +26,7 @@ function TableExample() {
   const [data, setData] = useState([]);
   const [pageCount, setPageCount] = useState();
   const [selectedRows, setSelectedRows] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Create and memoize the column data
   const columns = useMemo(() => [
@@ -174,6 +175,9 @@ function TableExample() {
     console.log("-- Global Filter", globalFilter)
     console.log("-- Filters", filters)
 
+    // Trigger loading animation
+    setIsLoading(true);
+
     // Get data from an API.
     const { data: apiData } = await getPaginatedData({
       filters: {
@@ -188,6 +192,9 @@ function TableExample() {
     // Update the state with the fetched data as an array of objects and the calculated page count
     setData(apiData.nodes)
     setPageCount(Math.ceil(apiData.totalCount / pageSize))
+
+    // Disable loading animation
+    setIsLoading(false);
   }, [
     setData,
     setPageCount
@@ -217,6 +224,7 @@ function TableExample() {
     "filterChipValue.unpaid": "Unpaid",
     "filterChipValue.new": "New",
     "filterChipValue.processing": "Processing",
+    "filterChipValue.completed": "Completed",
     "filterChipValue.canceled": "Canceled",
     "filterChipValue.today": "Today",
     "filterChipValue.last7": "Last 7 days",
@@ -294,6 +302,73 @@ function TableExample() {
     <DataTable
       {...dataTableProps}
       actionMenuProps={{ options: actionMenuOptions }}
+      isLoading={isLoading}
+    />
+  );
+}
+
+TableExample()
+```
+
+##### Loading state
+
+This example gives a closer look at the loading animation
+
+```jsx
+import { useMemo, useEffect, useCallback, forwardRef, useState } from "react";
+import { Box, Checkbox, Link, Typography } from "@material-ui/core";
+import { useDataTable } from "./";
+import { getPaginatedData } from "./mocks/sampleData";
+// import data from "./mocks/orders.json";
+import Chip from "../Chip";
+import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
+import dateFormat from "dateformat";
+
+function TableExample() {
+  const [data, setData] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Create and memoize the column data
+  const columns = useMemo(() => [
+    {
+      Header: "Order ID",
+      accessor: "referenceId"
+    },
+    {
+      Header: "Date",
+      accessor: "createdAt"
+    },
+    {
+      Header: "Payment Status",
+      accessor: "paymentStatus"
+    },
+    {
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus"
+    },
+    {
+      Header: "Customer",
+      accessor: "customer"
+    },
+    {
+      Header: () => (<Box textAlign="right">Total</Box>),
+      accessor: "total"
+    }
+  ], []);
+
+  const dataTableProps = useDataTable({
+    columns,
+    data,
+    pageCount,
+    onRowSelect: () => {},
+    getRowID: (row, index) => row.id,
+  })
+
+  return (
+    <DataTable
+      {...dataTableProps}
+      isLoading={true}
     />
   );
 }
