@@ -163,13 +163,14 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   if (activeFilterCount > maxFilterButtons) {
     // If we have more filters, then generate the components
     // for the filter drawer
-    filterDrawerComponents = activeFilters.map((column) => (
-      React.cloneElement(column.render("Filter"), {
+    filterDrawerComponents = activeFilters.map((column, index) => (
+      column.render("Filter", {
+        container: "card",
+        key: index,
         labels: {
           clear: labels.clearFilter,
           clearAll: labels.clearAllFilters
-        },
-        container: "card"
+        }
       })
     ));
 
@@ -189,8 +190,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           className={clsx({
             [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
           })}
+          key={`loading-${index}`}
         >
-          {flatColumns.map((column) => {
+          {flatColumns.map((column, cellIndex) => {
             if (column.show === false) return null;
 
             return (
@@ -198,6 +200,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 classes={{
                   root: classes.tableCell
                 }}
+                key={`cell-${cellIndex}`}
                 padding={column.id === "selection" ? "checkbox" : undefined}
               >
                 {column.id === "selection" ? (
@@ -226,8 +229,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           className={clsx({
             [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
           })}
+          key={`empty-${index}`}
         >
-          {flatColumns.map((column) => {
+          {flatColumns.map((column, cellIndex) => {
             if (column.show === false) return null;
 
             return (
@@ -235,6 +239,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 classes={{
                   root: classes.tableCell
                 }}
+                key={`cell-${cellIndex}`}
                 padding={column.id === "selection" ? "checkbox" : undefined}
               >
                 {"\u00A0"}
@@ -270,8 +275,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 <ButtonGroup>
                   {activeFilters
                     .slice(0, maxFilterButtons)
-                    .map((column) => (
-                      React.cloneElement(column.render("Filter"), {
+                    .map((column, index) => (
+                      column.render("Filter", {
+                        key: index,
                         labels: {
                           clear: labels.clearFilter,
                           clearAll: labels.clearAllFilters
@@ -465,7 +471,7 @@ DataTable.propTypes = {
    * Props applied to the built-in action menu. See ActionMenu component for available props.
    */
   actionMenuProps: PropTypes.shape({
-    options: {
+    options: PropTypes.arrayOf(PropTypes.shape({
       /**
        * Change the cancel button label in the confirm dialog
        */
@@ -498,7 +504,7 @@ DataTable.propTypes = {
        * If supplied, this function will be called in addition to onSelect
        */
       onClick: PropTypes.func
-    }
+    }))
   }),
   /**
    * Can go to next page
@@ -654,9 +660,9 @@ DataTable.propTypes = {
    */
   shouldShowAdditionalFilters: PropTypes.bool,
   /**
-   * Table state [state, updater]
+   * Table state
    */
-  state: PropTypes.array
+  state: PropTypes.object
 };
 
 DataTable.defaultProps = {
