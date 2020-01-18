@@ -16,22 +16,20 @@ function getFilterLabel(labels, filterValue) {
 }
 
 /**
- * @name DataTableFilterDisplay
+ * @name DataTableFilterChipBar
  * @summary Component to display chips for the DataTable
  * @param {Object} props Component props
  * @returns {PropTypes.elementType} React component
  */
-function DataTableFilterDisplay(props) {
+function DataTableFilterChipBar(props) {
   const { filters, labels, onRemove } = props;
-  const { globalFilter, ...customFilters } = filters;
-  const filterKeyArray = Object.keys(customFilters);
 
   // Don't show the component if there aren't any filters to show
-  if (filterKeyArray.length === 0) return null;
+  if (filters.length === 0) return null;
 
   // Show filters as chips
-  const chips = filterKeyArray.map((key) => {
-    const filterValue = customFilters[key].value;
+  const chips = filters.map(({ id, value }) => {
+    const filterValue = value;
 
     if (Array.isArray(filterValue)) {
       return filterValue.map((multiSelectValue) => (
@@ -43,7 +41,7 @@ function DataTableFilterDisplay(props) {
           <Chip
             color="primary"
             label={getFilterLabel(labels, multiSelectValue)}
-            onDelete={() => onRemove(key, multiSelectValue)}
+            onDelete={() => onRemove(id, filterValue, multiSelectValue)}
             style={{ marginRight: "4px" }}
           />
         </Box>
@@ -59,7 +57,7 @@ function DataTableFilterDisplay(props) {
         <Chip
           color="primary"
           label={getFilterLabel(labels, filterValue)}
-          onDelete={() => onRemove(key)}
+          onDelete={() => onRemove(id)}
           style={{ marginRight: "4px" }}
         />
       </Box>
@@ -79,14 +77,14 @@ function DataTableFilterDisplay(props) {
   );
 }
 
-DataTableFilterDisplay.propTypes = {
-  filters: PropTypes.object,
+DataTableFilterChipBar.propTypes = {
+  filters: PropTypes.array,
   labels: PropTypes.object,
   onRemove: PropTypes.func
 };
 
-DataTableFilterDisplay.defaultProps = {
+DataTableFilterChipBar.defaultProps = {
   onRemove: () => { }
 };
 
-export default DataTableFilterDisplay;
+export default DataTableFilterChipBar;

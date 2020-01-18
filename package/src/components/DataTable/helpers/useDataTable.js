@@ -102,6 +102,7 @@ export default function useDataTable({
   );
 
   const {
+    setFilter,
     state: { pageIndex, pageSize, filters, globalFilter, selectedRowIds, sortBy }
   } = dataTableProps;
 
@@ -157,16 +158,12 @@ export default function useDataTable({
     return null;
   }, [onRowClick]);
 
-  const onRemoveFilter = useCallback((key, multiSelectValue) => {
-    const filterName = filters[key].id;
-    const filterValue = filters[key].value;
-    const { setFilter } = dataTableProps;
-
-    if (Array.isArray(filterValue)) {
-      const newMultiFilters = filterValue.filter((valueToKeep) => valueToKeep !== multiSelectValue);
-      setFilter(filterName, newMultiFilters.length === 0 ? null : newMultiFilters);
+  const onRemoveFilter = useCallback((id, value, multiSelectValue) => {
+    if (Array.isArray(value)) {
+      const newMultiFilters = value.filter((valueToKeep) => valueToKeep !== multiSelectValue);
+      setFilter(id, newMultiFilters.length === 0 ? null : newMultiFilters);
     } else {
-      setFilter(filterName, null);
+      setFilter(id, null);
     }
   }, [filters]);
 
