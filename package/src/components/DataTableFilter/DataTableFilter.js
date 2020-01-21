@@ -286,11 +286,11 @@ DataTableFilter.propTypes = {
     /**
      * Clear all for multi-select filters
      */
-    clearAll: PropTypes.string.isRequired,
+    clearAll: PropTypes.string,
     /**
      * Clear label for single select filters
      */
-    clear: PropTypes.string.isRequired
+    clear: PropTypes.string
   }),
   /**
    * Called when an option is selected. Can be use simultaneously with option onClick callbacks.

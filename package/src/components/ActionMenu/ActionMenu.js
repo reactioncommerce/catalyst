@@ -114,6 +114,7 @@ const ActionMenu = React.forwardRef(function ActionMenu(props, ref) {
           if (confirmTitle || confirmMessage) {
             return (
               <ConfirmDialog
+                key={`dialog-${index}`}
                 cancelActionText={cancelActionText}
                 confirmActionText={confirmActionText}
                 title={confirmTitle}

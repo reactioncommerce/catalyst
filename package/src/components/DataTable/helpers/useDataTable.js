@@ -3,9 +3,9 @@ import { Checkbox } from "@material-ui/core";
 import {
   useTable,
   useFilters,
-  useTableState,
   usePagination,
-  useRowSelect
+  useRowSelect,
+  useGlobalFilter
 } from "react-table";
 import useDataTableCellProps from "./useDataTableCellProps";
 
@@ -16,154 +16,141 @@ import useDataTableCellProps from "./useDataTableCellProps";
  */
 export default function useDataTable({
   DefaultColumnFilter,
-  data: simpleData,
   columns,
+  data,
+  getRowId,
+  pageCount: controlledPageCount,
   onFetchData,
-  onSelectRows,
   onRowClick,
-  onGlobalFilterChange,
-  pageSize: defaultPageSize = 10,
+  onRowSelect,
+  disableRowClick = false,
+  disableRowSelect = false,
   ...otherProps
 }) {
-  const [stateData, setData] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [globalFilter, setGlobalFilter] = useState();
   const [shouldShowAdditionalFilters, setShowAdditionalFilters] = useState(false);
-  const tableState = useTableState({ pageCount: 0, pageSize: defaultPageSize });
-  const [{ sortBy, filters, pageIndex, pageSize, selectedRows }] = tableState;
-
-  const isServerControlled = typeof onFetchData === "function";
-  const isSelectable = typeof onSelectRows === "function";
-  const isRowInteractive = typeof onRowClick === "function";
-  let data = stateData;
-
-  if (Array.isArray(simpleData)) {
-    data = simpleData;
-  }
+  const isSelectable = typeof onRowSelect === "function" && disableRowSelect === false;
+  const isRowInteractive = typeof onRowClick === "function" && disableRowClick === false;
 
   const defaultColumn = React.useMemo(
     () => ({
       // Let's set up our default Filter UI
-      Filter: DefaultColumnFilter || (() => null)
+      Filter: DefaultColumnFilter || (() => null),
+      disableFilters: true
     }),
     [DefaultColumnFilter]
   );
 
-  const columnsWithCheckboxes = useMemo(() => {
-    // Process columns with some default options
-    const updatedColumns = columns.map((column) => ({
-      // Disable filtering for all columns, unless a filter is
-      // specified via the `Filter` prop in the column definition
-      disableFilters: typeof column.Filter !== "function",
-      ...column
-    }));
+  const updatedColumns = columns.map((column) => {
+    if (column.disableFilters !== true && (column.Filter || column.filter)) {
+      column.disableFilters = false;
+    }
 
-    if (isSelectable) {
-      const hasCheckboxColumn = Boolean(columns.find(({ id }) => id === "selection"));
+    return column;
+  });
 
-      if (!hasCheckboxColumn) {
-        return [
-          {
-            id: "selection",
-            cellProps: {
-              // Disable cell click so that clicking the checkbox doesn't also trigger the row click
-              isClickDisabled: true,
-              padding: "checkbox"
+  const dataTableProps = useTable(
+    {
+      columns: updatedColumns,
+      data,
+      defaultColumn,
+      getRowId,
+      initialState: { pageIndex: 0 },
+      manualPagination: true,
+      manualFilters: true,
+      manualGlobalFilter: true,
+      pageCount: controlledPageCount,
+      ...otherProps
+    },
+    useFilters,
+    useGlobalFilter,
+    usePagination,
+    useDataTableCellProps,
+    useRowSelect,
+    (hooks) => {
+      if (isSelectable) {
+        const hasCheckboxColumn = Boolean(columns.find(({ id }) => id === "selection"));
+
+        if (!hasCheckboxColumn) {
+          hooks.flatColumns.push((prevColumns) => [
+            {
+              id: "selection",
+              cellProps: {
+                // Disable cell click so that clicking the checkbox doesn't also trigger the row click
+                isClickDisabled: true,
+                padding: "checkbox"
+              },
+              // This column is not filterable
+              disableFilters: true,
+              // The header can use the table's getToggleAllRowsSelectedProps method
+              // to render a checkbox
+              // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
+              Header: ({ getToggleAllRowsSelectedProps }) => (
+                <Checkbox {...getToggleAllRowsSelectedProps()} />
+              ),
+              // The cell can use the individual row's getToggleRowSelectedProps method
+              // to the render a checkbox
+              // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
+              Cell: ({ row }) => (
+                <Checkbox {...row.getToggleRowSelectedProps()} />
+              )
             },
-            // tTis column is not filterable
-            disableFilters: true,
-            // The header can use the table's getToggleAllRowsSelectedProps method
-            // to render a checkbox
-            // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-            Header: ({ getToggleAllRowsSelectedProps }) => (
-              <Checkbox {...getToggleAllRowsSelectedProps()} />
-            ),
-            // The cell can use the individual row's getToggleRowSelectedProps method
-            // to the render a checkbox
-            // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-            Cell: ({ row }) => (
-              <Checkbox {...row.getToggleRowSelectedProps()} />
-            )
-          },
-          ...updatedColumns
-        ];
+            ...prevColumns
+          ]);
+        }
       }
     }
+  );
 
-    return updatedColumns;
-  }, [
-    onSelectRows
-  ]);
+  const {
+    setFilter,
+    state: { pageIndex, pageSize, filters, globalFilter, selectedRowIds, sortBy }
+  } = dataTableProps;
 
-  // Handle requests for more data
   useEffect(() => {
-    if (isServerControlled) {
-      const fetch = async () => {
-        const { data: fetchedData, pageCount: newPageCount } = await onFetchData({
-          globalFilter,
-          data,
-          setData,
-          setPageCount,
-          sortBy,
-          filters,
-          pageIndex,
-          pageSize,
-          selectedRows
-        });
-
-        setData(fetchedData);
-        setPageCount(newPageCount);
-      };
-
-      fetch();
-    }
+    onFetchData && onFetchData({
+      globalFilter,
+      sortBy,
+      filters,
+      pageIndex,
+      pageSize
+    });
   }, [
     globalFilter,
+    filters,
     onFetchData,
-    setData,
-    pageCount,
-    setPageCount,
-    tableState
+    pageIndex,
+    pageSize,
+    sortBy
   ]);
 
-  // Handle selection of rows
   useEffect(() => {
     if (isSelectable) {
-      onSelectRows({
-        data,
-        setData,
-        setPageCount,
-        sortBy,
+      onRowSelect({
+        globalFilter,
         filters,
         pageIndex,
         pageSize,
-        selectedRows
+        selectedRows: Object.keys(selectedRowIds)
       });
     }
   }, [
-    tableState,
-    setData,
-    selectedRows,
-    onSelectRows
+    globalFilter,
+    filters,
+    onFetchData,
+    pageIndex,
+    pageSize,
+    selectedRowIds
   ]);
 
-  const handleGlobalFilterChange = useCallback((event) => {
-    setGlobalFilter(event.target.value);
-  }, [onGlobalFilterChange]);
-
-  const handleRowClick = useMemo(() => {
+  const onRowClickWrapper = useMemo(() => {
     if (isRowInteractive) {
       return (row) => () => {
         onRowClick({
           row,
           data,
-          setData,
-          setPageCount,
-          sortBy,
           filters,
           pageIndex,
-          pageSize,
-          selectedRows
+          pageSize
         });
       };
     }
@@ -171,44 +158,21 @@ export default function useDataTable({
     return null;
   }, [onRowClick]);
 
-  const dataTableProps = useTable(
-    {
-      columns: columnsWithCheckboxes,
-      data,
-      defaultColumn,
-      getRowID: (row, index) => `${pageIndex}.${index}`,
-      state: tableState,
-      manualFilters: isServerControlled,
-      manualSorting: isServerControlled,
-      manualPagination: isServerControlled,
-      pageCount,
-      ...otherProps
-    },
-    useFilters,
-    usePagination,
-    useRowSelect,
-    useDataTableCellProps
-  );
-
-  const handleRemoveFilter = useCallback((key, multiSelectValue) => {
-    const filterValue = filters[key];
-    const { setFilter } = dataTableProps;
-
-    if (Array.isArray(filterValue)) {
-      const newMultiFilters = filterValue.filter((valueToKeep) => valueToKeep !== multiSelectValue);
-      setFilter(key, newMultiFilters.length === 0 ? null : newMultiFilters);
+  const onRemoveFilter = useCallback((id, value, multiSelectValue) => {
+    if (Array.isArray(value)) {
+      const newMultiFilters = value.filter((valueToKeep) => valueToKeep !== multiSelectValue);
+      setFilter(id, newMultiFilters.length === 0 ? null : newMultiFilters);
     } else {
-      setFilter(key, null);
+      setFilter(id, null);
     }
   }, [filters]);
 
   return {
     ...dataTableProps,
     isSelectable,
-    setShowAdditionalFilters,
+    onRowClick: onRowClickWrapper,
+    onRemoveFilter,
     shouldShowAdditionalFilters,
-    onGlobalFilterChange: handleGlobalFilterChange,
-    onRowClick: handleRowClick,
-    onRemoveFilter: handleRemoveFilter
+    setShowAdditionalFilters
   };
 }

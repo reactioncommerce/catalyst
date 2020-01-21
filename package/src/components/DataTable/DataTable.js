@@ -19,6 +19,7 @@ import {
   useMediaQuery,
   useTheme
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
 import CloseIcon from "mdi-material-ui/Close";
@@ -74,6 +75,7 @@ export const defaultLabels = {
   clearAllFilters: "Clear all",
   clearFilter: "Clear",
   globalFilterPlaceholder: "Filter",
+  loading: "Loading...",
   next: "Next",
   page: "Page",
   pageOf: ({ count }) => `of ${count}`,
@@ -101,12 +103,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     shouldShowAdditionalFilters,
     onRowClick,
     onRemoveFilter,
+    isLoading,
 
-    // Props unique from the useDataTable hook
-    isSelectable,
-    onGlobalFilterChange,
-
-    // useTable Props
+    // Props from the useTable hook
     getTableProps,
     flatColumns,
     headerGroups,
@@ -119,10 +118,10 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     gotoPage,
     nextPage,
     previousPage,
+    setGlobalFilter,
     setPageSize,
-    state: [{ pageIndex, pageSize, filters }]
+    state: { pageIndex, pageSize, filters }
   } = props;
-
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -164,18 +163,93 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
   if (activeFilterCount > maxFilterButtons) {
     // If we have more filters, then generate the components
     // for the filter drawer
-    filterDrawerComponents = activeFilters.map((column) => (
-      React.cloneElement(column.render("Filter"), {
+    filterDrawerComponents = activeFilters.map((column, index) => (
+      column.render("Filter", {
+        container: "card",
+        key: index,
         labels: {
           clear: labels.clearFilter,
           clearAll: labels.clearAllFilters
-        },
-        container: "card"
+        }
       })
     ));
 
     // Display the "All filters" button
     hasMoreFilters = true;
+  }
+
+  // Render loading rows
+  let loadingRows;
+  if (isLoading) {
+    loadingRows = [];
+
+    /* eslint-disable no-loop-func */
+    for (let index = 0; index < pageSize; index += 1) {
+      loadingRows.push((
+        <TableRow
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
+          key={`loading-${index}`}
+        >
+          {flatColumns.map((column, cellIndex) => {
+            if (column.show === false) return null;
+
+            return (
+              <TableCell
+                classes={{
+                  root: classes.tableCell
+                }}
+                key={`cell-${cellIndex}`}
+                padding={column.id === "selection" ? "checkbox" : undefined}
+              >
+                {column.id === "selection" ? (
+                  <Box paddingLeft="12px" paddingTop="13px" paddingBottom="12px">
+                    <Skeleton variant="rect" width={8 * 2 + 2} />
+                  </Box>
+                ) : (
+                  <Skeleton variant="text" />
+                )}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      ));
+      /* eslint-enable no-loop-func */
+    }
+  }
+
+  const extraRows = [];
+
+  if (page.length < pageSize && !isLoading) {
+    /* eslint-disable no-loop-func */
+    for (let index = page.length; index < pageSize; index += 1) {
+      extraRows.push((
+        <TableRow
+          className={clsx({
+            [classes.tableRowOdd]: ((index + 1) % 2 !== 0)
+          })}
+          key={`empty-${index}`}
+        >
+          {flatColumns.map((column, cellIndex) => {
+            if (column.show === false) return null;
+
+            return (
+              <TableCell
+                classes={{
+                  root: classes.tableCell
+                }}
+                key={`cell-${cellIndex}`}
+                padding={column.id === "selection" ? "checkbox" : undefined}
+              >
+                {"\u00A0"}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      ));
+      /* eslint-enable no-loop-func */
+    }
   }
 
   return (
@@ -188,72 +262,75 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
             </Box>
           )}
           {isFilterable && (
-            <TextField
-              className={classes.textField}
-              fullWidth
-              margin="dense"
-              placeholder={labels.globalFilterPlaceholder}
-              onChange={onGlobalFilterChange}
-              variant="outlined"
-            />
-          )}
-          <Box paddingLeft={2}>
-            <ButtonGroup>
-              {activeFilters
-                .slice(0, maxFilterButtons)
-                .map((column) => (
-                  React.cloneElement(column.render("Filter"), {
-                    labels: {
-                      clear: labels.clearFilter,
-                      clearAll: labels.clearAllFilters
-                    }
-                  })
-                ))
-              }
-              {hasMoreFilters && (
-                FilterDrawerButtonComponent({
-                  children: labels.allFilters
-                }) || (
-                  <Button
-                    color="primary"
-                    onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
-                  >
-                    {labels.allFilters}
-                  </Button>
-                )
-              )}
-            </ButtonGroup>
-            {hasMoreFilters && (
-              FilterDrawerComponent({
-                title: labels.allFiltersDrawerTitle,
-                children: filterDrawerComponents
-              }) || (
-                <Drawer
-                  anchor="right"
-                  open={shouldShowAdditionalFilters}
-                  onClose={handleCloseDrawer}
-                >
-                  <AppBar position="sticky">
-                    <Toolbar>
-                      <Box flex={1} paddingLeft={2}>
-                        <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+            <>
+              <TextField
+                className={classes.textField}
+                fullWidth
+                margin="dense"
+                placeholder={labels.globalFilterPlaceholder}
+                onChange={(event) => setGlobalFilter(event.target.value)}
+                variant="outlined"
+              />
+              <Box paddingLeft={2}>
+                <ButtonGroup>
+                  {activeFilters
+                    .slice(0, maxFilterButtons)
+                    .map((column, index) => (
+                      column.render("Filter", {
+                        key: index,
+                        labels: {
+                          clear: labels.clearFilter,
+                          clearAll: labels.clearAllFilters
+                        }
+                      })
+                    ))
+                  }
+                  {hasMoreFilters && (
+                    FilterDrawerButtonComponent({
+                      children: labels.allFilters
+                    }) || (
+                      <Button
+                        color="primary"
+                        onClick={() => setShowAdditionalFilters(!shouldShowAdditionalFilters)}
+                      >
+                        {labels.allFilters}
+                      </Button>
+                    )
+                  )}}
+                </ButtonGroup>
+                {hasMoreFilters && (
+                  FilterDrawerComponent({
+                    title: labels.allFiltersDrawerTitle,
+                    children: filterDrawerComponents
+                  }) || (
+                    <Drawer
+                      anchor="right"
+                      open={shouldShowAdditionalFilters}
+                      onClose={handleCloseDrawer}
+                    >
+                      <AppBar position="sticky">
+                        <Toolbar>
+                          <Box flex={1} paddingLeft={2}>
+                            <Typography variant="h3">{labels.allFiltersDrawerTitle}</Typography>
+                          </Box>
+                          <IconButton onClick={handleCloseDrawer}>
+                            <CloseIcon />
+                          </IconButton>
+                        </Toolbar>
+                      </AppBar>
+                      <Box
+                        paddingTop={1}
+                        marginLeft="-1px"
+                        marginRight="-1px"
+                      >
+                        {filterDrawerComponents}
                       </Box>
-                      <IconButton onClick={handleCloseDrawer}>
-                        <CloseIcon />
-                      </IconButton>
-                    </Toolbar>
-                  </AppBar>
-                  <Box
-                    paddingTop={1}
-                    marginLeft="-1px"
-                    marginRight="-1px"
-                  >
-                    {filterDrawerComponents}
-                  </Box>
-                </Drawer>
-              )
-            )}
-          </Box>
+                    </Drawer>
+                  )
+                )}
+              </Box>
+            </>
+          )}
         </Toolbar>
       ))}
       <DataTableFilterChipBar
@@ -267,22 +344,27 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
           <TableHead className={classes.tableHead}>
             {headerGroups.map((headerGroup) => (
               <TableRow {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <TableCell
-                    padding={isSelectable ? "checkbox" : "default"}
-                    classes={{
-                      root: classes.tableHead
-                    }}
-                    {...column.getHeaderProps()}
-                  >
-                    {column.render("Header")}
-                  </TableCell>
-                ))}
+                {headerGroup.headers.map((column) => {
+                  if (column.show === false) return null;
+
+                  return (
+                    <TableCell
+                      padding={column.id === "selection" ? "checkbox" : "default"}
+                      classes={{
+                        root: classes.tableHead
+                      }}
+                      {...column.getHeaderProps()}
+                    >
+                      {column.render("Header")}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableHead>
           <TableBody className={classes.tableBody}>
-            {page.map((row, index) =>
+            {loadingRows}
+            {!isLoading && page.map((row, index) =>
               prepareRow(row) || (
                 <TableRow
                   onClick={onRowClick && onRowClick(row)}
@@ -296,6 +378,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 >
                   {row.cells.map((cell) => {
                     const { isClickDisabled, ...cellProps } = cell.getCellProps();
+                    if (cell.column.show === false) return null;
 
                     return (
                       <TableCell
@@ -310,7 +393,9 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                     );
                   })}
                 </TableRow>
-              ))}
+              ))
+            }
+            {extraRows}
           </TableBody>
         </Table>
       </div>
@@ -383,42 +468,44 @@ DataTable.propTypes = {
    */
   ToolbarComponent: PropTypes.elementType,
   /**
-   * Props applied to the built-in action menu
+   * Props applied to the built-in action menu. See ActionMenu component for available props.
    */
-  actionMenuProps: PropTypes.arrayOf(PropTypes.shape({
-    /**
-     * Change the cancel button label in the confirm dialog
-     */
-    cancelActionText: PropTypes.string,
-    /**
-     * Change the label of the confirmation button in the confirm dialog
-     */
-    confirmActionText: PropTypes.string,
-    /**
-     * If supplied, the option will show a confirm dialog this message when selected.
-     */
-    confirmMessage: PropTypes.string,
-    /**
-     * If supplied, the option will show a confirm dialog this title when selected
-     */
-    confirmTitle: PropTypes.string,
-    /**
-     * Secondary option label
-     */
-    details: PropTypes.string,
-    /**
-     * Disable the option
-     */
-    isDisabled: PropTypes.bool,
-    /**
-     * Option label
-     */
-    label: PropTypes.string.isRequired,
-    /**
-     * If supplied, this function will be called in addition to onSelect
-     */
-    onClick: PropTypes.func
-  })),
+  actionMenuProps: PropTypes.shape({
+    options: PropTypes.arrayOf(PropTypes.shape({
+      /**
+       * Change the cancel button label in the confirm dialog
+       */
+      cancelActionText: PropTypes.string,
+      /**
+       * Change the label of the confirmation button in the confirm dialog
+       */
+      confirmActionText: PropTypes.string,
+      /**
+       * If supplied, the option will show a confirm dialog this message when selected.
+       */
+      confirmMessage: PropTypes.string,
+      /**
+       * If supplied, the option will show a confirm dialog this title when selected
+       */
+      confirmTitle: PropTypes.string,
+      /**
+       * Secondary option label
+       */
+      details: PropTypes.string,
+      /**
+       * Disable the option
+       */
+      isDisabled: PropTypes.bool,
+      /**
+       * Option label
+       */
+      label: PropTypes.string.isRequired,
+      /**
+       * If supplied, this function will be called in addition to onSelect
+       */
+      onClick: PropTypes.func
+    }))
+  }),
   /**
    * Can go to next page
   */
@@ -460,9 +547,13 @@ DataTable.propTypes = {
    */
   headerGroups: PropTypes.array,
   /**
-   * Should the table show filters
+   * Should show the table filters
    */
   isFilterable: PropTypes.bool,
+  /**
+   * Show loading indicator
+   */
+  isLoading: PropTypes.bool,
   /**
    * Is set to true if the table rows are selectable
    */
@@ -474,39 +565,43 @@ DataTable.propTypes = {
     /**
      * The "All filters" button in table toolbar
      */
-    allFilters: PropTypes.string.isRequired,
+    allFilters: PropTypes.string,
     /**
      * Drawer title for all filters
      */
-    allFiltersDrawerTitle: PropTypes.string.isRequired,
+    allFiltersDrawerTitle: PropTypes.string,
     /**
      * Label for clearing all filters
      */
-    clearAllFilters: PropTypes.string.isRequired,
+    clearAllFilters: PropTypes.string,
     /**
      * Label for clearing a single filter
      */
-    clearFilter: PropTypes.string.isRequired,
+    clearFilter: PropTypes.string,
     /**
      * Global filter text input label
      */
-    globalFilterPlaceholder: PropTypes.string.isRequired,
+    globalFilterPlaceholder: PropTypes.string,
+    /**
+     * Loading message
+     */
+    loading: PropTypes.string,
     /**
      * Next button label
      */
-    next: PropTypes.string.isRequired,
+    next: PropTypes.string,
     /**
      * Function to generate the total number of pages ({ count }) => \`of ${count}\`,
      */
-    pageOf: PropTypes.func.isRequired,
+    pageOf: PropTypes.func,
     /**
      * Function to generate the label in select dropdown ({ count }) => \`${count} rows`,
      */
-    pageSizeSelect: PropTypes.func.isRequired,
+    pageSizeSelect: PropTypes.func,
     /**
      * Previous button label
      */
-    previous: PropTypes.string.isRequired
+    previous: PropTypes.string
   }),
   /**
    * Go to next page
@@ -549,6 +644,10 @@ DataTable.propTypes = {
    */
   previousPage: PropTypes.func,
   /**
+   * Set the global text filter
+   */
+  setGlobalFilter: PropTypes.func,
+  /**
    * Set the size of the pages
    */
   setPageSize: PropTypes.func,
@@ -561,9 +660,9 @@ DataTable.propTypes = {
    */
   shouldShowAdditionalFilters: PropTypes.bool,
   /**
-   * Table state [state, updater]
+   * Table state
    */
-  state: PropTypes.array
+  state: PropTypes.object
 };
 
 DataTable.defaultProps = {
@@ -571,6 +670,7 @@ DataTable.defaultProps = {
   FilterDrawerComponent() { },
   ToolbarComponent() { },
   PaginationComponent() { },
+  isFilterable: true,
   labels: defaultLabels,
   pageSizes: [10, 20, 30, 40, 50]
 };
