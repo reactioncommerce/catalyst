@@ -565,43 +565,43 @@ DataTable.propTypes = {
     /**
      * The "All filters" button in table toolbar
      */
-    allFilters: PropTypes.string.isRequired,
+    allFilters: PropTypes.string,
     /**
      * Drawer title for all filters
      */
-    allFiltersDrawerTitle: PropTypes.string.isRequired,
+    allFiltersDrawerTitle: PropTypes.string,
     /**
      * Label for clearing all filters
      */
-    clearAllFilters: PropTypes.string.isRequired,
+    clearAllFilters: PropTypes.string,
     /**
      * Label for clearing a single filter
      */
-    clearFilter: PropTypes.string.isRequired,
+    clearFilter: PropTypes.string,
     /**
      * Global filter text input label
      */
-    globalFilterPlaceholder: PropTypes.string.isRequired,
+    globalFilterPlaceholder: PropTypes.string,
     /**
      * Loading message
      */
-    loading: PropTypes.string.isRequired,
+    loading: PropTypes.string,
     /**
      * Next button label
      */
-    next: PropTypes.string.isRequired,
+    next: PropTypes.string,
     /**
      * Function to generate the total number of pages ({ count }) => \`of ${count}\`,
      */
-    pageOf: PropTypes.func.isRequired,
+    pageOf: PropTypes.func,
     /**
      * Function to generate the label in select dropdown ({ count }) => \`${count} rows`,
      */
-    pageSizeSelect: PropTypes.func.isRequired,
+    pageSizeSelect: PropTypes.func,
     /**
      * Previous button label
      */
-    previous: PropTypes.string.isRequired
+    previous: PropTypes.string
   }),
   /**
    * Go to next page
