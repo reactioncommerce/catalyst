@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 import {
   Box,
   ButtonGroup,
-  ClickAwayListener,
-  Grow,
-  Paper,
   ListItemText,
+  Menu,
   MenuItem,
-  MenuList,
-  Popper
+  MenuList
 } from "@material-ui/core";
 import MenuDownIcon from "mdi-material-ui/MenuDown";
 import Button from "../Button";
@@ -29,7 +26,7 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
     ...otherProps
   } = props;
   const [open, setOpen] = React.useState(false);
-  const anchorRef = ref || React.useRef(null);
+  const anchorRef = ref || React.useRef();
   const [selectedIndex, setSelectedIndex] = React.useState(initialSelectedOption);
   const selectedOption = options[selectedIndex];
   const color = selectedOption.isDestructive ? "error" : colorProp;
@@ -66,11 +63,7 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
    * @param {SyntheticEvent} event Event object
    * @returns {undefined}
    */
-  function handleClose(event) {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
+  function handleClose() {
     setOpen(false);
   }
 
@@ -97,38 +90,40 @@ const SplitButton = React.forwardRef(function SplitButton(props, ref) {
           <MenuDownIcon />
         </Button>
       </ButtonGroup>
-      <Popper open={open} anchorEl={anchorRef.current} transition>
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === "bottom" ? "center top" : "center bottom"
-            }}
-          >
-            <Paper elevation={2} id="menu-list-grow">
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList disablePadding>
-                  {options.map(({ label, details, isDisabled }, index) => (
-                    <MenuItem
-                      key={label}
-                      disabled={isDisabled}
-                      selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                      <Box maxWidth={320} whiteSpace="normal">
-                        <ListItemText
-                          primary={label}
-                          secondary={details}
-                        />
-                      </Box>
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+      <Menu
+        open={open}
+        anchorEl={anchorRef.current}
+        transition
+        keepMounted
+        onClose={handleClose}
+        // variant="menu"
+        anchorOrigin={{
+          horizontal: "center",
+          vertical: "top"
+        }}
+        transformOrigin={{
+          horizontal: "center",
+          vertical: "top"
+        }}
+      >
+        <MenuList disablePadding>
+          {options.map(({ label, details, isDisabled }, index) => (
+            <MenuItem
+              key={label}
+              disabled={isDisabled}
+              selected={index === selectedIndex}
+              onClick={(event) => handleMenuItemClick(event, index)}
+            >
+              <Box maxWidth={320} whiteSpace="normal">
+                <ListItemText
+                  primary={label}
+                  secondary={details}
+                />
+              </Box>
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
     </Fragment>
   );
 });
