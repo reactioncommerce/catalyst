@@ -79,12 +79,12 @@ exports[`basic snapshot test 1`] = `
           </div>
           <fieldset
             aria-hidden="true"
-            class="PrivateNotchedOutline-root-78 MuiOutlinedInput-notchedOutline"
+            class="PrivateNotchedOutline-root-80 MuiOutlinedInput-notchedOutline"
             style="padding-left: 8px;"
           >
             <legend
-              class="PrivateNotchedOutline-legend-79"
-              style="width: 0px;"
+              class="PrivateNotchedOutline-legend-81"
+              style="width: 0.01px;"
             >
               <span>
                 ​
