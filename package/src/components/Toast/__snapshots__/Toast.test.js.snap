@@ -7,20 +7,20 @@ exports[`basic snapshot - error variant 1`] = `
   >
     <div
       aria-describedby="message-id"
-      class="MuiPaper-root MuiPaper-elevation6 makeStyles-error-232"
+      class="MuiPaper-root makeStyles-error-235 MuiPaper-elevation6"
       direction="up"
       props="[object Object]"
       role="alertdialog"
       style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
     >
       <div
-        class="makeStyles-messageWrapper-228"
+        class="makeStyles-messageWrapper-231"
       >
         Test message
       </div>
       <button
         aria-label="close"
-        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-227"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-230"
         tabindex="0"
         type="button"
       >
@@ -55,20 +55,20 @@ exports[`basic snapshot - information variant 1`] = `
   >
     <div
       aria-describedby="message-id"
-      class="MuiPaper-root MuiPaper-elevation6 makeStyles-info-87"
+      class="MuiPaper-root makeStyles-info-88 MuiPaper-elevation6"
       direction="up"
       props="[object Object]"
       role="alertdialog"
       style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
     >
       <div
-        class="makeStyles-messageWrapper-82"
+        class="makeStyles-messageWrapper-83"
       >
         Test message
       </div>
       <button
         aria-label="close"
-        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-81"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-82"
         tabindex="0"
         type="button"
       >
@@ -103,7 +103,7 @@ exports[`basic snapshot - only default props 1`] = `
   >
     <div
       aria-describedby="message-id"
-      class="MuiPaper-root MuiPaper-elevation6 makeStyles-info-14"
+      class="MuiPaper-root makeStyles-info-14 MuiPaper-elevation6"
       direction="up"
       props="[object Object]"
       role="alertdialog"
@@ -151,20 +151,20 @@ exports[`basic snapshot - success variant 1`] = `
   >
     <div
       aria-describedby="message-id"
-      class="MuiPaper-root MuiPaper-elevation6 makeStyles-success-158"
+      class="MuiPaper-root makeStyles-success-160 MuiPaper-elevation6"
       direction="up"
       props="[object Object]"
       role="alertdialog"
       style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
     >
       <div
-        class="makeStyles-messageWrapper-155"
+        class="makeStyles-messageWrapper-157"
       >
         Test message
       </div>
       <button
         aria-label="close"
-        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-154"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-156"
         tabindex="0"
         type="button"
       >
@@ -199,20 +199,20 @@ exports[`basic snapshot - warning variant 1`] = `
   >
     <div
       aria-describedby="message-id"
-      class="MuiPaper-root MuiPaper-elevation6 makeStyles-warning-307"
+      class="MuiPaper-root makeStyles-warning-311 MuiPaper-elevation6"
       direction="up"
       props="[object Object]"
       role="alertdialog"
       style="opacity: 1; transform: scale(1, 1); transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
     >
       <div
-        class="makeStyles-messageWrapper-301"
+        class="makeStyles-messageWrapper-305"
       >
         Test message
       </div>
       <button
         aria-label="close"
-        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-300"
+        class="MuiButtonBase-root MuiIconButton-root makeStyles-close-304"
         tabindex="0"
         type="button"
       >
