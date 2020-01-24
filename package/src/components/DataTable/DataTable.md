@@ -14,10 +14,9 @@ This example uses many of the available features of the DataTable.
 
 ```jsx
 import { useMemo, useEffect, useCallback, forwardRef, useState } from "react";
-import { Box, Checkbox, Link, Typography } from "@material-ui/core";
+import { Box, Button, Divider, Link, Typography } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
-// import data from "./mocks/orders.json";
 import Chip from "../Chip";
 import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
 import dateFormat from "dateformat";
@@ -170,10 +169,11 @@ function TableExample() {
   // Fetch data callback whenever the table requires more data to properly display.
   // This is the case if theres an update with pagination, filtering or sorting.
   // This function is called on the initial load of the table to fet the first set of results.
-  const onFetchData = useCallback(async ({ globalFilter, pageIndex, pageSize, filters }) => {
+  const onFetchData = useCallback(async ({ globalFilter, pageIndex, pageSize, filters, filtersByKey }) => {
     console.log("Fetch Data")
     console.log("-- Global Filter", globalFilter)
-    console.log("-- Filters", filters)
+    console.log("-- Raw Filters", filters)
+    console.log("-- Filters by object key", filtersByKey)
 
     // Trigger loading animation
     setIsLoading(true);
@@ -182,7 +182,7 @@ function TableExample() {
     const { data: apiData } = await getPaginatedData({
       filters: {
         searchText: globalFilter,
-        ...filters
+        ...filtersByKey
       },
       offset: pageIndex * pageSize,
       limit: (pageIndex + 1) * pageSize,
@@ -242,12 +242,17 @@ function TableExample() {
     getRowID: (row, index) => row.id,
   })
 
-  const { toggleAllRowsSelected } = dataTableProps;
+  const {
+    refetch,
+    fetchData,
+    toggleAllRowsSelected
+  } = dataTableProps;
 
-      // Create options for the built-in ActionMenu in the DataTable
+  // Create options for the built-in ActionMenu in the DataTable
   const actionMenuOptions = useMemo(() => [{
     label: "Filter by file",
     onClick: () => {
+      toggleAllRowsSelected(false);
       console.log("Filter by file");
     }
   }, {
@@ -256,7 +261,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to publish ${selectedRows.length} products to your storefront?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
-      toggleAllRowsSelected(false);
+      refetch();
       console.log(`Published ${selectedRows.length} products`);
     }
   }, {
@@ -265,7 +270,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to make ${selectedRows.length} products visible to customers?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
-      toggleAllRowsSelected(false);
+      refetch();
       console.log(`Made ${selectedRows.length} products visible`);
     }
   }, {
@@ -274,7 +279,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to make ${selectedRows.length} products hidden from customers?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
-      toggleAllRowsSelected(false);
+      refetch();
       console.log(`Made ${selectedRows.length} products hidden`);
     }
   }, {
@@ -283,7 +288,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to duplicate ${selectedRows.length} products?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
-      toggleAllRowsSelected(false);
+      refetch();
       console.log(`Duplicated ${selectedRows.length} products`);
     }
   }, {
@@ -292,18 +297,63 @@ function TableExample() {
     confirmMessage: `Are you sure you want to archive ${selectedRows.length} products? This will hide them from both admins and customers.`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
-      toggleAllRowsSelected(false);
+      refetch();
       console.log(`Archived ${selectedRows.length} products`);
     }
   }], [selectedRows]);
 
 
   return (
-    <DataTable
-      {...dataTableProps}
-      actionMenuProps={{ options: actionMenuOptions }}
-      isLoading={isLoading}
-    />
+    <Box>
+      <DataTable
+        {...dataTableProps}
+        actionMenuProps={{ options: actionMenuOptions }}
+        isLoading={isLoading}
+      />
+      <Divider />
+      <Box display="flex" paddingTop={2}>
+        <Box display="flex" alignItems="center" paddingRight={2}>
+          <Typography>{"Custom controls"}</Typography>
+        </Box>
+        <Box paddingRight={2}>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => {
+              // Use fetch data if you want to force the onFetchData callback to execute
+              // All options are optional.
+              fetchData({
+                globalFilter: "processing",
+                filters: [
+                  {
+                    id: "fulfillmentStatus",
+                    value: "unfulfilled"
+                  }
+                ],
+                pageSize: 20,
+              })
+            }}
+          >
+            {"Load unfulfilled orders"}
+          </Button>
+        </Box>
+
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => {
+            // A global clear all filters button
+            fetchData({
+              globalFilter: null,
+              filters: null,
+              pageSize: 10,
+            })
+          }}
+        >
+          {"Clear all filters"}
+        </Button>
+      </Box>
+    </Box>
   );
 }
 
