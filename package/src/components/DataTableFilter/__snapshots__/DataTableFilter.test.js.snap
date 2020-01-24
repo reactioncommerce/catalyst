@@ -5,7 +5,7 @@ exports[`basic snapshot - only default props 1`] = `
   <button
     aria-controls="filter-menu"
     aria-haspopup="true"
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-1 MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-button-1 MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -14,7 +14,7 @@ exports[`basic snapshot - only default props 1`] = `
     >
       Filter
       <div
-        class="MuiBox-root MuiBox-root-29"
+        class="MuiBox-root MuiBox-root-41"
       >
         <svg
           aria-hidden="true"
