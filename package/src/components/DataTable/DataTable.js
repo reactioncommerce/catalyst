@@ -118,7 +118,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     gotoPage,
     nextPage,
     previousPage,
-    setGlobalFilter,
+    debounceSetGlobalFilter,
     setPageSize,
     state: { pageIndex, pageSize, filters }
   } = props;
@@ -268,7 +268,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                 fullWidth
                 margin="dense"
                 placeholder={labels.globalFilterPlaceholder}
-                onChange={(event) => setGlobalFilter(event.target.value)}
+                onChange={(event) => debounceSetGlobalFilter(event.target.value)}
                 variant="outlined"
               />
               <Box paddingLeft={2}>
@@ -530,6 +530,10 @@ DataTable.propTypes = {
    * Row data as an array of objects
    */
   data: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Set the global text filter on a delay
+   */
+  debounceSetGlobalFilter: PropTypes.func,
   /**
    * Flattened array of the original column data
    */
