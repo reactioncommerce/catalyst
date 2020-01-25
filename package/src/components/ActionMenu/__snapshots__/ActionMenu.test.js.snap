@@ -5,7 +5,7 @@ exports[`basic snapshot - only default props 1`] = `
   <button
     aria-controls="action-menu"
     aria-haspopup="true"
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-1 MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-button-1 MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -14,7 +14,7 @@ exports[`basic snapshot - only default props 1`] = `
     >
       Actions
       <div
-        class="MuiBox-root MuiBox-root-26"
+        class="MuiBox-root MuiBox-root-38"
       >
         <svg
           aria-hidden="true"
@@ -41,7 +41,7 @@ exports[`option onClick 1`] = `
   <button
     aria-controls="action-menu"
     aria-haspopup="true"
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-269 MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-button-297 MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -50,7 +50,7 @@ exports[`option onClick 1`] = `
     >
       Actions
       <div
-        class="MuiBox-root MuiBox-root-294"
+        class="MuiBox-root MuiBox-root-334"
       >
         <svg
           aria-hidden="true"
@@ -77,7 +77,7 @@ exports[`option onClick with confirmation 1`] = `
   <button
     aria-controls="action-menu"
     aria-haspopup="true"
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-403 MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-button-445 MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -86,7 +86,7 @@ exports[`option onClick with confirmation 1`] = `
     >
       Actions
       <div
-        class="MuiBox-root MuiBox-root-428"
+        class="MuiBox-root MuiBox-root-482"
       >
         <svg
           aria-hidden="true"
@@ -113,7 +113,7 @@ exports[`select an option 1`] = `
   <button
     aria-controls="action-menu"
     aria-haspopup="true"
-    class="MuiButtonBase-root MuiButton-root makeStyles-button-135 MuiButton-outlined MuiButton-outlinedPrimary"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined makeStyles-button-149 MuiButton-outlinedPrimary"
     tabindex="0"
     type="button"
   >
@@ -122,7 +122,7 @@ exports[`select an option 1`] = `
     >
       Actions
       <div
-        class="MuiBox-root MuiBox-root-160"
+        class="MuiBox-root MuiBox-root-186"
       >
         <svg
           aria-hidden="true"

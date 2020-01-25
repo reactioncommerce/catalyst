@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { Checkbox } from "@material-ui/core";
+import debounce from "lodash.debounce";
 import {
   useTable,
   useFilters,
@@ -8,6 +9,20 @@ import {
   useGlobalFilter
 } from "react-table";
 import useDataTableCellProps from "./useDataTableCellProps";
+
+/**
+ * Convert an array of objects to an object by id
+ * @param {Array<Object>} filters An array of objects `{id, value}`
+ * @returns {Object} An object containing the filters by key
+ */
+function filtersArrayToObject(filters) {
+  const filtersByKey = {};
+  filters.forEach(({ id, value }) => {
+    filtersByKey[id] = value;
+  });
+
+  return filtersByKey;
+}
 
 /**
  * useDataTable
@@ -58,6 +73,7 @@ export default function useDataTable({
       manualPagination: true,
       manualFilters: true,
       manualGlobalFilter: true,
+      manualSortBy: true,
       pageCount: controlledPageCount,
       ...otherProps
     },
@@ -102,18 +118,24 @@ export default function useDataTable({
   );
 
   const {
+    setAllFilters,
     setFilter,
+    setGlobalFilter,
+    setPageSize,
     state: { pageIndex, pageSize, filters, globalFilter, selectedRowIds, sortBy }
   } = dataTableProps;
 
   useEffect(() => {
-    onFetchData && onFetchData({
-      globalFilter,
-      sortBy,
-      filters,
-      pageIndex,
-      pageSize
-    });
+    if (onFetchData) {
+      onFetchData({
+        globalFilter,
+        sortBy,
+        filters,
+        filtersByKey: filtersArrayToObject(filters),
+        pageIndex,
+        pageSize
+      });
+    }
   }, [
     globalFilter,
     filters,
@@ -122,6 +144,10 @@ export default function useDataTable({
     pageSize,
     sortBy
   ]);
+
+  const debounceSetGlobalFilter = useCallback(debounce((value) => {
+    setGlobalFilter(value);
+  }, 1000), []);
 
   useEffect(() => {
     if (isSelectable) {
@@ -167,11 +193,44 @@ export default function useDataTable({
     }
   }, [filters]);
 
+  const refetch = useCallback(() => {
+    if (onFetchData) {
+      onFetchData({
+        globalFilter,
+        filters,
+        filtersByKey: filtersArrayToObject(filters),
+        pageIndex,
+        pageSize,
+        sortBy
+      });
+    }
+  }, [
+    globalFilter,
+    filters,
+    onFetchData,
+    pageIndex,
+    pageSize,
+    sortBy
+  ]);
+
+  const fetchData = useCallback(({
+    globalFilter: globalFilterLocal,
+    filters: filtersLocal,
+    pageSize: pageSizeLocal
+  }) => {
+    setGlobalFilter(globalFilterLocal || "");
+    setAllFilters(filtersLocal || []);
+    setPageSize(pageSizeLocal || pageSize);
+  }, []);
+
   return {
     ...dataTableProps,
+    debounceSetGlobalFilter,
+    fetchData,
     isSelectable,
     onRowClick: onRowClickWrapper,
     onRemoveFilter,
+    refetch,
     shouldShowAdditionalFilters,
     setShowAdditionalFilters
   };

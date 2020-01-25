@@ -3,7 +3,7 @@
 exports[`basic snapshot - only default props 1`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text"
+    class="MuiButtonBase-root MuiButton-root MuiButton-text myBtn"
     tabindex="0"
     type="button"
   >
@@ -22,7 +22,7 @@ exports[`basic snapshot - only default props 1`] = `
 exports[`error button snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-35"
+    class="MuiButtonBase-root MuiButton-root MuiButton-contained myBtn MuiButton-containedPrimary makeStyles-containedPrimary-47"
     tabindex="0"
     type="button"
   >
@@ -41,7 +41,7 @@ exports[`error button snapshot 1`] = `
 exports[`error button snapshot 2`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-outlined MuiButton-outlinedPrimary makeStyles-outlinedPrimary-69"
+    class="MuiButtonBase-root MuiButton-root MuiButton-outlined myBtn MuiButton-outlinedPrimary makeStyles-outlinedPrimary-93"
     tabindex="0"
     type="button"
   >
@@ -60,7 +60,7 @@ exports[`error button snapshot 2`] = `
 exports[`isWaiting button snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="MuiButtonBase-root MuiButton-root myBtn MuiButton-text Mui-disabled Mui-disabled"
+    class="MuiButtonBase-root MuiButton-root MuiButton-text myBtn Mui-disabled Mui-disabled"
     disabled=""
     tabindex="-1"
     type="button"
@@ -70,7 +70,7 @@ exports[`isWaiting button snapshot 1`] = `
     >
       Upload
       <div
-        class="MuiCircularProgress-root makeStyles-buttonProgress-100 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+        class="MuiCircularProgress-root makeStyles-buttonProgress-136 MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
         role="progressbar"
         style="width: 16px; height: 16px;"
       >

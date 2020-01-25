@@ -2,7 +2,8 @@
 
 exports[`basic snapshot - with opening the dialog 1`] = `
 <div
-  class="MuiPaper-root MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-rounded"
+  aria-labelledby="confirm-action-dialog-title"
+  class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
   role="dialog"
 >
   <div

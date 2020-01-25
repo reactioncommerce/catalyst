@@ -36,7 +36,7 @@ export async function getPaginatedData({
     return 0;
   });
 
-  const filterValues = Object.values(filters).filter((value) => value !== undefined).map(({ value }) => value);
+  const filterValues = Object.values(filters).filter((value) => value !== undefined);
 
   if (filterValues.length) {
     const nodes = sortedData.filter((item) => {
