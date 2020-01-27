@@ -48,7 +48,7 @@ This will be documented better in the future. For now, refer to existing compone
 
 Every component and utility function in this style guide must have a corresponding file containing component tests. All tests are written using, and run by, the [Jest](https://facebook.github.io/jest/) test framework, which is based on the Jasmine framework. If you haven't used Jest, you should read their documentation to get familiar.
 
-Review and follow all guidelines in [Writing Jest Unit Tests](https://docs.reactioncommerce.com/reaction-docs/master/writing-jest-unit-tests)
+Review and follow all guidelines in [Writing Jest Unit Tests](https://docs.reactioncommerce.com/reaction-docs/trunk/writing-jest-unit-tests)
 
 ## Write the component code
 

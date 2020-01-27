@@ -7,8 +7,8 @@
 
 This is a single project with a package of commerce-focused React UI components and the code for the Catalyst website:
 
-- [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst): See the [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package/package.json) in [`/package`](https://github.com/reactioncommerce/catalyst/tree/master/package) folder.
-- [Catalyst Components](https://catalyst.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/master/package.json).
+- [`@reactioncommerce/catalyst`](https://www.npmjs.com/package/@reactioncommerce/catalyst): See the [package.json](https://github.com/reactioncommerce/catalyst/blob/trunk/package/package.json) in [`/package`](https://github.com/reactioncommerce/catalyst/tree/trunk/package) folder.
+- [Catalyst Components](https://catalyst.reactioncommerce.com/): See the root [package.json](https://github.com/reactioncommerce/catalyst/blob/trunk/package.json).
 
 We use the [React Styleguidist](https://react-styleguidist.js.org/) package to run and build the Catalyst website, and running the style guide locally doubles as an interactive playground for developing and testing the components.
 

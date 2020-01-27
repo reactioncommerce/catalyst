@@ -1,5 +1,5 @@
 Resolves #issueNumber
-Impact: **breaking|critical|major|minor**  
+Impact: **breaking|critical|major|minor**
 Type: **feature|bugfix|performance|test|style|refactor|docs|chore**
 
 <!-- 📦🚀 This project is deployed with [semantic-release](https://github.com/semantic-release/semantic-release) -->
@@ -22,4 +22,4 @@ You should almost never include "BREAKING CHANGES" because we’re duplicating c
 2. Assume that testers already know how to start the app, and do the basic setup tasks.
 3. Be detailed enough that someone can work through it without being too granular
 
-More detail for what each of these sections should include are available in our [Contributing Docs](https://docs.reactioncommerce.com/reaction-docs/master/contributing-to-reaction) 
+More detail for what each of these sections should include are available in our [Contributing Docs](https://docs.reactioncommerce.com/reaction-docs/trunk/contributing-to-reaction)
