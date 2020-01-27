@@ -10,11 +10,11 @@ The DataTable provides a robust solution for displaying tabular data. It is buil
 
 This example showcases using the DataTable to display orders that come from an API. Data fetching is simulated with a 200ms delay.
 
-This is example mimics the implementation of the Orders table in Reaction.
+This example uses many of the available features of the DataTable.
 
 ```jsx
-import { useMemo, useEffect, useCallback, forwardRef } from "react";
-import { Box, Checkbox, Typography } from "@material-ui/core";
+import { useMemo, useEffect, useCallback, forwardRef, useState } from "react";
+import { Box, Button, Divider, Link, Typography } from "@material-ui/core";
 import { useDataTable } from "./";
 import { getPaginatedData } from "./mocks/sampleData";
 import Chip from "../Chip";
@@ -22,12 +22,18 @@ import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
 import dateFormat from "dateformat";
 
 function TableExample() {
+  const [data, setData] = useState([]);
+  const [pageCount, setPageCount] = useState();
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   // Create and memoize the column data
   const columns = useMemo(() => [
     {
       Header: "Order ID",
       accessor: "referenceId",
-      cellProps: {
+      headerProps: {}, // Optional. Header props may be a function, object
+      cellProps: { // Optional. Cell Props props may be a function, object
         padding: "checkbox"
       },
       Cell: ({ row, cell }) => {
@@ -115,7 +121,21 @@ function TableExample() {
     },
     {
       Header: "Customer",
-      accessor: "customer"
+      accessor: "customer",
+      cellProps: (cell) => {
+        // Call props can also be a function, in case you want to
+        // dynamically create props
+        return {
+          style: {
+            cursor: "pointer"
+          }
+        }
+      },
+      Cell: ({ cell }) => (
+        <Link href={`#/Components/Content/DataTable/${cell.value}`}>
+          {cell.value}
+        </Link>
+      ),
     },
     // Custom cell and header renderer
     {
@@ -149,44 +169,47 @@ function TableExample() {
   // Fetch data callback whenever the table requires more data to properly display.
   // This is the case if theres an update with pagination, filtering or sorting.
   // This function is called on the initial load of the table to fet the first set of results.
-  const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize, filters }) => {
+  const onFetchData = useCallback(async ({ globalFilter, pageIndex, pageSize, filters, filtersByKey }) => {
     console.log("Fetch Data")
     console.log("-- Global Filter", globalFilter)
-    console.log("-- Filters", filters)
+    console.log("-- Raw Filters", filters)
+    console.log("-- Filters by object key", filtersByKey)
+
+    // Trigger loading animation
+    setIsLoading(true);
+
     // Get data from an API.
-    const { data } = await getPaginatedData({
+    const { data: apiData } = await getPaginatedData({
       filters: {
-        searchField: globalFilter,
-        ...filters
+        searchText: globalFilter,
+        ...filtersByKey
       },
       offset: pageIndex * pageSize,
       limit: (pageIndex + 1) * pageSize,
       simulatedDelay: 200 // 300 ms delay
     });
 
-    // Return the fetched data as an array of objects and the calculated page count
-    return {
-      data: data.nodes,
-      pageCount: Math.ceil(data.totalCount / pageSize)
-    }
-  }, []);
+    // Update the state with the fetched data as an array of objects and the calculated page count
+    setData(apiData.nodes)
+    setPageCount(Math.ceil(apiData.totalCount / pageSize))
+
+    // Disable loading animation
+    setIsLoading(false);
+  }, [
+    setData,
+    setPageCount
+  ]);
 
   // Row click callback
   const onRowClick = useCallback(async ({ row }) => {
     console.log("Row clicked", row);
   }, []);
 
-  const dataTableProps = useDataTable({
-    columns,
-    onFetchData,
-    onRowClick,
-    getRowID: (row, index) => row.id
-  });
 
-  // Table state is comes fom a `useState` hook, thus the state first element in
-  // the array, and the second is the updater function
-  // e.g. `const [state, updaterFunc] = dataTableProps.state;`
-  const [{ selectedRows }] = dataTableProps.state;
+  const onRowSelect = useCallback(async ({ selectedRows }) => {
+    setSelectedRows(selectedRows || [])
+    console.log("Selected rows", selectedRows);
+  }, []);
 
   const labels = useMemo(() => ({
     "globalFilterPlaceholder": "Filter orders",
@@ -201,356 +224,35 @@ function TableExample() {
     "filterChipValue.unpaid": "Unpaid",
     "filterChipValue.new": "New",
     "filterChipValue.processing": "Processing",
+    "filterChipValue.completed": "Completed",
     "filterChipValue.canceled": "Canceled",
     "filterChipValue.today": "Today",
     "filterChipValue.last7": "Last 7 days",
     "filterChipValue.last30": "Last 30"
   }), []);
 
-  return (
-    <DataTable
-      {...dataTableProps}
-      labels={labels}
-      isFilterable
-    />
-  );
-}
-
-TableExample()
-```
-
-##### Table with data fetching
-
-A DataTable without filtering or selectable rows. Data fetching is simulated with a 200ms delay.
-
-```jsx
-import { useMemo, useEffect, useCallback } from "react";
-import { Box } from "@material-ui/core";
-import { useDataTable } from "./";
-import { getPaginatedData, data } from "./mocks/sampleData";
-import CreditCardIcon from "mdi-material-ui/CreditCard";
-import dateFormat from "dateformat";
-
-function TableExample() {
-  const columns = useMemo(() => [
-    {
-      Header: "Order ID",
-      accessor: "referenceId"
-    },
-    {
-      Header: "Date",
-      accessor: "createdAt",
-      Cell: ({ row }) =>  (
-        <span style={{ whiteSpace: "noWrap" }}>
-          {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
-        </span>
-      )
-    },
-    {
-      Header: "Payment Status",
-      accessor: "paymentStatus"
-    },
-    {
-      Header: "Fulfillment Status",
-      accessor: "fulfillmentStatus"
-    },
-    {
-      Header: "Customer",
-      accessor: "customer"
-    },
-    // Custom cell and header renderer
-    {
-      Cell: ({ row }) => (
-        <Box textAlign="right">
-          {row.values.total}
-        </Box>
-      ),
-      Header: ({ header }) => (
-        <Box textAlign="right">
-          Total
-        </Box>
-      ),
-      accessor: "total"
-    },
-  ], []);
-
-  const onFetchData = useCallback(async ({ setData, pageIndex, pageSize }) => {
-    const { data } = await getPaginatedData({
-      offset: pageIndex * pageSize,
-      limit: (pageIndex + 1) * pageSize,
-      simulatedDelay: 200 // 300 ms delay
-    });
-
-    return {
-      data: data.nodes,
-      pageCount: data.totalCount / pageSize
-    }
-  }, []);
-
-  const onSelectRows = useCallback(async ({ selectedRows }) => {
-    console.log("Selected rows", selectedRows);
-  }, []);
-
   const dataTableProps = useDataTable({
     columns,
-    onFetchData
-  });
-
-  return <DataTable {...dataTableProps} />
-}
-
-TableExample()
-```
-
-##### Table with client-side data
-
-```jsx
-import { useMemo, useEffect, useCallback } from "react";
-import { Box } from "@material-ui/core";
-import { useDataTable } from "./";
-import data from "./mocks/orders.json";
-import dateFormat from "dateformat"
-
-function TableExample() {
-  // Create and memoize the column data
-  const columns = useMemo(() => [
-    {
-      Header: "Order ID",
-      accessor: "referenceId"
-    },
-    {
-      Header: "Date",
-      accessor: "createdAt",
-      Cell: ({ row }) =>  (
-        <span style={{ whiteSpace: "noWrap" }}>
-          {dateFormat(row.values.createdAt, "mm-dd-yyyy h:MM TT")}
-        </span>
-      )
-    },
-    {
-      Header: "Payment Status",
-      accessor: "paymentStatus"
-    },
-    {
-      Header: "Fulfillment Status",
-      accessor: "fulfillmentStatus"
-    },
-    {
-      Header: "Customer",
-      accessor: "customer"
-    },
-    // Custom cell and header renderer
-    {
-      Cell: ({ row }) => (
-        <Box textAlign="right">
-          {row.values.total}
-        </Box>
-      ),
-      Header: ({ header }) => (
-        <Box textAlign="right">
-          Total
-        </Box>
-      ),
-      accessor: "total"
-    },
-  ], []);
-
-  // Create and memoize the row data
-  // This data should contain all the rows that the table could possibly display
-  // as this table set up will not fetch additional data from the server.
-  const memoizedData = useMemo(() => data, []);
-
-  // Setup the data with the columns and data
-  const dataTableProps = useDataTable({
-    columns,
-    data: memoizedData
-  });
-
-  // Render the DataTable component with all props provided from the useDataTable hook
-  return <DataTable {...dataTableProps} />;
-}
-
-TableExample()
-```
-
-##### Custom columns
-
-```jsx
-import { useMemo, useEffect, useCallback } from "react";
-import { Box, Checkbox, Link } from "@material-ui/core";
-import Button from "../Button";
-import Chip from "../Chip";
-import { useDataTable } from "./";
-import { getPaginatedData } from "./mocks/sampleData";
-
-function TableExample() {
-  // Create and memoize the column data
-  const columns = useMemo(() => [
-    // This is optional for selectable tables. If omitted, a default selectable column
-    // will be automatically added to the table if the `onSelectRows` callback is provided
-    // to the `useDataTable` hook.
-    {
-      id: "selection",
-      headerProps: {},
-      cellProps: {
-        // Disables the cell click if the row is clickable
-        // This is important if you have a callback for onRowClick, as the checkbox cell
-        // will also trigger the row click.
-        // Alternatively you can control the onClick with the following option
-        // onClick: (event) => event.stopPropagation(),
-        isClickDisabled: true,
-
-        // All other props will be applied to the table cell.
-        padding: "checkbox",
-      },
-      // The header can use the table's getToggleAllRowsSelectedProps method
-      // to render a checkbox
-      // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-      Header: ({ getToggleAllRowsSelectedProps }) => (
-        <Checkbox {...getToggleAllRowsSelectedProps()} />
-      ),
-      // The cell can use the individual row's getToggleRowSelectedProps method
-      // to the render a checkbox
-      // eslint-disable-next-line react/no-multi-comp,react/display-name,react/prop-types
-      Cell: ({ row }) => (
-        <Checkbox
-          {...row.getToggleRowSelectedProps()}
-          title={`Toggle row selection for ${row.values.fullName}`}
-        />
-      )
-    },
-    {
-      Header: "Order ID",
-      accessor: "referenceId",
-      cellProps: {
-        padding: "checkbox"
-      },
-      Cell: ({ row, cell }) => {
-        const { status } = row.values;
-        let color = "success";
-
-        if (row.values.status === "canceled") {
-          color = "danger";
-        } else if (status === "processing") {
-          color = "info"
-        }
-
-        return (
-          <Box style={{ whiteSpace: "nowrap" }}>
-            <Box
-              component="span"
-              paddingRight={2}
-            >
-              {cell.value}
-            </Box>
-            {status !== "completed" ?
-              <Chip
-                color={color}
-                variant="default"
-                label={row.values.status}
-              />
-              :
-              <span>{row.values.status}</span>
-            }
-          </Box>
-        );
-      },
-    },
-    {
-      show: false,
-      accessor: "status"
-    },
-    {
-      Header: "Payment Status",
-      accessor: "paymentStatus"
-    },
-    {
-      Header: "Fulfillment Status",
-      accessor: "fulfillmentStatus"
-    },
-    {
-      Header: "Customer",
-      accessor: "customer",
-      cellProps: (cell) => {
-        // Call props can also be a function, in case you want to
-        // dynamically create props
-        return {
-          style: {
-            cursor: "pointer"
-          }
-        }
-      },
-      Cell: ({ cell }) => (
-        <Link href={`#/Components/Content/DataTable/${cell.value}`}>
-          {cell.value}
-        </Link>
-      ),
-    },
-    // Custom cell and header renderer
-    {
-      Cell: ({ cell }) => (
-        <Box textAlign="right">
-          {cell.value}
-        </Box>
-      ),
-      Header: ({ header }) => (
-        <Box textAlign="right">
-          Total
-        </Box>
-      ),
-      accessor: "total"
-    }
-  ], []);
-
-  // Fetch data callback whenever the table requires more data to properly display.
-  // This is the case if theres an update with pagination, filtering or sorting.
-  // This function is called on the initial load of the table to fet the first set of results.
-  const onFetchData = useCallback(async ({ globalFilter, setData, pageIndex, pageSize }) => {
-    // Get data from an API.
-    const { data } = await getPaginatedData({
-      filter: globalFilter,
-      offset: pageIndex * pageSize,
-      limit: (pageIndex + 1) * pageSize,
-      simulatedDelay: 200 // 300 ms delay
-    });
-
-    // Return the fetched data as an array of objects and the calculated page count
-    return {
-      data: data.nodes,
-      pageCount: Math.ceil(data.totalCount / pageSize)
-    }
-  }, []);
-
-  // When rows are selected it will be reported here if additional actions need
-  // to take place on selection.
-  // Selected can also be accessed from the table state in the example below:
-  // `const [{ selectedRows }] = dataTableProps.state;`
-  const onSelectRows = useCallback(async ({ selectedRows }) => {
-    console.log("Selected rows", selectedRows);
-  }, []);
-
-  // Row click callback
-  const onRowClick = useCallback(async ({ row }) => {
-    console.log("Row clicked", row);
-  }, []);
-
-  const dataTableProps = useDataTable({
-    columns,
+    data,
+    labels,
+    pageCount,
     onFetchData,
     onRowClick,
-    onSelectRows,
-    getRowID: (row, index) => row.id
-  });
+    onRowSelect,
+    getRowID: (row, index) => row.id,
+  })
 
-  // Table state is comes fom a `useState` hook, thus the state first element in
-  // the array, and the second is the updater function
-  // e.g. `const [state, updaterFunc] = dataTableProps.state;`
-  const [{ selectedRows }] = dataTableProps.state;
+  const {
+    refetch,
+    fetchData,
+    toggleAllRowsSelected
+  } = dataTableProps;
 
   // Create options for the built-in ActionMenu in the DataTable
-  const options = useMemo(() => [{
+  const actionMenuOptions = useMemo(() => [{
     label: "Filter by file",
     onClick: () => {
+      toggleAllRowsSelected(false);
       console.log("Filter by file");
     }
   }, {
@@ -559,6 +261,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to publish ${selectedRows.length} products to your storefront?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
+      refetch();
       console.log(`Published ${selectedRows.length} products`);
     }
   }, {
@@ -567,6 +270,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to make ${selectedRows.length} products visible to customers?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
+      refetch();
       console.log(`Made ${selectedRows.length} products visible`);
     }
   }, {
@@ -575,6 +279,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to make ${selectedRows.length} products hidden from customers?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
+      refetch();
       console.log(`Made ${selectedRows.length} products hidden`);
     }
   }, {
@@ -583,6 +288,7 @@ function TableExample() {
     confirmMessage: `Are you sure you want to duplicate ${selectedRows.length} products?`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
+      refetch();
       console.log(`Duplicated ${selectedRows.length} products`);
     }
   }, {
@@ -591,15 +297,128 @@ function TableExample() {
     confirmMessage: `Are you sure you want to archive ${selectedRows.length} products? This will hide them from both admins and customers.`,
     isDisabled: selectedRows.length === 0,
     onClick: () => {
+      refetch();
       console.log(`Archived ${selectedRows.length} products`);
     }
   }], [selectedRows]);
 
+
+  return (
+    <Box>
+      <DataTable
+        {...dataTableProps}
+        actionMenuProps={{ options: actionMenuOptions }}
+        isLoading={isLoading}
+      />
+      <Divider />
+      <Box display="flex" paddingTop={2}>
+        <Box display="flex" alignItems="center" paddingRight={2}>
+          <Typography>{"Custom controls"}</Typography>
+        </Box>
+        <Box paddingRight={2}>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => {
+              // Use fetch data if you want to force the onFetchData callback to execute
+              // All options are optional.
+              fetchData({
+                globalFilter: "processing",
+                filters: [
+                  {
+                    id: "fulfillmentStatus",
+                    value: "unfulfilled"
+                  }
+                ],
+                pageSize: 20,
+              })
+            }}
+          >
+            {"Load unfulfilled orders"}
+          </Button>
+        </Box>
+
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => {
+            // A global clear all filters button
+            fetchData({
+              globalFilter: null,
+              filters: null,
+              pageSize: 10,
+            })
+          }}
+        >
+          {"Clear all filters"}
+        </Button>
+      </Box>
+    </Box>
+  );
+}
+
+TableExample()
+```
+
+##### Loading state
+
+This example gives a closer look at the loading animation
+
+```jsx
+import { useMemo, useEffect, useCallback, forwardRef, useState } from "react";
+import { Box, Checkbox, Link, Typography } from "@material-ui/core";
+import { useDataTable } from "./";
+import { getPaginatedData } from "./mocks/sampleData";
+// import data from "./mocks/orders.json";
+import Chip from "../Chip";
+import DataTableFilter, { makeDataTableColumnFilter } from "../DataTableFilter";
+import dateFormat from "dateformat";
+
+function TableExample() {
+  const [data, setData] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Create and memoize the column data
+  const columns = useMemo(() => [
+    {
+      Header: "Order ID",
+      accessor: "referenceId"
+    },
+    {
+      Header: "Date",
+      accessor: "createdAt"
+    },
+    {
+      Header: "Payment Status",
+      accessor: "paymentStatus"
+    },
+    {
+      Header: "Fulfillment Status",
+      accessor: "fulfillmentStatus"
+    },
+    {
+      Header: "Customer",
+      accessor: "customer"
+    },
+    {
+      Header: () => (<Box textAlign="right">Total</Box>),
+      accessor: "total"
+    }
+  ], []);
+
+  const dataTableProps = useDataTable({
+    columns,
+    data,
+    pageCount,
+    onRowSelect: () => {},
+    getRowID: (row, index) => row.id,
+  })
+
   return (
     <DataTable
       {...dataTableProps}
-      actionMenuProps={{ options }}
-      isFilterable
+      isLoading={true}
     />
   );
 }

@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable require-jsdoc */
 /* eslint-disable react/no-multi-comp */
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useState } from "react";
 import { fireEvent, render, waitForElement } from "../../tests/index.js";
 import { getPaginatedData, data } from "./mocks/sampleData";
 import DataTable, { useDataTable } from "./";
@@ -40,6 +40,8 @@ function TestTable() {
 
 // Basic table
 function TestTableWithServerSidePagination() {
+  const [tableData, setTableData] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
   const columns = useMemo(() => columnData, []);
 
   const onFetchData = useCallback(async ({ pageIndex, pageSize }) => {
@@ -51,15 +53,15 @@ function TestTableWithServerSidePagination() {
       sortOrder: "asc"
     });
 
-    return {
-      data: fetchedData.nodes,
-      pageCount: fetchedData.totalCount / pageSize
-    };
+    setTableData(fetchedData.nodes);
+    setPageCount(fetchedData.totalCount / pageSize);
   }, []);
 
   const dataTableProps = useDataTable({
+    data: tableData,
     columns,
-    onFetchData
+    onFetchData,
+    pageCount
   });
 
   return <DataTable {...dataTableProps} />;

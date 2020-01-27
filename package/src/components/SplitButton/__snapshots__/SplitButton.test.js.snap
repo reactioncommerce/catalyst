@@ -7,7 +7,7 @@ exports[`basic snapshot - only default props 1`] = `
     role="group"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary"
       data-testid="splitButton-action-button"
       tabindex="0"
       type="button"
@@ -23,7 +23,7 @@ exports[`basic snapshot - only default props 1`] = `
     </button>
     <button
       aria-haspopup="true"
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall"
       data-testid="splitButton-dropdown-button"
       tabindex="0"
       type="button"
@@ -58,7 +58,7 @@ exports[`select destructive option 1`] = `
     role="group"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-116"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary makeStyles-containedPrimary-361"
       data-testid="splitButton-action-button"
       tabindex="0"
       type="button"
@@ -74,7 +74,7 @@ exports[`select destructive option 1`] = `
     </button>
     <button
       aria-haspopup="true"
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-116 MuiButton-sizeSmall"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary makeStyles-containedPrimary-361 MuiButton-containedSizeSmall MuiButton-sizeSmall"
       data-testid="splitButton-dropdown-button"
       tabindex="0"
       type="button"
@@ -109,7 +109,7 @@ exports[`set initial selected option to destructive option snapshot 1`] = `
     role="group"
   >
     <button
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-64"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary makeStyles-containedPrimary-193"
       data-testid="splitButton-action-button"
       tabindex="0"
       type="button"
@@ -125,7 +125,7 @@ exports[`set initial selected option to destructive option snapshot 1`] = `
     </button>
     <button
       aria-haspopup="true"
-      class="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-containedPrimary makeStyles-containedPrimary-64 MuiButton-sizeSmall"
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContained MuiButton-containedPrimary makeStyles-containedPrimary-193 MuiButton-containedSizeSmall MuiButton-sizeSmall"
       data-testid="splitButton-dropdown-button"
       tabindex="0"
       type="button"
