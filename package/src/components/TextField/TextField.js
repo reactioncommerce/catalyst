@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import { refType } from "@material-ui/utils";
 
+// Styles for the base input component
 const useInputStyles = makeStyles((theme) => ({
   root: {
     "position": "relative",
@@ -62,6 +63,7 @@ const useInputStyles = makeStyles((theme) => ({
   }
 }));
 
+// Styles for the label above the field
 const useInputLabelStyles = makeStyles((theme) => ({
   root: {
     marginBottom: theme.spacing(1),
@@ -85,6 +87,7 @@ const useInputLabelStyles = makeStyles((theme) => ({
   }
 }));
 
+// Styles for the helper text below the field
 const useFormHelperTextStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.body2,
