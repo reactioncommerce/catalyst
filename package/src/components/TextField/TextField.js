@@ -44,7 +44,7 @@ const useInputStyles = makeStyles((theme) => ({
     "padding": 0,
     "backgroundColor": theme.palette.colors.black02,
     "&$marginDense": {
-      paddingTop: 0
+      padding: 0
     }
   },
   /* Styles applied to the `NotchedOutline` element. */
