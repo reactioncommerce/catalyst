@@ -1,0 +1,416 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot - multiline - disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-291 Mui-disabled Mui-disabled makeStyles-disabled-294 MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline makeStyles-multiline-296"
+    >
+      <textarea
+        aria-invalid="false"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-298 Mui-disabled Mui-disabled makeStyles-disabled-294 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        disabled=""
+        rows="1"
+        style="height: 0px; overflow: hidden;"
+      >
+        hello
+      </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-298 Mui-disabled Mui-disabled makeStyles-disabled-294 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+        tabindex="-1"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-345 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-297"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-346"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - multiline - error state 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+    helptext="Help text"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-349 Mui-error Mui-error makeStyles-error-351 MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline makeStyles-multiline-354"
+    >
+      <textarea
+        aria-invalid="true"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-356 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        rows="1"
+        style="height: 0px; overflow: hidden;"
+      >
+        hello
+      </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-356 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+        tabindex="-1"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-403 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-355"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-404"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - multiline - expanded 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-233 MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline makeStyles-multiline-238"
+    >
+      <textarea
+        aria-invalid="false"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-240 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        rows="4"
+      >
+        hello
+      </textarea>
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-287 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-239"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-288"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - multiline 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-175 MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-multiline MuiOutlinedInput-multiline makeStyles-multiline-180"
+    >
+      <textarea
+        aria-invalid="false"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-182 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        rows="1"
+        style="height: 0px; overflow: hidden;"
+      >
+        hello
+      </textarea>
+      <textarea
+        aria-hidden="true"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-182 MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline"
+        readonly=""
+        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
+        tabindex="-1"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-229 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-181"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-230"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - select - disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-488 Mui-disabled Mui-disabled makeStyles-disabled-491 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby=" "
+        class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input makeStyles-input-495 Mui-disabled Mui-disabled makeStyles-disabled-491 Mui-disabled"
+        role="button"
+      >
+        Option 1
+      </div>
+      <input
+        type="hidden"
+        value="1"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-565 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-494"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-566"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - select - error state 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-569 Mui-error Mui-error makeStyles-error-571 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby=" "
+        class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input makeStyles-input-576"
+        role="button"
+        tabindex="0"
+      >
+        Option 1
+      </div>
+      <input
+        type="hidden"
+        value="1"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-646 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-575"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-647"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - select 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-407 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <div
+        aria-haspopup="listbox"
+        aria-labelledby=" "
+        class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input makeStyles-input-414"
+        role="button"
+        tabindex="0"
+      >
+        Option 1
+      </div>
+      <input
+        type="hidden"
+        value="1"
+      />
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 10l5 5 5-5z"
+        />
+      </svg>
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-484 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-413"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-485"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - singleline - disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-59 Mui-disabled Mui-disabled makeStyles-disabled-62 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-66 Mui-disabled Mui-disabled makeStyles-disabled-62"
+        disabled=""
+        type="text"
+        value="hello"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-113 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-65"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-114"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - singleline - error 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+    helptext="Help text"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-117 Mui-error Mui-error makeStyles-error-119 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <input
+        aria-invalid="true"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-124"
+        type="text"
+        value="hello"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-171 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-123"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-172"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`snapshot - singleline 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+  >
+    <div
+      class="MuiInputBase-root MuiOutlinedInput-root makeStyles-root-1 MuiInputBase-fullWidth MuiInputBase-formControl"
+    >
+      <input
+        aria-invalid="false"
+        class="MuiInputBase-input MuiOutlinedInput-input makeStyles-input-8"
+        type="text"
+        value="hello"
+      />
+      <fieldset
+        aria-hidden="true"
+        class="PrivateNotchedOutline-root-55 MuiOutlinedInput-notchedOutline makeStyles-notchedOutline-7"
+        style="padding-left: 8px;"
+      >
+        <legend
+          class="PrivateNotchedOutline-legend-56"
+          style="width: 0.01px;"
+        >
+          <span>
+            ​
+          </span>
+        </legend>
+      </fieldset>
+    </div>
+  </div>
+</DocumentFragment>
+`;

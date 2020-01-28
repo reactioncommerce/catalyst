@@ -372,7 +372,8 @@ module.exports = {
         }),
         generateSection({
           componentNames: [
-            "Select"
+            "Select",
+            "TextField"
           ],
           name: "Inputs"
         }),
