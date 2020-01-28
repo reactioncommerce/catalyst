@@ -39,6 +39,8 @@ const useInputStyles = makeStyles((theme) => ({
   error: {},
   /* Styles applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the `input` element if `margin="dense"`. */
+  marginDense: {},
   /* Styles applied to the root element if `startAdornment` is provided. */
   multiline: {
     "padding": 0,
