@@ -85,7 +85,8 @@ const useInputLabelStyles = makeStyles((theme) => ({
 
 const useFormHelperTextStyles = makeStyles((theme) => ({
   root: {
-    ...theme.typography.body2
+    ...theme.typography.body2,
+    color: theme.palette.colors.black55
   },
   contained: {
     marginLeft: 0,
