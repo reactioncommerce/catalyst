@@ -69,8 +69,6 @@ const useInputLabelStyles = makeStyles((theme) => ({
     position: "static",
     left: 0,
     top: 0,
-    // slight alteration to spec spacing to match visual spec result
-    // transform: 'translate(0, 24px) scale(1)',
     transform: "none"
   },
   shrink: {
