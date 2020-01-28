@@ -65,6 +65,9 @@ export const rawMuiTheme = {
     action: {
       hover: colors.reactionBlue100,
       selected: colors.black10
+    },
+    error: {
+      main: colors.red
     }
   },
   typography: {
