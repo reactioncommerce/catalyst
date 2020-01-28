@@ -50,10 +50,17 @@ import { MenuItem } from "@material-ui/core";
 import {
   Table,
   TableBody,
-  TableCell,
+  TableCell as MuiTableCell,
   TableHead,
-  TableRow
+  TableRow,
+  withStyles
 } from "@material-ui/core";
+
+const TableCell = withStyles({
+  root: {
+    verticalAlign: "top"
+  }
+})(MuiTableCell);
 
 <Table>
   <TableHead>
@@ -155,7 +162,9 @@ import {
 } from "@material-ui/core";
 
 const TableCell = withStyles({
-  verticalAlign: "top"
+  root: {
+    verticalAlign: "top"
+  }
 })(MuiTableCell);
 
 <Table>
