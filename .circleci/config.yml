@@ -182,7 +182,7 @@ jobs:
       - run: yarn install
       - run: cd package && yarn install
       - run: cd package && yarn run build
-      - run: npx semantic-release
+      - run: npx semantic-release --branch trunk
 
 workflows:
   version: 2
