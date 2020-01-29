@@ -169,17 +169,28 @@ function TableExample() {
   // Fetch data callback whenever the table requires more data to properly display.
   // This is the case if theres an update with pagination, filtering or sorting.
   // This function is called on the initial load of the table to fet the first set of results.
-  const onFetchData = useCallback(async ({ globalFilter, pageIndex, pageSize, filters, filtersByKey }) => {
+  const onFetchData = useCallback(async ({
+    globalFilter,
+    pageIndex,
+    pageSize,
+    filters,
+    filtersByKey,
+    manualFilters,
+    manualFiltersByKey
+  }) => {
     console.log("Fetch Data")
     console.log("-- Global Filter", globalFilter)
     console.log("-- Raw Filters", filters)
     console.log("-- Filters by object key", filtersByKey)
+    console.log("-- Manual filters", manualFilters)
+    console.log("-- Manual filters by object key", manualFiltersByKey)
 
     // Trigger loading animation
     setIsLoading(true);
 
     // Get data from an API.
     const { data: apiData } = await getPaginatedData({
+      orderIds: manualFilters.length && manualFilters[0].value,
       filters: {
         searchText: globalFilter,
         ...filtersByKey
@@ -245,7 +256,8 @@ function TableExample() {
   const {
     refetch,
     fetchData,
-    toggleAllRowsSelected
+    toggleAllRowsSelected,
+    setManualFilters
   } = dataTableProps;
 
   // Create options for the built-in ActionMenu in the DataTable
@@ -335,6 +347,20 @@ function TableExample() {
             }}
           >
             {"Load unfulfilled orders"}
+          </Button>
+        </Box>
+
+        <Box paddingRight={2}>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={() => {
+              // This can be used for any data type, but in this case its a simulated
+              // CSV input converted to an array of IDs
+              setManualFilters("small.csv", [1,2,3])
+            }}
+          >
+            {"Set manual filters for ID (1,2,3)"}
           </Button>
         </Box>
 
