@@ -11,6 +11,7 @@ export { data };
  * @returns {Array} arg.array
  */
 export async function getPaginatedData({
+  orderIds = [],
   filters = {},
   offset = 0,
   limit = 10,
@@ -20,7 +21,13 @@ export async function getPaginatedData({
 }) {
   await new Promise((resolve) => setTimeout(resolve, simulatedDelay));
 
-  const sortedData = data.sort((itemA, itemB) => {
+  let preFilteredData = [...data];
+
+  if (Array.isArray(orderIds) && orderIds.length) {
+    preFilteredData = data.filter(({ id }) => orderIds.includes(id));
+  }
+
+  const sortedData = preFilteredData.sort((itemA, itemB) => {
     const va = itemA[sortBy];
     const vb = itemB[sortBy];
 
@@ -68,7 +75,7 @@ export async function getPaginatedData({
   return {
     data: {
       nodes: sortedData.slice(offset, limit),
-      totalCount: data.length
+      totalCount: preFilteredData.length
     }
   };
 }

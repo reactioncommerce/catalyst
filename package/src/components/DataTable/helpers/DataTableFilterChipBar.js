@@ -22,10 +22,25 @@ function getFilterLabel(labels, filterValue) {
  * @returns {PropTypes.elementType} React component
  */
 function DataTableFilterChipBar(props) {
-  const { filters, labels, onRemove } = props;
+  const { filters, manualFilters, labels, onRemove, onRemoveManualFilter } = props;
 
   // Don't show the component if there aren't any filters to show
-  if (filters.length === 0) return null;
+  if (filters.length === 0 && manualFilters.length === 0) return null;
+
+  const manualFilterChips = manualFilters.map(({ id }) => (
+    <Box
+      key={`single_${id}`}
+      paddingRight={0.5}
+      paddingBottom={0.5}
+    >
+      <Chip
+        color="primary"
+        label={id}
+        onDelete={() => onRemoveManualFilter(id)}
+        style={{ marginRight: "4px" }}
+      />
+    </Box>
+  ));
 
   // Show filters as chips
   const chips = filters.map(({ id, value }) => {
@@ -72,6 +87,7 @@ function DataTableFilterChipBar(props) {
       display="flex"
       flexWrap="wrap"
     >
+      {manualFilterChips}
       {chips}
     </Box>
   );
@@ -80,11 +96,14 @@ function DataTableFilterChipBar(props) {
 DataTableFilterChipBar.propTypes = {
   filters: PropTypes.array,
   labels: PropTypes.object,
-  onRemove: PropTypes.func
+  manualFilters: PropTypes.array,
+  onRemove: PropTypes.func,
+  onRemoveManualFilter: PropTypes.func
 };
 
 DataTableFilterChipBar.defaultProps = {
-  onRemove: () => { }
+  onRemove: () => { },
+  onRemoveManualFilter: () => { }
 };
 
 export default DataTableFilterChipBar;
