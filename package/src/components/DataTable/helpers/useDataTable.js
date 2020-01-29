@@ -9,6 +9,7 @@ import {
   useGlobalFilter
 } from "react-table";
 import useDataTableCellProps from "./useDataTableCellProps";
+import useDataTableManualFilter from "./useDataTableManualFilter";
 
 /**
  * Convert an array of objects to an object by id
@@ -77,6 +78,7 @@ export default function useDataTable({
       pageCount: controlledPageCount,
       ...otherProps
     },
+    useDataTableManualFilter,
     useFilters,
     useGlobalFilter,
     usePagination,
@@ -120,9 +122,11 @@ export default function useDataTable({
   const {
     setAllFilters,
     setFilter,
+    setAllManualFilters,
+    setManualFilters,
     setGlobalFilter,
     setPageSize,
-    state: { pageIndex, pageSize, filters, globalFilter, selectedRowIds, sortBy }
+    state: { pageIndex, pageSize, filters, globalFilter, manualFilters, selectedRowIds, sortBy }
   } = dataTableProps;
 
   useEffect(() => {
@@ -132,6 +136,8 @@ export default function useDataTable({
         sortBy,
         filters,
         filtersByKey: filtersArrayToObject(filters),
+        manualFilters,
+        manualFiltersByKey: filtersArrayToObject(manualFilters),
         pageIndex,
         pageSize
       });
@@ -139,6 +145,7 @@ export default function useDataTable({
   }, [
     globalFilter,
     filters,
+    manualFilters,
     onFetchData,
     pageIndex,
     pageSize,
@@ -154,6 +161,9 @@ export default function useDataTable({
       onRowSelect({
         globalFilter,
         filters,
+        filtersByKey: filtersArrayToObject(filters),
+        manualFilters,
+        manualFiltersByKey: filtersArrayToObject(manualFilters),
         pageIndex,
         pageSize,
         selectedRows: Object.keys(selectedRowIds)
@@ -162,6 +172,7 @@ export default function useDataTable({
   }, [
     globalFilter,
     filters,
+    manualFilters,
     onFetchData,
     pageIndex,
     pageSize,
@@ -175,6 +186,9 @@ export default function useDataTable({
           row,
           data,
           filters,
+          filtersByKey: filtersArrayToObject(filters),
+          manualFilters,
+          manualFiltersByKey: filtersArrayToObject(manualFilters),
           pageIndex,
           pageSize
         });
@@ -191,7 +205,11 @@ export default function useDataTable({
     } else {
       setFilter(id, null);
     }
-  }, [filters]);
+  }, []);
+
+  const onRemoveManualFilter = useCallback((id) => {
+    setManualFilters(id, null);
+  }, []);
 
   const refetch = useCallback(() => {
     if (onFetchData) {
@@ -199,6 +217,8 @@ export default function useDataTable({
         globalFilter,
         filters,
         filtersByKey: filtersArrayToObject(filters),
+        manualFilters,
+        manualFiltersByKey: filtersArrayToObject(manualFilters),
         pageIndex,
         pageSize,
         sortBy
@@ -208,6 +228,7 @@ export default function useDataTable({
     globalFilter,
     filters,
     onFetchData,
+    manualFilters,
     pageIndex,
     pageSize,
     sortBy
@@ -216,10 +237,12 @@ export default function useDataTable({
   const fetchData = useCallback(({
     globalFilter: globalFilterLocal,
     filters: filtersLocal,
+    manualFilters: manualFiltersLocal,
     pageSize: pageSizeLocal
   }) => {
     setGlobalFilter(globalFilterLocal || "");
     setAllFilters(filtersLocal || []);
+    setAllManualFilters(manualFiltersLocal || []);
     setPageSize(pageSizeLocal || pageSize);
   }, []);
 
@@ -230,6 +253,7 @@ export default function useDataTable({
     isSelectable,
     onRowClick: onRowClickWrapper,
     onRemoveFilter,
+    onRemoveManualFilter,
     refetch,
     shouldShowAdditionalFilters,
     setShowAdditionalFilters
