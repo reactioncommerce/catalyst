@@ -103,6 +103,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     shouldShowAdditionalFilters,
     onRowClick,
     onRemoveFilter,
+    onRemoveManualFilter,
     isLoading,
 
     // Props from the useTable hook
@@ -120,7 +121,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     previousPage,
     debounceSetGlobalFilter,
     setPageSize,
-    state: { pageIndex, pageSize, filters }
+    state: { pageIndex, pageSize, filters, manualFilters }
   } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -336,8 +337,10 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
       <DataTableFilterChipBar
         columns={flatColumns}
         filters={filters}
+        manualFilters={manualFilters}
         labels={labels}
         onRemove={onRemoveFilter}
+        onRemoveManualFilter={onRemoveManualFilter}
       />
       <div className={classes.tableWrapper}>
         <Table ref={ref} {...getTableProps()}>
@@ -619,6 +622,10 @@ DataTable.propTypes = {
    * Event triggered when a filter is removed with the `(key, multiSelectValueIfAvailable) => {}` signature.
    */
   onRemoveFilter: PropTypes.func,
+  /**
+   * Event triggered when a manual filter is removed with the `(key) => {}` signature.
+   */
+  onRemoveManualFilter: PropTypes.func,
   /**
    * Event triggered when a row is clicked
    */
