@@ -117,8 +117,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       InputProps={{
         classes: inputClasses,
         disableUnderline: true,
-        notched: false,
-        dense: true
+        notched: false
       }}
       InputLabelProps={{
         shrink: true,
