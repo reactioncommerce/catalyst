@@ -488,7 +488,7 @@ export const rawMuiTheme = {
         borderBottom: "none"
       },
       sizeSmall: {
-        "padding": "4x 16px 4px 16px",
+        "padding": "4px 16px 4px 16px",
         "&:last-child": {
           paddingRight: 16
         },
