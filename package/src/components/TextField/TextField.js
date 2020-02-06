@@ -177,7 +177,7 @@ TextField.propTypes = {
   /**
    * If `true`, the label will be displayed in an error state.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
