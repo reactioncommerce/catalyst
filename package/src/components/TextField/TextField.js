@@ -58,7 +58,7 @@ const useInputStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.colors.black02,
-    padding: "11.5px 6px",
+    padding: "11.5px 8px",
     ...theme.typography.body2
   }
 }));
@@ -116,9 +116,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       }}
       InputProps={{
         classes: inputClasses,
-        disableUnderline: true,
-        notched: false,
-        dense: true
+        notched: false
       }}
       InputLabelProps={{
         shrink: true,
@@ -177,7 +175,7 @@ TextField.propTypes = {
   /**
    * If `true`, the label will be displayed in an error state.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
