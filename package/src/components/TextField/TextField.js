@@ -58,7 +58,7 @@ const useInputStyles = makeStyles((theme) => ({
   },
   input: {
     backgroundColor: theme.palette.colors.black02,
-    padding: "11.5px 6px",
+    padding: "11.5px 8px",
     ...theme.typography.body2
   }
 }));
