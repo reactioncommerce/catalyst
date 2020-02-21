@@ -1,11 +1,6 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "../DialogTitle";
+import ConfirmDialogBase from "./helpers/ConfirmDialogBase";
 
 /**
  * @name ConfirmDialog
@@ -13,51 +8,27 @@ import DialogTitle from "../DialogTitle";
  * @returns {React.Component} A React component
  */
 const ConfirmDialog = React.forwardRef(function ConfirmDialog(props, ref) {
-  const { children, title, message, confirmActionText, cancelActionText, onConfirm } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { children, content, ...otherProps } = props;
+  const [isOpen, setOpen] = useState(false);
 
   const handleClose = () => {
-    setIsOpen(false);
+    setOpen(false);
   };
 
   return (
     <Fragment>
       {children({
         openDialog: () => {
-          setIsOpen(true);
+          setOpen(true);
         }
       })}
-      <Dialog
-        aria-labelledby="confirm-action-dialog-title"
-        maxWidth="sm"
-        fullWidth={true}
+      <ConfirmDialogBase
+        isOpen={isOpen}
         onClose={handleClose}
-        open={isOpen}
         ref={ref}
-      >
-        <DialogTitle id="confirm-action-dialog-title">{title}</DialogTitle>
-        {message && (
-          <DialogContent>
-            <DialogContentText>{message}</DialogContentText>
-          </DialogContent>
-        )}
-
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="outlined">
-            {cancelActionText}
-          </Button>
-          <Button
-            onClick={() => {
-              onConfirm();
-              setIsOpen(false);
-            }}
-            color="primary"
-            variant="contained"
-          >
-            {confirmActionText}
-          </Button>
-        </DialogActions>
-      </Dialog>
+        children={content}
+        {...otherProps}
+      />
     </Fragment>
   );
 });
@@ -71,15 +42,27 @@ ConfirmDialog.propTypes = {
   /**
    * Render prop `{({ openDialog }) => ()}`
    */
-  children: PropTypes.func.isRequired,
+  children: PropTypes.func,
   /**
    * Text for confirm button
    */
   confirmActionText: PropTypes.string,
   /**
-   * Message body. May be a string or a React component.
+   * Child elements of the dialog. Use if this for rendering a custom components in the dialog.
+  */
+  content: PropTypes.element,
+  /**
+   * Dialog open/close state
+   */
+  isOpen: PropTypes.bool,
+  /**
+   * Message body. May be a string or a React component. Use if your message is mostly text.
    */
   message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /**
+   * Close callback
+   */
+  onClose: PropTypes.func,
   /**
    * Confirmation callback
    */
@@ -93,6 +76,7 @@ ConfirmDialog.propTypes = {
 ConfirmDialog.defaultProps = {
   cancelActionText: "Cancel",
   confirmActionText: "OK",
+  onClose() { },
   onConfirm() { }
 };
 
