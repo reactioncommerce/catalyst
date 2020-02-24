@@ -7,7 +7,7 @@ The `ConfirmDialog` component uses [Dialog](https://material-ui.com/api/dialog),
 The `ConfirmDialog` component provides a standard confirmation alert base on some user action. Pass a callback function to `onConfirm()` to allow the user to take an action after clicking the confirmation button.
 
 
-### Open Confirm dialog with a hook
+#### Open Confirm dialog with a hook
 
 This example shows how you can use the can use the confirm dialog with the `useConfirmDialog` hook. This method can also be used to open the dialog when there is no direct user interaction.
 
@@ -64,7 +64,7 @@ function MyComponent() {
 MyComponent();
 ```
 
-### Confirm dialog with additional content
+#### Confirm dialog with additional content
 
 ```jsx
 import { Avatar, List, ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
@@ -103,7 +103,7 @@ function MyComponent() {
 MyComponent();
 ```
 
-### Basic usage
+#### Basic usage
 
 ```jsx
 import Button from "../Button";
