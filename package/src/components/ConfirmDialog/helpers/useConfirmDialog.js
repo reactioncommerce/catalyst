@@ -15,6 +15,8 @@ import ConfirmDialogBase from "./ConfirmDialogBase";
  * @returns {Object} An object containing {openDialog: func, dialog: React.Element}
  */
 export default function useConfirmDialog({
+  content,
+  children,
   closeOnConfirm = true,
   onClose = () => { },
   onConfirm = () => { },
@@ -45,6 +47,7 @@ export default function useConfirmDialog({
           isOpen={isOpen}
           onClose={closeDialog}
           onConfirm={handleConfirm}
+          children={content || children}
           {...props}
         />
       );
