@@ -29,15 +29,15 @@ test("basic snapshot - with opening the dialog", () => {
 test("basic snapshot - with opening the dialog using the useConfirmDialog hook", () => {
   // eslint-disable-next-line require-jsdoc
   function TestComponent() {
-    const { openDialog, dialog } = useConfirmDialog({
+    const { openDialog, ConfirmDialog: ConfirmDialogComponent } = useConfirmDialog({
       title: "Are you sure?",
       message: "Are you sure you want to do that?"
     });
 
     return (
       <>
-        {dialog}
         <Button color="primary" onClick={openDialog} variant="contained">Open Confirm Dialog</Button>
+        <ConfirmDialogComponent />
       </>
     );
   }
