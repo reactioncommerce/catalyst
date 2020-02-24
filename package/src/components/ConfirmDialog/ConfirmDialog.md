@@ -18,7 +18,7 @@ const {
   isOpen, // Boolean: Open state
   openDialog, // Function: Open dialog
   closeDialog, // Function: Close dialog
-  dialog // React.Element: Render the dialog. Must be place somewhere in your rendered component.
+  ConfirmDialog // React.Element: Render the dialog. Must be place somewhere in your rendered component.
 } = useConfirmDialog({
   /* Available props */
   cancelActionText: "Cancel", // Optional: Default `Cancel`
@@ -41,7 +41,7 @@ function MyComponent() {
     isOpen, // Boolean: Open state
     openDialog, // Function: Open dialog
     closeDialog, // Function: Close dialog
-    dialog // React.Element: Render the dialog. Add somewhere in your component
+    ConfirmDialog // React.Element: Render the dialog. Add somewhere in your component
   } = useConfirmDialog({ // ConfirmDialog props (see above example)
     title: "Archive 24 products?",
     message: "Archiving products removes them from both admin and customer views.",
@@ -56,7 +56,7 @@ function MyComponent() {
   return (
     <>
       <Button color="primary" onClick={openDialog} variant="contained">Open Confirm Dialog</Button>
-      {dialog}
+      <ConfirmDialog />
     </>
   )
 }
@@ -72,7 +72,7 @@ import Button from "../Button";
 import useConfirmDialog from "./helpers/useConfirmDialog"
 
 function MyComponent() {
-  const { dialog, openDialog } = useConfirmDialog({
+  const { ConfirmDialog, openDialog } = useConfirmDialog({
     title: "Update account permissions?",
     message: "Are you sure you want to update the permissions the following account(s)?",
     content: (
@@ -95,7 +95,7 @@ function MyComponent() {
   return (
     <>
       <Button color="primary" onClick={openDialog} variant="contained">Open Confirm Dialog</Button>
-      {dialog}
+      <ConfirmDialog />
     </>
   )
 }
