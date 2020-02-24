@@ -78,3 +78,168 @@ exports[`basic snapshot - with opening the dialog 2`] = `
   </button>
 </DocumentFragment>
 `;
+
+exports[`basic snapshot - with opening the dialog using the useConfirmDialog hook 1`] = `
+<div
+  aria-labelledby="confirm-action-dialog-title"
+  class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
+  role="dialog"
+>
+  <div
+    class="MuiDialogTitle-root"
+    id="confirm-action-dialog-title"
+  >
+    <h2
+      class="MuiTypography-root MuiTypography-h4"
+    >
+      Are you sure?
+    </h2>
+  </div>
+  <div
+    class="MuiDialogContent-root"
+  >
+    <p
+      class="MuiTypography-root MuiDialogContentText-root MuiTypography-body1 MuiTypography-colorInherit"
+    >
+      Are you sure you want to do that?
+    </p>
+  </div>
+  <div
+    class="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Cancel
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        OK
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`basic snapshot - with opening the dialog using the useConfirmDialog hook 2`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Open Confirm Dialog
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`basic snapshot - with opening the dialog using the useConfirmDialog hook with more content 1`] = `
+<div
+  aria-labelledby="confirm-action-dialog-title"
+  class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
+  role="dialog"
+>
+  <div
+    class="MuiDialogTitle-root"
+    id="confirm-action-dialog-title"
+  >
+    <h2
+      class="MuiTypography-root MuiTypography-h4"
+    >
+      Are you sure?
+    </h2>
+  </div>
+  <div
+    class="MuiDialogContent-root"
+  >
+    <p
+      class="MuiTypography-root MuiDialogContentText-root MuiTypography-body1 MuiTypography-colorInherit"
+    >
+      Are you sure you want to do that?
+    </p>
+  </div>
+  <div
+    class="MuiDialogContent-root"
+  >
+    <span>
+      More content
+    </span>
+  </div>
+  <div
+    class="MuiDialogActions-root MuiDialogActions-spacing"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        Cancel
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        OK
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`basic snapshot - with opening the dialog using the useConfirmDialog hook with more content 2`] = `
+<DocumentFragment>
+  <button
+    class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label"
+    >
+      Open Confirm Dialog
+    </span>
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</DocumentFragment>
+`;
