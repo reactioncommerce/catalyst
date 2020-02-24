@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import ConfirmDialogBase from "./helpers/ConfirmDialogBase";
+import useConfirmDialog from "./helpers/useConfirmDialog";
 
 /**
  * @name ConfirmDialog
@@ -8,27 +8,22 @@ import ConfirmDialogBase from "./helpers/ConfirmDialogBase";
  * @returns {React.Component} A React component
  */
 const ConfirmDialog = React.forwardRef(function ConfirmDialog(props, ref) {
-  const { children, content, ...otherProps } = props;
-  const [isOpen, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const { children, ...otherProps } = props;
+  const {
+    isOpen,
+    openDialog,
+    closeDialog,
+    ConfirmDialog: ConfirmDialogComponent
+  } = useConfirmDialog({ ...otherProps });
 
   return (
     <Fragment>
       {children({
-        openDialog: () => {
-          setOpen(true);
-        }
+        closeDialog,
+        isOpen,
+        openDialog
       })}
-      <ConfirmDialogBase
-        isOpen={isOpen}
-        onClose={handleClose}
-        ref={ref}
-        children={content}
-        {...otherProps}
-      />
+      <ConfirmDialogComponent ref={ref} />
     </Fragment>
   );
 });
@@ -40,7 +35,7 @@ ConfirmDialog.propTypes = {
    */
   cancelActionText: PropTypes.string,
   /**
-   * Render prop `{({ openDialog }) => ()}`
+   * Render prop `{({ closeDialog, isOpen, openDialog }) => ()}`
    */
   children: PropTypes.func,
   /**
