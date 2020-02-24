@@ -39,13 +39,15 @@ export default function useConfirmDialog({
     isOpen,
     openDialog,
     closeDialog,
-    dialog: (
-      <ConfirmDialogBase
-        isOpen={isOpen}
-        onClose={closeDialog}
-        onConfirm={handleConfirm}
-        {...props}
-      />
-    )
+    ConfirmDialog() {
+      return (
+        <ConfirmDialogBase
+          isOpen={isOpen}
+          onClose={closeDialog}
+          onConfirm={handleConfirm}
+          {...props}
+        />
+      );
+    }
   };
 }
