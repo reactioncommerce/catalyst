@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "../../tests/index.js";
+import { render } from "../tests/index.js";
 import Toast from "./Toast";
 
 test("basic snapshot - only default props", () => {

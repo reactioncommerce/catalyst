@@ -61,7 +61,7 @@ This will merge components from a components context provider into the `componen
 (3) Use mockComponents in your tests
 
 ```js
-import mockComponents from "../../../tests/mockComponents";
+import mockComponents from "../../tests/mockComponents";
 ```
 
 Everywhere you render your component in a Jest test function:
