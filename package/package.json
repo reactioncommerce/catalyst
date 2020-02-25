@@ -13,7 +13,7 @@
   "private": false,
   "sideEffects": false,
   "scripts": {
-    "prebuild": "rimraf dist/**/* && rimraf dist-modules-temp && node ./scripts/prebuild.js",
+    "prebuild": "rimraf dist/**/* && rimraf dist-modules-temp",
     "build": "npm run build:common && npm run build:modules",
     "build:common": "BABEL_ENV=production babel --root-mode upward src --out-dir dist",
     "build:modules": "BABEL_ENV=production BABEL_MODULES=1 babel --root-mode upward src --out-dir dist-modules-temp",
