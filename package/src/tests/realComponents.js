@@ -3,7 +3,7 @@
  * available, in order to test event handling and such.
  */
 
-import Button from "../components/Button";
+import Button from "../Button";
 
 export default {
   Button
