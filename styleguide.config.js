@@ -1,14 +1,14 @@
 const path = require("path");
 const fs = require("fs");
 
-const componentsDir = path.join(__dirname, "package/src/components");
+const componentsDir = path.join(__dirname, "package/src");
 const componentTree = {};
 
 // Build componentTree from project files
 if (fs.statSync(componentsDir).isDirectory()) {
   const componentItems = fs.readdirSync(componentsDir);
   componentItems.forEach((componentName) => {
-    componentTree[componentName] = path.join("./package/src/components", componentName, `${componentName}.js`);
+    componentTree[componentName] = path.join("./package/src", componentName, `${componentName}.js`);
   });
 }
 
