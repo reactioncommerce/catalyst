@@ -1,7 +1,7 @@
 ```jsx
 import { Card, CardHeader, CardContent, Grid, IconButton, Typography, Grow, FormControlLabel, Switch } from "@material-ui/core";
 import CloseIcon from "mdi-material-ui/Close";
-import Button from "../../../package/src/components/Button";
+import Button from "../../../package/src/Button";
 
 function GrowCard() {
   const [checked, setChecked] = React.useState(false);
