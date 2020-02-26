@@ -3,11 +3,9 @@
 
 const path = require("path");
 const fse = require("fs-extra");
-const replaceInFiles = require("replace-in-files");
 
 const DIST_FOLDER = path.join(process.cwd(), "dist");
 const DIST_MODULES_FOLDER = path.join(process.cwd(), "dist-modules-temp");
-const COMPONENTS_FOLDER = path.join(DIST_FOLDER, "components");
 
 /**
  * @summary Recursively changes all files with one extension to another
@@ -65,26 +63,6 @@ async function createPackageFile() {
 }
 
 /**
- * @summary After a component has been moved to `dist` and flattened,
- *   change all "../../../utils" to "../../utils"
- * @param {String} componentFolderPath The full path to the components folder
- * @returns {Promise<undefined>} Nothing
- */
-async function replaceUtilsPathForComponent(componentFolderPath) {
-  await replaceInFiles({
-    files: `${componentFolderPath}/**/*.js`,
-    from: /\.\.\/\.\.\/utils/g,
-    to: "../utils"
-  });
-
-  await replaceInFiles({
-    files: `${componentFolderPath}/**/*.mjs`,
-    from: /\.\.\/\.\.\/utils/g,
-    to: "../utils"
-  });
-}
-
-/**
  * @summary The main post-build script.
  *   1. Rename all `.js` files in `dist-modules-temp` to `.mjs` extension
  *   2. Copy all `.mjs` files into `dist`
@@ -104,24 +82,6 @@ async function run() {
 
   // Delete `dist-modules-temp`
   await fse.remove(DIST_MODULES_FOLDER);
-
-  // We now have a `dist` folder but we want to remove the extra `components`
-  // folder inside it in order to have flatter import paths. We"ll traverse the `dist/components/*`
-  // folders here and move them up a level.
-  const directoryContents = await fse.readdir(COMPONENTS_FOLDER);
-  const promises = directoryContents.map(async (componentName) => {
-    if (componentName.indexOf(".") !== -1) return Promise.resolve();
-    const componentFolder = path.join(COMPONENTS_FOLDER, componentName);
-    const distComponentFolder = path.join(DIST_FOLDER, componentName);
-    await fse.copy(componentFolder, distComponentFolder);
-
-    // The relative path to global `utils` folder has changed, so do a multi-file search/replace
-    return replaceUtilsPathForComponent(distComponentFolder);
-  });
-  await Promise.all(promises);
-
-  // Then delete `dist/components`
-  await fse.remove(COMPONENTS_FOLDER);
 
   // Then copy the package.json file into the `dist` folder so that we can do `npm publish dist`
   // and thereby remove the `dist` from the import paths, flattening them more.
