@@ -1,6 +1,6 @@
 import React from "react";
 import { MenuItem } from "@material-ui/core";
-import { render } from "../../tests/index.js";
+import { render } from "../tests/index.js";
 import TextField from "./TextField";
 
 test("snapshot - singleline", () => {

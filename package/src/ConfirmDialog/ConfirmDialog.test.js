@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "../../tests/";
+import { render, fireEvent } from "../tests/";
 import Button from "../Button";
 import ConfirmDialog from "./ConfirmDialog";
 import useConfirmDialog from "./helpers/useConfirmDialog";

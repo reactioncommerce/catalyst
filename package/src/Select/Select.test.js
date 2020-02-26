@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "../../tests";
+import { render } from "../tests";
 import Select from "./Select";
 
 const options = [

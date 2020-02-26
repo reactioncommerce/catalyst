@@ -24,7 +24,7 @@ import { Card, CardHeader, CardContent, Typography } from "@material-ui/core";
 
 ```jsx
 import { Card, CardHeader, CardContent, Typography } from "@material-ui/core";
-import ActionMenu from "../../../package/src/components/ActionMenu";
+import ActionMenu from "../../../package/src/ActionMenu";
 
 const options = [{
   label: "Open"

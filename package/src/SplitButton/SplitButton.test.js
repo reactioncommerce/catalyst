@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, waitForElement } from "../../tests/index.js";
+import { fireEvent, render, waitForElement } from "../tests/index.js";
 import SplitButton from "./SplitButton";
 
 const options = [{

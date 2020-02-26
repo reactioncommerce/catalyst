@@ -3,7 +3,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable react/no-multi-comp */
 import React, { useMemo, useCallback, useState } from "react";
-import { fireEvent, render, waitForElement } from "../../tests/index.js";
+import { fireEvent, render, waitForElement } from "../tests/index.js";
 import { getPaginatedData, data } from "./mocks/sampleData";
 import DataTable, { useDataTable } from "./";
 
