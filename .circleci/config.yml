@@ -15,7 +15,7 @@ defaults: &defaults
     - DOCKER_NAME: "catalyst"
 
   docker:
-    - image: circleci/node:8-stretch
+    - image: node:12.14.1
 
 jobs:
   docker-build:
@@ -170,7 +170,7 @@ jobs:
 
   publish-npm-package:
     docker:
-      - image: node:8
+      - image: node:12.14.1
 
     dependencies:
       pre:
