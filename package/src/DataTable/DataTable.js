@@ -22,6 +22,8 @@ import {
 import { Skeleton } from "@material-ui/lab";
 import ChevronLeftIcon from "mdi-material-ui/ChevronLeft";
 import ChevronRightIcon from "mdi-material-ui/ChevronRight";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import CloseIcon from "mdi-material-ui/Close";
 import Button from "../Button";
 import Select from "../Select";
@@ -66,6 +68,13 @@ const useStyles = makeStyles((theme) => ({
   },
   tableWrapper: {
     overflowX: "auto"
+  },
+  tableHeadClickable: {
+    cursor: "pointer"
+  },
+  tableHeadGroup: {
+    display: "flex",
+    alignItems: "center"
   }
 }));
 
@@ -105,6 +114,7 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
     onRemoveFilter,
     onRemoveManualFilter,
     isLoading,
+    onColumnHeaderClick,
 
     // Props from the useTable hook
     getTableProps,
@@ -353,12 +363,19 @@ const DataTable = React.forwardRef(function DataTable(props, ref) {
                   return (
                     <TableCell
                       padding={column.id === "selection" ? "checkbox" : "default"}
-                      classes={{
-                        root: classes.tableHead
-                      }}
+                      className={clsx({
+                        [classes.tableHead]: true,
+                        [classes.tableHeadClickable]: !!column?.isSortable
+                      })}
                       {...column.getHeaderProps()}
+                      onClick={() => {
+                        onColumnHeaderClick && onColumnHeaderClick(column);
+                      }}
                     >
-                      {column.render("Header")}
+                      <div className={classes.tableHeadGroup}>
+                        {column.render("Header")}
+                        {column?.sortOrder && <>{column.sortOrder === "asc" ? <ArrowDropUpIcon/> : <ArrowDropDownIcon/>}</>}
+                      </div>
                     </TableCell>
                   );
                 })}
@@ -614,6 +631,10 @@ DataTable.propTypes = {
    * Go to next page
    */
   nextPage: PropTypes.func,
+  /**
+   * Event triggered when the header of a column is clicked
+   */
+  onColumnHeaderClick: PropTypes.func,
   /**
    * Event triggered when global filter field has changed
    */
