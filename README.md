@@ -1,4 +1,4 @@
-# Catalyst
+# Catalyst [Depreacted]
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/catalyst.svg)](https://www.npmjs.com/package/@reactioncommerce/catalyst)
  [![CircleCI](https://circleci.com/gh/reactioncommerce/catalyst.svg?style=svg)](https://circleci.com/gh/reactioncommerce/catalyst)
